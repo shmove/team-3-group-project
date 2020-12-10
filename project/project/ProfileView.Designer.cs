@@ -1,6 +1,6 @@
 ﻿namespace project
 {
-    partial class ProfileView
+    partial class ProfileEditView
     {
         /// <summary>
         /// Required designer variable.
@@ -38,6 +38,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,7 +115,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(489, 508);
+            this.button3.Location = new System.Drawing.Point(408, 508);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 9;
@@ -130,11 +131,21 @@
             this.button4.Text = "Reset";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // ProfileView
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(489, 508);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 11;
+            this.button5.Text = "Delete Note";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // ProfileEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 540);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -145,7 +156,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "ProfileView";
+            this.Name = "ProfileEditView";
             this.Text = "[StudentName] - Info";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -165,5 +176,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }

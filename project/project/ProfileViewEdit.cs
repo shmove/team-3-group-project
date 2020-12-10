@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace project
 {
-    public partial class ProfileEditView : Form
+    public partial class ProfileViewEdit : Form
     {
-        public ProfileEditView()
+        public ProfileViewEdit()
         {
             InitializeComponent();
         }
