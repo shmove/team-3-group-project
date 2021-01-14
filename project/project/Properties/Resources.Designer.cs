@@ -69,5 +69,15 @@ namespace project.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap admin_login_portal_500x5001 {
+            get {
+                object obj = ResourceManager.GetObject("admin-login-portal-500x5001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
