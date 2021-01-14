@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace project
 {
-    public partial class Form0 : Form
+    public partial class Form2 : Form
     {
-        public Form0()
+        public Form2()
         {
             InitializeComponent();
         }
@@ -20,21 +20,19 @@ namespace project
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string user, pass;
-            user = txtUser.Text; 
+            user = txtUser.Text;
             pass = txtPassword.Text;
 
-            if(user=="admin" && pass=="password")
+            if (user == "admin" && pass == "password")
             {
-                this.Close();
-                Form1 f1 = new Form1();
-                f1.ShowDialog();
+                this.Hide();
+                Form2 f2 = new Form2();
+                f2.ShowDialog();
             }
             else
             {
                 MessageBox.Show("password is incorrect");
             }
-
-
         }
     }
 }
