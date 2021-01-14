@@ -36,18 +36,9 @@
     <Compile Include="AdminLogin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Form0Base.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Form1.cs" />
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form0.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form0.Designer.cs">
-      <DependentUpon>Form0.cs</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -64,29 +55,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ProfileAddNote.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ProfileAddNote.cs" />
     <Compile Include="ProfileAddNote.Designer.cs">
       <DependentUpon>ProfileAddNote.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProfileView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ProfileView.cs" />
     <Compile Include="ProfileView.Designer.cs">
       <DependentUpon>ProfileView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProfileViewEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ProfileViewEdit.cs" />
     <Compile Include="ProfileViewEdit.Designer.cs">
       <DependentUpon>ProfileViewEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form0.resx">
-      <DependentUpon>Form0.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,17 +120,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\admin-login-portal-500x500.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
