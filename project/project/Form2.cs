@@ -23,15 +23,16 @@ namespace project
             user = txtUser.Text;
             pass = txtPassword.Text;
 
-            if (user == "admin" && pass == "password")
+            if (user == "admin" && pass == "password") /// add a more secure login handler later
             {
                 this.Hide();
-                Form2 f2 = new Form2();
-                f2.ShowDialog();
+                Form1 f1 = new Form1();
+                f1.ShowDialog();
             }
             else
             {
-                MessageBox.Show("password is incorrect");
+                MessageBox.Show("Incorrect username or password. Please try again.");
+                txtPassword.Text = String.Empty; /// clears password textbox for ease of use
             }
         }
     }
