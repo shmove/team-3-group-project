@@ -28,137 +28,138 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.StudentPhoto = new System.Windows.Forms.PictureBox();
+            this.LabelStudentName = new System.Windows.Forms.Label();
+            this.LabelCompany = new System.Windows.Forms.Label();
+            this.LabelGroups = new System.Windows.Forms.Label();
+            this.SearchResults = new System.Windows.Forms.ListBox();
+            this.ButtonSearch = new System.Windows.Forms.Button();
+            this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.ButtonEditInfo = new System.Windows.Forms.Button();
+            this.ButtonAddNote = new System.Windows.Forms.Button();
+            this.ButtonReset = new System.Windows.Forms.Button();
+            this.ButtonDeleteNote = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // StudentPhoto
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(114, 142);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.StudentPhoto.Location = new System.Drawing.Point(12, 12);
+            this.StudentPhoto.Name = "StudentPhoto";
+            this.StudentPhoto.Size = new System.Drawing.Size(114, 142);
+            this.StudentPhoto.TabIndex = 0;
+            this.StudentPhoto.TabStop = false;
             // 
-            // label1
+            // LabelStudentName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(132, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Student Name";
+            this.LabelStudentName.AutoSize = true;
+            this.LabelStudentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelStudentName.Location = new System.Drawing.Point(132, 44);
+            this.LabelStudentName.Name = "LabelStudentName";
+            this.LabelStudentName.Size = new System.Drawing.Size(148, 25);
+            this.LabelStudentName.TabIndex = 1;
+            this.LabelStudentName.Text = "Student Name";
             // 
-            // label2
+            // LabelCompany
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(132, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 25);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Company";
+            this.LabelCompany.AutoSize = true;
+            this.LabelCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCompany.Location = new System.Drawing.Point(132, 69);
+            this.LabelCompany.Name = "LabelCompany";
+            this.LabelCompany.Size = new System.Drawing.Size(103, 25);
+            this.LabelCompany.TabIndex = 2;
+            this.LabelCompany.Text = "Company";
             // 
-            // label3
+            // LabelGroups
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(132, 94);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(277, 25);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Registered for: Group name";
+            this.LabelGroups.AutoSize = true;
+            this.LabelGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelGroups.Location = new System.Drawing.Point(132, 94);
+            this.LabelGroups.Name = "LabelGroups";
+            this.LabelGroups.Size = new System.Drawing.Size(277, 25);
+            this.LabelGroups.TabIndex = 3;
+            this.LabelGroups.Text = "Registered for: Group name";
             // 
-            // listBox1
+            // SearchResults
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 186);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(552, 316);
-            this.listBox1.TabIndex = 4;
+            this.SearchResults.FormattingEnabled = true;
+            this.SearchResults.Location = new System.Drawing.Point(12, 186);
+            this.SearchResults.Name = "SearchResults";
+            this.SearchResults.Size = new System.Drawing.Size(552, 316);
+            this.SearchResults.TabIndex = 4;
             // 
-            // button1
+            // ButtonSearch
             // 
-            this.button1.Location = new System.Drawing.Point(408, 157);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Location = new System.Drawing.Point(408, 157);
+            this.ButtonSearch.Name = "ButtonSearch";
+            this.ButtonSearch.Size = new System.Drawing.Size(75, 23);
+            this.ButtonSearch.TabIndex = 6;
+            this.ButtonSearch.Text = "Search";
+            this.ButtonSearch.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // DateTimePicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(202, 160);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 7;
+            this.DateTimePicker.Location = new System.Drawing.Point(202, 160);
+            this.DateTimePicker.Name = "DateTimePicker";
+            this.DateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.DateTimePicker.TabIndex = 7;
             // 
-            // button2
+            // ButtonEditInfo
             // 
-            this.button2.Location = new System.Drawing.Point(12, 508);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Edit Info";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ButtonEditInfo.Location = new System.Drawing.Point(12, 508);
+            this.ButtonEditInfo.Name = "ButtonEditInfo";
+            this.ButtonEditInfo.Size = new System.Drawing.Size(75, 23);
+            this.ButtonEditInfo.TabIndex = 8;
+            this.ButtonEditInfo.Text = "Edit Info";
+            this.ButtonEditInfo.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // ButtonAddNote
             // 
-            this.button3.Location = new System.Drawing.Point(408, 508);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Add Note";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ButtonAddNote.Location = new System.Drawing.Point(408, 508);
+            this.ButtonAddNote.Name = "ButtonAddNote";
+            this.ButtonAddNote.Size = new System.Drawing.Size(75, 23);
+            this.ButtonAddNote.TabIndex = 9;
+            this.ButtonAddNote.Text = "Add Note";
+            this.ButtonAddNote.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // ButtonReset
             // 
-            this.button4.Location = new System.Drawing.Point(489, 157);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Reset";
-            this.button4.UseVisualStyleBackColor = true;
+            this.ButtonReset.Location = new System.Drawing.Point(489, 157);
+            this.ButtonReset.Name = "ButtonReset";
+            this.ButtonReset.Size = new System.Drawing.Size(75, 23);
+            this.ButtonReset.TabIndex = 10;
+            this.ButtonReset.Text = "Reset";
+            this.ButtonReset.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // ButtonDeleteNote
             // 
-            this.button5.Location = new System.Drawing.Point(489, 508);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Delete Note";
-            this.button5.UseVisualStyleBackColor = true;
+            this.ButtonDeleteNote.Location = new System.Drawing.Point(489, 508);
+            this.ButtonDeleteNote.Name = "ButtonDeleteNote";
+            this.ButtonDeleteNote.Size = new System.Drawing.Size(75, 23);
+            this.ButtonDeleteNote.TabIndex = 11;
+            this.ButtonDeleteNote.Text = "Delete Note";
+            this.ButtonDeleteNote.UseVisualStyleBackColor = true;
             // 
             // ProfileEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 540);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.ButtonDeleteNote);
+            this.Controls.Add(this.ButtonReset);
+            this.Controls.Add(this.ButtonAddNote);
+            this.Controls.Add(this.ButtonEditInfo);
+            this.Controls.Add(this.DateTimePicker);
+            this.Controls.Add(this.ButtonSearch);
+            this.Controls.Add(this.SearchResults);
+            this.Controls.Add(this.LabelGroups);
+            this.Controls.Add(this.LabelCompany);
+            this.Controls.Add(this.LabelStudentName);
+            this.Controls.Add(this.StudentPhoto);
             this.Name = "ProfileEditView";
             this.Text = "[StudentName] - Info";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Load += new System.EventHandler(this.ProfileEditView_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,16 +167,16 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.PictureBox StudentPhoto;
+        private System.Windows.Forms.Label LabelStudentName;
+        private System.Windows.Forms.Label LabelCompany;
+        private System.Windows.Forms.Label LabelGroups;
+        private System.Windows.Forms.ListBox SearchResults;
+        private System.Windows.Forms.Button ButtonSearch;
+        private System.Windows.Forms.DateTimePicker DateTimePicker;
+        private System.Windows.Forms.Button ButtonEditInfo;
+        private System.Windows.Forms.Button ButtonAddNote;
+        private System.Windows.Forms.Button ButtonReset;
+        private System.Windows.Forms.Button ButtonDeleteNote;
     }
 }
