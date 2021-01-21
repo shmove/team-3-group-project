@@ -16,5 +16,14 @@ namespace project
         {
             InitializeComponent();
         }
+
+        private void ViewButton_Click(object sender, EventArgs e)
+        {
+
+            ProfileEditView infoForm = new ProfileEditView();
+            infoForm.searchForm = this;
+            infoForm.Show();
+
+        }
     }
 }

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.SearchBar = new System.Windows.Forms.TextBox();
+            this.SearchButton = new System.Windows.Forms.Button();
+            this.CheckBoxA2E = new System.Windows.Forms.CheckBox();
+            this.SearchResults = new System.Windows.Forms.ListBox();
+            this.ViewButton = new System.Windows.Forms.Button();
+            this.ResetButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -47,69 +47,73 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Pupil Records Program";
             // 
-            // textBox1
+            // SearchBar
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 60);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(695, 20);
-            this.textBox1.TabIndex = 1;
+            this.SearchBar.Location = new System.Drawing.Point(12, 60);
+            this.SearchBar.Name = "SearchBar";
+            this.SearchBar.Size = new System.Drawing.Size(695, 20);
+            this.SearchBar.TabIndex = 1;
             // 
-            // button1
+            // SearchButton
             // 
-            this.button1.Location = new System.Drawing.Point(713, 58);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.SearchButton.Location = new System.Drawing.Point(713, 58);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(75, 23);
+            this.SearchButton.TabIndex = 2;
+            this.SearchButton.Text = "Search";
+            this.SearchButton.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // CheckBoxA2E
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 90);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(170, 17);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "Registered for Able to Enable?";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.CheckBoxA2E.AutoSize = true;
+            this.CheckBoxA2E.Location = new System.Drawing.Point(12, 90);
+            this.CheckBoxA2E.Name = "CheckBoxA2E";
+            this.CheckBoxA2E.Size = new System.Drawing.Size(170, 17);
+            this.CheckBoxA2E.TabIndex = 3;
+            this.CheckBoxA2E.Text = "Registered for Able to Enable?";
+            this.CheckBoxA2E.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // SearchResults
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 119);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(776, 290);
-            this.listBox1.TabIndex = 4;
+            this.SearchResults.FormattingEnabled = true;
+            this.SearchResults.Items.AddRange(new object[] {
+            "Matthew Liddle (891273)",
+            "Luka Senic (190238)"});
+            this.SearchResults.Location = new System.Drawing.Point(12, 119);
+            this.SearchResults.Name = "SearchResults";
+            this.SearchResults.Size = new System.Drawing.Size(776, 290);
+            this.SearchResults.TabIndex = 4;
             // 
-            // button2
+            // ViewButton
             // 
-            this.button2.Location = new System.Drawing.Point(713, 415);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "View";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ViewButton.Location = new System.Drawing.Point(713, 415);
+            this.ViewButton.Name = "ViewButton";
+            this.ViewButton.Size = new System.Drawing.Size(75, 23);
+            this.ViewButton.TabIndex = 5;
+            this.ViewButton.Text = "View";
+            this.ViewButton.UseVisualStyleBackColor = true;
+            this.ViewButton.Click += new System.EventHandler(this.ViewButton_Click);
             // 
-            // button3
+            // ResetButton
             // 
-            this.button3.Location = new System.Drawing.Point(713, 86);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Reset";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ResetButton.Location = new System.Drawing.Point(713, 86);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(75, 23);
+            this.ResetButton.TabIndex = 6;
+            this.ResetButton.Text = "Reset";
+            this.ResetButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ResetButton);
+            this.Controls.Add(this.ViewButton);
+            this.Controls.Add(this.SearchResults);
+            this.Controls.Add(this.CheckBoxA2E);
+            this.Controls.Add(this.SearchButton);
+            this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Pupil Records Program";
@@ -121,12 +125,15 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox SearchBar;
+        private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.CheckBox CheckBoxA2E;
+
+        /// Set listbox to public so highlighted entry can be accessed by different forms
+        public System.Windows.Forms.ListBox SearchResults; 
+
+        private System.Windows.Forms.Button ViewButton;
+        private System.Windows.Forms.Button ResetButton;
     }
 }
 
