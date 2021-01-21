@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace project {
     /// <summary>
-    /// This is the first version (0.0.1) of the pupil file manager.                                                           <br />
+    /// This is version 0.0.2 of the pupil file manager.                                                                       <br />
     ///                                                                                                                        <br />
     /// This version supports:                                                                                                 <br />
     ///                                                                                                                        <br />
@@ -26,11 +26,11 @@ namespace project {
     ///  -  Having multiple pupils with the same name.                                                                         <br />
     ///  -  Storing the pupils' images in the same directory as their info file                                                <br />
     ///  -  Having any possible APPLICABLE_DIRECTORY_NAME_PATTERN.                                                             <br />
-    ///  -  The search for pupils by their properties can be extremely unreliable.                                             <br />
+    ///  -  The search for pupils by their properties can still be extremely unreliable.                                       <br />
     /// 
     /// </summary>
     class PupilFileManager {
-        public static readonly string VERSION = "0.0.1";
+        public static readonly string VERSION = "0.0.2";
         private static readonly string APPLICABLE_DIRECTORY_NAME_PATTERN = "Pupil_*"; //Please don't change this.
         private static readonly string PUPIL_INFO_FILE_NAME = "PupilInfo.json";
         public string RootFolderPath;
@@ -190,14 +190,18 @@ namespace project {
             }
             return Pupils;
         }
+        private string[] CHECK_NESTED_MATCH_PROPERTY_BLACKLIST = {"Length", "Chars"};
         private bool CheckNestedMatch(object Inspectee, object Pattern) { //This is a mess, I'm sorry...
             if (Inspectee == null && Pattern == null) return true;
             if (Inspectee == null || Pattern == null) return false;
-            int Length = Pattern.GetType().GetProperties().Length;
+            PropertyInfo[] Properties = Pattern.GetType().GetProperties();
+            int Length = 0;
+            foreach (PropertyInfo Property in Properties) if (!CHECK_NESTED_MATCH_PROPERTY_BLACKLIST.Contains(Property.Name)) Length++;
             if (Length == 0) {
                 return Object.Equals(Inspectee, Pattern);
             }
             foreach (PropertyInfo Property in Pattern.GetType().GetProperties()) {
+                if (CHECK_NESTED_MATCH_PROPERTY_BLACKLIST.Contains(Property.Name)) continue;
 
                 if (Inspectee.GetType().GetProperty(Property.Name) == null) return false; //As this was iterated over, it implies that the Pattern definitely has this property.
 
