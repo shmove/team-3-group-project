@@ -23,7 +23,7 @@ namespace project
             user = txtUser.Text;
             pass = txtPassword.Text;
 
-            if (user == "admin" && pass == "password") /// add a more secure login handler later
+            if (user == "admin" && pass == "Password") /// add a more secure login handler later
             {
                 this.Hide();
                 Form1 f1 = new Form1();
