@@ -49,24 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmRegister.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmRegister.Designer.cs">
-      <DependentUpon>frmRegister.cs</DependentUpon>
-    </Compile>
     <Compile Include="PupilFileManager.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="pupilRecords.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmLogin.Designer.cs">
-      <DependentUpon>frmLogin.cs</DependentUpon>
+    <Compile Include="pupilRecords.Designer.cs">
+      <DependentUpon>pupilRecords.cs</DependentUpon>
     </Compile>
     <Compile Include="ProfileAddNote.cs">
       <SubType>Form</SubType>
@@ -88,14 +76,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
-      <DependentUpon>frmLogin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmRegister.resx">
-      <DependentUpon>frmRegister.cs</DependentUpon>
+    <EmbeddedResource Include="pupilRecords.resx">
+      <DependentUpon>pupilRecords.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProfileAddNote.resx">
       <DependentUpon>ProfileAddNote.cs</DependentUpon>
