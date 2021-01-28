@@ -49,8 +49,7 @@ namespace project {
                 new pupilRecords().Show();
                 this.Hide();
             } else {
-                MessageBox.Show("Invalid username or password, please try again", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtUsername.Text = "";
+                MessageBox.Show("Invalid username or password, please try again.", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtpassword.Text = "";
                 txtUsername.Focus();
             }

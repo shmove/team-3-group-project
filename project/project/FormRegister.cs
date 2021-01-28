@@ -12,8 +12,8 @@ namespace project {
         public FormLogin loginForm;
 
         private void button1_Click(object sender, EventArgs e) {
-            if (txtUsername.Text == "" && txtPassword.Text == "" && txtComPassword.Text == "") {
-                MessageBox.Show("Username and password fields are empty", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (txtUsername.Text == "" || txtPassword.Text == "" || txtComPassword.Text == "") {
+                MessageBox.Show("Username and/or password fields are empty.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             } else if (txtPassword.Text == txtComPassword.Text) {
                 loginForm.con.Open();
@@ -29,7 +29,7 @@ namespace project {
                 MessageBox.Show("Your account has been successfully created.", "Registration success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             } else {
-                MessageBox.Show("Passwords do not match, please re-enter", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Passwords do not match, please re-enter.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPassword.Text = "";
                 txtComPassword.Text = "";
                 txtPassword.Focus();
