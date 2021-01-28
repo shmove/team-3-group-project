@@ -11,7 +11,7 @@ using System.Data.OleDb;
 
 namespace project
 {
-    public partial class frmLogin : Form
+    public partial class frmLogin : Form 
     {
         public frmLogin()
         {
@@ -22,10 +22,10 @@ namespace project
         OleDbCommand cmd = new OleDbCommand();
         OleDbDataAdapter da = new OleDbDataAdapter();
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             con.Open();
-            string login = "SELECT * FROM tbl_users WHERE username= '" + txtUsername.Text + "' and password= '" + txtpassword.Text + "'";
+            string login = "SELECT *  FROM tbl_users WHERE username= '" + txtUsername.Text + "' and password= '" + txtPassword.Text + "'";
             cmd = new OleDbCommand(login, con);
             OleDbDataReader dr = cmd.ExecuteReader();
 
@@ -36,43 +36,40 @@ namespace project
             }
             else
             {
-                MessageBox.Show("Invalid Username or Password, Please Try Again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Username and password not  correct, please try again", "Login Unsuccessful", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Text = "";
                 txtUsername.Text = "";
-                txtpassword.Text = "";
                 txtUsername.Focus();
             }
+
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
+            txtPassword.Text = "";
             txtUsername.Text = "";
-            txtpassword.Text = "";
             txtUsername.Focus();
         }
 
-        private void checkbxShowPas_CheckedChanged(object sender, EventArgs e)
+        private void chkboxShowPas_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkbxShowPas.Checked)
+            if (chkboxShowPas.Checked)
             {
-                txtpassword.PasswordChar = '\0';
-
+                txtPassword.PasswordChar = '\0';
             }
             else
             {
-                txtpassword.PasswordChar = '•';
-
-            }
+                txtPassword.PasswordChar = '*';
+               }
         }
+
+        //this is annoying me
 
         private void label6_Click(object sender, EventArgs e)
         {
             new frmRegister().Show();
             this.Hide();
         }
-
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
+
