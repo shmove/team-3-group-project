@@ -13,7 +13,7 @@ namespace project
     public partial class ProfileEditView : Form
     {
 
-        public Form1 searchForm;
+        public pupilRecords searchForm;
         private Pupil activeStudent;
 
         public ProfileEditView()
@@ -68,7 +68,7 @@ namespace project
 
             PupilFileManager Mgr = new PupilFileManager(searchForm.dataDir);
 
-            string[] highlightedField = ((Form1)searchForm).SearchResults.GetItemText(((Form1)searchForm).SearchResults.SelectedItem).Split('(');
+            string[] highlightedField = ((pupilRecords)searchForm).SearchResults.GetItemText(((pupilRecords)searchForm).SearchResults.SelectedItem).Split('(');
 
             string studentName = highlightedField[0].Trim(); // Gets pupil name from substring array, removing trailing space
             string studentID = highlightedField[1].Trim('(',' ', ')');

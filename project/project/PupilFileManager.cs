@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace project {
     /// <summary>
-    /// This is version 0.0.2 of the pupil file manager.                                                                       <br />
+    /// This is version 0.1.1 of the pupil file manager.                                                                       <br />
     ///                                                                                                                        <br />
     /// This version supports:                                                                                                 <br />
     ///                                                                                                                        <br />
@@ -20,17 +20,18 @@ namespace project {
     ///  -  Getting a list of pupils with certain properties (unstable)                                                        <br />
     ///  -  Write / update pupil data to disk                                                                                  <br />
     ///  -  Generate test cases (doesn't contain notes)                                                                        <br />
+    ///  -  Having multiple pupils with the same name.                                                                         <br />
+    ///  -  Collating property values from pupils.                                                                             <br />
     ///                                                                                                                        <br />
     /// This version doesn't support:                                                                                          <br />
     ///                                                                                                                        <br />
-    ///  -  Having multiple pupils with the same name.                                                                         <br />
     ///  -  Storing the pupils' images in the same directory as their info file                                                <br />
     ///  -  Having any possible APPLICABLE_DIRECTORY_NAME_PATTERN.                                                             <br />
     ///  -  The search for pupils by their properties can still be extremely unreliable.                                       <br />
     /// 
     /// </summary>
     class PupilFileManager {
-        public static readonly string VERSION = "0.0.2";
+        public static readonly string VERSION = "0.1.1";
         private static readonly string APPLICABLE_DIRECTORY_NAME_PATTERN = "Pupil_*"; //Please don't change this.
         private static readonly string PUPIL_INFO_FILE_NAME = "PupilInfo.json";
         public string RootFolderPath;
@@ -67,6 +68,8 @@ namespace project {
             return Directory.GetDirectories(RootFolderPath, APPLICABLE_DIRECTORY_NAME_PATTERN, SearchOption.TopDirectoryOnly);
         }
         /// <summary>
+        /// Note: this feature is obsolete.                                                                                    <br />
+        ///                                                                                                                    <br />
         /// Returns a string array containing all the stored pupils' names at the directory provided in the constructor.       <br />
         ///                                                                                                                    <br />
         /// Note:                                                                                                              <br />
@@ -82,7 +85,7 @@ namespace project {
         /// </summary>
         /// <param name="FilePath">The file path of the pupil info data.</param>
         /// <returns>Returns a string array containing all the stored pupils' names at the directory provided in the constructor.</returns>
-        public string[] GetPupilNameArray() {
+        public string[] GetPupilNameArray_obsolete() {
             string[] DirectoryNames = GetDirectoryNameArray();
             int PupilsCount = DirectoryNames.Length;
             if (DirectoryNames.Length == 0) return new string[0];
@@ -103,7 +106,9 @@ namespace project {
             }
         }
         /// <summary>
-        ///     Returns a Pupil object if the provided pupil's data was found.
+        /// Note: this feature is obsolete.
+        /// <br />
+        /// <br />Returns a Pupil object if the provided pupil's data was found.
         /// <br />
         /// <br />Note:
         /// <br />
@@ -122,7 +127,7 @@ namespace project {
         /// </summary>
         /// <param name="Name">The name of the pupil.</param>
         /// <returns>Returns a Pupil object if the provided pupil's data was found.</returns>
-        public Pupil GetPupilByName(string Name) {
+        public Pupil GetPupilByName_obsolete(string Name) {
             string DirectoryPath;
             try {
                 DirectoryPath = Directory.GetDirectories(RootFolderPath, APPLICABLE_DIRECTORY_NAME_PATTERN.Remove(APPLICABLE_DIRECTORY_NAME_PATTERN.Length - 1) + Name, SearchOption.TopDirectoryOnly)[0];
@@ -181,7 +186,7 @@ namespace project {
             string[] Directories = GetDirectoryNameArray();
             string[] SearchableFileNames = new string[Directories.Length];
             for(int i = 0, Length = Directories.Length; i < Length; i++) {
-                SearchableFileNames[i] = Directories[i] + "//" + PUPIL_INFO_FILE_NAME;
+                SearchableFileNames[i] = Directories[i] + "\\" + PUPIL_INFO_FILE_NAME;
             }
             List<Pupil> Pupils = new List<Pupil>();
             for(int i = 0, Length = Directories.Length; i < Length; i++) {
@@ -190,7 +195,9 @@ namespace project {
             }
             return Pupils;
         }
-        private string[] CHECK_NESTED_MATCH_PROPERTY_BLACKLIST = {"Length", "Chars"};
+
+        
+        private static string[] CHECK_NESTED_MATCH_PROPERTY_BLACKLIST = { "Length", "Chars" };
         private bool CheckNestedMatch(object Inspectee, object Pattern) { //This is a mess, I'm sorry...
             if (Inspectee == null && Pattern == null) return true;
             if (Inspectee == null || Pattern == null) return false;
@@ -214,7 +221,8 @@ namespace project {
 
                 /*if (InspecteeValue == PatternValue) {
                     return true;
-                } else */{
+                } else */
+                {
                     if (PatternValue is object) {
                         if (InspecteeValue is object) {
                             if (!CheckNestedMatch(InspecteeValue, PatternValue)) return false;
@@ -224,27 +232,29 @@ namespace project {
             }
             return true;
         }
-        private bool CheckNestedMatch_(object Inspectee, object Pattern) {
-            foreach (PropertyInfo Property in Pattern.GetType().GetProperties()) {
-                if (Inspectee.GetType().GetProperty(Property.Name).GetIndexParameters().Length != 0 ||
-                   Pattern.GetType().GetProperty(Property.Name).GetIndexParameters().Length != 0) continue;
 
-                dynamic InspecteeValue = Inspectee.GetType().GetProperty(Property.Name)?.GetValue(Inspectee, null);
-                dynamic PatternValue = Pattern.GetType().GetProperty(Property.Name).GetValue(Pattern, null);
-                if (PatternValue == null) continue;
-
-                if(InspecteeValue == PatternValue) {
-                    return true;
-                } else {
-                    if(PatternValue is object){
-                        if (InspecteeValue is object) {
-                            if (!CheckNestedMatch(InspecteeValue, PatternValue)) return false;
-                        } else return false;
-                    }
-                }
+        /// <summary>
+        /// Collates a list of all the values that a property has.
+        /// <br />
+        /// <br />Example:
+        /// <br /><code>
+        /// <br />    List<string> IDs = Mgr.GetPropertyValuesFromPupils<string>("PupilID");
+        /// <br /></code>
+        /// </summary>
+        /// <typeparam name="T">Same as the type of the Property parameter.</typeparam>
+        /// <param name="Property">The property, of which the values will be collated</param>
+        /// <returns></returns>
+        public List<T> CollatePropertyValuesFromPupils<T>(string Property) {
+            string[] Directories = GetDirectoryNameArray();
+            List<T> PropertyValuesList = new List<T>();
+            for (int i = 0, Length = Directories.Length; i < Length; i++) {
+                string FileName = Directories[i] + "\\" + PUPIL_INFO_FILE_NAME;
+                Pupil CurrentPupil = DeserializePupilFile(FileName);
+                PropertyValuesList.Add((T)CurrentPupil.GetType().GetProperty(Property).GetValue(CurrentPupil, null));
             }
-            return true;
+            return PropertyValuesList;
         }
+
         /// <summary>
         ///     Writes pupil data to the disk: this can be used to update existing records or create new ones.
         /// <br />
@@ -259,13 +269,28 @@ namespace project {
         /// <param name="p_Pupil">The Pupil object; the p_Pupil.Name property will be used for the containing folder's name.</param>
         public void WritePupilData(Pupil p_Pupil) {
             string Name = p_Pupil.Name;
-            string FolderName = APPLICABLE_DIRECTORY_NAME_PATTERN.Remove(APPLICABLE_DIRECTORY_NAME_PATTERN.Length - 1) + Name;
+            string FolderName = APPLICABLE_DIRECTORY_NAME_PATTERN.Remove(APPLICABLE_DIRECTORY_NAME_PATTERN.Length - 1) + Name + "_" + p_Pupil.PupilUUID;
             System.IO.Directory.CreateDirectory(RootFolderPath + "\\" + FolderName);
             FileStream v_FileStream = File.Create(RootFolderPath + "\\" + FolderName + "\\" + PUPIL_INFO_FILE_NAME);
             string Serialized = JsonConvert.SerializeObject(p_Pupil);
             byte[] ByteData = Encoding.UTF8.GetBytes(Serialized);
             v_FileStream.Write(ByteData, 0, ByteData.Length);
             v_FileStream.Close();
+        }
+
+        public bool ConfirmPupilIDIntegrity() {
+            string[] Directories = GetDirectoryNameArray();
+            string[] SearchableFileNames = new string[Directories.Length];
+            for (int i = 0, Length = Directories.Length; i < Length; i++) {
+                SearchableFileNames[i] = Directories[i] + "\\" + PUPIL_INFO_FILE_NAME;
+            }
+            HashSet<string> IDs = new HashSet<string>();
+            for (int i = 0, Length = Directories.Length; i < Length; i++) {
+                Pupil CurrentPupil = DeserializePupilFile(SearchableFileNames[i]);
+                if (!IDs.Contains(CurrentPupil.PupilID)) IDs.Add(CurrentPupil.PupilID);
+                else return false;
+            }
+            return true;
         }
 
         #region Testing
@@ -275,13 +300,13 @@ namespace project {
 
         public void GenerateTestCases(int Count) {
             if ((Count >> 8) > 0) throw new Exception("Really?");
-            for(int i = 0; i < Count; i++) {
+            Random v_Random = new Random();
+            for (int i = 0; i < Count; i++) {
                 string Name = System.IO.Path.GetRandomFileName();
-                string FolderName = APPLICABLE_DIRECTORY_NAME_PATTERN.Remove(APPLICABLE_DIRECTORY_NAME_PATTERN.Length - 1) + Name;
+                Pupil v_Pupil = new Pupil(Name, (v_Random.Next(0x00989680, 0x05f5e0ff) >> 0).ToString(), (v_Random.Next(0, 4) >> 1) > 1 ? "Tesco" : "Sainsbury's", v_Random.Next(0, 2) < 1, new List<Notes>(), System.IO.Path.GetRandomFileName());
+                string FolderName = APPLICABLE_DIRECTORY_NAME_PATTERN.Remove(APPLICABLE_DIRECTORY_NAME_PATTERN.Length - 1) + Name + "_" + v_Pupil.PupilUUID;
                 System.IO.Directory.CreateDirectory(RootFolderPath + "\\" +  FolderName);
                 FileStream v_FileStream = File.Create(RootFolderPath + "\\" + FolderName + "\\" + PUPIL_INFO_FILE_NAME);
-                Random v_Random = new Random();
-                Pupil v_Pupil = new Pupil(Name, v_Random.Next(0, 2) < 1 ? "Tesco" : "Sainsbury's", v_Random.Next(0, 2) < 1, new List<Notes>(), System.IO.Path.GetRandomFileName());
                 string Serialized = JsonConvert.SerializeObject(v_Pupil);
                 byte[] ByteData = Encoding.UTF8.GetBytes(Serialized);
                 v_FileStream.Write(ByteData, 0, ByteData.Length);
@@ -295,6 +320,17 @@ namespace project {
     }
 
     public class Pupil {
+        private string m_PupilUUID;
+        public string PupilUUID {
+            get {
+                return m_PupilUUID;
+            }
+            set {
+                if (m_PupilUUID == null) m_PupilUUID = value;
+                else throw new FieldAccessException("Tried re-setting the UUID of a pupil.");
+            }
+        }
+        public string PupilID { get; set; }
         public string Name { get; set; }
         public string Company { get; set; }
         public bool A2E { get; set; }
@@ -303,12 +339,14 @@ namespace project {
         public Pupil() {
 
         }
-        public Pupil(string p_Name, string p_Company, bool p_A2E, List<Notes> p_Notes, string p_ImgRef) {
+        public Pupil(string p_Name, string p_PupilID, string p_Company, bool p_A2E, List<Notes> p_Notes, string p_ImgRef) {
+            PupilUUID = System.Guid.NewGuid().ToString();
             Name = p_Name;
             A2E = p_A2E;
             Company = p_Company;
             Notes = p_Notes;
             ImgRef = p_ImgRef;
+            PupilID = p_PupilID;
         }
         public Pupil(object Object) {
 

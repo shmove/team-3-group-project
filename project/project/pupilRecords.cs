@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace project
 {
-    public partial class Form1 : Form
+    public partial class pupilRecords : Form
     {
+        public String dataDir = @"C:\Users\Matthew Liddle\Documents\Software Dev Course\Work Placement\testDir"; // for testing, fill this in with your own working dir - will be in appdata or smthn later
 
-        public String dataDir = @""; // for testing, fill this in with your own working dir - will be in appdata or smthn later
-
-        public Form1()
+        public pupilRecords()
         {
             InitializeComponent();
         }
@@ -36,7 +35,7 @@ namespace project
 
             PupilFileManager Mgr = new PupilFileManager(dataDir);
 
-            string[] PupilNames = Mgr.GetPupilNameArray();
+            List<string> PupilNames = Mgr.CollatePropertyValuesFromPupils<string>("Name");
 
             foreach (String name in PupilNames)
             {

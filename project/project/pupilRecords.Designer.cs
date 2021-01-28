@@ -1,6 +1,6 @@
 ﻿namespace project
 {
-    partial class Form1
+    partial class pupilRecords
     {
         /// <summary>
         /// Required designer variable.
