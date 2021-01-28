@@ -12,7 +12,7 @@ namespace project
 {
     public partial class pupilRecords : Form
     {
-        public String dataDir = @"C:\Test\"; // for testing, fill this in with your own working dir - will be in appdata or smthn later
+        public String dataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\..\Local\PupilRecordsProgram\Pupils"; // for testing, fill this in with your own working dir - will be in appdata or smthn later
 
         public pupilRecords()
         {

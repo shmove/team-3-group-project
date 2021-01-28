@@ -4,33 +4,32 @@ using System.Windows.Forms;
 
 namespace project {
     public partial class FormRegister : Form {
+
         public FormRegister() {
             InitializeComponent();
         }
 
-        OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_users.mdb");
-        OleDbCommand cmd = new OleDbCommand();
-        OleDbDataAdapter da = new OleDbDataAdapter();
+        public FormLogin loginForm;
 
         private void button1_Click(object sender, EventArgs e) {
             if (txtUsername.Text == "" && txtPassword.Text == "" && txtComPassword.Text == "") {
-                MessageBox.Show("Username and Password fields are empty", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Username and password fields are empty", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             } else if (txtPassword.Text == txtComPassword.Text) {
-                con.Open();
+                loginForm.con.Open();
                 string register = "INSERT INTO tbl_users VALUES ('" + txtUsername.Text + "','" + txtPassword.Text + "')";
-                cmd = new OleDbCommand(register, con);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                loginForm.cmd = new OleDbCommand(register, loginForm.con);
+                loginForm.cmd.ExecuteNonQuery();
+                loginForm.con.Close();
 
                 txtUsername.Text = "";
                 txtPassword.Text = "";
                 txtComPassword.Text = "";
 
-                MessageBox.Show("Your Account has been Successfully Created Matthew :)", "Registration Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Your account has been successfully created.", "Registration success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             } else {
-                MessageBox.Show("Passwords does not match unlucky Matt, Please Re-enter", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Passwords do not match, please re-enter", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPassword.Text = "";
                 txtComPassword.Text = "";
                 txtPassword.Focus();
@@ -55,8 +54,7 @@ namespace project {
         }
 
         private void label6_Click(object sender, EventArgs e) {
-            new FormLogin().Show();
-            this.Hide();
+            this.Close();
         }
 
         private void frmRegister_Load(object sender, EventArgs e) {

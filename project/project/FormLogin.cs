@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using System.IO;
 
 namespace project {
     public partial class FormLogin : Form {
@@ -15,9 +16,28 @@ namespace project {
             InitializeComponent();
         }
 
-        OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_users.mdb");
-        OleDbCommand cmd = new OleDbCommand();
-        OleDbDataAdapter da = new OleDbDataAdapter();
+        public OleDbConnection con;
+        public OleDbCommand cmd;
+        public OleDbDataAdapter da;
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
+            // initialises database connection
+            if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\..\Local\PupilRecordsProgram"))
+            {
+                con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\..\Local\PupilRecordsProgram\Databases\db_users.mdb");
+                cmd = new OleDbCommand();
+                da = new OleDbDataAdapter();
+            }
+            else
+            {
+                Console.WriteLine("File path not detected. Performing first time setup...");
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\..\Local\PupilRecordsProgram\Pupils");
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\..\Local\PupilRecordsProgram\Databases");
+            }
+
+        }
 
         private void button1_Click(object sender, EventArgs e) {
             con.Open();
@@ -29,11 +49,12 @@ namespace project {
                 new pupilRecords().Show();
                 this.Hide();
             } else {
-                MessageBox.Show("Invalid Username or Password, Please Try Again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid username or password, please try again", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUsername.Text = "";
                 txtpassword.Text = "";
                 txtUsername.Focus();
             }
+            con.Close();
         }
 
         private void button2_Click(object sender, EventArgs e) {
@@ -53,12 +74,12 @@ namespace project {
         }
 
         private void label6_Click(object sender, EventArgs e) {
-            new FormRegister().Show();
+            FormRegister registerForm = new FormRegister();
+            registerForm.loginForm = this;
             this.Hide();
+            registerForm.ShowDialog();
+            this.Show();
         }
 
-        private void frmLogin_Load(object sender, EventArgs e) {
-
-        }
     }
 }
