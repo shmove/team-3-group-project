@@ -12,6 +12,9 @@ namespace project
 {
     public partial class Form1 : Form
     {
+
+        public String dataDir = @""; // for testing, fill this in with your own working dir - will be in appdata or smthn later
+
         public Form1()
         {
             InitializeComponent();
@@ -22,7 +25,23 @@ namespace project
 
             ProfileEditView infoForm = new ProfileEditView();
             infoForm.searchForm = this;
-            infoForm.Show();
+            this.Hide();
+            infoForm.ShowDialog();
+            this.Show();
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+            PupilFileManager Mgr = new PupilFileManager(dataDir);
+
+            string[] PupilNames = Mgr.GetPupilNameArray();
+
+            foreach (String name in PupilNames)
+            {
+                SearchResults.Items.Add(name + " (???)");
+            }
 
         }
     }

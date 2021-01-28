@@ -76,9 +76,6 @@
             // SearchResults
             // 
             this.SearchResults.FormattingEnabled = true;
-            this.SearchResults.Items.AddRange(new object[] {
-            "Matthew Liddle (891273)",
-            "Luka Senic (190238)"});
             this.SearchResults.Location = new System.Drawing.Point(12, 119);
             this.SearchResults.Name = "SearchResults";
             this.SearchResults.Size = new System.Drawing.Size(776, 290);
@@ -117,6 +114,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Pupil Records Program";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
