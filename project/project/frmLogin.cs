@@ -11,7 +11,7 @@ using System.Data.OleDb;
 
 namespace project
 {
-    public partial class frmLogin : Form
+    public partial class frmLogin : Form 
     {
         public frmLogin()
         {
@@ -62,6 +62,8 @@ namespace project
                 txtPassword.PasswordChar = '*';
                }
         }
+
+        //this is annoying me
 
         private void label6_Click(object sender, EventArgs e)
         {
