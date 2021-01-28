@@ -9,75 +9,87 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
-namespace project
+namespace login_and_Register_System
 {
     public partial class frmRegister : Form
     {
         public frmRegister()
         {
             InitializeComponent();
+
         }
 
         OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_users.mdb");
         OleDbCommand cmd = new OleDbCommand();
         OleDbDataAdapter da = new OleDbDataAdapter();
 
-        private void btnRegister_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (Username.Text == "" && Password.Text == "" && Confirmpassword.Text == "")
+            if (txtUsername.Text == "" && txtPassword.Text == "" && txtComPassword.Text == "")
             {
-                MessageBox.Show("must enter username and password", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Username and Password fields are empty", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
-            else if (Password.Text == Confirmpassword.Text)
+            else if (txtPassword.Text == txtComPassword.Text)
             {
                 con.Open();
-                string register = "INSERT INTO tbl_users VALUES ('" + Username.Text + "','" + Password.Text + "')";
+                string register = "INSERT INTO tbl_users VALUES ('" + txtUsername.Text + "','" + txtPassword.Text + "')";
                 cmd = new OleDbCommand(register, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                Username.Text = "";
-                Password.Text = "";
-                Confirmpassword.Text = "";
+                txtUsername.Text = "";
+                txtPassword.Text = "";
+                txtComPassword.Text = "";
 
-                MessageBox.Show("Your acount creation has been successfull", "Registration Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Your Account has been Successfully Created Matthew :)", "Registration Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            }    
-            else
-            {
-                MessageBox.Show("Passwords do not match", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Password.Text = "";
-                Confirmpassword.Text = "";
-                Password.Focus();
-            }
-        }
-
-        private void chkboxShowPas_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkboxShowPas.Checked)
-            {
-                Password.PasswordChar = '\0';
-                Confirmpassword.PasswordChar = '\0';
             }
             else
             {
-                Password.PasswordChar = '*';
-                Confirmpassword.PasswordChar = '*';
+                MessageBox.Show("Passwords does not match unlucky Matt, Please Re-enter", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Text = "";
+                txtComPassword.Text = "";
+                txtPassword.Focus();
             }
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void checkbxShowPas_CheckedChanged(object sender, EventArgs e)
         {
-            Username.Text = "";
-            Password.Text = "";
-            Confirmpassword.Text = "";
-            Username.Focus();
+            if (checkbxShowPas.Checked)
+            {
+                txtPassword.PasswordChar = '\0';
+                txtComPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txtPassword.PasswordChar = '•';
+                txtComPassword.PasswordChar = '•';
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            txtUsername.Text = "";
+            txtPassword.Text = "";
+            txtComPassword.Text = "";
+            txtUsername.Focus();
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
             new frmLogin().Show();
             this.Hide();
+        }
+
+        private void frmRegister_Load(object sender, EventArgs e)
+        {
+            label2.Text = "Username";
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
