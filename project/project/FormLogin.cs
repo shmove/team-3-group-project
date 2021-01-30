@@ -46,8 +46,10 @@ namespace project {
             OleDbDataReader dr = cmd.ExecuteReader();
 
             if (dr.Read() == true) {
-                new pupilRecords().Show();
                 this.Hide();
+                pupilRecords pupilRecords = new pupilRecords();
+                pupilRecords.FormClosed += (s, args) => this.Close(); // on the event of the pupilRecords form closing, this one closes too
+                pupilRecords.Show();
             } else {
                 MessageBox.Show("Invalid username or password, please try again.", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtpassword.Text = "";
