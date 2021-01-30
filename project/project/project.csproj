@@ -61,7 +61,12 @@
     <Compile Include="FormRegister.Designer.cs">
       <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
-    <Compile Include="PupilFileManager.cs" />
+    <Compile Include="Interfaces\IInstallable.cs" />
+    <Compile Include="Interfaces\IPupilDataManager.cs" />
+    <Compile Include="PupilDataManager\DbPupilDataManager.cs" />
+    <Compile Include="PupilDataManager\PupilFileManager.cs" />
+    <Compile Include="PupilDataManager\SharedResources\Types.cs" />
+    <Compile Include="PupilFileManager_.cs" />
     <Compile Include="pupilRecords.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +133,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ADOX">
+      <Guid>{00000600-0000-0010-8000-00AA006D2EA4}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
