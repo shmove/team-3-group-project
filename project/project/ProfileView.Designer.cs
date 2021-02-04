@@ -41,6 +41,7 @@
             this.ButtonDeleteNote = new System.Windows.Forms.Button();
             this.LabelStudentNo = new System.Windows.Forms.Label();
             this.ComboBoxContext = new System.Windows.Forms.ComboBox();
+            this.ButtonEditNote = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,15 +119,17 @@
             this.ButtonEditInfo.TabIndex = 8;
             this.ButtonEditInfo.Text = "Edit Info";
             this.ButtonEditInfo.UseVisualStyleBackColor = true;
+            this.ButtonEditInfo.Click += new System.EventHandler(this.ButtonEditInfo_Click);
             // 
             // ButtonAddNote
             // 
-            this.ButtonAddNote.Location = new System.Drawing.Point(408, 508);
+            this.ButtonAddNote.Location = new System.Drawing.Point(327, 508);
             this.ButtonAddNote.Name = "ButtonAddNote";
             this.ButtonAddNote.Size = new System.Drawing.Size(75, 23);
             this.ButtonAddNote.TabIndex = 9;
             this.ButtonAddNote.Text = "Add Note";
             this.ButtonAddNote.UseVisualStyleBackColor = true;
+            this.ButtonAddNote.Click += new System.EventHandler(this.ButtonAddNote_Click);
             // 
             // ButtonReset
             // 
@@ -169,11 +172,21 @@
             this.ComboBoxContext.Size = new System.Drawing.Size(59, 21);
             this.ComboBoxContext.TabIndex = 13;
             // 
+            // ButtonEditNote
+            // 
+            this.ButtonEditNote.Location = new System.Drawing.Point(408, 508);
+            this.ButtonEditNote.Name = "ButtonEditNote";
+            this.ButtonEditNote.Size = new System.Drawing.Size(75, 23);
+            this.ButtonEditNote.TabIndex = 14;
+            this.ButtonEditNote.Text = "Edit Note";
+            this.ButtonEditNote.UseVisualStyleBackColor = true;
+            // 
             // ProfileEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 540);
+            this.Controls.Add(this.ButtonEditNote);
             this.Controls.Add(this.ComboBoxContext);
             this.Controls.Add(this.LabelStudentNo);
             this.Controls.Add(this.ButtonDeleteNote);
@@ -211,5 +224,6 @@
         private System.Windows.Forms.Button ButtonDeleteNote;
         private System.Windows.Forms.Label LabelStudentNo;
         private System.Windows.Forms.ComboBox ComboBoxContext;
+        private System.Windows.Forms.Button ButtonEditNote;
     }
 }

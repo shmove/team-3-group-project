@@ -12,9 +12,19 @@ namespace project
 {
     public partial class ProfileViewEdit : Form
     {
+
+        public ProfileEditView pupilForm;
+
         public ProfileViewEdit()
         {
             InitializeComponent();
+        }
+
+        private void ProfileViewEdit_Load(object sender, EventArgs e)
+        {
+
+
+
         }
     }
 }

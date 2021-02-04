@@ -14,7 +14,8 @@ namespace project
     {
 
         public pupilRecords searchForm;
-        private Pupil activeStudent;
+        public Pupil activeStudent;
+        private PupilFileManager Mgr;
 
         public ProfileEditView()
         {
@@ -61,30 +62,35 @@ namespace project
             return 0;
         }
 
+        private static Pupil getStudent(PupilFileManager Mgr, string studentName)
+        {
+            Pupil student;
+
+            // When searching by id, the correct student will always be able to be accessed through students[0]
+            List<Pupil> students = Mgr.GetPupilsByProperties(new { Name = studentName }); // Replace with ID, when implemented
+
+            // saves student info globally (locally? global to this form at least. idk how c# works) so it can be accessed by other form events
+            student = students[0];
+            return student;
+        }
+
         private void ProfileEditView_Load(object sender, EventArgs e)
         {
 
             ComboBoxContext.SelectedIndex = 0; // set default selection
 
-            PupilFileManager Mgr = new PupilFileManager(searchForm.dataDir);
+            Mgr = new PupilFileManager(searchForm.dataDir);
 
             string[] highlightedField = ((pupilRecords)searchForm).SearchResults.GetItemText(((pupilRecords)searchForm).SearchResults.SelectedItem).Split('(');
 
             string studentName = highlightedField[0].Trim(); // Gets pupil name from substring array, removing trailing space
             string studentID = highlightedField[1].Trim('(',' ', ')');
 
-            Console.WriteLine("studentName: '" + studentName + "'");
-            Console.WriteLine("studentID: '" + studentID + "'");
+            activeStudent = getStudent(Mgr, studentName);
 
-            // When searching by id, the correct student will always be able to be accessed through students[0]
-            List <Pupil> students = Mgr.GetPupilsByProperties(new { Name = studentName }); // Replace with ID, when implemented
-
-            // saves student info globally (locally? global to this form at least. idk how c# works) so it can be accessed by other form events
-            activeStudent = students[0];
-
-            this.Text = activeStudent.Name + " - Info"; // this.Text = activeStudent.Name + "(" + activeStudent.id + ") - Info";
+            this.Text = activeStudent.Name + " (" + activeStudent.PupilID + ") - Info";
             LabelStudentName.Text = activeStudent.Name;
-            // LabelStudentNo.Text = activeStudent.id;
+            LabelStudentNo.Text = activeStudent.PupilID;
             LabelCompany.Text = activeStudent.Company;
 
             string groups = "";
@@ -176,5 +182,28 @@ namespace project
             populateNotes(SearchResults, activeStudent);
 
         }
+
+        private void ButtonAddNote_Click(object sender, EventArgs e)
+        {
+            ProfileAddNote addNote = new ProfileAddNote();
+            addNote.profileForm = this;
+            this.Hide();
+            addNote.ShowDialog();
+
+            // then, on close of this form
+            activeStudent = getStudent(Mgr, activeStudent.Name);
+            this.Show();
+            populateNotes(SearchResults, activeStudent);
+        }
+
+        private void ButtonEditInfo_Click(object sender, EventArgs e)
+        {
+            ProfileViewEdit pupilInfoEdit = new ProfileViewEdit();
+            pupilInfoEdit.pupilForm = this;
+            this.Hide();
+            pupilInfoEdit.ShowDialog();
+            this.Show();
+        }
+        
     }
 }

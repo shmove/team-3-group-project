@@ -122,6 +122,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "ProfileViewEdit";
             this.Text = "[StudentName] - Edit";
+            this.Load += new System.EventHandler(this.ProfileViewEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
