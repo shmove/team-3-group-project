@@ -47,9 +47,28 @@ namespace project.PupilDataManager.SharedResources {
         public class Note {
             public string Date {get; set;}
             public string Text {get; set;}
+            private string m_UUID;
+            public string UUID {
+                get {
+                    return m_UUID;
+                }
+                set {
+                    if (m_UUID == null) m_UUID = value;
+                    else throw new FieldAccessException("Tried re-setting the UUID of a note.");
+                }
+            }
             public Note(string p_Date, string p_Text){
                 this.Date = p_Date;
                 this.Text = p_Text;
+                this.UUID = System.Guid.NewGuid().ToString();
+            }
+            public Note(string p_Date, string p_Text, string p_UUID){
+                this.Date = p_Date;
+                this.Text = p_Text;
+                this.UUID = p_UUID;
+            }
+            public Note(){
+                
             }
         }
     }

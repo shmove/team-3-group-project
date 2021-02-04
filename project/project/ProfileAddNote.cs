@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static project.PupilDataManager.SharedResources.Types;
 
 namespace project
 {
@@ -52,41 +53,19 @@ namespace project
             switch (profileForm.noteContext)
             {
                 case "add":
-                    string currentDate = DateTime.Now.ToString("d/M/yyyy").Replace("/", "-");
-                    bool groupFound = false;
+                    string currentDate = DateTime.Now.ToString("d-M-yyyy");
+                    profileForm.activeStudent.Notes.Add(new Note(currentDate, newNote));
 
-                    for (int i = 0; i < profileForm.activeStudent.Notes.Count; i++)
-                    {
-                        if (currentDate == profileForm.activeStudent.Notes[i].Date)
-                        {
-                            groupFound = true;
-                            profileForm.activeStudent.Notes[i].NotesList.Add(newNote);
-                        }
-                    }
-
-                    if (!groupFound)
-                    {
-                        // TODO
-                        // Add note into student object, in new group with date (or alternate db setup)
-                        // TODO
-                    }
                     break;
-
                 case "edit":
                     // iterates through notes and overwrites initial note (probably could be done better)
-                    for (int i = 0; i < profileForm.activeStudent.Notes.Count; i++)
-                    {
-                        if (profileForm.activeStudent.Notes[i].Date == initialDate)
-                        {
-                            for (int j = 0; j < profileForm.activeStudent.Notes[i].NotesList.Count; j++)
-                            {
-                                if (profileForm.activeStudent.Notes[i].NotesList[j] == initialNote)
-                                {
-                                    profileForm.activeStudent.Notes[i].NotesList[j] = newNote;
-                                }
-                            }
-                        }
+                    bool Found = false;
+                    foreach(Note i_Note in profileForm.activeStudent.Notes) if(i_Note.Text == initialNote){
+                        i_Note.Text = newNote;
+                        Found = true;
+                        break;
                     }
+                    if(!Found) throw new Exception("The specified note wasn't found.");
                     break;
             }
 

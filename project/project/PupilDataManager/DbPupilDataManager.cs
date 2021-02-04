@@ -76,10 +76,12 @@ namespace project.PupilDataManager {
             AddColumns(NotesTable, new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
                 ("PupilUUID", ADOX.DataTypeEnum.adVarWChar, 36),
                 ("Note", ADOX.DataTypeEnum.adLongVarWChar, 511),
-                ("Date", ADOX.DataTypeEnum.adVarWChar, 22)
+                ("Date", ADOX.DataTypeEnum.adVarWChar, 22),
+                ("UUID", ADOX.DataTypeEnum.adVarWChar, 36)
             });
 
             NotesTable.Keys.Append("ForeignKey", KeyTypeEnum.adKeyForeign, "PupilUUID", "Pupil", "PupilUUID");
+            PupilsTable.Keys.Append("PrimaryKey", ADOX.KeyTypeEnum.adKeyPrimary, "UUID", null, null);
             v_Catalog.Tables.Append(NotesTable);
 
             Table MetadataTable = new Table();

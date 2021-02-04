@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static project.PupilDataManager.SharedResources.Types;
 
 namespace project
 {
@@ -26,11 +27,8 @@ namespace project
         private static void populateNotes(ListBox SearchResults, Pupil activeStudent)
         {
             SearchResults.Items.Clear();
-            foreach (Notes noteGroup in activeStudent.Notes) {
-                foreach (string note in noteGroup.NotesList)
-                {
-                    SearchResults.Items.Add(note + " [" + noteGroup.Date + "]");
-                }
+            foreach (Note i_Note in activeStudent.Notes) {
+                SearchResults.Items.Add(i_Note.Text + " [" + i_Note.Date + "]");
             }
         }
 
@@ -130,43 +128,34 @@ namespace project
             {
                 case 0:
                     // all notes AFTER specified date
-                    foreach (Notes noteGroup in activeStudent.Notes)
+                    foreach (Note i_Note in activeStudent.Notes)
                     {
-                        int relative = compareDates(selectedDate, noteGroup.Date);
+                        int relative = compareDates(selectedDate, i_Note.Date);
                         if (relative == 1 || relative == 0)
                         {
-                            foreach (string note in noteGroup.NotesList)
-                            {
-                                SearchResults.Items.Add(note + " [" + noteGroup.Date + "]");
-                            }
+                            SearchResults.Items.Add(i_Note.Text + " [" + i_Note.Date + "]");
                         }
                     }
                     break;
                 case 1:
                     // all notes FROM specified date
-                    foreach (Notes noteGroup in activeStudent.Notes)
+                    foreach (Note i_Note in activeStudent.Notes)
                     {
-                        int relative = compareDates(selectedDate, noteGroup.Date);
+                        int relative = compareDates(selectedDate, i_Note.Date);
                         if (relative == 0)
                         {
-                            foreach (string note in noteGroup.NotesList)
-                            {
-                                SearchResults.Items.Add(note);
-                            }
+                            SearchResults.Items.Add(i_Note.Text);
                         }
                     }
                     break;
                 case 2:
                     // all notes BEFORE specified date
-                    foreach (Notes noteGroup in activeStudent.Notes)
+                    foreach (Note i_Note in activeStudent.Notes)
                     {
-                        int relative = compareDates(selectedDate, noteGroup.Date);
+                        int relative = compareDates(selectedDate, i_Note.Date);
                         if (relative == -1 || relative == 0)
                         {
-                            foreach (string note in noteGroup.NotesList)
-                            {
-                                SearchResults.Items.Add(note + " [" + noteGroup.Date + "]");
-                            }
+                            SearchResults.Items.Add(i_Note + " [" + i_Note.Date + "]");
                         }
                     }
                     break;
