@@ -58,46 +58,52 @@
             // LabelStudentName
             // 
             this.LabelStudentName.AutoSize = true;
-            this.LabelStudentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelStudentName.Location = new System.Drawing.Point(132, 18);
+            this.LabelStudentName.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelStudentName.Location = new System.Drawing.Point(132, 9);
             this.LabelStudentName.Name = "LabelStudentName";
-            this.LabelStudentName.Size = new System.Drawing.Size(148, 25);
+            this.LabelStudentName.Size = new System.Drawing.Size(177, 32);
             this.LabelStudentName.TabIndex = 1;
             this.LabelStudentName.Text = "Student Name";
+            this.LabelStudentName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // LabelCompany
             // 
             this.LabelCompany.AutoSize = true;
-            this.LabelCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCompany.Location = new System.Drawing.Point(132, 79);
+            this.LabelCompany.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCompany.Location = new System.Drawing.Point(132, 73);
             this.LabelCompany.Name = "LabelCompany";
-            this.LabelCompany.Size = new System.Drawing.Size(103, 25);
+            this.LabelCompany.Size = new System.Drawing.Size(123, 32);
             this.LabelCompany.TabIndex = 2;
             this.LabelCompany.Text = "Company";
             // 
             // LabelGroups
             // 
             this.LabelGroups.AutoSize = true;
-            this.LabelGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelGroups.Location = new System.Drawing.Point(132, 119);
+            this.LabelGroups.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelGroups.Location = new System.Drawing.Point(132, 105);
             this.LabelGroups.Name = "LabelGroups";
-            this.LabelGroups.Size = new System.Drawing.Size(277, 25);
+            this.LabelGroups.Size = new System.Drawing.Size(334, 32);
             this.LabelGroups.TabIndex = 3;
             this.LabelGroups.Text = "Registered for: Group name";
             // 
             // SearchResults
             // 
+            this.SearchResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.SearchResults.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchResults.FormattingEnabled = true;
-            this.SearchResults.Location = new System.Drawing.Point(12, 186);
+            this.SearchResults.ItemHeight = 15;
+            this.SearchResults.Location = new System.Drawing.Point(12, 207);
             this.SearchResults.Name = "SearchResults";
-            this.SearchResults.Size = new System.Drawing.Size(552, 316);
+            this.SearchResults.Size = new System.Drawing.Size(567, 304);
             this.SearchResults.TabIndex = 4;
             // 
             // ButtonSearch
             // 
-            this.ButtonSearch.Location = new System.Drawing.Point(408, 157);
+            this.ButtonSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonSearch.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonSearch.Location = new System.Drawing.Point(403, 154);
             this.ButtonSearch.Name = "ButtonSearch";
-            this.ButtonSearch.Size = new System.Drawing.Size(75, 23);
+            this.ButtonSearch.Size = new System.Drawing.Size(77, 37);
             this.ButtonSearch.TabIndex = 6;
             this.ButtonSearch.Text = "Search";
             this.ButtonSearch.UseVisualStyleBackColor = true;
@@ -105,75 +111,92 @@
             // 
             // DateTimePicker
             // 
-            this.DateTimePicker.Location = new System.Drawing.Point(202, 160);
+            this.DateTimePicker.CalendarFont = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateTimePicker.CalendarMonthBackground = System.Drawing.Color.White;
+            this.DateTimePicker.Location = new System.Drawing.Point(202, 164);
             this.DateTimePicker.Name = "DateTimePicker";
-            this.DateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.DateTimePicker.Size = new System.Drawing.Size(195, 20);
             this.DateTimePicker.TabIndex = 7;
             // 
             // ButtonEditInfo
             // 
-            this.ButtonEditInfo.Location = new System.Drawing.Point(12, 508);
+            this.ButtonEditInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ButtonEditInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonEditInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonEditInfo.ForeColor = System.Drawing.Color.White;
+            this.ButtonEditInfo.Location = new System.Drawing.Point(12, 539);
             this.ButtonEditInfo.Name = "ButtonEditInfo";
-            this.ButtonEditInfo.Size = new System.Drawing.Size(75, 23);
+            this.ButtonEditInfo.Size = new System.Drawing.Size(105, 43);
             this.ButtonEditInfo.TabIndex = 8;
-            this.ButtonEditInfo.Text = "Edit Info";
-            this.ButtonEditInfo.UseVisualStyleBackColor = true;
+            this.ButtonEditInfo.Text = "EDIT INFO.";
+            this.ButtonEditInfo.UseVisualStyleBackColor = false;
             // 
             // ButtonAddNote
             // 
-            this.ButtonAddNote.Location = new System.Drawing.Point(408, 508);
+            this.ButtonAddNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonAddNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonAddNote.Location = new System.Drawing.Point(348, 539);
             this.ButtonAddNote.Name = "ButtonAddNote";
-            this.ButtonAddNote.Size = new System.Drawing.Size(75, 23);
+            this.ButtonAddNote.Size = new System.Drawing.Size(105, 43);
             this.ButtonAddNote.TabIndex = 9;
-            this.ButtonAddNote.Text = "Add Note";
+            this.ButtonAddNote.Text = "ADD NOTE";
             this.ButtonAddNote.UseVisualStyleBackColor = true;
             // 
             // ButtonReset
             // 
-            this.ButtonReset.Location = new System.Drawing.Point(489, 157);
+            this.ButtonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonReset.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonReset.ForeColor = System.Drawing.Color.White;
+            this.ButtonReset.Location = new System.Drawing.Point(502, 154);
             this.ButtonReset.Name = "ButtonReset";
-            this.ButtonReset.Size = new System.Drawing.Size(75, 23);
+            this.ButtonReset.Size = new System.Drawing.Size(77, 39);
             this.ButtonReset.TabIndex = 10;
             this.ButtonReset.Text = "Reset";
-            this.ButtonReset.UseVisualStyleBackColor = true;
+            this.ButtonReset.UseVisualStyleBackColor = false;
             this.ButtonReset.Click += new System.EventHandler(this.ButtonReset_Click);
             // 
             // ButtonDeleteNote
             // 
-            this.ButtonDeleteNote.Location = new System.Drawing.Point(489, 508);
+            this.ButtonDeleteNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonDeleteNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonDeleteNote.Location = new System.Drawing.Point(474, 539);
             this.ButtonDeleteNote.Name = "ButtonDeleteNote";
-            this.ButtonDeleteNote.Size = new System.Drawing.Size(75, 23);
+            this.ButtonDeleteNote.Size = new System.Drawing.Size(105, 43);
             this.ButtonDeleteNote.TabIndex = 11;
-            this.ButtonDeleteNote.Text = "Delete Note";
+            this.ButtonDeleteNote.Text = "DELETE NOTE";
             this.ButtonDeleteNote.UseVisualStyleBackColor = true;
             // 
             // LabelStudentNo
             // 
             this.LabelStudentNo.AutoSize = true;
-            this.LabelStudentNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelStudentNo.Location = new System.Drawing.Point(132, 43);
+            this.LabelStudentNo.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelStudentNo.Location = new System.Drawing.Point(132, 41);
             this.LabelStudentNo.Name = "LabelStudentNo";
-            this.LabelStudentNo.Size = new System.Drawing.Size(125, 25);
+            this.LabelStudentNo.Size = new System.Drawing.Size(151, 32);
             this.LabelStudentNo.TabIndex = 12;
             this.LabelStudentNo.Text = "Student No.";
             // 
             // ComboBoxContext
             // 
+            this.ComboBoxContext.BackColor = System.Drawing.Color.White;
+            this.ComboBoxContext.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxContext.FormattingEnabled = true;
             this.ComboBoxContext.Items.AddRange(new object[] {
             "before",
             "from",
             "after"});
-            this.ComboBoxContext.Location = new System.Drawing.Point(137, 160);
+            this.ComboBoxContext.Location = new System.Drawing.Point(137, 163);
             this.ComboBoxContext.Name = "ComboBoxContext";
-            this.ComboBoxContext.Size = new System.Drawing.Size(59, 21);
+            this.ComboBoxContext.Size = new System.Drawing.Size(59, 23);
             this.ComboBoxContext.TabIndex = 13;
             // 
             // ProfileEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 540);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(602, 625);
             this.Controls.Add(this.ComboBoxContext);
             this.Controls.Add(this.LabelStudentNo);
             this.Controls.Add(this.ButtonDeleteNote);
@@ -187,6 +210,7 @@
             this.Controls.Add(this.LabelCompany);
             this.Controls.Add(this.LabelStudentName);
             this.Controls.Add(this.StudentPhoto);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ProfileEditView";
             this.Text = "[StudentName] - Info";
             this.Load += new System.EventHandler(this.ProfileEditView_Load);
