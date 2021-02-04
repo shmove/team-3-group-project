@@ -40,22 +40,23 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(348, 37);
+            this.label1.Size = new System.Drawing.Size(279, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "Pupil Records Program";
             // 
             // SearchBar
             // 
-            this.SearchBar.Location = new System.Drawing.Point(12, 60);
+            this.SearchBar.Location = new System.Drawing.Point(12, 58);
             this.SearchBar.Name = "SearchBar";
             this.SearchBar.Size = new System.Drawing.Size(695, 20);
             this.SearchBar.TabIndex = 1;
             // 
             // SearchButton
             // 
+            this.SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SearchButton.Location = new System.Drawing.Point(713, 58);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(75, 23);
@@ -66,23 +67,29 @@
             // CheckBoxA2E
             // 
             this.CheckBoxA2E.AutoSize = true;
+            this.CheckBoxA2E.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheckBoxA2E.Location = new System.Drawing.Point(12, 90);
             this.CheckBoxA2E.Name = "CheckBoxA2E";
-            this.CheckBoxA2E.Size = new System.Drawing.Size(170, 17);
+            this.CheckBoxA2E.Size = new System.Drawing.Size(182, 17);
             this.CheckBoxA2E.TabIndex = 3;
             this.CheckBoxA2E.Text = "Registered for Able to Enable?";
             this.CheckBoxA2E.UseVisualStyleBackColor = true;
             // 
             // SearchResults
             // 
+            this.SearchResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.SearchResults.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchResults.FormattingEnabled = true;
+            this.SearchResults.ItemHeight = 15;
             this.SearchResults.Location = new System.Drawing.Point(12, 119);
             this.SearchResults.Name = "SearchResults";
-            this.SearchResults.Size = new System.Drawing.Size(776, 290);
+            this.SearchResults.Size = new System.Drawing.Size(776, 289);
             this.SearchResults.TabIndex = 4;
             // 
             // ViewButton
             // 
+            this.ViewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ViewButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ViewButton.Location = new System.Drawing.Point(713, 415);
             this.ViewButton.Name = "ViewButton";
             this.ViewButton.Size = new System.Drawing.Size(75, 23);
@@ -93,18 +100,22 @@
             // 
             // ResetButton
             // 
+            this.ResetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ResetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ResetButton.ForeColor = System.Drawing.Color.White;
             this.ResetButton.Location = new System.Drawing.Point(713, 86);
             this.ResetButton.Name = "ResetButton";
             this.ResetButton.Size = new System.Drawing.Size(75, 23);
             this.ResetButton.TabIndex = 6;
             this.ResetButton.Text = "Reset";
-            this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // pupilRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(803, 462);
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.ViewButton);
             this.Controls.Add(this.SearchResults);
@@ -112,7 +123,8 @@
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "pupilRecords";
             this.Text = "Pupil Records Program";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
