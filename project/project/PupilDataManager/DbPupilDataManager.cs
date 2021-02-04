@@ -9,11 +9,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static project.PupilDataManager.SharedResources.Types;
 
 namespace project.PupilDataManager {
     class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.0.1.1";
-        public static readonly int BUILD = 1;
+        public static readonly string VERSION = "0.0.2.2";
+        public static readonly int BUILD = 2;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
@@ -45,32 +46,50 @@ namespace project.PupilDataManager {
             if (!Directory.Exists(Location)) Directory.CreateDirectory(Location);
             if (!Directory.Exists(Location + RELATIVE_PUPIL_PICTURES_LOCATION)) Directory.CreateDirectory(Location + RELATIVE_PUPIL_PICTURES_LOCATION);
 
+            Action<Table, ValueTuple<string, ADOX.DataTypeEnum, int>[]> AddColumns = delegate(Table CurrentTable, ValueTuple<string, ADOX.DataTypeEnum, int>[] ColumnProperties){
+                foreach (var Column in ColumnProperties){
+                    if(Column.Item3 == -1) CurrentTable.Columns.Append(Column.Item1, Column.Item2);
+                    else CurrentTable.Columns.Append(Column.Item1, Column.Item2, Column.Item3);
+                }
+            };
+
             Catalog v_Catalog = new Catalog();
             v_Catalog.Create(CONNECTION_STRING_TEMPLATE + Location + "\\" + DATABASE_NAME + "; Jet OLEDB:Engine Type=5");
             Table PupilsTable = new Table();
             PupilsTable.Name = "Pupil";
-            string[] TableNames = new string[] {"PupilUUID", "PupilID", "Name", "Company", "A2E", "ImgRef"}; //Notes will be a separate table!
-            foreach (string Entry in TableNames) {
-                PupilsTable.Columns.Append(Entry);
-            }
+            
+            AddColumns(PupilsTable, new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
+                ("PupilUUID", ADOX.DataTypeEnum.adVarWChar, 36),
+                ("PupilID", ADOX.DataTypeEnum.adVarWChar, 16),
+                ("Name", ADOX.DataTypeEnum.adVarWChar, 127),
+                ("Company", ADOX.DataTypeEnum.adVarWChar, 160),
+                ("A2E", ADOX.DataTypeEnum.adBoolean, -1),
+                ("ImgRef", ADOX.DataTypeEnum.adVarWChar, 255)
+            });
+
             PupilsTable.Keys.Append("PrimaryKey", ADOX.KeyTypeEnum.adKeyPrimary, "PupilUUID", null, null);
             v_Catalog.Tables.Append(PupilsTable);
 
             Table NotesTable = new Table();
             NotesTable.Name = "Note";
-            string[] TableNames2 = new string[] {"PupilUUID", "Note"};
-            foreach(string Entry in TableNames2) {
-                NotesTable.Columns.Append(Entry);
-            }
+            
+            AddColumns(NotesTable, new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
+                ("PupilUUID", ADOX.DataTypeEnum.adVarWChar, 36),
+                ("Note", ADOX.DataTypeEnum.adLongVarWChar, 511),
+                ("Date", ADOX.DataTypeEnum.adVarWChar, 22)
+            });
+
             NotesTable.Keys.Append("ForeignKey", KeyTypeEnum.adKeyForeign, "PupilUUID", "Pupil", "PupilUUID");
             v_Catalog.Tables.Append(NotesTable);
 
             Table MetadataTable = new Table();
             MetadataTable.Name = "Metadata";
-            string[] TableNames3 = new string[] {"Version", "Build", "DateCreated"};
-            foreach(string Entry in TableNames3) {
-                MetadataTable.Columns.Append(Entry);
-            }
+
+            AddColumns(MetadataTable, new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
+                ("Version", ADOX.DataTypeEnum.adVarWChar, 16),
+                ("Build", ADOX.DataTypeEnum.adVarWChar, -1),
+                ("DateCreated", ADOX.DataTypeEnum.adVarWChar, 22)
+            });
             v_Catalog.Tables.Append(MetadataTable);
 
             v_Catalog = null;
