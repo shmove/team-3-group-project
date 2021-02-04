@@ -13,9 +13,10 @@ namespace project
     public partial class ProfileEditView : Form
     {
 
-        public pupilRecords searchForm;
-        public Pupil activeStudent;
-        private PupilFileManager Mgr;
+        public pupilRecords searchForm; // all data from parent form
+        public Pupil activeStudent; // stores student data that is currently being accessed
+        public String noteContext; // for access of the note editing context (ie add/edit)
+        private PupilFileManager Mgr; // instance of pupilfilemanager
 
         public ProfileEditView()
         {
@@ -186,6 +187,7 @@ namespace project
         private void ButtonAddNote_Click(object sender, EventArgs e)
         {
             ProfileAddNote addNote = new ProfileAddNote();
+            noteContext = "add"; // lets the next form know that we are adding and not editing a note
             addNote.profileForm = this;
             this.Hide();
             addNote.ShowDialog();
@@ -196,14 +198,31 @@ namespace project
             populateNotes(SearchResults, activeStudent);
         }
 
+        private void ButtonEditNote_Click(object sender, EventArgs e)
+        {
+            if (SearchResults.SelectedIndex != -1)
+            {
+                ProfileAddNote addNote = new ProfileAddNote();
+                noteContext = "edit"; // lets the next form know that we are editing and not adding a note
+                addNote.profileForm = this;
+                this.Hide();
+                addNote.ShowDialog();
+
+                // then, on close of this form
+                activeStudent = getStudent(Mgr, activeStudent.Name);
+                this.Show();
+                populateNotes(SearchResults, activeStudent);
+            }
+            else
+            {
+                MessageBox.Show("Please select the note you wish to edit.", "No note selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
         private void ButtonEditInfo_Click(object sender, EventArgs e)
         {
-            ProfileViewEdit pupilInfoEdit = new ProfileViewEdit();
-            pupilInfoEdit.pupilForm = this;
-            this.Hide();
-            pupilInfoEdit.ShowDialog();
-            this.Show();
+
         }
-        
     }
 }

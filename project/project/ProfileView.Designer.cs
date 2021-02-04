@@ -204,6 +204,7 @@
             this.ButtonEditNote.TabIndex = 9;
             this.ButtonEditNote.Text = "Edit Note";
             this.ButtonEditNote.UseVisualStyleBackColor = true;
+            this.ButtonEditNote.Click += new System.EventHandler(this.ButtonEditNote_Click);
             // 
             // ProfileEditView
             // 
@@ -241,7 +242,8 @@
         private System.Windows.Forms.Label LabelStudentName;
         private System.Windows.Forms.Label LabelCompany;
         private System.Windows.Forms.Label LabelGroups;
-        private System.Windows.Forms.ListBox SearchResults;
+        /// Set listbox to public so highlighted entry can be accessed by different forms
+        public System.Windows.Forms.ListBox SearchResults;
         private System.Windows.Forms.Button ButtonSearch;
         private System.Windows.Forms.DateTimePicker DateTimePicker;
         private System.Windows.Forms.Button ButtonEditInfo;

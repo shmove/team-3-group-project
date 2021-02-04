@@ -49,7 +49,7 @@
             this.ButtonAddNote.Name = "ButtonAddNote";
             this.ButtonAddNote.Size = new System.Drawing.Size(75, 23);
             this.ButtonAddNote.TabIndex = 1;
-            this.ButtonAddNote.Text = "Add Note";
+            this.ButtonAddNote.Text = "Save Note";
             this.ButtonAddNote.UseVisualStyleBackColor = true;
             this.ButtonAddNote.Click += new System.EventHandler(this.ButtonAddNote_Click);
             // 
@@ -80,7 +80,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ProfileAddNote";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "[StudentName] - Add Note";
+            this.Text = "[StudentName] - Add/Edit Note";
             this.Load += new System.EventHandler(this.ProfileAddNote_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
