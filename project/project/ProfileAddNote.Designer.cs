@@ -46,13 +46,13 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(441, 206);
+            this.button1.Location = new System.Drawing.Point(436, 211);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 32);
+            this.button1.Size = new System.Drawing.Size(86, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "ADD NOTE";
+            this.button1.Text = "Add Note";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -61,13 +61,13 @@
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(70, 206);
+            this.button2.Location = new System.Drawing.Point(69, 211);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(82, 32);
+            this.button2.Size = new System.Drawing.Size(86, 23);
             this.button2.TabIndex = 2;
-            this.button2.Text = "CANCEL";
+            this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = false;
             // 
             // label1

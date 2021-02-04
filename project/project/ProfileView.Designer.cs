@@ -100,10 +100,10 @@
             // ButtonSearch
             // 
             this.ButtonSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonSearch.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSearch.Location = new System.Drawing.Point(403, 154);
+            this.ButtonSearch.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonSearch.Location = new System.Drawing.Point(422, 165);
             this.ButtonSearch.Name = "ButtonSearch";
-            this.ButtonSearch.Size = new System.Drawing.Size(77, 37);
+            this.ButtonSearch.Size = new System.Drawing.Size(63, 22);
             this.ButtonSearch.TabIndex = 6;
             this.ButtonSearch.Text = "Search";
             this.ButtonSearch.UseVisualStyleBackColor = true;
@@ -124,33 +124,33 @@
             this.ButtonEditInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonEditInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonEditInfo.ForeColor = System.Drawing.Color.White;
-            this.ButtonEditInfo.Location = new System.Drawing.Point(12, 539);
+            this.ButtonEditInfo.Location = new System.Drawing.Point(12, 537);
             this.ButtonEditInfo.Name = "ButtonEditInfo";
-            this.ButtonEditInfo.Size = new System.Drawing.Size(105, 43);
+            this.ButtonEditInfo.Size = new System.Drawing.Size(95, 25);
             this.ButtonEditInfo.TabIndex = 8;
-            this.ButtonEditInfo.Text = "EDIT INFO.";
+            this.ButtonEditInfo.Text = "Edit Info.";
             this.ButtonEditInfo.UseVisualStyleBackColor = false;
             // 
             // ButtonAddNote
             // 
             this.ButtonAddNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonAddNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonAddNote.Location = new System.Drawing.Point(348, 539);
+            this.ButtonAddNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonAddNote.Location = new System.Drawing.Point(361, 539);
             this.ButtonAddNote.Name = "ButtonAddNote";
-            this.ButtonAddNote.Size = new System.Drawing.Size(105, 43);
+            this.ButtonAddNote.Size = new System.Drawing.Size(95, 22);
             this.ButtonAddNote.TabIndex = 9;
-            this.ButtonAddNote.Text = "ADD NOTE";
+            this.ButtonAddNote.Text = "Add Note";
             this.ButtonAddNote.UseVisualStyleBackColor = true;
             // 
             // ButtonReset
             // 
             this.ButtonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonReset.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonReset.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonReset.ForeColor = System.Drawing.Color.White;
-            this.ButtonReset.Location = new System.Drawing.Point(502, 154);
+            this.ButtonReset.Location = new System.Drawing.Point(508, 165);
             this.ButtonReset.Name = "ButtonReset";
-            this.ButtonReset.Size = new System.Drawing.Size(77, 39);
+            this.ButtonReset.Size = new System.Drawing.Size(71, 24);
             this.ButtonReset.TabIndex = 10;
             this.ButtonReset.Text = "Reset";
             this.ButtonReset.UseVisualStyleBackColor = false;
@@ -159,12 +159,12 @@
             // ButtonDeleteNote
             // 
             this.ButtonDeleteNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonDeleteNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDeleteNote.Location = new System.Drawing.Point(474, 539);
+            this.ButtonDeleteNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonDeleteNote.Location = new System.Drawing.Point(484, 539);
             this.ButtonDeleteNote.Name = "ButtonDeleteNote";
-            this.ButtonDeleteNote.Size = new System.Drawing.Size(105, 43);
+            this.ButtonDeleteNote.Size = new System.Drawing.Size(95, 22);
             this.ButtonDeleteNote.TabIndex = 11;
-            this.ButtonDeleteNote.Text = "DELETE NOTE";
+            this.ButtonDeleteNote.Text = "Delete Note";
             this.ButtonDeleteNote.UseVisualStyleBackColor = true;
             // 
             // LabelStudentNo
@@ -196,7 +196,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(602, 625);
+            this.ClientSize = new System.Drawing.Size(595, 585);
             this.Controls.Add(this.ComboBoxContext);
             this.Controls.Add(this.LabelStudentNo);
             this.Controls.Add(this.ButtonDeleteNote);
