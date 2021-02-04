@@ -123,7 +123,7 @@
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "pupilRecords";
             this.Text = "Pupil Records Program";
             this.Load += new System.EventHandler(this.Form1_Load);

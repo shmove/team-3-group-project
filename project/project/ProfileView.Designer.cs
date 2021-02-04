@@ -210,7 +210,7 @@
             this.Controls.Add(this.LabelCompany);
             this.Controls.Add(this.LabelStudentName);
             this.Controls.Add(this.StudentPhoto);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ProfileEditView";
             this.Text = "[StudentName] - Info";
             this.Load += new System.EventHandler(this.ProfileEditView_Load);

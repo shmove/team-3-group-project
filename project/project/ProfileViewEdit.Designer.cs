@@ -130,7 +130,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ProfileViewEdit";
             this.Text = "[StudentName] - Edit";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
