@@ -4,6 +4,7 @@ using project.PupilDataManager.SharedResources;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.OleDb;
 using System.IO;
 using System.Linq;
@@ -14,8 +15,8 @@ using static project.PupilDataManager.SharedResources.Types;
 
 namespace project.PupilDataManager {
     class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.0.3";
-        public static readonly int BUILD = 3;
+        public static readonly string VERSION = "0.1.1.4";
+        public static readonly int BUILD = 4;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
@@ -120,7 +121,7 @@ namespace project.PupilDataManager {
             SelectCommand.CommandType = CommandType.Text;
             SelectCommand.Connection = Connection;
             //SelectCommand.CommandText = "SELECT @Property FROM [Pupil];";
-            //SelectCommand.Parameters.AddWithValue("@Property", Property); //This doesn't work for what ever reason: DataReader[0] always returns the Property name, instead of the value. Simply concatenating the table name works, but is unsafe.
+            //SelectCommand.Parameters.AddWithValue("@Property", Property);
             SelectCommand.CommandText = "SELECT * FROM [Pupil];";
 
             List<T> PropertyValues = new List<T>();
@@ -196,24 +197,53 @@ namespace project.PupilDataManager {
             return Pupils;
         }
         
-
+        private static readonly string[] UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST = new string[]{"PupilUUID", "Notes"};
         public override void WritePupilData(Pupil p_Pupil) {
             OleDbConnection Connection = new OleDbConnection(CONNECTION_STRING_TEMPLATE + this.DatabasePath + "\\" + DATABASE_NAME);
 
-            OleDbCommand InsertCommand = new OleDbCommand();
-            InsertCommand.CommandType = CommandType.Text;
-            InsertCommand.CommandText = "INSERT INTO [Pupil] ([PupilUUID], [PupilID], [Name], [Company], [A2E], [ImgRef]) VALUES (@PupilUUID, @PupilID, @Name, @Company, @A2E, @ImgRef)";
-            InsertCommand.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
-            InsertCommand.Parameters.AddWithValue("@PupilID", p_Pupil.PupilID);
-            InsertCommand.Parameters.AddWithValue("@Name", p_Pupil.Name);
-            InsertCommand.Parameters.AddWithValue("@Company", p_Pupil.Company);
-            InsertCommand.Parameters.AddWithValue("@A2E", p_Pupil.A2E);
-            InsertCommand.Parameters.AddWithValue("@ImgRef", p_Pupil.ImgRef);
-            InsertCommand.Connection = Connection;
-            //Also do Notes!!
+            OleDbCommand Command = new OleDbCommand();
+            Command.CommandType = CommandType.Text;
+            Command.Connection = Connection;
+
             Connection.Open();
-            InsertCommand.ExecuteNonQuery();
+
+            //DbCommandBuilder CommandBuilder = DbProviderFactories.GetFactory("System.Data.OleDb").CreateCommandBuilder();
+
+            if(this.GetPupilsByProperties(new {PupilUUID = p_Pupil.PupilUUID}).Count == 0){ //If the pupil doesn't already exist
+                Command.CommandText = "INSERT INTO [Pupil] ([PupilUUID], [PupilID], [Name], [Company], [A2E], [ImgRef]) VALUES (@PupilUUID, @PupilID, @Name, @Company, @A2E, @ImgRef)";
+                Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
+                Command.Parameters.AddWithValue("@PupilID", p_Pupil.PupilID);
+                Command.Parameters.AddWithValue("@Name", p_Pupil.Name);
+                Command.Parameters.AddWithValue("@Company", p_Pupil.Company);
+                Command.Parameters.AddWithValue("@A2E", p_Pupil.A2E);
+                Command.Parameters.AddWithValue("@ImgRef", p_Pupil.ImgRef);
+            }else{
+                string CommandText = "UPDATE [Pupil]";
+                for (dynamic i = 0, FirstTrueIteration = true, Length = p_Pupil.GetType().GetProperties().Length; i < Length; i++) {
+                    string PropertyName = p_Pupil.GetType().GetProperties()[i].Name;
+                    if(UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST.Contains(PropertyName)) continue;
+                    if(FirstTrueIteration){
+                        CommandText += " SET ";
+                        FirstTrueIteration = false;
+                    }
+                    else CommandText += ", ";
+                    CommandText += "[" + PropertyName + "] = @Value" + i; //Here goes nothing... It's probably fine, since the property names are defined in the program itself.
+                }
+                CommandText += " WHERE [PupilUUID] = @PupilUUID";
+                Command.CommandText = CommandText;
+                for (int i = 0, Length = p_Pupil.GetType().GetProperties().Length; i < Length; i++) {
+                    PropertyInfo Property = p_Pupil.GetType().GetProperties()[i];
+                    if(UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST.Contains(Property.Name)) continue;
+                    var Value = p_Pupil.GetType().GetProperty(Property.Name).GetValue(p_Pupil, null);
+                    Command.Parameters.AddWithValue("@Value" + i, Value);
+                }
+                Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
+            }
+            
+            Command.ExecuteNonQuery();
             Connection.Close();
         }
+
+        
     }
 }
