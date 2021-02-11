@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -101,17 +102,10 @@ namespace project
 
             populateNotes(SearchResults, activeStudent);
 
-            try
-            {
-                StudentPhoto.Image = Image.FromFile($@"{searchForm.dataDir}\Pupil_{studentName}\{activeStudent.ImgRef}");
-                // StudentPhoto.Image = Image.FromFile($@"{searchForm.dataDir}\Pupil{studentID}_{studentName}\{activeStudent.ImgRef}")
-            }
-            catch (Exception err)
-            {
-                // This usually means a picture hasn't been set, but write to console just in case
-                Console.WriteLine(err);
-                StudentPhoto.Image = Image.FromFile($@"{searchForm.dataDir}\default.jpg");
-            }
+
+            if(File.Exists($@"{searchForm.dataDir}\Pupil_{studentName}\{activeStudent.ImgRef}")) StudentPhoto.Image = Image.FromFile($@"{searchForm.dataDir}\Pupil_{studentName}\{activeStudent.ImgRef}");
+            else if(File.Exists($@"{searchForm.dataDir}\default.jpg")) StudentPhoto.Image = Image.FromFile($@"{searchForm.dataDir}\default.jpg");
+            else StudentPhoto.Image = null;
 
         }
 
