@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pupilRecords));
             this.label1 = new System.Windows.Forms.Label();
             this.SearchBar = new System.Windows.Forms.TextBox();
             this.SearchButton = new System.Windows.Forms.Button();
@@ -124,6 +125,7 @@
             this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "pupilRecords";
             this.Text = "Pupil Records Program";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileAddNote));
             this.TextBoxNote = new System.Windows.Forms.TextBox();
             this.ButtonAddNote = new System.Windows.Forms.Button();
             this.ButtonCancel = new System.Windows.Forms.Button();
@@ -78,6 +79,7 @@
             this.Controls.Add(this.ButtonAddNote);
             this.Controls.Add(this.TextBoxNote);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProfileAddNote";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "[StudentName] - Add/Edit Note";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileEditView));
             this.StudentPhoto = new System.Windows.Forms.PictureBox();
             this.LabelStudentName = new System.Windows.Forms.Label();
             this.LabelCompany = new System.Windows.Forms.Label();
@@ -227,6 +228,7 @@
             this.Controls.Add(this.LabelStudentName);
             this.Controls.Add(this.StudentPhoto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProfileEditView";
             this.Text = "[StudentName] - Info";
             this.Load += new System.EventHandler(this.ProfileEditView_Load);
