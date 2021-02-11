@@ -170,6 +170,7 @@
             this.ButtonDeleteNote.TabIndex = 11;
             this.ButtonDeleteNote.Text = "Delete Note";
             this.ButtonDeleteNote.UseVisualStyleBackColor = true;
+            this.ButtonDeleteNote.Click += new System.EventHandler(this.ButtonDeleteNote_Click);
             // 
             // LabelStudentNo
             // 
