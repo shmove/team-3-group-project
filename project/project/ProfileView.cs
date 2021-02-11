@@ -149,7 +149,7 @@ namespace project
                         int relative = compareDates(selectedDate, i_Note.Date);
                         if (relative == -1 || relative == 0)
                         {
-                            SearchResults.Items.Add(i_Note + " [" + i_Note.Date + "]");
+                            SearchResults.Items.Add(i_Note.Text + " [" + i_Note.Date + "]");
                         }
                     }
                     break;
