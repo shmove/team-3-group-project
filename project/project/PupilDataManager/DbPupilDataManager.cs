@@ -15,8 +15,8 @@ using static project.PupilDataManager.SharedResources.Types;
 
 namespace project.PupilDataManager {
     class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.2.5";
-        public static readonly int BUILD = 5;
+        public static readonly string VERSION = "0.1.3.6";
+        public static readonly int BUILD = 6;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
@@ -147,9 +147,8 @@ namespace project.PupilDataManager {
             }
             return true;
         }
-        private static string[] CHECK_NESTED_MATCH_PROPERTY_BLACKLIST = { "Length", "Chars" };
+        private static readonly string[] CHECK_NESTED_MATCH_PROPERTY_BLACKLIST = { "Length", "Chars" };
         public override List<Pupil> GetPupilsByProperties(object Properties) {
-            PropertyInfo[] PropertyInfoArray = Properties.GetType().GetProperties();
             List<(string, object)> StringProperties = new List<(string, object)>();
             foreach (PropertyInfo Property in Properties.GetType().GetProperties()) {
                 if (CHECK_NESTED_MATCH_PROPERTY_BLACKLIST.Contains(Property.Name)) continue;
@@ -164,24 +163,22 @@ namespace project.PupilDataManager {
             SelectCommand.CommandType = CommandType.Text;
             SelectCommand.Connection = Connection;
             string CommandText = "SELECT * FROM [Pupil]";
-            if(StringProperties.Count != 0) {
-                for (int i = 0; i < StringProperties.Count; i++){
-                    (string, object) StringProperty = StringProperties[i];
 
-                    if(i == 0) CommandText += " WHERE ";
-                    else CommandText += " AND ";
-                    CommandText += StringProperty.Item1 + " = @Value" + i;
-                }
+            for (int i = 0; i < StringProperties.Count; i++){
+                (string, object) StringProperty = StringProperties[i];
+
+                if(i == 0) CommandText += " WHERE ";
+                else CommandText += " AND ";
+                CommandText += StringProperty.Item1 + " = @Value" + i;
             }
             CommandText += ";";
             SelectCommand.CommandText = CommandText;
 
-            if(StringProperties.Count != 0) {
-                for(int i = 0; i < StringProperties.Count; i++){
-                    (string, object) StringProperty = StringProperties[i];
-                    SelectCommand.Parameters.AddWithValue("@Value" + i, StringProperty.Item2);
-                }
+            for(int i = 0; i < StringProperties.Count; i++){
+                (string, object) StringProperty = StringProperties[i];
+                SelectCommand.Parameters.AddWithValue("@Value" + i, StringProperty.Item2);
             }
+
             Connection.Open();
             OleDbDataReader DataReader = SelectCommand.ExecuteReader();
             List<Pupil> Pupils = new List<Pupil>();
@@ -210,33 +207,9 @@ namespace project.PupilDataManager {
                 //DbCommandBuilder CommandBuilder = DbProviderFactories.GetFactory("System.Data.OleDb").CreateCommandBuilder();
 
                 if(this.GetPupilsByProperties(new {PupilUUID = p_Pupil.PupilUUID}).Count == 0){ //If the pupil doesn't already exist
-                    Command.CommandText = "INSERT INTO [Pupil] ([PupilUUID], [PupilID], [Name], [Company], [A2E], [ImgRef]) VALUES (@PupilUUID, @PupilID, @Name, @Company, @A2E, @ImgRef);";
-                    Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
-                    Command.Parameters.AddWithValue("@PupilID", p_Pupil.PupilID);
-                    Command.Parameters.AddWithValue("@Name", p_Pupil.Name);
-                    Command.Parameters.AddWithValue("@Company", p_Pupil.Company);
-                    Command.Parameters.AddWithValue("@A2E", p_Pupil.A2E);
-                    Command.Parameters.AddWithValue("@ImgRef", p_Pupil.ImgRef);
+                    Command = BuildInsertCommand<Pupil>(Connection, p_Pupil, "Pupil", new string[]{"Notes"});
                 }else{
-                    string CommandText = "UPDATE [Pupil]";
-                    for (dynamic i = 0, FirstTrueIteration = true, Length = p_Pupil.GetType().GetProperties().Length; i < Length; i++) {
-                        string PropertyName = p_Pupil.GetType().GetProperties()[i].Name;
-                        if(UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST.Contains(PropertyName)) continue;
-                        if(FirstTrueIteration){
-                            CommandText += " SET ";
-                            FirstTrueIteration = false;
-                        }
-                        else CommandText += ", ";
-                        CommandText += "[" + PropertyName + "] = @Value" + i; //Here goes nothing... It's probably fine, since the property names are defined in the program itself.
-                    }
-                    CommandText += " WHERE [PupilUUID] = @PupilUUID";
-                    Command.CommandText = CommandText;
-                    for (int i = 0, Length = p_Pupil.GetType().GetProperties().Length; i < Length; i++) {
-                        PropertyInfo Property = p_Pupil.GetType().GetProperties()[i];
-                        if(UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST.Contains(Property.Name)) continue;
-                        var Value = p_Pupil.GetType().GetProperty(Property.Name).GetValue(p_Pupil, null);
-                        Command.Parameters.AddWithValue("@Value" + i, Value);
-                    }
+                    Command = BuildUpdateCommand<Pupil>(Connection, p_Pupil, "Pupil", UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST, " WHERE [PupilUUID] = @PupilUUID");
                     Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
                 }
             
@@ -280,49 +253,10 @@ namespace project.PupilDataManager {
                     Command.Connection = Connection;
 
                     if(Both){ //Update
-                        string CommandText = "UPDATE [Note]";
-                        for (int i = 0, Length = typeof(Note).GetProperties().Length; i < Length; i++) {
-                            string PropertyName = typeof(Note).GetProperties()[i].Name;
-                            if(i == 0) CommandText += " SET ";
-                            else CommandText += ", ";
-                            CommandText += "[" + PropertyName + "] = @Value" + i;
-                        }
-                        CommandText += " WHERE [PupilUUID] = @PupilUUID";
-                        Command.CommandText = CommandText;
-                        for (int i = 0, Length = typeof(Note).GetProperties().Length; i < Length; i++) {
-                            PropertyInfo Property = typeof(Note).GetProperties()[i];
-                            var Value = typeof(Note).GetProperty(Property.Name).GetValue(NoteUUIDLookup[NoteUUID], null);
-                            Command.Parameters.AddWithValue("@Value" + i, Value);
-                        }
+                        Command = BuildUpdateCommand<Note>(Connection, NoteUUIDLookup[NoteUUID], "Note", new string[]{}, " WHERE [PupilUUID] = @PupilUUID");
                         Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
                     }else if(Current){ //Insert
-                        string CommandText = "INSERT INTO [Note]";
-                        int Length = typeof(Note).GetProperties().Length;
-
-                        for (int i = 0; i < Length; i++) {
-                            string PropertyName = typeof(Note).GetProperties()[i].Name;
-                            if(i == 0) CommandText += " (";
-                            else CommandText += ", ";
-                            CommandText += "[" + PropertyName + "]";
-                        }
-
-                        CommandText += ", [PupilUUID]) VALUES";
-
-                        for (int i = 0; i < Length; i++) {
-                            if(i == 0) CommandText += " (";
-                            else CommandText += ", ";
-                            CommandText += "@Value" + i;
-                        }
-
-                        CommandText += ", @PupilUUID);";
-
-                        Command.CommandText = CommandText;
-                        for (int i = 0; i < Length; i++) {
-                            PropertyInfo Property = typeof(Note).GetProperties()[i];
-                            var Value = typeof(Note).GetProperty(Property.Name).GetValue(NoteUUIDLookup[NoteUUID], null);
-                            Command.Parameters.AddWithValue("@Value" + i, Value);
-                        }
-                        Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
+                        Command = BuildInsertCommand<Note>(Connection, NoteUUIDLookup[NoteUUID], "Note", new string[]{}, new string[]{"PupilUUID"}, new dynamic[]{p_Pupil.PupilUUID});
                     }else if(Stored){ //Delete
                         Command.CommandText = "DELETE FROM [Note] WHERE [PupilUUID] = @PupilUUID;";
                         Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
@@ -332,6 +266,84 @@ namespace project.PupilDataManager {
                     Connection.Close();
                 }
             }
+        }
+
+        private static OleDbCommand BuildUpdateCommand<T>(OleDbConnection Connection, T Instance, string Table, string[] OmittedProperties, string Condition = ""){
+            OleDbCommand Command = new OleDbCommand();
+            Command.CommandType = CommandType.Text;
+            Command.Connection = Connection;
+
+            Type InstanceType = typeof(T);
+
+            List<string> TypePropertyNames = new List<string>();
+            int Length = InstanceType.GetProperties().Length;
+            for(int i = 0; i < Length; i++) TypePropertyNames.Add(InstanceType.GetProperties()[i].Name);
+            
+            string CommandText = "UPDATE [" + Table + "]";
+            for (dynamic i = 0, FirstTrueIteration = true; i < Length; i++) {
+                string PropertyName = TypePropertyNames[i];
+                if(OmittedProperties.Contains(PropertyName)) continue;
+                if(FirstTrueIteration){
+                    FirstTrueIteration = false;
+                    CommandText += " SET ";
+                }
+                else CommandText += ", ";
+                CommandText += "[" + PropertyName + "] = @Value" + i;
+            }
+
+            CommandText += Condition + ";";
+            Command.CommandText = CommandText;
+
+            for (int i = 0; i < Length; i++) {
+                if(OmittedProperties.Contains(TypePropertyNames[i])) continue;
+                var Value = InstanceType.GetProperty(TypePropertyNames[i]).GetValue(Instance, null);
+                Command.Parameters.AddWithValue("@Value" + i, Value);
+            }
+
+            return Command;
+        }
+
+        private static OleDbCommand BuildInsertCommand<T>(OleDbConnection Connection, T Instance, string Table, string[] OmittedProperties, string[] AddedProperties = null, dynamic[] AddedPropertyValues = null){
+            AddedProperties = AddedProperties ?? new string[]{};
+            AddedPropertyValues = AddedPropertyValues ?? new dynamic[]{};
+            OleDbCommand Command = new OleDbCommand();
+            Command.CommandType = CommandType.Text;
+            Command.Connection = Connection;
+
+            Type InstanceType = typeof(T);
+
+            List<(string Name, dynamic Value)> PropertyInfo = new List<(string, dynamic)>();
+            List<string> ListedOmittedProperties = OmittedProperties.ToList();
+            for(int i = 0, ExistingPropertiesCount = InstanceType.GetProperties().Length; i < ExistingPropertiesCount; i++) if(!ListedOmittedProperties.Contains(InstanceType.GetProperties()[i].Name)) PropertyInfo.Add((InstanceType.GetProperties()[i].Name, InstanceType.GetProperties()[i].GetValue(Instance, null)));
+            for(int i = 0, AddedPropertiesCount = AddedProperties.Length; i < AddedPropertiesCount; i++) PropertyInfo.Add((AddedProperties[i], AddedPropertyValues[i]));
+            
+            int Length = PropertyInfo.Count;
+
+            string CommandText = "INSERT INTO [" + Table + "]";
+
+            for (int i = 0; i < Length; i++) {
+                string PropertyName = PropertyInfo[i].Name;
+                if(i == 0) CommandText += " (";
+                else CommandText += ", ";
+                CommandText += "[" + PropertyName + "]";
+            }
+
+            CommandText += ") VALUES";
+
+            for (int i = 0; i < Length; i++) {
+                if(i == 0) CommandText += " (";
+                else CommandText += ", ";
+                CommandText += "@Value" + i;
+            }
+
+            CommandText += ");";
+
+            Command.CommandText = CommandText;
+            for (int i = 0; i < Length; i++) {
+                Command.Parameters.AddWithValue("@Value" + i, PropertyInfo[i].Value);
+            }
+
+            return Command;
         }
     }
 }
