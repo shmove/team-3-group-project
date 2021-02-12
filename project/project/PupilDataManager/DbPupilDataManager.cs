@@ -15,8 +15,8 @@ using static project.PupilDataManager.SharedResources.Types;
 
 namespace project.PupilDataManager {
     class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.1.4";
-        public static readonly int BUILD = 4;
+        public static readonly string VERSION = "0.1.2.5";
+        public static readonly int BUILD = 5;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
@@ -78,7 +78,7 @@ namespace project.PupilDataManager {
             
             AddColumns(NotesTable, new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
                 ("PupilUUID", ADOX.DataTypeEnum.adVarWChar, 36),
-                ("Note", ADOX.DataTypeEnum.adLongVarWChar, 511),
+                ("Text", ADOX.DataTypeEnum.adLongVarWChar, 511),
                 ("Date", ADOX.DataTypeEnum.adVarWChar, 22),
                 ("UUID", ADOX.DataTypeEnum.adVarWChar, 36)
             });
@@ -201,49 +201,137 @@ namespace project.PupilDataManager {
         public override void WritePupilData(Pupil p_Pupil) {
             OleDbConnection Connection = new OleDbConnection(CONNECTION_STRING_TEMPLATE + this.DatabasePath + "\\" + DATABASE_NAME);
 
-            OleDbCommand Command = new OleDbCommand();
-            Command.CommandType = CommandType.Text;
-            Command.Connection = Connection;
+            {
 
-            Connection.Open();
+                OleDbCommand Command = new OleDbCommand();
+                Command.CommandType = CommandType.Text;
+                Command.Connection = Connection;
 
-            //DbCommandBuilder CommandBuilder = DbProviderFactories.GetFactory("System.Data.OleDb").CreateCommandBuilder();
+                //DbCommandBuilder CommandBuilder = DbProviderFactories.GetFactory("System.Data.OleDb").CreateCommandBuilder();
 
-            if(this.GetPupilsByProperties(new {PupilUUID = p_Pupil.PupilUUID}).Count == 0){ //If the pupil doesn't already exist
-                Command.CommandText = "INSERT INTO [Pupil] ([PupilUUID], [PupilID], [Name], [Company], [A2E], [ImgRef]) VALUES (@PupilUUID, @PupilID, @Name, @Company, @A2E, @ImgRef)";
-                Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
-                Command.Parameters.AddWithValue("@PupilID", p_Pupil.PupilID);
-                Command.Parameters.AddWithValue("@Name", p_Pupil.Name);
-                Command.Parameters.AddWithValue("@Company", p_Pupil.Company);
-                Command.Parameters.AddWithValue("@A2E", p_Pupil.A2E);
-                Command.Parameters.AddWithValue("@ImgRef", p_Pupil.ImgRef);
-            }else{
-                string CommandText = "UPDATE [Pupil]";
-                for (dynamic i = 0, FirstTrueIteration = true, Length = p_Pupil.GetType().GetProperties().Length; i < Length; i++) {
-                    string PropertyName = p_Pupil.GetType().GetProperties()[i].Name;
-                    if(UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST.Contains(PropertyName)) continue;
-                    if(FirstTrueIteration){
-                        CommandText += " SET ";
-                        FirstTrueIteration = false;
+                if(this.GetPupilsByProperties(new {PupilUUID = p_Pupil.PupilUUID}).Count == 0){ //If the pupil doesn't already exist
+                    Command.CommandText = "INSERT INTO [Pupil] ([PupilUUID], [PupilID], [Name], [Company], [A2E], [ImgRef]) VALUES (@PupilUUID, @PupilID, @Name, @Company, @A2E, @ImgRef);";
+                    Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
+                    Command.Parameters.AddWithValue("@PupilID", p_Pupil.PupilID);
+                    Command.Parameters.AddWithValue("@Name", p_Pupil.Name);
+                    Command.Parameters.AddWithValue("@Company", p_Pupil.Company);
+                    Command.Parameters.AddWithValue("@A2E", p_Pupil.A2E);
+                    Command.Parameters.AddWithValue("@ImgRef", p_Pupil.ImgRef);
+                }else{
+                    string CommandText = "UPDATE [Pupil]";
+                    for (dynamic i = 0, FirstTrueIteration = true, Length = p_Pupil.GetType().GetProperties().Length; i < Length; i++) {
+                        string PropertyName = p_Pupil.GetType().GetProperties()[i].Name;
+                        if(UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST.Contains(PropertyName)) continue;
+                        if(FirstTrueIteration){
+                            CommandText += " SET ";
+                            FirstTrueIteration = false;
+                        }
+                        else CommandText += ", ";
+                        CommandText += "[" + PropertyName + "] = @Value" + i; //Here goes nothing... It's probably fine, since the property names are defined in the program itself.
                     }
-                    else CommandText += ", ";
-                    CommandText += "[" + PropertyName + "] = @Value" + i; //Here goes nothing... It's probably fine, since the property names are defined in the program itself.
+                    CommandText += " WHERE [PupilUUID] = @PupilUUID";
+                    Command.CommandText = CommandText;
+                    for (int i = 0, Length = p_Pupil.GetType().GetProperties().Length; i < Length; i++) {
+                        PropertyInfo Property = p_Pupil.GetType().GetProperties()[i];
+                        if(UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST.Contains(Property.Name)) continue;
+                        var Value = p_Pupil.GetType().GetProperty(Property.Name).GetValue(p_Pupil, null);
+                        Command.Parameters.AddWithValue("@Value" + i, Value);
+                    }
+                    Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
                 }
-                CommandText += " WHERE [PupilUUID] = @PupilUUID";
-                Command.CommandText = CommandText;
-                for (int i = 0, Length = p_Pupil.GetType().GetProperties().Length; i < Length; i++) {
-                    PropertyInfo Property = p_Pupil.GetType().GetProperties()[i];
-                    if(UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST.Contains(Property.Name)) continue;
-                    var Value = p_Pupil.GetType().GetProperty(Property.Name).GetValue(p_Pupil, null);
-                    Command.Parameters.AddWithValue("@Value" + i, Value);
-                }
-                Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
-            }
             
-            Command.ExecuteNonQuery();
-            Connection.Close();
-        }
+                Connection.Open();
+                Command.ExecuteNonQuery();
+                Connection.Close();
 
-        
+            }
+
+            {
+                OleDbCommand SelectCommand = new OleDbCommand();
+                SelectCommand.CommandType = CommandType.Text;
+                SelectCommand.Connection = Connection;
+                SelectCommand.CommandText = "SELECT [UUID] FROM [Note] WHERE [PupilUUID] = @PupilUUID;";
+                SelectCommand.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
+
+                List<string> StoredNoteUUIDs = new List<string>();
+
+                Connection.Open();
+
+                OleDbDataReader DataReader = SelectCommand.ExecuteReader();
+
+                while(DataReader.Read()) StoredNoteUUIDs.Add((string)DataReader[0]);
+
+                Connection.Close();
+
+                List<string> CurrentNoteUUIDs = new List<string>();
+                Dictionary<string, Note> NoteUUIDLookup = new Dictionary<string,Note>();
+                foreach(Note i_Note in p_Pupil.Notes){
+                    CurrentNoteUUIDs.Add(i_Note.UUID);
+                    NoteUUIDLookup.Add(i_Note.UUID, i_Note);
+                }
+
+                foreach(string NoteUUID in CurrentNoteUUIDs.Union(StoredNoteUUIDs).ToList()){
+                    bool Current = CurrentNoteUUIDs.Contains(NoteUUID);
+                    bool Stored = StoredNoteUUIDs.Contains(NoteUUID);
+                    bool Both = Current && Stored;
+
+                    OleDbCommand Command = new OleDbCommand();
+                    Command.CommandType = CommandType.Text;
+                    Command.Connection = Connection;
+
+                    if(Both){ //Update
+                        string CommandText = "UPDATE [Note]";
+                        for (int i = 0, Length = typeof(Note).GetProperties().Length; i < Length; i++) {
+                            string PropertyName = typeof(Note).GetProperties()[i].Name;
+                            if(i == 0) CommandText += " SET ";
+                            else CommandText += ", ";
+                            CommandText += "[" + PropertyName + "] = @Value" + i;
+                        }
+                        CommandText += " WHERE [PupilUUID] = @PupilUUID";
+                        Command.CommandText = CommandText;
+                        for (int i = 0, Length = typeof(Note).GetProperties().Length; i < Length; i++) {
+                            PropertyInfo Property = typeof(Note).GetProperties()[i];
+                            var Value = typeof(Note).GetProperty(Property.Name).GetValue(NoteUUIDLookup[NoteUUID], null);
+                            Command.Parameters.AddWithValue("@Value" + i, Value);
+                        }
+                        Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
+                    }else if(Current){ //Insert
+                        string CommandText = "INSERT INTO [Note]";
+                        int Length = typeof(Note).GetProperties().Length;
+
+                        for (int i = 0; i < Length; i++) {
+                            string PropertyName = typeof(Note).GetProperties()[i].Name;
+                            if(i == 0) CommandText += " (";
+                            else CommandText += ", ";
+                            CommandText += "[" + PropertyName + "]";
+                        }
+
+                        CommandText += ", [PupilUUID]) VALUES";
+
+                        for (int i = 0; i < Length; i++) {
+                            if(i == 0) CommandText += " (";
+                            else CommandText += ", ";
+                            CommandText += "@Value" + i;
+                        }
+
+                        CommandText += ", @PupilUUID);";
+
+                        Command.CommandText = CommandText;
+                        for (int i = 0; i < Length; i++) {
+                            PropertyInfo Property = typeof(Note).GetProperties()[i];
+                            var Value = typeof(Note).GetProperty(Property.Name).GetValue(NoteUUIDLookup[NoteUUID], null);
+                            Command.Parameters.AddWithValue("@Value" + i, Value);
+                        }
+                        Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
+                    }else if(Stored){ //Delete
+                        Command.CommandText = "DELETE FROM [Note] WHERE [PupilUUID] = @PupilUUID;";
+                        Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
+                    }
+                    Connection.Open();
+                    Command.ExecuteNonQuery();
+                    Connection.Close();
+                }
+            }
+        }
     }
 }
