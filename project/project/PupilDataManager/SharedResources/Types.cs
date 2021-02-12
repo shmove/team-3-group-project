@@ -57,6 +57,11 @@ namespace project.PupilDataManager.SharedResources {
                     else throw new FieldAccessException("Tried re-setting the UUID of a note.");
                 }
             }
+            public Note(string p_Text){
+                this.Date = DateTime.Now.ToString("yyyy-mm-ddThh:mm:ss.s");
+                this.Text = p_Text;
+                this.UUID = System.Guid.NewGuid().ToString();
+            }
             public Note(string p_Date, string p_Text){
                 this.Date = p_Date;
                 this.Text = p_Text;
