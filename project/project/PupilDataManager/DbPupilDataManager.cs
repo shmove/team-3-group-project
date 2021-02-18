@@ -13,9 +13,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static project.PupilDataManager.SharedResources.Types;
 
-namespace project.PupilDataManager {
+namespace project {
     class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.3.6";
+        public static readonly string VERSION = "0.1.4.6";
         public static readonly int BUILD = 6;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
