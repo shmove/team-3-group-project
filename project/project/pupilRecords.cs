@@ -12,7 +12,6 @@ namespace project
 {
     public partial class pupilRecords : Form
     {
-        public String dataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\..\Local\PupilRecordsProgram\Pupils";
 
         public pupilRecords()
         {
@@ -33,7 +32,7 @@ namespace project
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            PupilFileManager Mgr = new PupilFileManager(dataDir);
+            PupilFileManager Mgr = new PupilFileManager($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\..\Local\PupilRecordsProgram\Pupils\");
 
             List<string> PupilNames = Mgr.CollatePropertyValuesFromPupils<string>("Name");
 

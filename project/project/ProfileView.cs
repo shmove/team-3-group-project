@@ -25,6 +25,35 @@ namespace project
             InitializeComponent();
         }
 
+        private void loadStudentInfo(pupilRecords searchForm)
+        {
+            string[] highlightedField = ((pupilRecords)searchForm).SearchResults.GetItemText(((pupilRecords)searchForm).SearchResults.SelectedItem).Split('(');
+
+            string studentName = highlightedField[0].Trim(); // Gets pupil name from substring array, removing trailing space
+            string studentID = highlightedField[1].Trim('(', ' ', ')');
+
+            activeStudent = getStudent(Mgr, studentName);
+
+            this.Text = activeStudent.Name + " (" + activeStudent.PupilID + ") - Info";
+            LabelStudentName.Text = activeStudent.Name;
+            LabelStudentNo.Text = activeStudent.PupilID;
+            LabelCompany.Text = activeStudent.Company;
+
+            string groups = "";
+            if (activeStudent.A2E) groups += "A2E, ";
+            // additional groups go here
+            groups = groups.Trim(',', ' ');
+            if (groups == "") LabelGroups.Visible = false;
+            else
+            {
+                LabelGroups.Text = groups;
+                LabelGroups.Visible = true;
+            };
+
+
+            StudentPhoto.Image = Mgr.GetPupilImage(activeStudent);
+        }
+
         private static void populateNotes(ListBox SearchResults, Pupil activeStudent)
         {
             SearchResults.Items.Clear();
@@ -79,33 +108,11 @@ namespace project
 
             ComboBoxContext.SelectedIndex = 0; // set default selection
 
-            Mgr = new PupilFileManager(searchForm.dataDir);
+            Mgr = new PupilFileManager($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\..\Local\PupilRecordsProgram\Pupils\");
 
-            string[] highlightedField = ((pupilRecords)searchForm).SearchResults.GetItemText(((pupilRecords)searchForm).SearchResults.SelectedItem).Split('(');
-
-            string studentName = highlightedField[0].Trim(); // Gets pupil name from substring array, removing trailing space
-            string studentID = highlightedField[1].Trim('(',' ', ')');
-
-            activeStudent = getStudent(Mgr, studentName);
-
-            this.Text = activeStudent.Name + " (" + activeStudent.PupilID + ") - Info";
-            LabelStudentName.Text = activeStudent.Name;
-            LabelStudentNo.Text = activeStudent.PupilID;
-            LabelCompany.Text = activeStudent.Company;
-
-            string groups = "";
-            if (activeStudent.A2E) groups += "A2E, ";
-            // additional groups go here
-            groups = groups.Trim(',', ' ');
-            if (groups == "") LabelGroups.Visible = false;
-            else LabelGroups.Text = groups;
+            loadStudentInfo(searchForm);
 
             populateNotes(SearchResults, activeStudent);
-
-
-            if(File.Exists($@"{searchForm.dataDir}\Pupil_{studentName}\{activeStudent.ImgRef}")) StudentPhoto.Image = Image.FromFile($@"{searchForm.dataDir}\Pupil_{studentName}\{activeStudent.ImgRef}");
-            else if(File.Exists($@"{searchForm.dataDir}\default.jpg")) StudentPhoto.Image = Image.FromFile($@"{searchForm.dataDir}\default.jpg");
-            else StudentPhoto.Image = null;
 
         }
 
@@ -205,7 +212,20 @@ namespace project
 
         private void ButtonEditInfo_Click(object sender, EventArgs e)
         {
+            ProfileViewEdit editForm = new ProfileViewEdit();
+            editForm.pupilForm = this;
 
+            // unloads image to prevent read/write errors
+            var openedFile = StudentPhoto.Image;
+            StudentPhoto.Image = null;
+            openedFile.Dispose();
+
+            this.Hide();
+            editForm.ShowDialog();
+
+            // then, on close of this form
+            loadStudentInfo(searchForm);
+            this.Show();
         }
 
         private void ButtonDeleteNote_Click(object sender, EventArgs e)

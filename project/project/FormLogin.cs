@@ -33,6 +33,7 @@ namespace project {
             else
             {
                 Console.WriteLine("File path not detected. Performing first time setup...");
+                // this is temporary, and just to demonstrate which folders should exist
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\..\Local\PupilRecordsProgram\Pupils");
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\..\Local\PupilRecordsProgram\Databases");
             }

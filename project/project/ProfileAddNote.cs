@@ -70,7 +70,7 @@ namespace project
             }
 
             // Write new info to disk
-            PupilFileManager Mgr = new PupilFileManager(profileForm.searchForm.dataDir);
+            PupilFileManager Mgr = new PupilFileManager($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\..\Local\PupilRecordsProgram\Pupils\");
 
             Mgr.WritePupilData(profileForm.activeStudent);
 
