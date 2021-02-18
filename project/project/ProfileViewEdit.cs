@@ -56,11 +56,6 @@ namespace project
         private void ButtonChangeImage_Click(object sender, EventArgs e)
         {
 
-            // unloads image to prevent read/write errors
-            var openedFile = StudentImage.Image;
-            StudentImage.Image = null;
-            openedFile.Dispose();
-
             OpenFileDialog openImageDialog = new OpenFileDialog();
 
             openImageDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
@@ -70,6 +65,11 @@ namespace project
 
             if (openImageDialog.ShowDialog() == DialogResult.OK)
             {
+                // unloads image to prevent read/write errors
+                var openedFile = StudentImage.Image;
+                StudentImage.Image = null;
+                openedFile.Dispose();
+
                 reloadImage(openImageDialog.FileName);
                 imgChanged = true;
             };
