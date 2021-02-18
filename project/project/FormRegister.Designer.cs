@@ -248,7 +248,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Student Records Program";
             this.Load += new System.EventHandler(this.frmRegister_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

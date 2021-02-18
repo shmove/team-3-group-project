@@ -44,9 +44,9 @@
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(279, 32);
+            this.label1.Size = new System.Drawing.Size(308, 32);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Pupil Records Program";
+            this.label1.Text = "Student Records Program";
             // 
             // SearchBar
             // 
@@ -127,7 +127,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "pupilRecords";
-            this.Text = "Pupil Records Program";
+            this.Text = "Student Records Program";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
