@@ -15,8 +15,8 @@ using static project.PupilDataManager.SharedResources.Types;
 
 namespace project {
     class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.5.8";
-        public static readonly int BUILD = 8;
+        public static readonly string VERSION = "0.1.6.9";
+        public static readonly int BUILD = 9;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
@@ -188,7 +188,23 @@ namespace project {
                 for(int i = 0; i < DataReader.FieldCount; i++){
                     CurrentPupil.GetType().GetProperty(PUPIL_TABLE_COLUMN_NAMES[i]).SetValue(CurrentPupil, DataReader[i], null);
                 }
-                CurrentPupil.Notes = CurrentPupil.Notes ?? new List<Note>();
+                CurrentPupil.Notes = new List<Note>();
+
+                OleDbCommand NoteSelectCommand = new OleDbCommand();
+                NoteSelectCommand.CommandType = CommandType.Text;
+                NoteSelectCommand.Connection = Connection;
+                string NoteCommandText = "SELECT [Text], [Date], [UUID] FROM [Note] WHERE [PupilUUID] = @PupilUUID;";
+                string[] PropertyOrder = new string[]{"Text", "Date", "UUID"};
+                NoteSelectCommand.CommandText = NoteCommandText;
+                NoteSelectCommand.Parameters.AddWithValue("@PupilUUID", CurrentPupil.PupilUUID);
+                OleDbDataReader NoteDataReader = NoteSelectCommand.ExecuteReader();
+                while(NoteDataReader.Read()){
+                    Note CurrentNote = new Note();
+                    for(int i = 0; i < NoteDataReader.FieldCount; i++){
+                        Utilities.SetReflect<object>(CurrentNote, PropertyOrder[i], NoteDataReader[i]);
+                    }
+                    CurrentPupil.Notes.Add(CurrentNote);
+                }
                 Pupils.Add(CurrentPupil);
             }
             Connection.Close();
@@ -254,13 +270,13 @@ namespace project {
                     Command.Connection = Connection;
 
                     if(Both){ //Update
-                        Command = BuildUpdateCommand<Note>(Connection, NoteUUIDLookup[NoteUUID], "Note", new string[]{}, " WHERE [PupilUUID] = @PupilUUID");
-                        Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
+                        Command = BuildUpdateCommand<Note>(Connection, NoteUUIDLookup[NoteUUID], "Note", new string[]{"UUID"}, " WHERE [UUID] = @UUID");
+                        Command.Parameters.AddWithValue("@UUID", NoteUUID);
                     }else if(Current){ //Insert
                         Command = BuildInsertCommand<Note>(Connection, NoteUUIDLookup[NoteUUID], "Note", new string[]{}, new string[]{"PupilUUID"}, new dynamic[]{p_Pupil.PupilUUID});
                     }else if(Stored){ //Delete
-                        Command.CommandText = "DELETE FROM [Note] WHERE [PupilUUID] = @PupilUUID;";
-                        Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
+                        Command.CommandText = "DELETE FROM [Note] WHERE [UUID] = @UUID;";
+                        Command.Parameters.AddWithValue("@UUID", NoteUUID);
                     }
                     Connection.Open();
                     Command.ExecuteNonQuery();
