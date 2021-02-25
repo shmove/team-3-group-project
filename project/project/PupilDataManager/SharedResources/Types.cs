@@ -35,15 +35,6 @@ namespace project.PupilDataManager.SharedResources {
             }
             public Pupil(object Object) {}
         }
-        [Obsolete("Old notes version, don't use this.")]
-        public class Notes {
-            public string Date {get; set;}
-            public List<string> NotesList {get; set;}
-            public Notes(string p_Date, List<string> p_NotesList) {
-                Date = p_Date;
-                NotesList = p_NotesList;
-            }
-        }
         public class Note {
             public string Date {get; set;}
             public string Text {get; set;}
@@ -58,7 +49,7 @@ namespace project.PupilDataManager.SharedResources {
                 }
             }
             public Note(string p_Text){
-                this.Date = DateTime.Now.ToString("yyyy-mm-ddThh:mm:ss.s");
+                this.Date = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s");
                 this.Text = p_Text;
                 this.UUID = System.Guid.NewGuid().ToString();
             }
