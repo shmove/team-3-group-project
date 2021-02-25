@@ -15,8 +15,8 @@ using static project.PupilDataManager.SharedResources.Types;
 
 namespace project {
     class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.5.7";
-        public static readonly int BUILD = 7;
+        public static readonly string VERSION = "0.1.5.8";
+        public static readonly int BUILD = 8;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
@@ -185,10 +185,10 @@ namespace project {
             while(DataReader.Read()){
                 //(string, object)[] PropertyAndValue = new (string, object)[DataReader.FieldCount];
                 Pupil CurrentPupil = new Pupil();
-                CurrentPupil.Notes = new List<Note>();
                 for(int i = 0; i < DataReader.FieldCount; i++){
                     CurrentPupil.GetType().GetProperty(PUPIL_TABLE_COLUMN_NAMES[i]).SetValue(CurrentPupil, DataReader[i], null);
                 }
+                CurrentPupil.Notes = CurrentPupil.Notes ?? new List<Note>();
                 Pupils.Add(CurrentPupil);
             }
             Connection.Close();
