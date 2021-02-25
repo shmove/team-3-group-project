@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static project.PupilDataManager.SharedResources.Types;
 
 namespace project
 {
@@ -16,6 +17,31 @@ namespace project
         public pupilRecords()
         {
             InitializeComponent();
+        }
+
+        private DbPupilDataManager Mgr;
+
+        private void reloadPupils()
+        {
+
+            Mgr = new DbPupilDataManager();
+
+            Pupil[] PupilArray = Mgr.GetTestCases(4);
+
+            List<Pupil> Pupils = Mgr.GetPupilsByProperties(new { });
+
+            foreach (Pupil pupil in Pupils)
+            {
+                SearchResults.Items.Add(pupil.Name + " (" + pupil.PupilID + ")");
+            }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+            reloadPupils();
+
         }
 
         private void ViewButton_Click(object sender, EventArgs e)
@@ -29,18 +55,5 @@ namespace project
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-            PupilFileManager Mgr = new PupilFileManager($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\..\Local\PupilRecordsProgram\Pupils\");
-
-            List<string> PupilNames = Mgr.CollatePropertyValuesFromPupils<string>("Name");
-
-            foreach (String name in PupilNames)
-            {
-                SearchResults.Items.Add(name + " (???)");
-            }
-
-        }
     }
 }

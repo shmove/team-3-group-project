@@ -78,7 +78,7 @@ namespace project
         private void ButtonSave_Click(object sender, EventArgs e)
         {
 
-            PupilFileManager Mgr = new PupilFileManager($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\..\Local\PupilRecordsProgram\Pupils\");
+            DbPupilDataManager Mgr = new DbPupilDataManager();
 
             pupilForm.activeStudent.Name = TextBoxName.Text;
             pupilForm.activeStudent.PupilID = TextBoxStudentID.Text;

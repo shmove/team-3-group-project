@@ -18,7 +18,7 @@ namespace project
         public pupilRecords searchForm; // all data from parent form
         public Pupil activeStudent; // stores student data that is currently being accessed
         public String noteContext; // for access of the note editing context (ie add/edit)
-        private PupilFileManager Mgr; // instance of pupilfilemanager
+        private DbPupilDataManager Mgr; // instance of pupildatamanager
 
         public ProfileEditView()
         {
@@ -29,10 +29,9 @@ namespace project
         {
             string[] highlightedField = ((pupilRecords)searchForm).SearchResults.GetItemText(((pupilRecords)searchForm).SearchResults.SelectedItem).Split('(');
 
-            string studentName = highlightedField[0].Trim(); // Gets pupil name from substring array, removing trailing space
-            string studentID = highlightedField[1].Trim('(', ' ', ')');
+            string studentID = highlightedField[1].Trim('(', ' ', ')'); // Isolates pupilID from substring array
 
-            activeStudent = getStudent(Mgr, studentName);
+            activeStudent = getStudent(Mgr, studentID);
 
             this.Text = activeStudent.Name + " (" + activeStudent.PupilID + ") - Info";
             LabelStudentName.Text = activeStudent.Name;
@@ -57,7 +56,8 @@ namespace project
         private static void populateNotes(ListBox SearchResults, Pupil activeStudent)
         {
             SearchResults.Items.Clear();
-            foreach (Note i_Note in activeStudent.Notes) {
+            foreach (Note i_Note in activeStudent.Notes)
+            {
                 SearchResults.Items.Add(i_Note.Text + " [" + i_Note.Date + "]");
             }
         }
@@ -91,12 +91,12 @@ namespace project
             return 0;
         }
 
-        private static Pupil getStudent(PupilFileManager Mgr, string studentName)
+        private static Pupil getStudent(DbPupilDataManager Mgr, string studentID)
         {
             Pupil student;
 
             // When searching by id, the correct student will always be able to be accessed through students[0]
-            List<Pupil> students = Mgr.GetPupilsByProperties(new { Name = studentName }); // Replace with ID, when implemented
+            List<Pupil> students = Mgr.GetPupilsByProperties(new { PupilID = studentID });
 
             // saves student info globally (locally? global to this form at least. idk how c# works) so it can be accessed by other form events
             student = students[0];
@@ -108,7 +108,7 @@ namespace project
 
             ComboBoxContext.SelectedIndex = 0; // set default selection
 
-            Mgr = new PupilFileManager($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\..\Local\PupilRecordsProgram\Pupils\");
+            Mgr = new DbPupilDataManager();
 
             loadStudentInfo(searchForm);
 
@@ -183,7 +183,7 @@ namespace project
             addNote.ShowDialog();
 
             // then, on close of this form
-            activeStudent = getStudent(Mgr, activeStudent.Name);
+            activeStudent = getStudent(Mgr, activeStudent.PupilID);
             this.Show();
             populateNotes(SearchResults, activeStudent);
         }
@@ -199,7 +199,7 @@ namespace project
                 addNote.ShowDialog();
 
                 // then, on close of this form
-                activeStudent = getStudent(Mgr, activeStudent.Name);
+                activeStudent = getStudent(Mgr, activeStudent.PupilID);
                 this.Show();
                 populateNotes(SearchResults, activeStudent);
             }
