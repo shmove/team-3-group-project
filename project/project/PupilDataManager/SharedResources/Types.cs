@@ -22,15 +22,13 @@ namespace project.PupilDataManager.SharedResources {
             public string Company {get; set;}
             public bool A2E {get; set;}
             public List<Note> Notes {get; set;}
-            public string ImgRef {get; set;}
             public Pupil() {}
-            public Pupil(string p_Name, string p_PupilID, string p_Company, bool p_A2E, List<Note> p_Notes, string p_ImgRef) {
+            public Pupil(string p_Name, string p_PupilID, string p_Company, bool p_A2E, List<Note> p_Notes) {
                 PupilUUID = System.Guid.NewGuid().ToString();
                 Name = p_Name;
                 A2E = p_A2E;
                 Company = p_Company;
                 Notes = p_Notes;
-                ImgRef = p_ImgRef;
                 PupilID = p_PupilID;
             }
             public Pupil(object Object) {}
