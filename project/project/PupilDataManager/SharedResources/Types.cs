@@ -22,27 +22,16 @@ namespace project.PupilDataManager.SharedResources {
             public string Company {get; set;}
             public bool A2E {get; set;}
             public List<Note> Notes {get; set;}
-            public string ImgRef {get; set;}
             public Pupil() {}
-            public Pupil(string p_Name, string p_PupilID, string p_Company, bool p_A2E, List<Note> p_Notes, string p_ImgRef) {
+            public Pupil(string p_Name, string p_PupilID, string p_Company, bool p_A2E, List<Note> p_Notes) {
                 PupilUUID = System.Guid.NewGuid().ToString();
                 Name = p_Name;
                 A2E = p_A2E;
                 Company = p_Company;
                 Notes = p_Notes;
-                ImgRef = p_ImgRef;
                 PupilID = p_PupilID;
             }
             public Pupil(object Object) {}
-        }
-        [Obsolete("Old notes version, don't use this.")]
-        public class Notes {
-            public string Date {get; set;}
-            public List<string> NotesList {get; set;}
-            public Notes(string p_Date, List<string> p_NotesList) {
-                Date = p_Date;
-                NotesList = p_NotesList;
-            }
         }
         public class Note {
             public string Date {get; set;}
@@ -58,7 +47,7 @@ namespace project.PupilDataManager.SharedResources {
                 }
             }
             public Note(string p_Text){
-                this.Date = DateTime.Now.ToString("yyyy-mm-ddThh:mm:ss.s");
+                this.Date = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s");
                 this.Text = p_Text;
                 this.UUID = System.Guid.NewGuid().ToString();
             }
