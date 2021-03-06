@@ -19,6 +19,7 @@ namespace project
             InitializeComponent();
         }
 
+        public Pupil activeStudent; // for accessing when creating a new student
         private DbPupilDataManager Mgr;
 
         private void reloadPupils()
@@ -85,7 +86,7 @@ namespace project
 
         private void ViewButton_Click(object sender, EventArgs e)
         {
-
+            // checks for either a pupil not being selected, or if someone's being cheeky and selected the text that shows up when no students match the search
             if (SearchResults.GetItemText(SearchResults.SelectedItem) != "No students were found." && SearchResults.SelectedIndex != -1)
             {
                 ProfileEditView infoForm = new ProfileEditView();
@@ -117,6 +118,37 @@ namespace project
             SearchBar.Text = "";
             CheckBoxA2E.Checked = false;
             reloadPupils();
+
+        }
+
+        private void AddStudentButton_Click(object sender, EventArgs e)
+        {
+
+            activeStudent = Mgr.GetTestCases(1)[0];
+
+            ProfileViewEdit editForm = new ProfileViewEdit();
+            editForm.recordsForm = this;
+
+            this.Hide();
+            editForm.ShowDialog();
+
+            // then, on close of this form
+            this.Show();
+            reloadPupils();
+        }
+
+        private void CheckBoxA2E_CheckedChanged(object sender, EventArgs e)
+        {
+
+            reloadPupils();
+
+        }
+
+        private void SearchBar_TextChanged(object sender, EventArgs e)
+        {
+
+            // This is a super slick feature but I don't know if I should include it, purely for performance reasons.
+            // reloadPupils();
 
         }
     }

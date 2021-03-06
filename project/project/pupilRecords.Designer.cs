@@ -43,7 +43,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(308, 32);
             this.label1.TabIndex = 0;
@@ -55,6 +55,7 @@
             this.SearchBar.Name = "SearchBar";
             this.SearchBar.Size = new System.Drawing.Size(695, 20);
             this.SearchBar.TabIndex = 1;
+            this.SearchBar.TextChanged += new System.EventHandler(this.SearchBar_TextChanged);
             // 
             // SearchButton
             // 
@@ -77,6 +78,7 @@
             this.CheckBoxA2E.TabIndex = 3;
             this.CheckBoxA2E.Text = "Able to Enable";
             this.CheckBoxA2E.UseVisualStyleBackColor = true;
+            this.CheckBoxA2E.CheckedChanged += new System.EventHandler(this.CheckBoxA2E_CheckedChanged);
             // 
             // SearchResults
             // 
@@ -127,6 +129,7 @@
             this.AddStudentButton.TabIndex = 7;
             this.AddStudentButton.Text = "Add Student";
             this.AddStudentButton.UseVisualStyleBackColor = false;
+            this.AddStudentButton.Click += new System.EventHandler(this.AddStudentButton_Click);
             // 
             // pupilRecords
             // 
