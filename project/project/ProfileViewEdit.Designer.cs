@@ -101,6 +101,7 @@
             // ButtonChangeImage
             // 
             this.ButtonChangeImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ButtonChangeImage.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.ButtonChangeImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonChangeImage.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonChangeImage.ForeColor = System.Drawing.Color.White;

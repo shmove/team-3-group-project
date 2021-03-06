@@ -57,7 +57,7 @@
             // ButtonCancel
             // 
             this.ButtonCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ButtonCancel.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.ButtonCancel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.ButtonCancel.FlatAppearance.BorderSize = 0;
             this.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonCancel.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

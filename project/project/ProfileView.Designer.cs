@@ -123,6 +123,7 @@
             // ButtonEditInfo
             // 
             this.ButtonEditInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ButtonEditInfo.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.ButtonEditInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonEditInfo.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
             this.ButtonEditInfo.ForeColor = System.Drawing.Color.White;
@@ -149,6 +150,7 @@
             // ButtonReset
             // 
             this.ButtonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ButtonReset.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonReset.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonReset.ForeColor = System.Drawing.Color.White;

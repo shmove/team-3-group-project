@@ -36,6 +36,7 @@
             this.SearchResults = new System.Windows.Forms.ListBox();
             this.ViewButton = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
+            this.AddStudentButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -103,6 +104,7 @@
             // ResetButton
             // 
             this.ResetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ResetButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.ResetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetButton.ForeColor = System.Drawing.Color.White;
             this.ResetButton.Location = new System.Drawing.Point(713, 86);
@@ -113,12 +115,26 @@
             this.ResetButton.UseVisualStyleBackColor = false;
             this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
+            // AddStudentButton
+            // 
+            this.AddStudentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.AddStudentButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.AddStudentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddStudentButton.ForeColor = System.Drawing.Color.White;
+            this.AddStudentButton.Location = new System.Drawing.Point(12, 415);
+            this.AddStudentButton.Name = "AddStudentButton";
+            this.AddStudentButton.Size = new System.Drawing.Size(87, 23);
+            this.AddStudentButton.TabIndex = 7;
+            this.AddStudentButton.Text = "Add Student";
+            this.AddStudentButton.UseVisualStyleBackColor = false;
+            // 
             // pupilRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(803, 462);
+            this.ClientSize = new System.Drawing.Size(803, 452);
+            this.Controls.Add(this.AddStudentButton);
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.ViewButton);
             this.Controls.Add(this.SearchResults);
@@ -148,6 +164,7 @@
 
         private System.Windows.Forms.Button ViewButton;
         private System.Windows.Forms.Button ResetButton;
+        private System.Windows.Forms.Button AddStudentButton;
     }
 }
 
