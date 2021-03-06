@@ -64,6 +64,7 @@
             this.SearchButton.TabIndex = 2;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // CheckBoxA2E
             // 
@@ -71,9 +72,9 @@
             this.CheckBoxA2E.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheckBoxA2E.Location = new System.Drawing.Point(12, 90);
             this.CheckBoxA2E.Name = "CheckBoxA2E";
-            this.CheckBoxA2E.Size = new System.Drawing.Size(182, 17);
+            this.CheckBoxA2E.Size = new System.Drawing.Size(101, 17);
             this.CheckBoxA2E.TabIndex = 3;
-            this.CheckBoxA2E.Text = "Registered for Able to Enable?";
+            this.CheckBoxA2E.Text = "Able to Enable";
             this.CheckBoxA2E.UseVisualStyleBackColor = true;
             // 
             // SearchResults
@@ -110,6 +111,7 @@
             this.ResetButton.TabIndex = 6;
             this.ResetButton.Text = "Reset";
             this.ResetButton.UseVisualStyleBackColor = false;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
             // pupilRecords
             // 

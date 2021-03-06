@@ -162,7 +162,7 @@ namespace project
                     break;
             }
 
-            if (SearchResults.Items.Count == 0) SearchResults.Items.Add("No notes on this date.");
+            if (SearchResults.Items.Count == 0) SearchResults.Items.Add("No notes were found.");
 
         }
 
@@ -190,7 +190,7 @@ namespace project
 
         private void ButtonEditNote_Click(object sender, EventArgs e)
         {
-            if (SearchResults.SelectedIndex != -1)
+            if (SearchResults.GetItemText(SearchResults.SelectedItem) != "No notes were found." && SearchResults.SelectedIndex != -1)
             {
                 ProfileAddNote addNote = new ProfileAddNote();
                 noteContext = "edit"; // lets the next form know that we are editing and not adding a note
