@@ -121,7 +121,7 @@ namespace project
 
         }
 
-        private void AddStudentButton_Click(object sender, EventArgs e)
+        private void ButtonAddStudent_Click(object sender, EventArgs e)
         {
 
             activeStudent = Mgr.GetTestCases(1)[0];
@@ -135,6 +135,25 @@ namespace project
             // then, on close of this form
             this.Show();
             reloadPupils();
+
+        }
+
+        private void ButtonDeleteStudent_Click(object sender, EventArgs e)
+        {
+
+            if (SearchResults.SelectedIndex != -1)
+            {
+                if ((MessageBox.Show("Are you sure you want to delete this student? Their information and notes will not be retrievable.", "Deletion Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
+                {
+                    // unimplemented
+                    MessageBox.Show("This function has not yet been implemented.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select the student you wish to delete.", "No student selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void CheckBoxA2E_CheckedChanged(object sender, EventArgs e)
@@ -151,5 +170,6 @@ namespace project
             // reloadPupils();
 
         }
+
     }
 }

@@ -36,7 +36,8 @@
             this.SearchResults = new System.Windows.Forms.ListBox();
             this.ViewButton = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
-            this.AddStudentButton = new System.Windows.Forms.Button();
+            this.ButtonAddStudent = new System.Windows.Forms.Button();
+            this.ButtonDeleteStudent = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -95,7 +96,7 @@
             // 
             this.ViewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ViewButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ViewButton.Location = new System.Drawing.Point(713, 415);
+            this.ViewButton.Location = new System.Drawing.Point(713, 414);
             this.ViewButton.Name = "ViewButton";
             this.ViewButton.Size = new System.Drawing.Size(75, 23);
             this.ViewButton.TabIndex = 5;
@@ -117,27 +118,39 @@
             this.ResetButton.UseVisualStyleBackColor = false;
             this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
-            // AddStudentButton
+            // ButtonAddStudent
             // 
-            this.AddStudentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.AddStudentButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.AddStudentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddStudentButton.ForeColor = System.Drawing.Color.White;
-            this.AddStudentButton.Location = new System.Drawing.Point(12, 415);
-            this.AddStudentButton.Name = "AddStudentButton";
-            this.AddStudentButton.Size = new System.Drawing.Size(87, 23);
-            this.AddStudentButton.TabIndex = 7;
-            this.AddStudentButton.Text = "Add Student";
-            this.AddStudentButton.UseVisualStyleBackColor = false;
-            this.AddStudentButton.Click += new System.EventHandler(this.AddStudentButton_Click);
+            this.ButtonAddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonAddStudent.Location = new System.Drawing.Point(12, 414);
+            this.ButtonAddStudent.Name = "ButtonAddStudent";
+            this.ButtonAddStudent.Size = new System.Drawing.Size(100, 23);
+            this.ButtonAddStudent.TabIndex = 7;
+            this.ButtonAddStudent.Text = "Add Student";
+            this.ButtonAddStudent.UseVisualStyleBackColor = true;
+            this.ButtonAddStudent.Click += new System.EventHandler(this.ButtonAddStudent_Click);
+            // 
+            // ButtonDeleteStudent
+            // 
+            this.ButtonDeleteStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ButtonDeleteStudent.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.ButtonDeleteStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonDeleteStudent.ForeColor = System.Drawing.Color.White;
+            this.ButtonDeleteStudent.Location = new System.Drawing.Point(118, 414);
+            this.ButtonDeleteStudent.Name = "ButtonDeleteStudent";
+            this.ButtonDeleteStudent.Size = new System.Drawing.Size(100, 23);
+            this.ButtonDeleteStudent.TabIndex = 8;
+            this.ButtonDeleteStudent.Text = "Delete Student";
+            this.ButtonDeleteStudent.UseVisualStyleBackColor = false;
+            this.ButtonDeleteStudent.Click += new System.EventHandler(this.ButtonDeleteStudent_Click);
             // 
             // pupilRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(803, 452);
-            this.Controls.Add(this.AddStudentButton);
+            this.ClientSize = new System.Drawing.Size(803, 447);
+            this.Controls.Add(this.ButtonDeleteStudent);
+            this.Controls.Add(this.ButtonAddStudent);
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.ViewButton);
             this.Controls.Add(this.SearchResults);
@@ -167,7 +180,8 @@
 
         private System.Windows.Forms.Button ViewButton;
         private System.Windows.Forms.Button ResetButton;
-        private System.Windows.Forms.Button AddStudentButton;
+        private System.Windows.Forms.Button ButtonAddStudent;
+        private System.Windows.Forms.Button ButtonDeleteStudent;
     }
 }
 
