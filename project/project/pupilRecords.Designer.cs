@@ -36,13 +36,15 @@
             this.SearchResults = new System.Windows.Forms.ListBox();
             this.ViewButton = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
+            this.ButtonAddStudent = new System.Windows.Forms.Button();
+            this.ButtonDeleteStudent = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(308, 32);
             this.label1.TabIndex = 0;
@@ -54,6 +56,7 @@
             this.SearchBar.Name = "SearchBar";
             this.SearchBar.Size = new System.Drawing.Size(695, 20);
             this.SearchBar.TabIndex = 1;
+            this.SearchBar.TextChanged += new System.EventHandler(this.SearchBar_TextChanged);
             // 
             // SearchButton
             // 
@@ -64,6 +67,7 @@
             this.SearchButton.TabIndex = 2;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // CheckBoxA2E
             // 
@@ -71,10 +75,11 @@
             this.CheckBoxA2E.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheckBoxA2E.Location = new System.Drawing.Point(12, 90);
             this.CheckBoxA2E.Name = "CheckBoxA2E";
-            this.CheckBoxA2E.Size = new System.Drawing.Size(182, 17);
+            this.CheckBoxA2E.Size = new System.Drawing.Size(101, 17);
             this.CheckBoxA2E.TabIndex = 3;
-            this.CheckBoxA2E.Text = "Registered for Able to Enable?";
+            this.CheckBoxA2E.Text = "Able to Enable";
             this.CheckBoxA2E.UseVisualStyleBackColor = true;
+            this.CheckBoxA2E.CheckedChanged += new System.EventHandler(this.CheckBoxA2E_CheckedChanged);
             // 
             // SearchResults
             // 
@@ -91,7 +96,7 @@
             // 
             this.ViewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ViewButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ViewButton.Location = new System.Drawing.Point(713, 415);
+            this.ViewButton.Location = new System.Drawing.Point(713, 414);
             this.ViewButton.Name = "ViewButton";
             this.ViewButton.Size = new System.Drawing.Size(75, 23);
             this.ViewButton.TabIndex = 5;
@@ -102,6 +107,7 @@
             // ResetButton
             // 
             this.ResetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ResetButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.ResetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetButton.ForeColor = System.Drawing.Color.White;
             this.ResetButton.Location = new System.Drawing.Point(713, 86);
@@ -110,13 +116,41 @@
             this.ResetButton.TabIndex = 6;
             this.ResetButton.Text = "Reset";
             this.ResetButton.UseVisualStyleBackColor = false;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
+            // 
+            // ButtonAddStudent
+            // 
+            this.ButtonAddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonAddStudent.Location = new System.Drawing.Point(12, 414);
+            this.ButtonAddStudent.Name = "ButtonAddStudent";
+            this.ButtonAddStudent.Size = new System.Drawing.Size(100, 23);
+            this.ButtonAddStudent.TabIndex = 7;
+            this.ButtonAddStudent.Text = "Add Student";
+            this.ButtonAddStudent.UseVisualStyleBackColor = true;
+            this.ButtonAddStudent.Click += new System.EventHandler(this.ButtonAddStudent_Click);
+            // 
+            // ButtonDeleteStudent
+            // 
+            this.ButtonDeleteStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ButtonDeleteStudent.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.ButtonDeleteStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonDeleteStudent.ForeColor = System.Drawing.Color.White;
+            this.ButtonDeleteStudent.Location = new System.Drawing.Point(118, 414);
+            this.ButtonDeleteStudent.Name = "ButtonDeleteStudent";
+            this.ButtonDeleteStudent.Size = new System.Drawing.Size(100, 23);
+            this.ButtonDeleteStudent.TabIndex = 8;
+            this.ButtonDeleteStudent.Text = "Delete Student";
+            this.ButtonDeleteStudent.UseVisualStyleBackColor = false;
+            this.ButtonDeleteStudent.Click += new System.EventHandler(this.ButtonDeleteStudent_Click);
             // 
             // pupilRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(803, 462);
+            this.ClientSize = new System.Drawing.Size(803, 447);
+            this.Controls.Add(this.ButtonDeleteStudent);
+            this.Controls.Add(this.ButtonAddStudent);
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.ViewButton);
             this.Controls.Add(this.SearchResults);
@@ -146,6 +180,8 @@
 
         private System.Windows.Forms.Button ViewButton;
         private System.Windows.Forms.Button ResetButton;
+        private System.Windows.Forms.Button ButtonAddStudent;
+        private System.Windows.Forms.Button ButtonDeleteStudent;
     }
 }
 

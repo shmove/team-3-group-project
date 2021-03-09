@@ -16,7 +16,9 @@ namespace project
     {
 
         public ProfileEditView pupilForm;
+        public pupilRecords recordsForm;
         public bool imgChanged = false;
+        public Pupil activeStudent;
 
         public ProfileViewEdit()
         {
@@ -30,7 +32,7 @@ namespace project
 
             if (customDir == "")
             {
-                StudentImage.Image = Mgr.GetPupilImage(pupilForm.activeStudent);
+                StudentImage.Image = Mgr.GetPupilImage(activeStudent);
             }
             else
             {
@@ -41,15 +43,32 @@ namespace project
         private void ProfileViewEdit_Load(object sender, EventArgs e)
         {
 
-            // Loads current student data into display
-            this.Text = pupilForm.activeStudent.Name + " (" + pupilForm.activeStudent.PupilID + ") - Edit";
+            if (pupilForm != null)
+            {
 
-            TextBoxName.Text = pupilForm.activeStudent.Name;
-            TextBoxStudentID.Text = pupilForm.activeStudent.PupilID;
-            TextBoxCompany.Text = pupilForm.activeStudent.Company;
-            CheckBoxA2E.Checked = pupilForm.activeStudent.A2E;
+                // creates local variable for ease of use with both contexts (create + edit)
+                activeStudent = pupilForm.activeStudent;
 
-            reloadImage("");
+                // Loads current student data into display
+                this.Text = activeStudent.Name + " (" + activeStudent.PupilID + ") - Edit";
+
+                TextBoxName.Text = activeStudent.Name;
+                TextBoxStudentID.Text = activeStudent.PupilID;
+                TextBoxCompany.Text = activeStudent.Company;
+                CheckBoxA2E.Checked = activeStudent.A2E;
+
+                reloadImage("");
+            }
+            else
+            {
+
+                // creates local variable for ease of use with both contexts (create + edit)
+                activeStudent = recordsForm.activeStudent;
+
+                this.Text = "New Student - Edit";
+                reloadImage("");
+
+            };
 
         }
 
@@ -78,21 +97,35 @@ namespace project
         private void ButtonSave_Click(object sender, EventArgs e)
         {
 
-            DbPupilDataManager Mgr = new DbPupilDataManager();
-
-            pupilForm.activeStudent.Name = TextBoxName.Text;
-            pupilForm.activeStudent.PupilID = TextBoxStudentID.Text;
-            pupilForm.activeStudent.Company = TextBoxCompany.Text;
-            pupilForm.activeStudent.A2E = CheckBoxA2E.Checked;
-
-            if (imgChanged)
+            if (TextBoxStudentID.Text == "" | TextBoxName.Text == "")
             {
-                Mgr.SavePupilImage(pupilForm.activeStudent, StudentImage.Image);
+                MessageBox.Show("Please ensure both student name and ID are provided. These are required fields.", "Insufficient info", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
 
-            Mgr.WritePupilData(pupilForm.activeStudent);
+                DbPupilDataManager Mgr = new DbPupilDataManager();
 
-            this.Close();
+                activeStudent.Name = TextBoxName.Text;
+                activeStudent.PupilID = TextBoxStudentID.Text;
+                activeStudent.Company = TextBoxCompany.Text;
+                activeStudent.A2E = CheckBoxA2E.Checked;
+
+                if (imgChanged)
+                {
+                    Mgr.SavePupilImage(activeStudent, StudentImage.Image);
+                }
+
+                Mgr.WritePupilData(activeStudent);
+
+                // writes back to parent form
+                if (pupilForm != null) pupilForm.activeStudent = activeStudent;
+                else recordsForm.activeStudent = activeStudent;
+
+                this.Close();
+
+            }
+            
         }
     }
 }

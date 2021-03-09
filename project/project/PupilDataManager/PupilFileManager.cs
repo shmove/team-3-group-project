@@ -252,7 +252,7 @@ namespace project {
             Random v_Random = new Random();
             for (int i = 0; i < Count; i++) {
                 string Name = System.IO.Path.GetRandomFileName();
-                Pupil v_Pupil = new Pupil(Name, (v_Random.Next(0x00989680, 0x05f5e0ff) >> 0).ToString(), (v_Random.Next(0, 4) >> 1) > 1 ? "Tesco" : "Sainsbury's", v_Random.Next(0, 2) < 1, new List<Note>(){}, System.IO.Path.GetRandomFileName());
+                Pupil v_Pupil = new Pupil(Name, (v_Random.Next(0x00989680, 0x05f5e0ff) >> 0).ToString(), (v_Random.Next(0, 4) >> 1) > 1 ? "Tesco" : "Sainsbury's", v_Random.Next(0, 2) < 1, new List<Note>(){});
                 string FolderName = APPLICABLE_DIRECTORY_NAME_PATTERN.Remove(APPLICABLE_DIRECTORY_NAME_PATTERN.Length - 1) + Name + "_" + v_Pupil.PupilUUID;
                 System.IO.Directory.CreateDirectory(RootFolderPath + "\\" +  FolderName);
                 FileStream v_FileStream = File.Create(RootFolderPath + "\\" + FolderName + "\\" + PUPIL_INFO_FILE_NAME);
