@@ -16,6 +16,7 @@ namespace project
     {
 
         public pupilRecords searchForm; // all data from parent form
+        public string activeUUID; // stores pupil UUID for easier referencing of pupil
         public Pupil activeStudent; // stores student data that is currently being accessed
         public String noteContext; // for access of the note editing context (ie add/edit)
         private DbPupilDataManager Mgr; // instance of pupildatamanager
@@ -25,14 +26,42 @@ namespace project
             InitializeComponent();
         }
 
-        private void loadStudentInfo(pupilRecords searchForm)
+        // run when form is first loaded - saves pupil uuid for referencing and loads pupil data
+        private void ProfileEditView_Load(object sender, EventArgs e)
         {
+
+            ComboBoxContext.SelectedIndex = 0; // set default selection (note searching ui)
+
+            Mgr = new DbPupilDataManager();
+
+            // save student info to activeStudent and update activeUUID
             string[] highlightedField = ((pupilRecords)searchForm).SearchResults.GetItemText(((pupilRecords)searchForm).SearchResults.SelectedItem).Split('(');
 
             string studentID = highlightedField[1].Trim('(', ' ', ')'); // Isolates pupilID from substring array
 
-            activeStudent = getStudent(Mgr, studentID);
+            // gets student data from pupilID displayed in previous form's listbox
+            List<Pupil> students = Mgr.GetPupilsByProperties(new { PupilID = studentID });
+            activeStudent = students[0];
 
+            activeUUID = activeStudent.PupilUUID;
+
+            loadStudentInfo(); // update display
+            populateNotes();
+
+        }
+
+        // overwrites activeStudent with most recent data
+        private void updateActiveStudent()
+        {
+
+            List<Pupil> students = Mgr.GetPupilsByProperties(new { PupilUUID = activeUUID });
+            activeStudent = students[0];
+
+        }
+
+        // updates display with activeStudent info
+        private void loadStudentInfo()
+        {
             this.Text = activeStudent.Name + " (" + activeStudent.PupilID + ") - Info";
             LabelStudentName.Text = activeStudent.Name;
             LabelStudentNo.Text = activeStudent.PupilID;
@@ -53,7 +82,8 @@ namespace project
             StudentPhoto.Image = Mgr.GetPupilImage(activeStudent);
         }
 
-        private static void populateNotes(ListBox SearchResults, Pupil activeStudent)
+        // updates notes display with all notes attached to activeStudent
+        private void populateNotes()
         {
             SearchResults.Items.Clear();
             foreach (Note i_Note in activeStudent.Notes)
@@ -62,6 +92,7 @@ namespace project
             }
         }
 
+        // function used to compare string dates for sorting notes
         private static int compareDates(String selectedDate, String noteDate)
         {
             string[] selectedStrArray = selectedDate.Split('-');
@@ -89,31 +120,6 @@ namespace project
 
             // if all else fails, which it won't...
             return 0;
-        }
-
-        private static Pupil getStudent(DbPupilDataManager Mgr, string studentID)
-        {
-            Pupil student;
-
-            // When searching by id, the correct student will always be able to be accessed through students[0]
-            List<Pupil> students = Mgr.GetPupilsByProperties(new { PupilID = studentID });
-
-            // saves student info globally (locally? global to this form at least. idk how c# works) so it can be accessed by other form events
-            student = students[0];
-            return student;
-        }
-
-        private void ProfileEditView_Load(object sender, EventArgs e)
-        {
-
-            ComboBoxContext.SelectedIndex = 0; // set default selection
-
-            Mgr = new DbPupilDataManager();
-
-            loadStudentInfo(searchForm);
-
-            populateNotes(SearchResults, activeStudent);
-
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -170,7 +176,7 @@ namespace project
         {
 
             // Reload all notes
-            populateNotes(SearchResults, activeStudent);
+            populateNotes();
 
         }
 
@@ -183,9 +189,9 @@ namespace project
             addNote.ShowDialog();
 
             // then, on close of this form
-            activeStudent = getStudent(Mgr, activeStudent.PupilID);
+            updateActiveStudent();
             this.Show();
-            populateNotes(SearchResults, activeStudent);
+            populateNotes();
         }
 
         private void ButtonEditNote_Click(object sender, EventArgs e)
@@ -199,9 +205,9 @@ namespace project
                 addNote.ShowDialog();
 
                 // then, on close of this form
-                activeStudent = getStudent(Mgr, activeStudent.PupilID);
+                updateActiveStudent();
                 this.Show();
-                populateNotes(SearchResults, activeStudent);
+                populateNotes();
             }
             else
             {
@@ -224,7 +230,8 @@ namespace project
             editForm.ShowDialog();
 
             // then, on close of this form
-            loadStudentInfo(searchForm);
+            updateActiveStudent(); // updates student data
+            loadStudentInfo();
             this.Show();
         }
 
@@ -235,7 +242,7 @@ namespace project
             {
                 activeStudent.Notes.RemoveAt(SearchResults.SelectedIndex);
                 Mgr.WritePupilData(activeStudent);
-                populateNotes(SearchResults, activeStudent);
+                populateNotes();
             }
 
         }
