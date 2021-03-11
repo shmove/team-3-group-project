@@ -28,6 +28,8 @@ namespace project {
 
                 MessageBox.Show("Your account has been successfully created.", "Registration success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                this.Close();
+
             } else {
                 MessageBox.Show("Passwords do not match, please re-enter.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPassword.Text = "";
