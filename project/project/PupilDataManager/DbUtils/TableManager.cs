@@ -38,13 +38,13 @@ namespace project.PupilDataManager.DbUtils {
 
         public static void AddPrimaryKeys(Table CurrentTable, string[] PrimaryKeys){
             if(PrimaryKeys == null || PrimaryKeys.Length == 0) return;
-            CurrentTable.Keys.Append("PrimaryKey", ADOX.KeyTypeEnum.adKeyPrimary, PrimaryKeys[0], null, null);
+            CurrentTable.Keys.Append(PrimaryKeys[0], ADOX.KeyTypeEnum.adKeyPrimary, PrimaryKeys[0], null, null);
             for(int i = 1; i < PrimaryKeys.Length; i++) CurrentTable.Keys["PrimaryKey"].Columns.Append(PrimaryKeys[i]); //Not sure if this works...
         }
 
         public static void AddForeignKeys(Table CurrentTable, ValueTuple<string, string, string>[] ForeignKeys){
             if(ForeignKeys == null || ForeignKeys.Length == 0) return;
-            foreach(ValueTuple<string, string, string> ForeignKey in ForeignKeys) CurrentTable.Keys.Append("ForeignKey", KeyTypeEnum.adKeyForeign, ForeignKey.Item1, ForeignKey.Item2, ForeignKey.Item3);
+            foreach(ValueTuple<string, string, string> ForeignKey in ForeignKeys) CurrentTable.Keys.Append(ForeignKey.Item1, KeyTypeEnum.adKeyForeign, ForeignKey.Item1, ForeignKey.Item2, ForeignKey.Item3);
         }
     }
 }

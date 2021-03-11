@@ -110,6 +110,10 @@ namespace project
                 activeStudent.PupilID = TextBoxStudentID.Text;
                 activeStudent.Company = TextBoxCompany.Text;
                 activeStudent.A2E = CheckBoxA2E.Checked;
+                activeStudent.YearGroup = Pupil.YearGroups.S6;
+                activeStudent.A2EDescription = "Hi";
+                activeStudent.LastAccess = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s");
+                activeStudent.Struggling = true;
 
                 if (imgChanged)
                 {

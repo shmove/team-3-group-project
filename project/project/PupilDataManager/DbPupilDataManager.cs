@@ -16,11 +16,11 @@ using project.PupilDataManager.DbUtils;
 
 namespace project {
     /// <summary>
-    /// This is version 0.1.8.11 of DbPupilDataManager.                                                                        <br />
+    /// This is version 0.1.9.12 of DbPupilDataManager.                                                                        <br />
     ///                                                                                                                        <br />
     /// This version supports:                                                                                                 <br />
     ///                                                                                                                        <br />
-    ///  -  Getting a pupil's info with their name,                                                                            <br />
+    ///  -  Getting a pupil's info with their name.                                                                            <br />
     ///  -  Getting a list of pupils with certain properties.                                                                  <br />
     ///  -  Write / update pupil data to the database.                                                                         <br />
     ///  -  Generate test cases (doesn't contain notes)                                                                        <br />
@@ -28,6 +28,7 @@ namespace project {
     ///  -  Collating property values from pupils.                                                                             <br />
     ///  -  Has a basic installation process.                                                                                  <br />
     ///  -  Deleting pupils from the database.                                                                                 <br />
+    ///  -  Has all of the required properties.                                                                                <br />
     ///                                                                                                                        <br />
     /// This version doesn't support:                                                                                          <br />
     ///                                                                                                                        <br />
@@ -35,13 +36,13 @@ namespace project {
     /// 
     /// </summary>
     class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.8.11";
-        public static readonly int BUILD = 11;
+        public static readonly string VERSION = "0.1.9.12";
+        public static readonly int BUILD = 12;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
         private static readonly string CONNECTION_STRING_TEMPLATE = "Provider = Microsoft.Jet.OLEDB.4.0; Data Source = ";
-        private static readonly string[] PUPIL_TABLE_COLUMN_NAMES = new string[]{"PupilUUID", "PupilID", "Name", "Company", "A2E"};
+        private static readonly string[] PUPIL_TABLE_COLUMN_NAMES = new string[]{"PupilUUID", "PupilID", "Name", "Company", "A2E", "YearGroup", "A2EDescription", "LastAccess", "Struggling"};
         public string ConnectionString;
         /// <summary>
         /// Sets a custom database location.
@@ -96,16 +97,20 @@ namespace project {
                 ("PupilID", ADOX.DataTypeEnum.adVarWChar, 16),
                 ("Name", ADOX.DataTypeEnum.adVarWChar, 127),
                 ("Company", ADOX.DataTypeEnum.adVarWChar, 160),
-                ("A2E", ADOX.DataTypeEnum.adBoolean, -1)
+                ("A2E", ADOX.DataTypeEnum.adBoolean, -1),
+                ("YearGroup", ADOX.DataTypeEnum.adInteger, -1),
+                ("A2EDescription", ADOX.DataTypeEnum.adLongVarWChar, 2047),
+                ("LastAccess", ADOX.DataTypeEnum.adVarWChar, 22),
+                ("Struggling", ADOX.DataTypeEnum.adBoolean, -1)
             }, new string[]{"PupilUUID"}, null);
 
-            v_TableManager.CreateTable("Note", new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
-                ("PupilUUID", ADOX.DataTypeEnum.adVarWChar, 36),
+            for(dynamic i = 0, Tables = new string[]{"Note", "TodoEntries"}; i < 2; i++) v_TableManager.CreateTable(Tables[i], new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
+                ("PupilUUID" + Tables[i], ADOX.DataTypeEnum.adVarWChar, 36),
                 ("Text", ADOX.DataTypeEnum.adLongVarWChar, 511),
                 ("Date", ADOX.DataTypeEnum.adVarWChar, 22),
                 ("UUID", ADOX.DataTypeEnum.adVarWChar, 36)
             }, new string[]{"UUID"}, new ValueTuple<string, string, string>[]{
-                ("PupilUUID", "Pupil", "PupilUUID")
+                ("PupilUUID" + Tables[i], "Pupil", "PupilUUID")
             });
 
             v_TableManager.CreateTable("Metadata", new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
@@ -233,30 +238,36 @@ namespace project {
                 for(int i = 0; i < DataReader.FieldCount; i++){
                     CurrentPupil.GetType().GetProperty(PUPIL_TABLE_COLUMN_NAMES[i]).SetValue(CurrentPupil, DataReader[i], null);
                 }
-                CurrentPupil.Notes = new List<Note>();
-
-                OleDbCommand NoteSelectCommand = new OleDbCommand();
-                NoteSelectCommand.CommandType = CommandType.Text;
-                NoteSelectCommand.Connection = Connection;
-                string NoteCommandText = "SELECT [Text], [Date], [UUID] FROM [Note] WHERE [PupilUUID] = @PupilUUID;";
-                string[] PropertyOrder = new string[]{"Text", "Date", "UUID"};
-                NoteSelectCommand.CommandText = NoteCommandText;
-                NoteSelectCommand.Parameters.AddWithValue("@PupilUUID", CurrentPupil.PupilUUID);
-                OleDbDataReader NoteDataReader = NoteSelectCommand.ExecuteReader();
-                while(NoteDataReader.Read()){
-                    Note CurrentNote = new Note();
-                    for(int i = 0; i < NoteDataReader.FieldCount; i++){
-                        Utilities.SetReflect<object>(CurrentNote, PropertyOrder[i], NoteDataReader[i]);
-                    }
-                    CurrentPupil.Notes.Add(CurrentNote);
-                }
+                CurrentPupil.Notes = DbPupilDataManager.GetListableProperty<Note>(Connection, CurrentPupil.PupilUUID, "Note");
+                CurrentPupil.TodoList = DbPupilDataManager.GetListableProperty<TodoEntry>(Connection, CurrentPupil.PupilUUID, "TodoEntries");
+                
                 Pupils.Add(CurrentPupil);
             }
             Connection.Close();
             return Pupils;
         }
+        private static List<T> GetListableProperty<T>(OleDbConnection Connection, string PupilUUID, string PropertyName) where T : BaseListable, new(){
+            List<T> ValueList = new List<T>();
+            OleDbCommand SelectCommand = new OleDbCommand();
+            SelectCommand.CommandType = CommandType.Text;
+            SelectCommand.Connection = Connection;
+            string CommandText = "SELECT [Text], [Date], [UUID] FROM [" + PropertyName + "] WHERE [PupilUUID" + PropertyName + "] = @PupilUUID;";
+            string[] PropertyOrder = new string[]{"Text", "Date", "UUID"};
+            SelectCommand.CommandText = CommandText;
+            SelectCommand.Parameters.AddWithValue("@PupilUUID", PupilUUID);
+            OleDbDataReader DataReader = SelectCommand.ExecuteReader();
+            while(DataReader.Read()){
+                T CurrentNote = new T();
+                for(int i = 0; i < DataReader.FieldCount; i++){
+                    Utilities.SetReflect<object>(CurrentNote, PropertyOrder[i], DataReader[i]);
+                }
+                ValueList.Add(CurrentNote);
+            }
+            return ValueList;
+        }
         
-        private static readonly string[] UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST = new string[]{"PupilUUID", "Notes"};
+        private static readonly string[] UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST = new string[]{"PupilUUID", "Notes", "TodoList"};
+        private static readonly string[] INSERT_PUPIL_DATA_PROPERTY_BLACKLIST = new string[]{"Notes", "TodoList"};
         /// <summary>
         ///     Writes pupil data to the database: this can be used to update existing records or create new ones.
         /// <br />
@@ -281,7 +292,7 @@ namespace project {
                 //DbCommandBuilder CommandBuilder = DbProviderFactories.GetFactory("System.Data.OleDb").CreateCommandBuilder();
 
                 if(this.GetPupilsByProperties(new {PupilUUID = p_Pupil.PupilUUID}).Count == 0){ //If the pupil doesn't already exist
-                    Command = CommandBuilder.BuildInsertCommand<Pupil>(Connection, p_Pupil, "Pupil", new string[]{"Notes"});
+                    Command = CommandBuilder.BuildInsertCommand<Pupil>(Connection, p_Pupil, "Pupil", INSERT_PUPIL_DATA_PROPERTY_BLACKLIST);
                 }else{
                     Command = CommandBuilder.BuildUpdateCommand<Pupil>(Connection, p_Pupil, "Pupil", UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST, " WHERE [PupilUUID] = @PupilUUID");
                     Command.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
@@ -292,53 +303,54 @@ namespace project {
                 Connection.Close();
 
             }
+            DbPupilDataManager.UpdateListableProperty<Note>(Connection, p_Pupil.PupilUUID, "Note", p_Pupil.Notes);
+            DbPupilDataManager.UpdateListableProperty<TodoEntry>(Connection, p_Pupil.PupilUUID, "TodoEntries", p_Pupil.TodoList);
+        }
+        private static void UpdateListableProperty<T>(OleDbConnection Connection, string PupilUUID, string PropertyName, List<T> Values) where T : BaseListable{
+            OleDbCommand SelectCommand = new OleDbCommand();
+            SelectCommand.CommandType = CommandType.Text;
+            SelectCommand.Connection = Connection;
+            SelectCommand.CommandText = "SELECT [UUID] FROM [" + PropertyName + "] WHERE [PupilUUID" + PropertyName + "] = @PupilUUID;";
+            SelectCommand.Parameters.AddWithValue("@PupilUUID", PupilUUID);
 
-            {
-                OleDbCommand SelectCommand = new OleDbCommand();
-                SelectCommand.CommandType = CommandType.Text;
-                SelectCommand.Connection = Connection;
-                SelectCommand.CommandText = "SELECT [UUID] FROM [Note] WHERE [PupilUUID] = @PupilUUID;";
-                SelectCommand.Parameters.AddWithValue("@PupilUUID", p_Pupil.PupilUUID);
+            List<string> StoredUUIDs = new List<string>();
 
-                List<string> StoredNoteUUIDs = new List<string>();
+            Connection.Open();
 
+            OleDbDataReader DataReader = SelectCommand.ExecuteReader();
+
+            while(DataReader.Read()) StoredUUIDs.Add((string)DataReader[0]);
+
+            Connection.Close();
+
+            List<string> CurrentUUIDs = new List<string>();
+            Dictionary<string, T> UUIDLookup = new Dictionary<string,T>();
+            foreach(T i_Type in Values){
+                CurrentUUIDs.Add(i_Type.UUID);
+                UUIDLookup.Add(i_Type.UUID, i_Type);
+            }
+
+            foreach(string UUID in CurrentUUIDs.Union(StoredUUIDs).ToList()){
+                bool Current = CurrentUUIDs.Contains(UUID);
+                bool Stored = StoredUUIDs.Contains(UUID);
+                bool Both = Current && Stored;
+
+                OleDbCommand Command = new OleDbCommand();
+                Command.CommandType = CommandType.Text;
+                Command.Connection = Connection;
+
+                if(Both){ //Update
+                    Command = CommandBuilder.BuildUpdateCommand<T>(Connection, UUIDLookup[UUID], PropertyName, new string[]{"UUID"}, " WHERE [UUID] = @UUID");
+                    Command.Parameters.AddWithValue("@UUID", UUID);
+                }else if(Current){ //Insert
+                    Command = CommandBuilder.BuildInsertCommand<T>(Connection, UUIDLookup[UUID], PropertyName, new string[]{}, new string[]{"PupilUUID" + PropertyName}, new dynamic[]{PupilUUID});
+                }else if(Stored){ //Delete
+                    Command.CommandText = "DELETE FROM [" + PropertyName + "] WHERE [UUID] = @UUID;";
+                    Command.Parameters.AddWithValue("@UUID", UUID);
+                }
                 Connection.Open();
-
-                OleDbDataReader DataReader = SelectCommand.ExecuteReader();
-
-                while(DataReader.Read()) StoredNoteUUIDs.Add((string)DataReader[0]);
-
+                Command.ExecuteNonQuery();
                 Connection.Close();
-
-                List<string> CurrentNoteUUIDs = new List<string>();
-                Dictionary<string, Note> NoteUUIDLookup = new Dictionary<string,Note>();
-                foreach(Note i_Note in p_Pupil.Notes){
-                    CurrentNoteUUIDs.Add(i_Note.UUID);
-                    NoteUUIDLookup.Add(i_Note.UUID, i_Note);
-                }
-
-                foreach(string NoteUUID in CurrentNoteUUIDs.Union(StoredNoteUUIDs).ToList()){
-                    bool Current = CurrentNoteUUIDs.Contains(NoteUUID);
-                    bool Stored = StoredNoteUUIDs.Contains(NoteUUID);
-                    bool Both = Current && Stored;
-
-                    OleDbCommand Command = new OleDbCommand();
-                    Command.CommandType = CommandType.Text;
-                    Command.Connection = Connection;
-
-                    if(Both){ //Update
-                        Command = CommandBuilder.BuildUpdateCommand<Note>(Connection, NoteUUIDLookup[NoteUUID], "Note", new string[]{"UUID"}, " WHERE [UUID] = @UUID");
-                        Command.Parameters.AddWithValue("@UUID", NoteUUID);
-                    }else if(Current){ //Insert
-                        Command = CommandBuilder.BuildInsertCommand<Note>(Connection, NoteUUIDLookup[NoteUUID], "Note", new string[]{}, new string[]{"PupilUUID"}, new dynamic[]{p_Pupil.PupilUUID});
-                    }else if(Stored){ //Delete
-                        Command.CommandText = "DELETE FROM [Note] WHERE [UUID] = @UUID;";
-                        Command.Parameters.AddWithValue("@UUID", NoteUUID);
-                    }
-                    Connection.Open();
-                    Command.ExecuteNonQuery();
-                    Connection.Close();
-                }
             }
         }
         /// <summary>
@@ -347,7 +359,7 @@ namespace project {
         /// <br />Example:
         /// <br /><code>
         /// <br />    DbPupilDataManager Mgr = new DbPupilDataManager();
-        /// <br />    Pupil MyPupil = Mgr.GetPupilsByProperties(new {PupilID = "33554432")[0]; //Get pupil object.
+        /// <br />    Pupil MyPupil = Mgr.GetPupilsByProperties(new {PupilID = "33554432"})[0]; //Get pupil object.
         /// <br />    Mgr.DeletePupilData(MyPupil);
         /// <br /></code>
         /// <br />Don't forget to update your array(s) after deleting the pupil.
@@ -355,26 +367,28 @@ namespace project {
         /// <param name="p_Pupil">The pupil to be deleted.</param>
         public override void DeletePupilData(Pupil p_Pupil) {
             OleDbConnection Connection = new OleDbConnection(this.ConnectionString);
-            {
-                OleDbCommand Command = new OleDbCommand();
-                Command.CommandType = CommandType.Text;
-                Command.Connection = Connection;
-                Command.CommandText = "DELETE FROM [Note] WHERE [PupilUUID] = @UUID;";
-                Command.Parameters.AddWithValue("@UUID", p_Pupil.PupilUUID);
-                Connection.Open();
-                Command.ExecuteNonQuery();
-                Connection.Close();
-            }
-            {
-                OleDbCommand Command = new OleDbCommand();
-                Command.CommandType = CommandType.Text;
-                Command.Connection = Connection;
-                Command.CommandText = "DELETE FROM [Pupil] WHERE [PupilUUID] = @UUID;";
-                Command.Parameters.AddWithValue("@UUID", p_Pupil.PupilUUID);
-                Connection.Open();
-                Command.ExecuteNonQuery();
-                Connection.Close();
-            }
+            
+            DbPupilDataManager.DeleteListableProperty<Note>(Connection, p_Pupil.PupilUUID, "Note");
+            DbPupilDataManager.DeleteListableProperty<TodoEntry>(Connection, p_Pupil.PupilUUID, "TodoEntries");
+
+            OleDbCommand Command = new OleDbCommand();
+            Command.CommandType = CommandType.Text;
+            Command.Connection = Connection;
+            Command.CommandText = "DELETE FROM [Pupil] WHERE [PupilUUID] = @UUID;";
+            Command.Parameters.AddWithValue("@UUID", p_Pupil.PupilUUID);
+            Connection.Open();
+            Command.ExecuteNonQuery();
+            Connection.Close();
+        }
+        private static void DeleteListableProperty<T>(OleDbConnection Connection, string PupilUUID, string PropertyName) where T : BaseListable{
+            OleDbCommand Command = new OleDbCommand();
+            Command.CommandType = CommandType.Text;
+            Command.Connection = Connection;
+            Command.CommandText = "DELETE FROM [" + PropertyName + "] WHERE [PupilUUID" + PropertyName + "] = @UUID;";
+            Command.Parameters.AddWithValue("@UUID", PupilUUID);
+            Connection.Open();
+            Command.ExecuteNonQuery();
+            Connection.Close();
         }
     }
 }
