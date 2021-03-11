@@ -140,13 +140,16 @@ namespace project
 
         private void ButtonDeleteStudent_Click(object sender, EventArgs e)
         {
-
+            DbPupilDataManager Mgr = new DbPupilDataManager();
             if (SearchResults.SelectedIndex != -1)
             {
                 if ((MessageBox.Show("Are you sure you want to delete this student? Their information and notes will not be retrievable.", "Deletion Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
                 {
-                    // unimplemented
-                    MessageBox.Show("This function has not yet been implemented.");
+                    string Text = SearchResults.GetItemText(SearchResults.SelectedItem);
+                    int Index = Text.LastIndexOf("(");
+                    string PupilID = Text.Substring(Index + 1, Text.Length - 2 - Index);
+                    Mgr.DeletePupilData(Mgr.GetPupilsByProperties(new {PupilID = PupilID})[0]);
+                    this.reloadPupils();
                 }
             }
             else

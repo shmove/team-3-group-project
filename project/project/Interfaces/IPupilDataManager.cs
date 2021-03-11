@@ -10,6 +10,7 @@ using System.IO;
 namespace project.Interfaces {
     interface IPupilDataManager {
         void WritePupilData(Pupil p_Pupil);
+        void DeletePupilData(Pupil p_Pupil);
         bool ConfirmPupilIDIntegrity();
         List<Pupil> GetPupilsByProperties(object Properties);
         List<T> CollatePropertyValuesFromPupils<T>(string Property);
@@ -29,6 +30,7 @@ namespace project.Interfaces {
         public abstract bool ConfirmPupilIDIntegrity();
         public abstract List<Pupil> GetPupilsByProperties(object Properties);
         public abstract void WritePupilData(Pupil p_Pupil);
+        public abstract void DeletePupilData(Pupil p_Pupil);
         public Pupil[] GetTestCases(int Count) {
             if ((Count >> 8) > 0) throw new Exception("Really?");
             Pupil[] PupilArray = new Pupil[Count];

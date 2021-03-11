@@ -16,7 +16,7 @@ using project.PupilDataManager.DbUtils;
 
 namespace project {
     /// <summary>
-    /// This is version 0.1.7.10 of DbPupilDataManager.                                                                        <br />
+    /// This is version 0.1.8.11 of DbPupilDataManager.                                                                        <br />
     ///                                                                                                                        <br />
     /// This version supports:                                                                                                 <br />
     ///                                                                                                                        <br />
@@ -27,6 +27,7 @@ namespace project {
     ///  -  Having multiple pupils with the same name.                                                                         <br />
     ///  -  Collating property values from pupils.                                                                             <br />
     ///  -  Has a basic installation process.                                                                                  <br />
+    ///  -  Deleting pupils from the database.                                                                                 <br />
     ///                                                                                                                        <br />
     /// This version doesn't support:                                                                                          <br />
     ///                                                                                                                        <br />
@@ -34,8 +35,8 @@ namespace project {
     /// 
     /// </summary>
     class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.7.10";
-        public static readonly int BUILD = 10;
+        public static readonly string VERSION = "0.1.8.11";
+        public static readonly int BUILD = 11;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
@@ -338,6 +339,41 @@ namespace project {
                     Command.ExecuteNonQuery();
                     Connection.Close();
                 }
+            }
+        }
+        /// <summary>
+        /// Deletes the data for the specified pupil from the database.
+        /// <br />
+        /// <br />Example:
+        /// <br /><code>
+        /// <br />    DbPupilDataManager Mgr = new DbPupilDataManager();
+        /// <br />    Pupil MyPupil = Mgr.GetPupilsByProperties(new {PupilID = "33554432")[0]; //Get pupil object.
+        /// <br />    Mgr.DeletePupilData(MyPupil);
+        /// <br /></code>
+        /// <br />Don't forget to update your array(s) after deleting the pupil.
+        /// </summary>
+        /// <param name="p_Pupil">The pupil to be deleted.</param>
+        public override void DeletePupilData(Pupil p_Pupil) {
+            OleDbConnection Connection = new OleDbConnection(this.ConnectionString);
+            {
+                OleDbCommand Command = new OleDbCommand();
+                Command.CommandType = CommandType.Text;
+                Command.Connection = Connection;
+                Command.CommandText = "DELETE FROM [Note] WHERE [PupilUUID] = @UUID;";
+                Command.Parameters.AddWithValue("@UUID", p_Pupil.PupilUUID);
+                Connection.Open();
+                Command.ExecuteNonQuery();
+                Connection.Close();
+            }
+            {
+                OleDbCommand Command = new OleDbCommand();
+                Command.CommandType = CommandType.Text;
+                Command.Connection = Connection;
+                Command.CommandText = "DELETE FROM [Pupil] WHERE [PupilUUID] = @UUID;";
+                Command.Parameters.AddWithValue("@UUID", p_Pupil.PupilUUID);
+                Connection.Open();
+                Command.ExecuteNonQuery();
+                Connection.Close();
             }
         }
     }

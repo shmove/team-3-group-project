@@ -262,6 +262,10 @@ namespace project {
                 v_FileStream.Close();
             }
         }
+
+        public override void DeletePupilData(Pupil p_Pupil) {
+            throw new NotImplementedException();
+        }
         #endregion
 
 
