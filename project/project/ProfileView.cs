@@ -30,7 +30,9 @@ namespace project
         private void ProfileEditView_Load(object sender, EventArgs e)
         {
 
-            ComboBoxContext.SelectedIndex = 0; // set default selection (note searching ui)
+            // Wipes DateTimePicker display
+            DateTimePicker.Format = DateTimePickerFormat.Custom;
+            DateTimePicker.CustomFormat = " ";
 
             Mgr = searchForm.Mgr;
 
@@ -100,6 +102,8 @@ namespace project
             {
                 SearchResults.Items.Add(i_Note.Text + " [" + i_Note.Date + "]");
             }
+
+            if (SearchResults.Items.Count == 0) SearchResults.Items.Add("No notes were found.");
         }
 
         // function used to compare string dates for sorting notes
@@ -132,7 +136,7 @@ namespace project
             return 0;
         }
 
-        private void ButtonSearch_Click(object sender, EventArgs e)
+        private void searchNotes()
         {
 
             // Only display notes from the date selected in the DateTimePicker on clicking this button
@@ -182,12 +186,37 @@ namespace project
 
         }
 
+        private void DateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (DateTimePicker.Value == DateTimePicker.MinimumDateTime)
+            {
+                DateTimePicker.Value = DateTime.Now; // This is required in order to show current month/year when user reopens the date popup.
+                DateTimePicker.Format = DateTimePickerFormat.Custom;
+                DateTimePicker.CustomFormat = " ";
+            }
+            else
+            {
+                DateTimePicker.Format = DateTimePickerFormat.Long;
+            }
+
+            if (ComboBoxContext.SelectedIndex == -1) ComboBoxContext.SelectedIndex = 1; // defaults to "from", if not set
+
+            searchNotes(); // reloads notes based off of search
+        }
+
+        private void ComboBoxContext_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboBoxContext.SelectedIndex != -1 && DateTimePicker.Format == DateTimePickerFormat.Custom) DateTimePicker.Value = DateTime.Now; // defaults to current date, if not set
+
+            searchNotes();
+        }
+
         private void ButtonReset_Click(object sender, EventArgs e)
         {
-
+            DateTimePicker.Value = DateTimePicker.MinimumDateTime;
+            ComboBoxContext.SelectedIndex = -1;
             // Reload all notes
             populateNotes();
-
         }
 
         private void ButtonAddNote_Click(object sender, EventArgs e)

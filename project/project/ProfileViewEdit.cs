@@ -46,18 +46,22 @@ namespace project
             {
                 label5.Visible = true;
                 TextBoxA2EDesc.Visible = true;
-                CheckBoxStruggling.Location = new Point(255, 181);
+                TextBoxBack4.Visible = true;
+                CheckBoxStruggling.Location = new Point(255, 173);
             }
             else
             {
                 label5.Visible = false;
                 TextBoxA2EDesc.Visible = false;
-                CheckBoxStruggling.Location = new Point(255, 155);
+                TextBoxBack4.Visible = false;
+                CheckBoxStruggling.Location = new Point(255, 147);
             }
         }
 
         private void ProfileViewEdit_Load(object sender, EventArgs e)
         {
+
+            ComboBoxYearGroup.SelectedIndex = 0;
 
             if (pupilForm != null)
             {

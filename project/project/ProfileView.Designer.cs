@@ -35,7 +35,6 @@
             this.LabelCompany = new System.Windows.Forms.Label();
             this.LabelGroups = new System.Windows.Forms.Label();
             this.SearchResults = new System.Windows.Forms.ListBox();
-            this.ButtonSearch = new System.Windows.Forms.Button();
             this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.ButtonEditInfo = new System.Windows.Forms.Button();
             this.ButtonAddNote = new System.Windows.Forms.Button();
@@ -48,8 +47,10 @@
             this.ImageFlag = new System.Windows.Forms.PictureBox();
             this.LabelStruggling = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ComboBoxBack = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).BeginInit();
+            this.ComboBoxBack.SuspendLayout();
             this.SuspendLayout();
             // 
             // StudentPhoto
@@ -90,6 +91,7 @@
             // LabelGroups
             // 
             this.LabelGroups.AutoSize = true;
+            this.LabelGroups.Cursor = System.Windows.Forms.Cursors.Help;
             this.LabelGroups.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelGroups.Location = new System.Drawing.Point(132, 119);
             this.LabelGroups.Name = "LabelGroups";
@@ -111,26 +113,18 @@
             this.SearchResults.TabIndex = 4;
             this.SearchResults.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDoubleClick);
             // 
-            // ButtonSearch
-            // 
-            this.ButtonSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonSearch.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSearch.Location = new System.Drawing.Point(447, 164);
-            this.ButtonSearch.Name = "ButtonSearch";
-            this.ButtonSearch.Size = new System.Drawing.Size(63, 24);
-            this.ButtonSearch.TabIndex = 6;
-            this.ButtonSearch.Text = "Search";
-            this.ButtonSearch.UseVisualStyleBackColor = true;
-            this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
-            // 
             // DateTimePicker
             // 
-            this.DateTimePicker.CalendarFont = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateTimePicker.CalendarFont = new System.Drawing.Font("Nirmala UI", 9F);
             this.DateTimePicker.CalendarMonthBackground = System.Drawing.Color.White;
-            this.DateTimePicker.Location = new System.Drawing.Point(246, 166);
+            this.DateTimePicker.CustomFormat = "";
+            this.DateTimePicker.Font = new System.Drawing.Font("Nirmala UI", 9.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateTimePicker.Location = new System.Drawing.Point(315, 164);
             this.DateTimePicker.Name = "DateTimePicker";
-            this.DateTimePicker.Size = new System.Drawing.Size(195, 20);
+            this.DateTimePicker.Size = new System.Drawing.Size(195, 24);
             this.DateTimePicker.TabIndex = 7;
+            this.DateTimePicker.Value = new System.DateTime(2021, 1, 1, 0, 0, 0, 0);
+            this.DateTimePicker.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
             // ButtonEditInfo
             // 
@@ -200,16 +194,20 @@
             // ComboBoxContext
             // 
             this.ComboBoxContext.BackColor = System.Drawing.Color.White;
-            this.ComboBoxContext.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxContext.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxContext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxContext.Font = new System.Drawing.Font("Nirmala UI", 9F);
             this.ComboBoxContext.FormattingEnabled = true;
+            this.ComboBoxContext.ItemHeight = 15;
             this.ComboBoxContext.Items.AddRange(new object[] {
             "before",
             "from",
             "after"});
-            this.ComboBoxContext.Location = new System.Drawing.Point(181, 164);
+            this.ComboBoxContext.Location = new System.Drawing.Point(-1, -1);
             this.ComboBoxContext.Name = "ComboBoxContext";
-            this.ComboBoxContext.Size = new System.Drawing.Size(59, 23);
+            this.ComboBoxContext.Size = new System.Drawing.Size(63, 23);
             this.ComboBoxContext.TabIndex = 13;
+            this.ComboBoxContext.SelectedIndexChanged += new System.EventHandler(this.ComboBoxContext_SelectedIndexChanged);
             // 
             // ButtonEditNote
             // 
@@ -257,6 +255,15 @@
             this.LabelStruggling.TabIndex = 16;
             this.LabelStruggling.Text = "flagged as struggling";
             // 
+            // ComboBoxBack
+            // 
+            this.ComboBoxBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ComboBoxBack.Controls.Add(this.ComboBoxContext);
+            this.ComboBoxBack.Location = new System.Drawing.Point(246, 164);
+            this.ComboBoxBack.Name = "ComboBoxBack";
+            this.ComboBoxBack.Size = new System.Drawing.Size(63, 24);
+            this.ComboBoxBack.TabIndex = 17;
+            // 
             // ProfileEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,20 +273,19 @@
             this.Controls.Add(this.ImageFlag);
             this.Controls.Add(this.LabelYearGroup);
             this.Controls.Add(this.ButtonEditNote);
-            this.Controls.Add(this.ComboBoxContext);
             this.Controls.Add(this.LabelStudentNo);
             this.Controls.Add(this.ButtonDeleteNote);
             this.Controls.Add(this.ButtonReset);
             this.Controls.Add(this.ButtonAddNote);
             this.Controls.Add(this.ButtonEditInfo);
             this.Controls.Add(this.DateTimePicker);
-            this.Controls.Add(this.ButtonSearch);
             this.Controls.Add(this.SearchResults);
             this.Controls.Add(this.LabelGroups);
             this.Controls.Add(this.LabelCompany);
             this.Controls.Add(this.LabelStudentName);
             this.Controls.Add(this.StudentPhoto);
             this.Controls.Add(this.LabelStruggling);
+            this.Controls.Add(this.ComboBoxBack);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProfileEditView";
@@ -287,6 +293,7 @@
             this.Load += new System.EventHandler(this.ProfileEditView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).EndInit();
+            this.ComboBoxBack.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,7 +307,6 @@
         private System.Windows.Forms.Label LabelGroups;
         /// Set listbox to public so highlighted entry can be accessed by different forms
         public System.Windows.Forms.ListBox SearchResults;
-        private System.Windows.Forms.Button ButtonSearch;
         private System.Windows.Forms.DateTimePicker DateTimePicker;
         private System.Windows.Forms.Button ButtonEditInfo;
         private System.Windows.Forms.Button ButtonAddNote;
@@ -313,5 +319,6 @@
         private System.Windows.Forms.PictureBox ImageFlag;
         private System.Windows.Forms.Label LabelStruggling;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Panel ComboBoxBack;
     }
 }
