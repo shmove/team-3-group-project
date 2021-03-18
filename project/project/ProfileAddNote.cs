@@ -41,7 +41,8 @@ namespace project
                     // split text of selected item
                     string[] selectedItem = ((ProfileEditView)profileForm).SearchResults.GetItemText(((ProfileEditView)profileForm).SearchResults.SelectedItem).Split('[');
 
-                    initialNote = selectedItem[0].Trim();
+                    // founder.Remove(founder.Length - 1, 1);
+                    initialNote = selectedItem[0].Remove(selectedItem[0].Length - 1, 1);
                     initialDate = selectedItem[1].Trim(' ', ']');
 
                     TextBoxNote.Text = initialNote;
