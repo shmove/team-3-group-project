@@ -40,6 +40,22 @@ namespace project
             }
         }
 
+        private void toggleA2EDisplay(bool context)
+        {
+            if (context)
+            {
+                label5.Visible = true;
+                TextBoxA2EDesc.Visible = true;
+                CheckBoxStruggling.Location = new Point(255, 181);
+            }
+            else
+            {
+                label5.Visible = false;
+                TextBoxA2EDesc.Visible = false;
+                CheckBoxStruggling.Location = new Point(255, 155);
+            }
+        }
+
         private void ProfileViewEdit_Load(object sender, EventArgs e)
         {
 
@@ -56,6 +72,48 @@ namespace project
                 TextBoxStudentID.Text = activeStudent.PupilID;
                 TextBoxCompany.Text = activeStudent.Company;
                 CheckBoxA2E.Checked = activeStudent.A2E;
+                TextBoxA2EDesc.Text = activeStudent.A2EDescription;
+                toggleA2EDisplay(activeStudent.A2E);
+                CheckBoxStruggling.Checked = activeStudent.Struggling;
+                switch (activeStudent.YearGroup.ToString())
+                {
+                    case "S1":
+                        ComboBoxYearGroup.SelectedIndex = 0;
+                        break;
+                    case "S2":
+                        ComboBoxYearGroup.SelectedIndex = 1;
+                        break;
+                    case "S3":
+                        ComboBoxYearGroup.SelectedIndex = 2;
+                        break;
+                    case "S4":
+                        ComboBoxYearGroup.SelectedIndex = 3;
+                        break;
+                    case "S5":
+                        ComboBoxYearGroup.SelectedIndex = 4;
+                        break;
+                    case "S6":
+                        ComboBoxYearGroup.SelectedIndex = 5;
+                        break;
+                    case "College1":
+                        ComboBoxYearGroup.SelectedIndex = 6;
+                        break;
+                    case "College2":
+                        ComboBoxYearGroup.SelectedIndex = 7;
+                        break;
+                    case "Uni1":
+                        ComboBoxYearGroup.SelectedIndex = 8;
+                        break;
+                    case "Uni2":
+                        ComboBoxYearGroup.SelectedIndex = 9;
+                        break;
+                    case "Uni3":
+                        ComboBoxYearGroup.SelectedIndex = 10;
+                        break;
+                    case "Uni4":
+                        ComboBoxYearGroup.SelectedIndex = 11;
+                        break;
+                };
 
                 reloadImage("");
             }
@@ -66,6 +124,7 @@ namespace project
                 activeStudent = recordsForm.activeStudent;
 
                 this.Text = "New Student - Edit";
+                toggleA2EDisplay(false);
                 reloadImage("");
 
             };
@@ -110,10 +169,12 @@ namespace project
                 activeStudent.PupilID = TextBoxStudentID.Text;
                 activeStudent.Company = TextBoxCompany.Text;
                 activeStudent.A2E = CheckBoxA2E.Checked;
-                activeStudent.YearGroup = Pupil.YearGroups.S6;
-                activeStudent.A2EDescription = "Hi";
+                if (activeStudent.A2E) activeStudent.A2EDescription = TextBoxA2EDesc.Text; // peepoWave
+                else activeStudent.A2EDescription = "";
+                Pupil.YearGroups[] yearGroups = {Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4};
+                activeStudent.YearGroup = yearGroups[ComboBoxYearGroup.SelectedIndex];
                 activeStudent.LastAccess = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s");
-                activeStudent.Struggling = true;
+                activeStudent.Struggling = CheckBoxStruggling.Checked;
 
                 if (imgChanged)
                 {
@@ -130,6 +191,11 @@ namespace project
 
             }
             
+        }
+
+        private void CheckBoxA2E_CheckedChanged(object sender, EventArgs e)
+        {
+            toggleA2EDisplay(CheckBoxA2E.Checked);
         }
     }
 }

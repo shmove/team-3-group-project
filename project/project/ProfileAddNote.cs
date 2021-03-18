@@ -69,6 +69,8 @@ namespace project
                     break;
             }
 
+            profileForm.activeStudent.LastAccess = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s"); // updates last accessed time
+
             // Write new info to db
             DbPupilDataManager Mgr = new DbPupilDataManager();
 
