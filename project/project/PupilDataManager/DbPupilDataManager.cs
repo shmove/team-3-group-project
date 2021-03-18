@@ -36,14 +36,15 @@ namespace project {
     /// 
     /// </summary>
     class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.9.12";
-        public static readonly int BUILD = 12;
+        public static readonly string VERSION = "0.1.10.13";
+        public static readonly int BUILD = 13;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
         private static readonly string CONNECTION_STRING_TEMPLATE = "Provider = Microsoft.Jet.OLEDB.4.0; Data Source = ";
         private static readonly string[] PUPIL_TABLE_COLUMN_NAMES = new string[]{"PupilUUID", "PupilID", "Name", "Company", "A2E", "YearGroup", "A2EDescription", "LastAccess", "Struggling"};
         public string ConnectionString;
+        private DbUser User;
         /// <summary>
         /// Sets a custom database location.
         /// </summary>
@@ -56,6 +57,9 @@ namespace project {
         /// </summary>
         public DbPupilDataManager() : base(DEFAULT_DATABASE_LOCATION) {
             //DatabasePath = DEFAULT_DATABASE_LOCATION;
+        }
+        public DbPupilDataManager(DbUser User) : base(DEFAULT_DATABASE_LOCATION) {
+            this.User = User;
         }
         /// <summary>
         /// Checks whether the DbPupilDataManager has been ran previously, and installed.
@@ -103,6 +107,20 @@ namespace project {
                 ("LastAccess", ADOX.DataTypeEnum.adVarWChar, 22),
                 ("Struggling", ADOX.DataTypeEnum.adBoolean, -1)
             }, new string[]{"PupilUUID"}, null);
+
+            v_TableManager.CreateTable("User", new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
+                ("UserUUID", ADOX.DataTypeEnum.adVarWChar, 36),
+                ("Username", ADOX.DataTypeEnum.adVarWChar, 127),
+                ("PasswordSHA256", ADOX.DataTypeEnum.adVarWChar, 64)
+            }, new string[]{"UserUUID"}, null);
+
+            v_TableManager.CreateTable("UserPupilAccess", new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
+                ("FUserUUID", ADOX.DataTypeEnum.adVarWChar, 36),
+                ("FPupilUUID", ADOX.DataTypeEnum.adVarWChar, 36)
+            }, null, new ValueTuple<string, string, string>[]{
+                ("FPupilUUID", "Pupil", "PupilUUID"),
+                ("FUserUUID", "User", "UserUUID")
+            });
 
             for(dynamic i = 0, Tables = new string[]{"Note", "TodoEntries"}; i < 2; i++) v_TableManager.CreateTable(Tables[i], new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
                 ("PupilUUID" + Tables[i], ADOX.DataTypeEnum.adVarWChar, 36),
@@ -244,7 +262,7 @@ namespace project {
                 Pupils.Add(CurrentPupil);
             }
             Connection.Close();
-            return Pupils;
+            return this.FilterForUser(Pupils);
         }
         private static List<T> GetListableProperty<T>(OleDbConnection Connection, string PupilUUID, string PropertyName) where T : BaseListable, new(){
             List<T> ValueList = new List<T>();
@@ -380,6 +398,12 @@ namespace project {
             Command.ExecuteNonQuery();
             Connection.Close();
         }
+        public bool SetUser(DbUser User){
+            if(!User.IsAuthenticated) return false;
+            this.User = User;
+            return true;
+        }
+
         private static void DeleteListableProperty<T>(OleDbConnection Connection, string PupilUUID, string PropertyName) where T : BaseListable{
             OleDbCommand Command = new OleDbCommand();
             Command.CommandType = CommandType.Text;
@@ -389,6 +413,17 @@ namespace project {
             Connection.Open();
             Command.ExecuteNonQuery();
             Connection.Close();
+        }
+
+        private List<Pupil> FilterForUser(List<Pupil> Pupils){
+            if(this.User == null) return Pupils;
+            List<Pupil> NewList = new List<Pupil>();
+            OleDbConnection Connection = new OleDbConnection(this.ConnectionString);
+            //this.User.GetAccessTo(Connection, Pupils[0]);
+            for(int i = 0, Length = Pupils.Count; i < Length; i++){
+                if(this.User.HasAccessTo(Connection, Pupils[i])) NewList.Add(Pupils[i]);
+            }
+            return NewList;
         }
     }
 }

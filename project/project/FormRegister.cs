@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.OleDb;
 using System.Windows.Forms;
+using static project.PupilDataManager.SharedResources.Types;
 
 namespace project {
     public partial class FormRegister : Form {
@@ -16,11 +17,14 @@ namespace project {
                 MessageBox.Show("Username and/or password fields are empty.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             } else if (txtPassword.Text == txtComPassword.Text) {
-                loginForm.con.Open();
+                OleDbConnection Connection = new OleDbConnection(new DbPupilDataManager().ConnectionString); //I hate every bit of this... I'll refactor it soon
+                DbUser User = new DbUser(txtUsername.Text);
+                User.SaveUser(Connection, txtPassword.Text);
+                /*loginForm.con.Open();
                 string register = "INSERT INTO tbl_users VALUES ('" + txtUsername.Text + "','" + txtPassword.Text + "')";
                 loginForm.cmd = new OleDbCommand(register, loginForm.con);
                 loginForm.cmd.ExecuteNonQuery();
-                loginForm.con.Close();
+                loginForm.con.Close();*/
 
                 txtUsername.Text = "";
                 txtPassword.Text = "";

@@ -13,19 +13,18 @@ namespace project
 {
     public partial class pupilRecords : Form
     {
-
-        public pupilRecords()
+        public DbUser User;
+        private DbPupilDataManager Mgr;
+        public pupilRecords(DbUser User = null)
         {
+            this.Mgr = new DbPupilDataManager(User);
             InitializeComponent();
         }
 
         public Pupil activeStudent; // for accessing when creating a new student
-        private DbPupilDataManager Mgr;
 
         private void reloadPupils()
         {
-
-            Mgr = new DbPupilDataManager();
 
             List<Pupil> Pupils;
 
