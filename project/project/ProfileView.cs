@@ -247,14 +247,15 @@ namespace project
 
         private void ButtonDeleteNote_Click(object sender, EventArgs e)
         {
-
-            if ((MessageBox.Show("Are you sure you want to delete this note?", "Deletion Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
+            if (SearchResults.GetItemText(SearchResults.SelectedItem) != "No notes were found." && SearchResults.SelectedIndex != -1)
             {
-                activeStudent.Notes.RemoveAt(SearchResults.SelectedIndex);
-                Mgr.WritePupilData(activeStudent);
-                populateNotes();
+                if ((MessageBox.Show("Are you sure you want to delete this note?", "Deletion Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
+                {
+                    activeStudent.Notes.RemoveAt(SearchResults.SelectedIndex);
+                    Mgr.WritePupilData(activeStudent);
+                    populateNotes();
+                }
             }
-
         }
 
         private void LabelGroups_MouseMove(object sender, MouseEventArgs e)
