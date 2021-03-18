@@ -17,6 +17,7 @@ namespace project
         public ProfileEditView profileForm;
         private String initialNote; // for editing notes
         private String initialDate;
+        private DbPupilDataManager Mgr;
 
         public ProfileAddNote()
         {
@@ -25,6 +26,9 @@ namespace project
 
         private void ProfileAddNote_Load(object sender, EventArgs e)
         {
+
+            Mgr = profileForm.searchForm.Mgr; // loads DBPupilDataManager
+
             // Changes window title
             switch (profileForm.noteContext)
             {
@@ -72,8 +76,6 @@ namespace project
             profileForm.activeStudent.LastAccess = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s"); // updates last accessed time
 
             // Write new info to db
-            DbPupilDataManager Mgr = new DbPupilDataManager();
-
             Mgr.WritePupilData(profileForm.activeStudent);
 
             this.Close();

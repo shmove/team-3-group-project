@@ -35,7 +35,7 @@ namespace project {
     ///  -  Support for multiple users.                                                                                        <br />
     /// 
     /// </summary>
-    class DbPupilDataManager : BasePupilDataManager {
+    public class DbPupilDataManager : BasePupilDataManager {
         public static readonly string VERSION = "0.1.10.13";
         public static readonly int BUILD = 13;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
@@ -44,7 +44,7 @@ namespace project {
         private static readonly string CONNECTION_STRING_TEMPLATE = "Provider = Microsoft.Jet.OLEDB.4.0; Data Source = ";
         private static readonly string[] PUPIL_TABLE_COLUMN_NAMES = new string[]{"PupilUUID", "PupilID", "Name", "Company", "A2E", "YearGroup", "A2EDescription", "LastAccess", "Struggling"};
         public string ConnectionString;
-        private DbUser User;
+        public DbUser User;
         /// <summary>
         /// Sets a custom database location.
         /// </summary>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace project
         public pupilRecords recordsForm;
         public bool imgChanged = false;
         public Pupil activeStudent;
+        private DbPupilDataManager Mgr;
 
         public ProfileViewEdit()
         {
@@ -27,8 +29,6 @@ namespace project
 
         private void reloadImage(string customDir)
         {
-
-            PupilFileManager Mgr = new PupilFileManager($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\..\Local\PupilRecordsProgram\Pupils\");
 
             if (customDir == "")
             {
@@ -61,6 +61,8 @@ namespace project
 
             if (pupilForm != null)
             {
+
+                Mgr = pupilForm.searchForm.Mgr;
 
                 // creates local variable for ease of use with both contexts (create + edit)
                 activeStudent = pupilForm.activeStudent;
@@ -120,6 +122,8 @@ namespace project
             else
             {
 
+                Mgr = recordsForm.Mgr;
+
                 // creates local variable for ease of use with both contexts (create + edit)
                 activeStudent = recordsForm.activeStudent;
 
@@ -163,8 +167,6 @@ namespace project
             else
             {
 
-                DbPupilDataManager Mgr = new DbPupilDataManager();
-
                 activeStudent.Name = TextBoxName.Text;
                 activeStudent.PupilID = TextBoxStudentID.Text;
                 activeStudent.Company = TextBoxCompany.Text;
@@ -182,6 +184,13 @@ namespace project
                 }
 
                 Mgr.WritePupilData(activeStudent);
+
+                // if this is a new pupil, create db connection to give user access to pupil
+                if (pupilForm == null)
+                {
+                    OleDbConnection Connection = new OleDbConnection(Mgr.ConnectionString);
+                    Mgr.User.GetAccessTo(Connection, activeStudent);
+                }
 
                 // writes back to parent form
                 if (pupilForm != null) pupilForm.activeStudent = activeStudent;

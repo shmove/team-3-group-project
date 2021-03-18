@@ -32,7 +32,7 @@ namespace project
 
             ComboBoxContext.SelectedIndex = 0; // set default selection (note searching ui)
 
-            Mgr = new DbPupilDataManager();
+            Mgr = searchForm.Mgr;
 
             // save student info to activeStudent and update activeUUID
             string[] highlightedField = ((pupilRecords)searchForm).SearchResults.GetItemText(((pupilRecords)searchForm).SearchResults.SelectedItem).Split('(');
