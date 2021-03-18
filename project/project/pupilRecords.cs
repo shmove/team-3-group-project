@@ -86,6 +86,7 @@ namespace project
 
         private void ViewButton_Click(object sender, EventArgs e)
         {
+
             // checks for either a pupil not being selected, or if someone's being cheeky and selected the text that shows up when no students match the search
             if (SearchResults.GetItemText(SearchResults.SelectedItem) != "No students were found." && SearchResults.SelectedIndex != -1)
             {
@@ -101,7 +102,6 @@ namespace project
                 MessageBox.Show("Please select the student you wish to view.", "No student selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
-
         }
 
         // User search feature
@@ -174,5 +174,12 @@ namespace project
 
         }
 
+
+        // SHORTCUTS (alternate ways of triggering same code)
+
+        private void SearchResults_MouseDoubleClick (object sender, EventArgs e)
+        {
+            ViewButton_Click(sender, e);
+        }
     }
 }

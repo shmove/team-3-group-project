@@ -91,6 +91,7 @@
             this.SearchResults.Name = "SearchResults";
             this.SearchResults.Size = new System.Drawing.Size(776, 289);
             this.SearchResults.TabIndex = 4;
+            this.SearchResults.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDoubleClick);
             // 
             // ViewButton
             // 

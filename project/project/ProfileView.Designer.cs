@@ -56,6 +56,7 @@
             this.StudentPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.StudentPhoto.TabIndex = 0;
             this.StudentPhoto.TabStop = false;
+            this.StudentPhoto.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
             // 
             // LabelStudentName
             // 
@@ -98,6 +99,7 @@
             this.SearchResults.Name = "SearchResults";
             this.SearchResults.Size = new System.Drawing.Size(567, 304);
             this.SearchResults.TabIndex = 4;
+            this.SearchResults.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDoubleClick);
             // 
             // ButtonSearch
             // 

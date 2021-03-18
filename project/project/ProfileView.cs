@@ -246,5 +246,17 @@ namespace project
             }
 
         }
+
+        // SHORTCUTS (alternate ways of triggering same code)
+
+        private void SearchResults_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ButtonEditNote_Click(sender, e);
+        }
+
+        private void StudentPhoto_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ButtonEditInfo_Click(sender, e);
+        }
     }
 }
