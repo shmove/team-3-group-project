@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileEditView));
             this.StudentPhoto = new System.Windows.Forms.PictureBox();
             this.LabelStudentName = new System.Windows.Forms.Label();
@@ -43,7 +44,12 @@
             this.LabelStudentNo = new System.Windows.Forms.Label();
             this.ComboBoxContext = new System.Windows.Forms.ComboBox();
             this.ButtonEditNote = new System.Windows.Forms.Button();
+            this.LabelYearGroup = new System.Windows.Forms.Label();
+            this.ImageFlag = new System.Windows.Forms.PictureBox();
+            this.LabelStruggling = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).BeginInit();
             this.SuspendLayout();
             // 
             // StudentPhoto
@@ -62,32 +68,36 @@
             // 
             this.LabelStudentName.AutoSize = true;
             this.LabelStudentName.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelStudentName.Location = new System.Drawing.Point(132, 9);
+            this.LabelStudentName.Location = new System.Drawing.Point(131, 12);
             this.LabelStudentName.Name = "LabelStudentName";
             this.LabelStudentName.Size = new System.Drawing.Size(177, 32);
             this.LabelStudentName.TabIndex = 1;
             this.LabelStudentName.Text = "Student Name";
             this.LabelStudentName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.LabelStudentName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
             // 
             // LabelCompany
             // 
             this.LabelCompany.AutoSize = true;
-            this.LabelCompany.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCompany.Location = new System.Drawing.Point(132, 73);
+            this.LabelCompany.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCompany.Location = new System.Drawing.Point(132, 94);
             this.LabelCompany.Name = "LabelCompany";
-            this.LabelCompany.Size = new System.Drawing.Size(123, 32);
+            this.LabelCompany.Size = new System.Drawing.Size(97, 25);
             this.LabelCompany.TabIndex = 2;
             this.LabelCompany.Text = "Company";
+            this.LabelCompany.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
             // 
             // LabelGroups
             // 
             this.LabelGroups.AutoSize = true;
-            this.LabelGroups.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelGroups.Location = new System.Drawing.Point(132, 105);
+            this.LabelGroups.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelGroups.Location = new System.Drawing.Point(132, 119);
             this.LabelGroups.Name = "LabelGroups";
-            this.LabelGroups.Size = new System.Drawing.Size(334, 32);
+            this.LabelGroups.Size = new System.Drawing.Size(46, 25);
             this.LabelGroups.TabIndex = 3;
-            this.LabelGroups.Text = "Registered for: Group name";
+            this.LabelGroups.Text = "A2E";
+            this.LabelGroups.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
+            this.LabelGroups.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelGroups_MouseMove);
             // 
             // SearchResults
             // 
@@ -179,12 +189,13 @@
             // LabelStudentNo
             // 
             this.LabelStudentNo.AutoSize = true;
-            this.LabelStudentNo.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelStudentNo.Location = new System.Drawing.Point(132, 41);
+            this.LabelStudentNo.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelStudentNo.Location = new System.Drawing.Point(132, 44);
             this.LabelStudentNo.Name = "LabelStudentNo";
-            this.LabelStudentNo.Size = new System.Drawing.Size(151, 32);
+            this.LabelStudentNo.Size = new System.Drawing.Size(119, 25);
             this.LabelStudentNo.TabIndex = 12;
             this.LabelStudentNo.Text = "Student No.";
+            this.LabelStudentNo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
             // 
             // ComboBoxContext
             // 
@@ -212,12 +223,48 @@
             this.ButtonEditNote.UseVisualStyleBackColor = true;
             this.ButtonEditNote.Click += new System.EventHandler(this.ButtonEditNote_Click);
             // 
+            // LabelYearGroup
+            // 
+            this.LabelYearGroup.AutoSize = true;
+            this.LabelYearGroup.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelYearGroup.Location = new System.Drawing.Point(132, 69);
+            this.LabelYearGroup.Name = "LabelYearGroup";
+            this.LabelYearGroup.Size = new System.Drawing.Size(113, 25);
+            this.LabelYearGroup.TabIndex = 14;
+            this.LabelYearGroup.Text = "Year Group";
+            this.LabelYearGroup.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
+            // 
+            // ImageFlag
+            // 
+            this.ImageFlag.BackColor = System.Drawing.Color.Transparent;
+            this.ImageFlag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ImageFlag.Image = ((System.Drawing.Image)(resources.GetObject("ImageFlag.Image")));
+            this.ImageFlag.Location = new System.Drawing.Point(12, 164);
+            this.ImageFlag.Name = "ImageFlag";
+            this.ImageFlag.Size = new System.Drawing.Size(24, 24);
+            this.ImageFlag.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ImageFlag.TabIndex = 15;
+            this.ImageFlag.TabStop = false;
+            // 
+            // LabelStruggling
+            // 
+            this.LabelStruggling.AutoSize = true;
+            this.LabelStruggling.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelStruggling.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.LabelStruggling.Location = new System.Drawing.Point(35, 170);
+            this.LabelStruggling.Name = "LabelStruggling";
+            this.LabelStruggling.Size = new System.Drawing.Size(104, 13);
+            this.LabelStruggling.TabIndex = 16;
+            this.LabelStruggling.Text = "flagged as struggling";
+            // 
             // ProfileEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(595, 540);
+            this.Controls.Add(this.ImageFlag);
+            this.Controls.Add(this.LabelYearGroup);
             this.Controls.Add(this.ButtonEditNote);
             this.Controls.Add(this.ComboBoxContext);
             this.Controls.Add(this.LabelStudentNo);
@@ -232,12 +279,14 @@
             this.Controls.Add(this.LabelCompany);
             this.Controls.Add(this.LabelStudentName);
             this.Controls.Add(this.StudentPhoto);
+            this.Controls.Add(this.LabelStruggling);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProfileEditView";
             this.Text = "[StudentName] - Info";
             this.Load += new System.EventHandler(this.ProfileEditView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +309,9 @@
         private System.Windows.Forms.Label LabelStudentNo;
         private System.Windows.Forms.ComboBox ComboBoxContext;
         private System.Windows.Forms.Button ButtonEditNote;
+        private System.Windows.Forms.Label LabelYearGroup;
+        private System.Windows.Forms.PictureBox ImageFlag;
+        private System.Windows.Forms.Label LabelStruggling;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

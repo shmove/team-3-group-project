@@ -66,18 +66,28 @@ namespace project
             LabelStudentName.Text = activeStudent.Name;
             LabelStudentNo.Text = activeStudent.PupilID;
             LabelCompany.Text = activeStudent.Company;
+            LabelYearGroup.Text = activeStudent.YearGroup.ToString();
 
-            string groups = "";
-            if (activeStudent.A2E) groups += "A2E, ";
-            // additional groups go here
-            groups = groups.Trim(',', ' ');
-            if (groups == "") LabelGroups.Visible = false;
+            if (activeStudent.A2E)
+            {
+                LabelGroups.Text = "A2E";
+                LabelGroups.Visible = true;
+            }
             else
             {
-                LabelGroups.Text = groups;
-                LabelGroups.Visible = true;
-            };
+                LabelGroups.Visible = false;
+            }
 
+            if (activeStudent.Struggling)
+            {
+                ImageFlag.Visible = true;
+                LabelStruggling.Visible = true;
+            }
+            else
+            {
+                ImageFlag.Visible = false;
+                LabelStruggling.Visible = false;
+            }
 
             StudentPhoto.Image = Mgr.GetPupilImage(activeStudent);
         }
@@ -247,6 +257,14 @@ namespace project
 
         }
 
+        private void LabelGroups_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (activeStudent.A2E)
+            {
+                toolTip1.SetToolTip(LabelGroups, activeStudent.A2EDescription); // displays A2EDescription when hovering over the A2E text
+            }    
+        }
+
         // SHORTCUTS (alternate ways of triggering same code)
 
         private void SearchResults_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -258,5 +276,6 @@ namespace project
         {
             ButtonEditInfo_Click(sender, e);
         }
+
     }
 }
