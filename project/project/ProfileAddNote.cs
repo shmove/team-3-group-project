@@ -81,5 +81,10 @@ namespace project
             this.Close();
 
         }
+
+        private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
