@@ -83,7 +83,7 @@
             this.CheckBoxA2E.AutoSize = true;
             this.CheckBoxA2E.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheckBoxA2E.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CheckBoxA2E.Location = new System.Drawing.Point(6, -130);
+            this.CheckBoxA2E.Location = new System.Drawing.Point(6, 10);
             this.CheckBoxA2E.Name = "CheckBoxA2E";
             this.CheckBoxA2E.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.CheckBoxA2E.Size = new System.Drawing.Size(174, 17);
@@ -201,7 +201,7 @@
             this.dropDownBack.MaximumSize = new System.Drawing.Size(200, 150);
             this.dropDownBack.MinimumSize = new System.Drawing.Size(10, 10);
             this.dropDownBack.Name = "dropDownBack";
-            this.dropDownBack.Size = new System.Drawing.Size(200, 10);
+            this.dropDownBack.Size = new System.Drawing.Size(200, 150);
             this.dropDownBack.TabIndex = 12;
             // 
             // panel1
@@ -220,7 +220,7 @@
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.MaximumSize = new System.Drawing.Size(192, 142);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(192, 2);
+            this.panel1.Size = new System.Drawing.Size(192, 142);
             this.panel1.TabIndex = 13;
             // 
             // label3
@@ -229,7 +229,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(8, -48);
+            this.label3.Location = new System.Drawing.Point(8, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 13);
             this.label3.TabIndex = 20;
@@ -243,7 +243,7 @@
             this.DateTimePicker.CustomFormat = "";
             this.DateTimePicker.Font = new System.Drawing.Font("Nirmala UI", 9.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateTimePicker.Location = new System.Drawing.Point(77, -33);
+            this.DateTimePicker.Location = new System.Drawing.Point(77, 107);
             this.DateTimePicker.Name = "DateTimePicker";
             this.DateTimePicker.Size = new System.Drawing.Size(103, 24);
             this.DateTimePicker.TabIndex = 18;
@@ -255,7 +255,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, -80);
+            this.label2.Location = new System.Drawing.Point(8, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 19;
@@ -266,7 +266,7 @@
             this.ComboBoxBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ComboBoxBack.Controls.Add(this.ComboBoxContext);
-            this.ComboBoxBack.Location = new System.Drawing.Point(10, -32);
+            this.ComboBoxBack.Location = new System.Drawing.Point(10, 108);
             this.ComboBoxBack.Name = "ComboBoxBack";
             this.ComboBoxBack.Size = new System.Drawing.Size(63, 24);
             this.ComboBoxBack.TabIndex = 19;
@@ -284,9 +284,9 @@
             "before",
             "on",
             "after"});
-            this.ComboBoxContext.Location = new System.Drawing.Point(-5, -1);
+            this.ComboBoxContext.Location = new System.Drawing.Point(-1, -1);
             this.ComboBoxContext.Name = "ComboBoxContext";
-            this.ComboBoxContext.Size = new System.Drawing.Size(63, 23);
+            this.ComboBoxContext.Size = new System.Drawing.Size(62, 23);
             this.ComboBoxContext.TabIndex = 13;
             this.ComboBoxContext.SelectedIndexChanged += new System.EventHandler(this.ComboBoxContext_SelectedIndexChanged);
             // 
@@ -295,7 +295,7 @@
             this.ComboBoxYearGroupBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxYearGroupBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ComboBoxYearGroupBack.Controls.Add(this.ComboBoxYearGroup);
-            this.ComboBoxYearGroupBack.Location = new System.Drawing.Point(77, -84);
+            this.ComboBoxYearGroupBack.Location = new System.Drawing.Point(77, 56);
             this.ComboBoxYearGroupBack.Name = "ComboBoxYearGroupBack";
             this.ComboBoxYearGroupBack.Size = new System.Drawing.Size(103, 24);
             this.ComboBoxYearGroupBack.TabIndex = 18;
@@ -336,7 +336,7 @@
             this.CheckBoxStruggling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CheckBoxStruggling.AutoSize = true;
             this.CheckBoxStruggling.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckBoxStruggling.Location = new System.Drawing.Point(6, -107);
+            this.CheckBoxStruggling.Location = new System.Drawing.Point(6, 33);
             this.CheckBoxStruggling.Name = "CheckBoxStruggling";
             this.CheckBoxStruggling.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.CheckBoxStruggling.Size = new System.Drawing.Size(174, 17);
