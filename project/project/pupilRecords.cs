@@ -365,12 +365,7 @@ namespace project
         private void ButtonAddStudent_Click(object sender, EventArgs e)
         {
 
-            activeStudent = new Pupil();
-            activeStudent.PupilUUID = System.Guid.NewGuid().ToString(); // this is maybe supposed to be done automatically?
-            activeStudent.TodoList = new List<TodoEntry>(); // definitely feels like i shouldnt have to do this manually
-            activeStudent.Notes = new List<Note>(); // mayb check this one out
-
-            Pupil nullStudent = activeStudent; // required bc i cant compare to a default pupil object (line 381)
+            activeStudent = new Pupil("", "", "", false, "", false, Pupil.YearGroups.S1, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s"), new List<Note>() { }, new List<TodoEntry>() { });
 
             ProfileViewEdit editForm = new ProfileViewEdit();
             editForm.recordsForm = this;
@@ -378,7 +373,7 @@ namespace project
             editForm.ShowDialog();
 
             // then, on close of this form
-            if (activeStudent != nullStudent) // replace with if (activeStudent != new Pupil()) 
+            if (activeStudent != new Pupil("", "", "", false, "", false, Pupil.YearGroups.S1, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s"), new List<Note>() { }, new List<TodoEntry>() { }))
             {
                 reloadPupils();
                 // select newly created student in listbox
