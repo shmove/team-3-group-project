@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,6 +26,7 @@ namespace project
 
         public Pupil activeStudent; // for accessing when creating a new student
         private bool filterDropDownToggle; // state of filter dropdown menu
+        private bool ignoreReloads;
 
         /// <summary>
         /// possibly the ugliest function i've ever made
@@ -34,151 +36,159 @@ namespace project
         private void reloadPupils()
         {
 
-            List<Pupil> Pupils;
-
-            // cute lil cursor change bc why not
-            Cursor.Current = Cursors.WaitCursor;
-
-            // FILTERS
-            // This can definitely be done better. 
-            // This looks fine for now, but on adding more filters it's gonna get a lot worse.
-            // edit: it's a lot worse
-            // Spent a few hours looking into objects in c# and can't figure out a better way to initialise a property ONLY if a condition is met,
-            // so spiralling If statement is the only solution I could come up with. soz xoxo
-            if (CheckBoxA2E.Checked)
+            if (!ignoreReloads)
             {
-                if (CheckBoxStruggling.Checked)
+                List<Pupil> Pupils;
+
+                // cute lil cursor change bc why not
+                Cursor.Current = Cursors.WaitCursor;
+
+                // FILTERS
+                // This can definitely be done better. 
+                // This looks fine for now, but on adding more filters it's gonna get a lot worse.
+                // edit: it's a lot worse
+                // Spent a few hours looking into objects in c# and can't figure out a better way to initialise a property ONLY if a condition is met,
+                // so spiralling If statement is the only solution I could come up with. soz xoxo
+                if (CheckBoxA2E.Checked)
                 {
-                    if (ComboBoxYearGroup.SelectedIndex != 0)
+                    if (CheckBoxStruggling.Checked)
                     {
-                        Pupil.YearGroups[] yearGroups = { Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4 };
-                        Pupils = Mgr.GetPupilsByProperties(new { A2E = true, Struggling = true, YearGroup = yearGroups[ComboBoxYearGroup.SelectedIndex-1] });
-                    } else
+                        if (ComboBoxYearGroup.SelectedIndex != 0)
+                        {
+                            Pupil.YearGroups[] yearGroups = { Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4 };
+                            Pupils = Mgr.GetPupilsByProperties(new { A2E = true, Struggling = true, YearGroup = yearGroups[ComboBoxYearGroup.SelectedIndex - 1] });
+                        }
+                        else
+                        {
+                            Pupils = Mgr.GetPupilsByProperties(new { A2E = true, Struggling = true });
+                        }
+                    }
+                    else
                     {
-                        Pupils = Mgr.GetPupilsByProperties(new { A2E = true, Struggling = true });
+                        Pupils = Mgr.GetPupilsByProperties(new { A2E = true });
+                    }
+                }
+                else // this is 100% yandev code now
+                {
+                    if (CheckBoxStruggling.Checked)
+                    {
+                        if (ComboBoxYearGroup.SelectedIndex != 0)
+                        {
+                            Pupil.YearGroups[] yearGroups = { Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4 };
+                            Pupils = Mgr.GetPupilsByProperties(new { Struggling = true, YearGroup = yearGroups[ComboBoxYearGroup.SelectedIndex - 1] });
+                        }
+                        else
+                        {
+                            Pupils = Mgr.GetPupilsByProperties(new { Struggling = true });
+                        }
+                    }
+                    else
+                    {
+                        if (ComboBoxYearGroup.SelectedIndex != 0)
+                        {
+                            Pupil.YearGroups[] yearGroups = { Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4 };
+                            Pupils = Mgr.GetPupilsByProperties(new { YearGroup = yearGroups[ComboBoxYearGroup.SelectedIndex - 1] });
+                        }
+                        else
+                        {
+                            Pupils = Mgr.GetPupilsByProperties(new { });
+                        }
+                    }
+                }
+
+                // wipes listbox
+                SearchResults.Items.Clear();
+
+                List<Pupil> unsortedPupils = new List<Pupil>();
+
+                // NAME / ID SEARCH
+                // if first char is number, assume user is searching by id
+                if (SearchBar.Text != "")
+                {
+                    if (Char.IsNumber(SearchBar.Text[0]))
+                    {
+                        foreach (Pupil pupil in Pupils)
+                        {
+                            if (pupil.PupilID.StartsWith(SearchBar.Text.Trim())) unsortedPupils.Add(pupil);
+                        }
+                    }
+                    else // this feels like yanderedev code
+                    {
+                        foreach (Pupil pupil in Pupils)
+                        {
+                            if (pupil.Name.ToLower().Contains(SearchBar.Text.Trim().ToLower())) unsortedPupils.Add(pupil);
+                        }
                     }
                 }
                 else
                 {
-                    Pupils = Mgr.GetPupilsByProperties(new { A2E = true });
-                }
-            }
-            else // this is 100% yandev code now
-            {
-                if (CheckBoxStruggling.Checked)
-                {
-                    if (ComboBoxYearGroup.SelectedIndex != 0)
+                    foreach (Pupil pupil in Pupils)
                     {
-                        Pupil.YearGroups[] yearGroups = { Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4 };
-                        Pupils = Mgr.GetPupilsByProperties(new { Struggling = true, YearGroup = yearGroups[ComboBoxYearGroup.SelectedIndex - 1] });
+                        unsortedPupils.Add(pupil);
                     }
-                    else
+                }
+
+                // sorts pupils in alphabetical order
+                // https://stackoverflow.com/a/3309230
+                List<Pupil> unDatedPupils = unsortedPupils.OrderBy(o => o.Name).ToList();
+
+                // now, for date checking
+                if (DateTimePicker.Format != DateTimePickerFormat.Custom)
+                {
+                    string selectedDate = DateTimePicker.Value.ToString("dd-MM-yyyy");
+
+                    switch (ComboBoxContext.SelectedIndex)
                     {
-                        Pupils = Mgr.GetPupilsByProperties(new { Struggling = true });
+                        case 1:
+                            // all accessed AFTER specified date
+                            foreach (Pupil student in unDatedPupils)
+                            {
+                                int relative = compareDates(selectedDate, student.LastAccess);
+                                if (relative == 1 || relative == 0)
+                                {
+                                    SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
+                                }
+                            }
+                            break;
+                        case 2:
+                            // all accessed ON specified date
+                            foreach (Pupil student in unDatedPupils)
+                            {
+                                int relative = compareDates(selectedDate, student.LastAccess);
+                                if (relative == 0)
+                                {
+                                    SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
+                                }
+                            }
+                            break;
+                        case 3:
+                            // all accessed BEFORE specified date
+                            foreach (Pupil student in unDatedPupils)
+                            {
+                                int relative = compareDates(selectedDate, student.LastAccess);
+                                if (relative == -1 || relative == 0)
+                                {
+                                    SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
+                                }
+                            }
+                            break;
                     }
                 }
                 else
                 {
-                    if (ComboBoxYearGroup.SelectedIndex != 0)
+                    foreach (Pupil student in unDatedPupils)
                     {
-                        Pupil.YearGroups[] yearGroups = { Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4 };
-                        Pupils = Mgr.GetPupilsByProperties(new { YearGroup = yearGroups[ComboBoxYearGroup.SelectedIndex - 1] });
-                    }
-                    else
-                    {
-                        Pupils = Mgr.GetPupilsByProperties(new { });
+                        SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
                     }
                 }
-            }
 
-            // wipes listbox
-            SearchResults.Items.Clear();
+                // then, check if listbox is empty after function is finished
+                if (SearchResults.Items.Count == 0) SearchResults.Items.Add("No students were found.");
 
-            List<Pupil> unDatedPupils = new List<Pupil>();
+                // switch cursor back to normal
+                Cursor.Current = Cursors.Default;
 
-            // NAME / ID SEARCH
-            // if first char is number, assume user is searching by id
-            if (SearchBar.Text != "")
-            {
-                if (Char.IsNumber(SearchBar.Text[0]))
-                {
-                    foreach (Pupil pupil in Pupils)
-                    {
-                        if (pupil.PupilID.StartsWith(SearchBar.Text.Trim())) unDatedPupils.Add(pupil);
-                    }
-                }
-                else // this feels like yanderedev code
-                {
-                    foreach (Pupil pupil in Pupils)
-                    {
-                        if (pupil.Name.ToLower().Contains(SearchBar.Text.Trim().ToLower())) unDatedPupils.Add(pupil);
-                    }
-                }
-            }
-            else
-            {
-                foreach (Pupil pupil in Pupils)
-                {
-                    unDatedPupils.Add(pupil);
-                }
-            }
-
-            // now, for date checking
-            if (DateTimePicker.Format != DateTimePickerFormat.Custom)
-            {
-                string selectedDate = DateTimePicker.Value.ToString("dd-MM-yyyy");
-
-                switch (ComboBoxContext.SelectedIndex)
-                {
-                    case 1:
-                        // all accessed AFTER specified date
-                        foreach (Pupil student in unDatedPupils)
-                        {
-                            int relative = compareDates(selectedDate, student.LastAccess);
-                            if (relative == 1 || relative == 0)
-                            {
-                                SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
-                            }
-                        }
-                        break;
-                    case 2:
-                        // all accessed ON specified date
-                        foreach (Pupil student in unDatedPupils)
-                        {
-                            int relative = compareDates(selectedDate, student.LastAccess);
-                            if (relative == 0)
-                            {
-                                SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
-                            }
-                        }
-                        break;
-                    case 3:
-                        // all accessed BEFORE specified date
-                        foreach (Pupil student in unDatedPupils)
-                        {
-                            int relative = compareDates(selectedDate, student.LastAccess);
-                            if (relative == -1 || relative == 0)
-                            {
-                                SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
-                            }
-                        }
-                        break;
-                }
-            }
-            else
-            {
-                foreach (Pupil student in unDatedPupils)
-                {
-                    SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
-                }
-            }
-
-            // then, check if listbox is empty after function is finished
-            if (SearchResults.Items.Count == 0) SearchResults.Items.Add("No students were found.");
-
-            // switch cursor back to normal
-            Cursor.Current = Cursors.Default;
-
+            };
         }
 
         // function used to compare string dates
@@ -217,6 +227,7 @@ namespace project
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            ignoreReloads = true;
             // initialise drop down
             ComboBoxYearGroup.SelectedIndex = 0;
             filterDropDownToggle = false;
@@ -226,9 +237,22 @@ namespace project
             DateTimePicker.Format = DateTimePickerFormat.Custom;
             DateTimePicker.CustomFormat = " ";
             ComboBoxContext.SelectedIndex = 0;
+            ignoreReloads = false;
 
             reloadPupils();
 
+        }
+
+        // run whenever the form opens the data for the active student
+        // note: next form uses selected listbox item to isolate activeStudent
+        private void openActiveStudentForm()
+        {
+            ProfileEditView infoForm = new ProfileEditView();
+            infoForm.searchForm = this;
+            this.Hide();
+            infoForm.ShowDialog();
+            this.Show();
+            reloadPupils();
         }
 
         private void ViewButton_Click(object sender, EventArgs e)
@@ -237,12 +261,7 @@ namespace project
             // checks for either a pupil not being selected, or if someone's being cheeky and selected the text that shows up when no students match the search
             if (SearchResults.GetItemText(SearchResults.SelectedItem) != "No students were found." && SearchResults.SelectedIndex != -1)
             {
-                ProfileEditView infoForm = new ProfileEditView();
-                infoForm.searchForm = this;
-                this.Hide();
-                infoForm.ShowDialog();
-                this.Show();
-                reloadPupils();
+                openActiveStudentForm();
             }
             else
             {
@@ -273,7 +292,7 @@ namespace project
         {
             if (filterDropDownToggle)
             {
-                dropDownBack.Height += 10;
+                dropDownBack.Height += 30;
                 if (dropDownBack.Height == dropDownBack.MaximumSize.Height)
                 {
                     dropdownTimer.Stop();
@@ -281,7 +300,7 @@ namespace project
             }
             else
             {
-                dropDownBack.Height -= 10;
+                dropDownBack.Height -= 30;
                 if (dropDownBack.Height == 10)
                 {
                     dropdownTimer.Stop();
@@ -329,6 +348,7 @@ namespace project
         private void ResetButton_Click(object sender, EventArgs e)
         {
 
+            ignoreReloads = true;
             SearchBar.Text = "";
             CheckBoxA2E.Checked = false;
             CheckBoxStruggling.Checked = false;
@@ -336,6 +356,7 @@ namespace project
             DateTimePicker.Format = DateTimePickerFormat.Custom;
             DateTimePicker.CustomFormat = " ";
             ComboBoxContext.SelectedIndex = 0;
+            ignoreReloads = false;
             reloadPupils();
             SystemSounds.Beep.Play();
 
@@ -344,18 +365,35 @@ namespace project
         private void ButtonAddStudent_Click(object sender, EventArgs e)
         {
 
-            activeStudent = Mgr.GetTestCases(1)[0];
+            activeStudent = new Pupil();
+            activeStudent.PupilUUID = System.Guid.NewGuid().ToString(); // this is maybe supposed to be done automatically?
+            activeStudent.TodoList = new List<TodoEntry>(); // definitely feels like i shouldnt have to do this manually
+            activeStudent.Notes = new List<Note>(); // mayb check this one out
+
+            Pupil nullStudent = activeStudent; // required bc i cant compare to a default pupil object (line 381)
 
             ProfileViewEdit editForm = new ProfileViewEdit();
             editForm.recordsForm = this;
 
-            this.Hide();
             editForm.ShowDialog();
 
             // then, on close of this form
-            this.Show();
-            reloadPupils();
-
+            if (activeStudent != nullStudent) // replace with if (activeStudent != new Pupil()) 
+            {
+                reloadPupils();
+                // select newly created student in listbox
+                for (int i = 0; i < SearchResults.Items.Count; i++)
+                {
+                    if (SearchResults.Items[i].ToString() == activeStudent.Name + " (" + activeStudent.PupilID + ")")
+                    {
+                        SearchResults.SelectedIndex = i;
+                        i = SearchResults.Items.Count;
+                    };
+                }
+                // open newly created student
+                openActiveStudentForm();
+            };
+   
         }
 
         private void ButtonDeleteStudent_Click(object sender, EventArgs e)

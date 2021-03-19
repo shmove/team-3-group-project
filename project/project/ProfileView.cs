@@ -226,12 +226,10 @@ namespace project
             ProfileAddNote addNote = new ProfileAddNote();
             noteContext = "add"; // lets the next form know that we are adding and not editing a note
             addNote.profileForm = this;
-            this.Hide();
             addNote.ShowDialog();
 
             // then, on close of this form
             updateActiveStudent();
-            this.Show();
             populateNotes();
         }
 
@@ -242,12 +240,10 @@ namespace project
                 ProfileAddNote addNote = new ProfileAddNote();
                 noteContext = "edit"; // lets the next form know that we are editing and not adding a note
                 addNote.profileForm = this;
-                this.Hide();
                 addNote.ShowDialog();
 
                 // then, on close of this form
                 updateActiveStudent();
-                this.Show();
                 populateNotes();
             }
             else
@@ -267,14 +263,16 @@ namespace project
             var openedFile = StudentPhoto.Image;
             StudentPhoto.Image = null;
             openedFile.Dispose();
+            ImageBoxPlaceholder.Visible = true;
+            StudentPhoto.Visible = false;
 
-            this.Hide();
             editForm.ShowDialog();
 
             // then, on close of this form
+            ImageBoxPlaceholder.Visible = false;
+            StudentPhoto.Visible = true;
             updateActiveStudent(); // updates student data
             loadStudentInfo();
-            this.Show();
         }
 
         private void ButtonDeleteNote_Click(object sender, EventArgs e)

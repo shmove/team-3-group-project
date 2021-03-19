@@ -47,20 +47,25 @@
             this.ImageFlag = new System.Windows.Forms.PictureBox();
             this.LabelStruggling = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ImageBoxPlaceholder = new System.Windows.Forms.PictureBox();
             this.ComboBoxBack = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).BeginInit();
             this.ComboBoxBack.SuspendLayout();
             this.SuspendLayout();
             // 
             // StudentPhoto
             // 
+            this.StudentPhoto.ErrorImage = global::project.Properties.Resources.placeholder;
+            this.StudentPhoto.Image = global::project.Properties.Resources.placeholder;
+            this.StudentPhoto.InitialImage = global::project.Properties.Resources.placeholder;
             this.StudentPhoto.Location = new System.Drawing.Point(12, 12);
             this.StudentPhoto.MaximumSize = new System.Drawing.Size(114, 142);
             this.StudentPhoto.MinimumSize = new System.Drawing.Size(114, 142);
             this.StudentPhoto.Name = "StudentPhoto";
             this.StudentPhoto.Size = new System.Drawing.Size(114, 142);
-            this.StudentPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.StudentPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.StudentPhoto.TabIndex = 0;
             this.StudentPhoto.TabStop = false;
             this.StudentPhoto.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
@@ -255,6 +260,19 @@
             this.LabelStruggling.TabIndex = 16;
             this.LabelStruggling.Text = "flagged as struggling";
             // 
+            // ImageBoxPlaceholder
+            // 
+            this.ImageBoxPlaceholder.ErrorImage = global::project.Properties.Resources.placeholder;
+            this.ImageBoxPlaceholder.Image = global::project.Properties.Resources.placeholder;
+            this.ImageBoxPlaceholder.InitialImage = global::project.Properties.Resources.placeholder;
+            this.ImageBoxPlaceholder.Location = new System.Drawing.Point(12, 12);
+            this.ImageBoxPlaceholder.Name = "ImageBoxPlaceholder";
+            this.ImageBoxPlaceholder.Size = new System.Drawing.Size(114, 142);
+            this.ImageBoxPlaceholder.TabIndex = 19;
+            this.ImageBoxPlaceholder.TabStop = false;
+            this.toolTip1.SetToolTip(this.ImageBoxPlaceholder, "Student photo unloaded for editing");
+            this.ImageBoxPlaceholder.Visible = false;
+            // 
             // ComboBoxBack
             // 
             this.ComboBoxBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -269,7 +287,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(595, 540);
+            this.ClientSize = new System.Drawing.Size(591, 541);
+            this.Controls.Add(this.StudentPhoto);
+            this.Controls.Add(this.ImageBoxPlaceholder);
             this.Controls.Add(this.ImageFlag);
             this.Controls.Add(this.LabelYearGroup);
             this.Controls.Add(this.ButtonEditNote);
@@ -283,16 +303,20 @@
             this.Controls.Add(this.LabelGroups);
             this.Controls.Add(this.LabelCompany);
             this.Controls.Add(this.LabelStudentName);
-            this.Controls.Add(this.StudentPhoto);
             this.Controls.Add(this.LabelStruggling);
             this.Controls.Add(this.ComboBoxBack);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(607, 580);
+            this.MinimumSize = new System.Drawing.Size(607, 580);
             this.Name = "ProfileEditView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "[StudentName] - Info";
             this.Load += new System.EventHandler(this.ProfileEditView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).EndInit();
             this.ComboBoxBack.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -320,5 +344,6 @@
         private System.Windows.Forms.Label LabelStruggling;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel ComboBoxBack;
+        private System.Windows.Forms.PictureBox ImageBoxPlaceholder;
     }
 }

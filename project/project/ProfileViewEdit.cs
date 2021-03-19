@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Media;
@@ -37,8 +39,38 @@ namespace project
             }
             else
             {
-                StudentImage.Image = Image.FromFile(customDir);
+                // loads image and resizes to correct resolution
+                Image fullSizeImg = Image.FromFile(customDir);
+                if (fullSizeImg.Size.Height > fullSizeImg.Size.Width) StudentImage.Image = ResizeImage(fullSizeImg, 114, fullSizeImg.Size.Height*(114.0/fullSizeImg.Size.Width));
+                else StudentImage.Image = ResizeImage(fullSizeImg, fullSizeImg.Size.Width * (142.0 / fullSizeImg.Size.Height) , 142);
+                fullSizeImg.Dispose();
             }
+        }
+
+        // resizes image
+        public static Bitmap ResizeImage(Image image, double width, double height) // https://stackoverflow.com/a/24199315
+        {
+            var destRect = new Rectangle(0, 0, Convert.ToInt32(Math.Floor(width)), Convert.ToInt32(Math.Floor(height)));
+            var destImage = new Bitmap(Convert.ToInt32(Math.Floor(width)), Convert.ToInt32(Math.Floor(height)));
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
         }
 
         private void toggleA2EDisplay(bool context)
@@ -134,7 +166,6 @@ namespace project
 
                 this.Text = "New Student - Edit";
                 toggleA2EDisplay(false);
-                reloadImage("");
 
             };
 
@@ -185,7 +216,7 @@ namespace project
                 activeStudent.LastAccess = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s");
                 activeStudent.Struggling = CheckBoxStruggling.Checked;
 
-                if (imgChanged)
+                if (imgChanged || pupilForm == null)
                 {
                     Mgr.SavePupilImage(activeStudent, StudentImage.Image);
                 }
