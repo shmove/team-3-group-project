@@ -16,7 +16,7 @@ using project.PupilDataManager.DbUtils;
 
 namespace project {
     /// <summary>
-    /// This is version 0.1.9.12 of DbPupilDataManager.                                                                        <br />
+    /// This is version 0.1.11.14 of DbPupilDataManager.                                                                        <br />
     ///                                                                                                                        <br />
     /// This version supports:                                                                                                 <br />
     ///                                                                                                                        <br />
@@ -36,8 +36,8 @@ namespace project {
     /// 
     /// </summary>
     public class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.10.13";
-        public static readonly int BUILD = 13;
+        public static readonly string VERSION = "0.1.11.14";
+        public static readonly int BUILD = 14;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";

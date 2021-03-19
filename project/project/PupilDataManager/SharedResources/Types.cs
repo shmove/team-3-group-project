@@ -68,14 +68,14 @@ namespace project.PupilDataManager.SharedResources {
                 Notes = p_Notes;
                 PupilID = p_PupilID;
             }
-            public Pupil(string p_Name, string p_PupilID, string p_Company, bool p_A2E, List<Note> p_Notes, List<TodoEntry> p_TodoEntries, Pupil.YearGroups p_YearGroup, string p_A2EDescription, string p_LastAccess, bool p_Struggling) {
+            public Pupil(string p_Name, string p_PupilID, string p_Company, bool p_A2E, string p_A2EDescription, bool p_Struggling, Pupil.YearGroups p_YearGroup, string p_LastAccess, List<Note> p_Notes = null, List<TodoEntry> p_TodoEntries = null) {
                 PupilUUID = System.Guid.NewGuid().ToString();
                 Name = p_Name;
                 A2E = p_A2E;
                 Company = p_Company;
-                Notes = p_Notes;
+                Notes = p_Notes ?? new List<Note>();
                 PupilID = p_PupilID;
-                TodoList = p_TodoEntries;
+                TodoList = p_TodoEntries ?? new List<TodoEntry>();
                 YearGroup = p_YearGroup;
                 A2EDescription = p_A2EDescription;
                 LastAccess = p_LastAccess;
