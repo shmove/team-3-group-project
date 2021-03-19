@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -78,6 +79,7 @@ namespace project
 
             // Write new info to db
             Mgr.WritePupilData(profileForm.activeStudent);
+            SystemSounds.Beep.Play();
 
             this.Close();
 

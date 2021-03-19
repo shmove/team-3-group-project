@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,10 +31,6 @@ namespace project
         private void ProfileEditView_Load(object sender, EventArgs e)
         {
 
-            // Wipes DateTimePicker display
-            DateTimePicker.Format = DateTimePickerFormat.Custom;
-            DateTimePicker.CustomFormat = " ";
-
             Mgr = searchForm.Mgr;
 
             // save student info to activeStudent and update activeUUID
@@ -46,6 +43,11 @@ namespace project
             activeStudent = students[0];
 
             activeUUID = activeStudent.PupilUUID;
+
+            // Wipes DateTimePicker display
+            DateTimePicker.Format = DateTimePickerFormat.Custom;
+            DateTimePicker.CustomFormat = " ";
+            ComboBoxContext.SelectedIndex = -1;
 
             loadStudentInfo(); // update display
             populateNotes();
@@ -250,6 +252,7 @@ namespace project
             }
             else
             {
+                SystemSounds.Hand.Play();
                 MessageBox.Show("Please select the note you wish to edit.", "No note selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
@@ -278,12 +281,19 @@ namespace project
         {
             if (SearchResults.GetItemText(SearchResults.SelectedItem) != "No notes were found." && SearchResults.SelectedIndex != -1)
             {
+                SystemSounds.Hand.Play();
                 if ((MessageBox.Show("Are you sure you want to delete this note?", "Deletion Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
                 {
                     activeStudent.Notes.RemoveAt(SearchResults.SelectedIndex);
                     Mgr.WritePupilData(activeStudent);
                     populateNotes();
+                    SystemSounds.Beep.Play();
                 }
+            }
+            else
+            {
+                SystemSounds.Hand.Play();
+                MessageBox.Show("Please select the note you wish to delete.", "No note selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

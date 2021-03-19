@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -158,6 +159,7 @@ namespace project
 
                 reloadImage(openImageDialog.FileName);
                 imgChanged = true;
+                SystemSounds.Beep.Play();
             };
         }
 
@@ -166,6 +168,7 @@ namespace project
 
             if (TextBoxStudentID.Text == "" | TextBoxName.Text == "")
             {
+                SystemSounds.Hand.Play();
                 MessageBox.Show("Please ensure both student name and ID are provided. These are required fields.", "Insufficient info", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -188,6 +191,7 @@ namespace project
                 }
 
                 Mgr.WritePupilData(activeStudent);
+                SystemSounds.Beep.Play();
 
                 // if this is a new pupil, create db connection to give user access to pupil
                 if (pupilForm == null)

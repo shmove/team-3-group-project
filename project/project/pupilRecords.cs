@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,27 +24,77 @@ namespace project
         }
 
         public Pupil activeStudent; // for accessing when creating a new student
+        private bool filterDropDownToggle; // state of filter dropdown menu
 
+        /// <summary>
+        /// possibly the ugliest function i've ever made
+        /// 
+        /// gets the status of all filters and updates display accordingly
+        /// </summary>
         private void reloadPupils()
         {
 
             List<Pupil> Pupils;
 
+            // cute lil cursor change bc why not
+            Cursor.Current = Cursors.WaitCursor;
+
             // FILTERS
             // This can definitely be done better. 
             // This looks fine for now, but on adding more filters it's gonna get a lot worse.
+            // edit: it's a lot worse
             // Spent a few hours looking into objects in c# and can't figure out a better way to initialise a property ONLY if a condition is met,
             // so spiralling If statement is the only solution I could come up with. soz xoxo
             if (CheckBoxA2E.Checked)
             {
-                Pupils = Mgr.GetPupilsByProperties(new { A2E = true });
-            } else
+                if (CheckBoxStruggling.Checked)
+                {
+                    if (ComboBoxYearGroup.SelectedIndex != 0)
+                    {
+                        Pupil.YearGroups[] yearGroups = { Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4 };
+                        Pupils = Mgr.GetPupilsByProperties(new { A2E = true, Struggling = true, YearGroup = yearGroups[ComboBoxYearGroup.SelectedIndex-1] });
+                    } else
+                    {
+                        Pupils = Mgr.GetPupilsByProperties(new { A2E = true, Struggling = true });
+                    }
+                }
+                else
+                {
+                    Pupils = Mgr.GetPupilsByProperties(new { A2E = true });
+                }
+            }
+            else // this is 100% yandev code now
             {
-                Pupils = Mgr.GetPupilsByProperties(new { });
+                if (CheckBoxStruggling.Checked)
+                {
+                    if (ComboBoxYearGroup.SelectedIndex != 0)
+                    {
+                        Pupil.YearGroups[] yearGroups = { Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4 };
+                        Pupils = Mgr.GetPupilsByProperties(new { Struggling = true, YearGroup = yearGroups[ComboBoxYearGroup.SelectedIndex - 1] });
+                    }
+                    else
+                    {
+                        Pupils = Mgr.GetPupilsByProperties(new { Struggling = true });
+                    }
+                }
+                else
+                {
+                    if (ComboBoxYearGroup.SelectedIndex != 0)
+                    {
+                        Pupil.YearGroups[] yearGroups = { Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4 };
+                        Pupils = Mgr.GetPupilsByProperties(new { YearGroup = yearGroups[ComboBoxYearGroup.SelectedIndex - 1] });
+                    }
+                    else
+                    {
+                        Pupils = Mgr.GetPupilsByProperties(new { });
+                    }
+                }
             }
 
             // wipes listbox
             SearchResults.Items.Clear();
+
+            List<Pupil> unDatedPupils = new List<Pupil>();
 
             // NAME / ID SEARCH
             // if first char is number, assume user is searching by id
@@ -52,14 +104,14 @@ namespace project
                 {
                     foreach (Pupil pupil in Pupils)
                     {
-                        if (pupil.PupilID.StartsWith(SearchBar.Text.Trim())) SearchResults.Items.Add(pupil.Name + " (" + pupil.PupilID + ")");
+                        if (pupil.PupilID.StartsWith(SearchBar.Text.Trim())) unDatedPupils.Add(pupil);
                     }
                 }
                 else // this feels like yanderedev code
                 {
                     foreach (Pupil pupil in Pupils)
                     {
-                        if (pupil.Name.ToLower().Contains(SearchBar.Text.Trim().ToLower())) SearchResults.Items.Add(pupil.Name + " (" + pupil.PupilID + ")");
+                        if (pupil.Name.ToLower().Contains(SearchBar.Text.Trim().ToLower())) unDatedPupils.Add(pupil);
                     }
                 }
             }
@@ -67,18 +119,114 @@ namespace project
             {
                 foreach (Pupil pupil in Pupils)
                 {
-                    SearchResults.Items.Add(pupil.Name + " (" + pupil.PupilID + ")");
+                    unDatedPupils.Add(pupil);
+                }
+            }
+
+            // now, for date checking
+            if (DateTimePicker.Format != DateTimePickerFormat.Custom)
+            {
+                string selectedDate = DateTimePicker.Value.ToString("dd-MM-yyyy");
+
+                switch (ComboBoxContext.SelectedIndex)
+                {
+                    case 1:
+                        // all accessed AFTER specified date
+                        foreach (Pupil student in unDatedPupils)
+                        {
+                            int relative = compareDates(selectedDate, student.LastAccess);
+                            if (relative == 1 || relative == 0)
+                            {
+                                SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
+                            }
+                        }
+                        break;
+                    case 2:
+                        // all accessed ON specified date
+                        foreach (Pupil student in unDatedPupils)
+                        {
+                            int relative = compareDates(selectedDate, student.LastAccess);
+                            if (relative == 0)
+                            {
+                                SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
+                            }
+                        }
+                        break;
+                    case 3:
+                        // all accessed BEFORE specified date
+                        foreach (Pupil student in unDatedPupils)
+                        {
+                            int relative = compareDates(selectedDate, student.LastAccess);
+                            if (relative == -1 || relative == 0)
+                            {
+                                SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
+                            }
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                foreach (Pupil student in unDatedPupils)
+                {
+                    SearchResults.Items.Add(student.Name + " (" + student.PupilID + ")");
                 }
             }
 
             // then, check if listbox is empty after function is finished
             if (SearchResults.Items.Count == 0) SearchResults.Items.Add("No students were found.");
 
+            // switch cursor back to normal
+            Cursor.Current = Cursors.Default;
+
+        }
+
+        // function used to compare string dates
+        private static int compareDates(String selectedDate, String lastAccessDate)
+        {
+
+            lastAccessDate = DateTime.ParseExact(lastAccessDate, "yyyy-MM-ddTHH:mm:ss.s", CultureInfo.InvariantCulture).ToString("dd-MM-yyyy");
+
+            string[] selectedStrArray = selectedDate.Split('-');
+            string[] accessStrArray = lastAccessDate.Split('-');
+
+            int[] selectedIntArray = new int[3];
+            int[] accessIntArray = new int[3];
+
+            for (int i = 0; i < 3; i++)
+            {
+                selectedIntArray[i] = int.Parse(selectedStrArray[i]);
+                accessIntArray[i] = int.Parse(accessStrArray[i]);
+            }
+
+            // Compare years
+            if (selectedIntArray[2] > accessIntArray[2]) return 1;
+            if (selectedIntArray[2] < accessIntArray[2]) return -1;
+            // Compare months
+            if (selectedIntArray[1] > accessIntArray[1]) return 1;
+            if (selectedIntArray[1] < accessIntArray[1]) return -1;
+            // Compare days
+            if (selectedIntArray[0] > accessIntArray[0]) return 1;
+            if (selectedIntArray[0] == accessIntArray[0]) return 0;
+            if (selectedIntArray[0] < accessIntArray[0]) return -1;
+
+            // if all else fails, which it won't...
+            return 0;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
+            // initialise drop down
+            ComboBoxYearGroup.SelectedIndex = 0;
+            filterDropDownToggle = false;
+            dropDownBack.Size = new Size(200, 10);
+            dropDownBack.Visible = false;
+            // Wipes DateTimePicker display
+            DateTimePicker.Format = DateTimePickerFormat.Custom;
+            DateTimePicker.CustomFormat = " ";
+            ComboBoxContext.SelectedIndex = 0;
+
             reloadPupils();
 
         }
@@ -103,12 +251,79 @@ namespace project
             
         }
 
-        // User search feature
-        private void SearchButton_Click(object sender, EventArgs e)
+        // functions that control the opening and closing of drop down panels
+        private void toggleDropDown()
         {
+            filterDropDownToggle = !filterDropDownToggle;
+
+            if (filterDropDownToggle)
+            {
+                ButtonFilterDropDown.Text = "▲";
+                dropDownBack.Visible = true;
+            }
+            else
+            {
+                ButtonFilterDropDown.Text = "▼";
+            }
+
+            dropdownTimer.Start();
+        }
+
+        private void dropdownTimer_Tick(object sender, EventArgs e)
+        {
+            if (filterDropDownToggle)
+            {
+                dropDownBack.Height += 10;
+                if (dropDownBack.Height == dropDownBack.MaximumSize.Height)
+                {
+                    dropdownTimer.Stop();
+                }
+            }
+            else
+            {
+                dropDownBack.Height -= 10;
+                if (dropDownBack.Height == 10)
+                {
+                    dropdownTimer.Stop();
+                    dropDownBack.Visible = false;
+                }
+            }
+        }
+
+        private void ButtonFilterDropDown_Click(object sender, EventArgs e)
+        {
+            toggleDropDown();
+        }
+
+        // User search feature
+        private void DateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (DateTimePicker.Value == DateTimePicker.MinimumDateTime)
+            {
+                DateTimePicker.Value = DateTime.Now; // This is required in order to show current month/year when user reopens the date popup.
+                DateTimePicker.Format = DateTimePickerFormat.Custom;
+                DateTimePicker.CustomFormat = " ";
+            }
+            else
+            {
+                DateTimePicker.Format = DateTimePickerFormat.Short;
+            }
+
+            if (ComboBoxContext.SelectedIndex == 0 && DateTimePicker.Format != DateTimePickerFormat.Custom) ComboBoxContext.SelectedIndex = 2; // defaults to "from", if not set
 
             reloadPupils();
+        }
 
+        private void ComboBoxContext_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboBoxContext.SelectedIndex != 0 && DateTimePicker.Format == DateTimePickerFormat.Custom) DateTimePicker.Value = DateTime.Now; // defaults to current date, if not set
+            if (ComboBoxContext.SelectedIndex == 0 && DateTimePicker.Format != DateTimePickerFormat.Custom)
+            {
+                DateTimePicker.Format = DateTimePickerFormat.Custom;
+                DateTimePicker.CustomFormat = " ";
+            }
+
+            reloadPupils();
         }
 
         private void ResetButton_Click(object sender, EventArgs e)
@@ -116,7 +331,13 @@ namespace project
 
             SearchBar.Text = "";
             CheckBoxA2E.Checked = false;
+            CheckBoxStruggling.Checked = false;
+            ComboBoxYearGroup.SelectedIndex = 0;
+            DateTimePicker.Format = DateTimePickerFormat.Custom;
+            DateTimePicker.CustomFormat = " ";
+            ComboBoxContext.SelectedIndex = 0;
             reloadPupils();
+            SystemSounds.Beep.Play();
 
         }
 
@@ -142,6 +363,7 @@ namespace project
 
             if (SearchResults.GetItemText(SearchResults.SelectedItem) != "No students were found." && SearchResults.SelectedIndex != -1)
             {
+                SystemSounds.Hand.Play();
                 if ((MessageBox.Show("Are you sure you want to delete this student? Their information and notes will not be retrievable.", "Deletion Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
                 {
                     string Text = SearchResults.GetItemText(SearchResults.SelectedItem);
@@ -149,36 +371,29 @@ namespace project
                     string PupilID = Text.Substring(Index + 1, Text.Length - 2 - Index);
                     Mgr.DeletePupilData(Mgr.GetPupilsByProperties(new {PupilID = PupilID})[0]);
                     this.reloadPupils();
+                    SystemSounds.Beep.Play();
                 }
             }
             else
             {
+                SystemSounds.Hand.Play();
                 MessageBox.Show("Please select the student you wish to delete.", "No student selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
-
-        private void CheckBoxA2E_CheckedChanged(object sender, EventArgs e)
-        {
-
-            reloadPupils();
-
-        }
-
-        private void SearchBar_TextChanged(object sender, EventArgs e)
-        {
-
-            // This is a super slick feature but I don't know if I should include it, purely for performance reasons.
-            // reloadPupils();
-
-        }
-
 
         // SHORTCUTS (alternate ways of triggering same code)
 
         private void SearchResults_MouseDoubleClick (object sender, EventArgs e)
         {
             ViewButton_Click(sender, e);
+        }
+
+        private void QuickDisplayUpdateEvent(object sender, EventArgs e)
+        {
+
+            reloadPupils();
+
         }
     }
 }
