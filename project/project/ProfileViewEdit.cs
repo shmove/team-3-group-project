@@ -64,7 +64,7 @@ namespace project
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            this.Close();
+            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
         }
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
@@ -149,6 +149,7 @@ namespace project
         {
 
             ComboBoxYearGroup.SelectedIndex = 0;
+            FadeEffect.FadeIn(this, 100);
 
             if (pupilForm != null)
             {
@@ -289,7 +290,7 @@ namespace project
                 if (pupilForm != null) pupilForm.activeStudent = activeStudent;
                 else recordsForm.activeStudent = activeStudent;
 
-                this.Close();
+                FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
 
             }
             
@@ -299,5 +300,6 @@ namespace project
         {
             toggleA2EDisplay(CheckBoxA2E.Checked);
         }
+
     }
 }

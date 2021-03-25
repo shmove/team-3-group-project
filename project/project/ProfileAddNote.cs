@@ -59,7 +59,7 @@ namespace project
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            this.Close();
+            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
         }
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
@@ -81,6 +81,8 @@ namespace project
 
         private void ProfileAddNote_Load(object sender, EventArgs e)
         {
+
+            FadeEffect.FadeIn(this, 100);
 
             Mgr = profileForm.searchForm.Mgr; // loads DBPupilDataManager
 
@@ -139,7 +141,7 @@ namespace project
                 Mgr.WritePupilData(profileForm.activeStudent);
                 SystemSounds.Beep.Play();
 
-                this.Close();
+                FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
             }
             else
             {
@@ -151,7 +153,7 @@ namespace project
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
         }
     }
 }

@@ -62,7 +62,7 @@ namespace project
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            this.Close();
+            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
         }
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
@@ -281,6 +281,8 @@ namespace project
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            FadeEffect.FadeIn(this, 100);
+
             ignoreReloads = true;
             // initialise drop down
             ComboBoxYearGroup.SelectedIndex = 0;
@@ -303,10 +305,12 @@ namespace project
         {
             ProfileEditView infoForm = new ProfileEditView();
             infoForm.searchForm = this;
-            this.Hide();
-            infoForm.ShowDialog();
-            reloadPupils();
-            this.Show();
+            FadeEffect.FadeOut(this, 100, new Action(() => infoForm.Show()));
+            infoForm.FormClosed += (s, args) =>
+            {
+                reloadPupils();
+                FadeEffect.FadeIn(this, 100);
+            };
         }
 
         private void ViewButton_Click(object sender, EventArgs e)

@@ -50,6 +50,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.TextBoxBack1 = new System.Windows.Forms.Panel();
             this.PanelWindowControls = new System.Windows.Forms.Panel();
+            this.BorderPanelTopUpper = new System.Windows.Forms.Panel();
             this.PanelWindowMinimise = new System.Windows.Forms.Panel();
             this.LabelMinimiseWindow = new System.Windows.Forms.Label();
             this.PanelWindowClose = new System.Windows.Forms.Panel();
@@ -58,10 +59,9 @@
             this.borderPanelRight = new System.Windows.Forms.Panel();
             this.borderPanelLeft = new System.Windows.Forms.Panel();
             this.borderPanelBottom = new System.Windows.Forms.Panel();
-            this.BorderPanelLeft2 = new System.Windows.Forms.Panel();
             this.BorderPanelBottom2 = new System.Windows.Forms.Panel();
+            this.BorderPanelLeft2 = new System.Windows.Forms.Panel();
             this.BorderPanelRight2 = new System.Windows.Forms.Panel();
-            this.BorderPanelTopUpper = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.StudentImage)).BeginInit();
             this.panel1.SuspendLayout();
             this.TextBoxBack4.SuspendLayout();
@@ -329,6 +329,15 @@
             this.PanelWindowControls.TabIndex = 37;
             this.PanelWindowControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowControls_MouseDown);
             // 
+            // BorderPanelTopUpper
+            // 
+            this.BorderPanelTopUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BorderPanelTopUpper.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelTopUpper.Location = new System.Drawing.Point(0, 0);
+            this.BorderPanelTopUpper.Name = "BorderPanelTopUpper";
+            this.BorderPanelTopUpper.Size = new System.Drawing.Size(558, 1);
+            this.BorderPanelTopUpper.TabIndex = 41;
+            // 
             // PanelWindowMinimise
             // 
             this.PanelWindowMinimise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -418,15 +427,6 @@
             this.borderPanelBottom.Size = new System.Drawing.Size(558, 5);
             this.borderPanelBottom.TabIndex = 34;
             // 
-            // BorderPanelLeft2
-            // 
-            this.BorderPanelLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelLeft2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.BorderPanelLeft2.Location = new System.Drawing.Point(0, 0);
-            this.BorderPanelLeft2.Name = "BorderPanelLeft2";
-            this.BorderPanelLeft2.Size = new System.Drawing.Size(1, 305);
-            this.BorderPanelLeft2.TabIndex = 38;
-            // 
             // BorderPanelBottom2
             // 
             this.BorderPanelBottom2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -436,6 +436,15 @@
             this.BorderPanelBottom2.Size = new System.Drawing.Size(558, 1);
             this.BorderPanelBottom2.TabIndex = 39;
             // 
+            // BorderPanelLeft2
+            // 
+            this.BorderPanelLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BorderPanelLeft2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelLeft2.Location = new System.Drawing.Point(0, 0);
+            this.BorderPanelLeft2.Name = "BorderPanelLeft2";
+            this.BorderPanelLeft2.Size = new System.Drawing.Size(1, 305);
+            this.BorderPanelLeft2.TabIndex = 38;
+            // 
             // BorderPanelRight2
             // 
             this.BorderPanelRight2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -444,15 +453,6 @@
             this.BorderPanelRight2.Name = "BorderPanelRight2";
             this.BorderPanelRight2.Size = new System.Drawing.Size(1, 305);
             this.BorderPanelRight2.TabIndex = 39;
-            // 
-            // BorderPanelTopUpper
-            // 
-            this.BorderPanelTopUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelTopUpper.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.BorderPanelTopUpper.Location = new System.Drawing.Point(0, 0);
-            this.BorderPanelTopUpper.Name = "BorderPanelTopUpper";
-            this.BorderPanelTopUpper.Size = new System.Drawing.Size(558, 1);
-            this.BorderPanelTopUpper.TabIndex = 41;
             // 
             // ProfileViewEdit
             // 

@@ -38,12 +38,12 @@
             this.borderPanelLeft = new System.Windows.Forms.Panel();
             this.borderPanelRight = new System.Windows.Forms.Panel();
             this.PanelWindowControls = new System.Windows.Forms.Panel();
+            this.BorderPanelTopUpper = new System.Windows.Forms.Panel();
             this.PanelWindowMinimise = new System.Windows.Forms.Panel();
             this.LabelMinimiseWindow = new System.Windows.Forms.Label();
             this.PanelWindowClose = new System.Windows.Forms.Panel();
             this.LabelCloseWindow = new System.Windows.Forms.Label();
             this.IconWindowControls = new System.Windows.Forms.PictureBox();
-            this.BorderPanelTopUpper = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BorderPanelLeft2 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -224,6 +224,15 @@
             this.PanelWindowControls.TabIndex = 22;
             this.PanelWindowControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowControls_MouseDown);
             // 
+            // BorderPanelTopUpper
+            // 
+            this.BorderPanelTopUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BorderPanelTopUpper.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelTopUpper.Location = new System.Drawing.Point(0, 0);
+            this.BorderPanelTopUpper.Name = "BorderPanelTopUpper";
+            this.BorderPanelTopUpper.Size = new System.Drawing.Size(289, 1);
+            this.BorderPanelTopUpper.TabIndex = 42;
+            // 
             // PanelWindowMinimise
             // 
             this.PanelWindowMinimise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -282,15 +291,6 @@
             this.IconWindowControls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.IconWindowControls.TabIndex = 23;
             this.IconWindowControls.TabStop = false;
-            // 
-            // BorderPanelTopUpper
-            // 
-            this.BorderPanelTopUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelTopUpper.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.BorderPanelTopUpper.Location = new System.Drawing.Point(0, 0);
-            this.BorderPanelTopUpper.Name = "BorderPanelTopUpper";
-            this.BorderPanelTopUpper.Size = new System.Drawing.Size(289, 1);
-            this.BorderPanelTopUpper.TabIndex = 42;
             // 
             // panel1
             // 

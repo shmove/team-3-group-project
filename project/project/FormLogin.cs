@@ -56,7 +56,7 @@ namespace project {
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            this.Close();
+            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
         }
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
@@ -80,7 +80,7 @@ namespace project {
         {
             
             Manager = new DbPupilDataManager(); //Sets up the database in the case of a first time load. Though, it does seem pretty strange to be calling the pupil manager to create the user table; I might change that in the future.
-            
+            FadeEffect.FadeIn(this, 100);
 
             return;
 
@@ -109,8 +109,7 @@ namespace project {
             if(Success){
                 pupilRecords pupilRecords = new pupilRecords(User);
                 pupilRecords.FormClosed += (s, args) => this.Close(); // on the event of the pupilRecords form closing, this one closes too
-                this.Hide();
-                pupilRecords.Show();
+                FadeEffect.FadeOut(this, 100, new Action(() => pupilRecords.Show()));
             }else{
                 MessageBox.Show("Invalid username or password, please try again.", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtpassword.Text = "";
@@ -155,9 +154,8 @@ namespace project {
         private void label6_Click(object sender, EventArgs e) {
             FormRegister registerForm = new FormRegister();
             registerForm.loginForm = this;
-            this.Hide();
-            registerForm.ShowDialog();
-            this.Show();
+            FadeEffect.FadeOut(this, 100, new Action(() => registerForm.Show()));
+            registerForm.FormClosed += (s, args) => FadeEffect.FadeIn(this, 100);
         }
 
         private void txtpassword_KeyDown(object sender, KeyEventArgs e)

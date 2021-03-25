@@ -47,7 +47,7 @@ namespace project {
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            this.Close();
+            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
         }
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
@@ -115,15 +115,12 @@ namespace project {
         }
 
         private void label6_Click(object sender, EventArgs e) {
-            this.Close();
+            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
         }
 
         private void frmRegister_Load(object sender, EventArgs e) {
             label2.Text = "Username";
-        }
-
-        private void label2_Click(object sender, EventArgs e) {
-
+            FadeEffect.FadeIn(this, 100);
         }
 
         private void txtComPassword_KeyDown(object sender, KeyEventArgs e)

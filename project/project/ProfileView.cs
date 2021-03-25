@@ -61,7 +61,7 @@ namespace project
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            this.Close();
+            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
         }
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
@@ -84,6 +84,8 @@ namespace project
         // run when form is first loaded - saves pupil uuid for referencing and loads pupil data
         private void ProfileEditView_Load(object sender, EventArgs e)
         {
+
+            FadeEffect.FadeIn(this, 100);
 
             Mgr = searchForm.Mgr;
 
