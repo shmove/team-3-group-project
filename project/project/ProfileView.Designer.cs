@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileEditView));
             this.LabelStudentName = new System.Windows.Forms.Label();
+            this.ContextMenuInfo = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LabelCompany = new System.Windows.Forms.Label();
             this.LabelGroups = new System.Windows.Forms.Label();
             this.SearchResults = new System.Windows.Forms.ListBox();
@@ -45,30 +47,46 @@
             this.LabelYearGroup = new System.Windows.Forms.Label();
             this.LabelStruggling = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.ComboBoxBack = new System.Windows.Forms.Panel();
-            this.ContextMenuInfo = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.StudentPhoto = new System.Windows.Forms.PictureBox();
             this.ImageBoxPlaceholder = new System.Windows.Forms.PictureBox();
+            this.ComboBoxBack = new System.Windows.Forms.Panel();
+            this.StudentPhoto = new System.Windows.Forms.PictureBox();
             this.ImageFlag = new System.Windows.Forms.PictureBox();
             this.ContextMenuNote = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ComboBoxBack.SuspendLayout();
+            this.PanelWindowControls = new System.Windows.Forms.Panel();
+            this.PanelWindowMinimise = new System.Windows.Forms.Panel();
+            this.LabelMinimiseWindow = new System.Windows.Forms.Label();
+            this.PanelWindowClose = new System.Windows.Forms.Panel();
+            this.LabelCloseWindow = new System.Windows.Forms.Label();
+            this.IconWindowControls = new System.Windows.Forms.PictureBox();
+            this.borderPanelRight = new System.Windows.Forms.Panel();
+            this.borderPanelLeft = new System.Windows.Forms.Panel();
+            this.borderPanelBottom = new System.Windows.Forms.Panel();
+            this.BorderPanelTopUpper = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BorderPanelLeft2 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.ContextMenuInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).BeginInit();
+            this.ComboBoxBack.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).BeginInit();
             this.ContextMenuNote.SuspendLayout();
+            this.PanelWindowControls.SuspendLayout();
+            this.PanelWindowMinimise.SuspendLayout();
+            this.PanelWindowClose.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelStudentName
             // 
+            this.LabelStudentName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LabelStudentName.AutoSize = true;
             this.LabelStudentName.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelStudentName.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelStudentName.Location = new System.Drawing.Point(131, 12);
+            this.LabelStudentName.Location = new System.Drawing.Point(131, 42);
             this.LabelStudentName.Name = "LabelStudentName";
             this.LabelStudentName.Size = new System.Drawing.Size(177, 32);
             this.LabelStudentName.TabIndex = 1;
@@ -76,12 +94,27 @@
             this.LabelStudentName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.LabelStudentName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
             // 
+            // ContextMenuInfo
+            // 
+            this.ContextMenuInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editInfoToolStripMenuItem});
+            this.ContextMenuInfo.Name = "ContextMenuInfo";
+            this.ContextMenuInfo.Size = new System.Drawing.Size(119, 26);
+            // 
+            // editInfoToolStripMenuItem
+            // 
+            this.editInfoToolStripMenuItem.Name = "editInfoToolStripMenuItem";
+            this.editInfoToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.editInfoToolStripMenuItem.Text = "Edit Info";
+            this.editInfoToolStripMenuItem.Click += new System.EventHandler(this.ButtonEditInfo_Click);
+            // 
             // LabelCompany
             // 
+            this.LabelCompany.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LabelCompany.AutoSize = true;
             this.LabelCompany.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelCompany.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCompany.Location = new System.Drawing.Point(132, 94);
+            this.LabelCompany.Location = new System.Drawing.Point(132, 124);
             this.LabelCompany.Name = "LabelCompany";
             this.LabelCompany.Size = new System.Drawing.Size(97, 25);
             this.LabelCompany.TabIndex = 2;
@@ -90,11 +123,12 @@
             // 
             // LabelGroups
             // 
+            this.LabelGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LabelGroups.AutoSize = true;
             this.LabelGroups.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelGroups.Cursor = System.Windows.Forms.Cursors.Help;
             this.LabelGroups.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelGroups.Location = new System.Drawing.Point(132, 119);
+            this.LabelGroups.Location = new System.Drawing.Point(132, 149);
             this.LabelGroups.Name = "LabelGroups";
             this.LabelGroups.Size = new System.Drawing.Size(46, 25);
             this.LabelGroups.TabIndex = 3;
@@ -104,11 +138,12 @@
             // 
             // SearchResults
             // 
+            this.SearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SearchResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.SearchResults.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchResults.FormattingEnabled = true;
             this.SearchResults.ItemHeight = 15;
-            this.SearchResults.Location = new System.Drawing.Point(12, 194);
+            this.SearchResults.Location = new System.Drawing.Point(12, 224);
             this.SearchResults.Name = "SearchResults";
             this.SearchResults.Size = new System.Drawing.Size(567, 304);
             this.SearchResults.TabIndex = 4;
@@ -117,11 +152,12 @@
             // 
             // DateTimePicker
             // 
+            this.DateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DateTimePicker.CalendarFont = new System.Drawing.Font("Nirmala UI", 9F);
             this.DateTimePicker.CalendarMonthBackground = System.Drawing.Color.White;
             this.DateTimePicker.CustomFormat = "";
             this.DateTimePicker.Font = new System.Drawing.Font("Nirmala UI", 9.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateTimePicker.Location = new System.Drawing.Point(315, 164);
+            this.DateTimePicker.Location = new System.Drawing.Point(315, 194);
             this.DateTimePicker.Name = "DateTimePicker";
             this.DateTimePicker.Size = new System.Drawing.Size(195, 24);
             this.DateTimePicker.TabIndex = 7;
@@ -130,12 +166,13 @@
             // 
             // ButtonEditInfo
             // 
+            this.ButtonEditInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonEditInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ButtonEditInfo.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.ButtonEditInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonEditInfo.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
             this.ButtonEditInfo.ForeColor = System.Drawing.Color.White;
-            this.ButtonEditInfo.Location = new System.Drawing.Point(12, 504);
+            this.ButtonEditInfo.Location = new System.Drawing.Point(12, 534);
             this.ButtonEditInfo.Name = "ButtonEditInfo";
             this.ButtonEditInfo.Size = new System.Drawing.Size(95, 25);
             this.ButtonEditInfo.TabIndex = 8;
@@ -145,9 +182,10 @@
             // 
             // ButtonAddNote
             // 
+            this.ButtonAddNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonAddNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAddNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonAddNote.Location = new System.Drawing.Point(282, 504);
+            this.ButtonAddNote.Location = new System.Drawing.Point(282, 534);
             this.ButtonAddNote.Name = "ButtonAddNote";
             this.ButtonAddNote.Size = new System.Drawing.Size(95, 25);
             this.ButtonAddNote.TabIndex = 9;
@@ -157,12 +195,13 @@
             // 
             // ButtonReset
             // 
+            this.ButtonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ButtonReset.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonReset.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonReset.ForeColor = System.Drawing.Color.White;
-            this.ButtonReset.Location = new System.Drawing.Point(516, 164);
+            this.ButtonReset.Location = new System.Drawing.Point(516, 194);
             this.ButtonReset.Name = "ButtonReset";
             this.ButtonReset.Size = new System.Drawing.Size(63, 24);
             this.ButtonReset.TabIndex = 10;
@@ -172,9 +211,10 @@
             // 
             // ButtonDeleteNote
             // 
+            this.ButtonDeleteNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonDeleteNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDeleteNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDeleteNote.Location = new System.Drawing.Point(484, 504);
+            this.ButtonDeleteNote.Location = new System.Drawing.Point(484, 534);
             this.ButtonDeleteNote.Name = "ButtonDeleteNote";
             this.ButtonDeleteNote.Size = new System.Drawing.Size(95, 25);
             this.ButtonDeleteNote.TabIndex = 11;
@@ -184,10 +224,11 @@
             // 
             // LabelStudentNo
             // 
+            this.LabelStudentNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LabelStudentNo.AutoSize = true;
             this.LabelStudentNo.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelStudentNo.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelStudentNo.Location = new System.Drawing.Point(132, 44);
+            this.LabelStudentNo.Location = new System.Drawing.Point(132, 74);
             this.LabelStudentNo.Name = "LabelStudentNo";
             this.LabelStudentNo.Size = new System.Drawing.Size(119, 25);
             this.LabelStudentNo.TabIndex = 12;
@@ -214,9 +255,10 @@
             // 
             // ButtonEditNote
             // 
+            this.ButtonEditNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonEditNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonEditNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonEditNote.Location = new System.Drawing.Point(383, 504);
+            this.ButtonEditNote.Location = new System.Drawing.Point(383, 534);
             this.ButtonEditNote.Name = "ButtonEditNote";
             this.ButtonEditNote.Size = new System.Drawing.Size(95, 25);
             this.ButtonEditNote.TabIndex = 9;
@@ -226,10 +268,11 @@
             // 
             // LabelYearGroup
             // 
+            this.LabelYearGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LabelYearGroup.AutoSize = true;
             this.LabelYearGroup.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelYearGroup.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelYearGroup.Location = new System.Drawing.Point(132, 69);
+            this.LabelYearGroup.Location = new System.Drawing.Point(132, 99);
             this.LabelYearGroup.Name = "LabelYearGroup";
             this.LabelYearGroup.Size = new System.Drawing.Size(113, 25);
             this.LabelYearGroup.TabIndex = 14;
@@ -238,45 +281,48 @@
             // 
             // LabelStruggling
             // 
+            this.LabelStruggling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LabelStruggling.AutoSize = true;
             this.LabelStruggling.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelStruggling.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.LabelStruggling.Location = new System.Drawing.Point(35, 170);
+            this.LabelStruggling.Location = new System.Drawing.Point(35, 200);
             this.LabelStruggling.Name = "LabelStruggling";
             this.LabelStruggling.Size = new System.Drawing.Size(104, 13);
             this.LabelStruggling.TabIndex = 16;
             this.LabelStruggling.Text = "flagged as struggling";
             // 
+            // ImageBoxPlaceholder
+            // 
+            this.ImageBoxPlaceholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ImageBoxPlaceholder.ErrorImage = global::project.Properties.Resources.placeholder;
+            this.ImageBoxPlaceholder.Image = global::project.Properties.Resources.placeholder;
+            this.ImageBoxPlaceholder.InitialImage = global::project.Properties.Resources.placeholder;
+            this.ImageBoxPlaceholder.Location = new System.Drawing.Point(12, 42);
+            this.ImageBoxPlaceholder.Name = "ImageBoxPlaceholder";
+            this.ImageBoxPlaceholder.Size = new System.Drawing.Size(114, 142);
+            this.ImageBoxPlaceholder.TabIndex = 19;
+            this.ImageBoxPlaceholder.TabStop = false;
+            this.toolTip1.SetToolTip(this.ImageBoxPlaceholder, "Student photo unloaded for editing");
+            this.ImageBoxPlaceholder.Visible = false;
+            // 
             // ComboBoxBack
             // 
+            this.ComboBoxBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ComboBoxBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ComboBoxBack.Controls.Add(this.ComboBoxContext);
-            this.ComboBoxBack.Location = new System.Drawing.Point(246, 164);
+            this.ComboBoxBack.Location = new System.Drawing.Point(246, 194);
             this.ComboBoxBack.Name = "ComboBoxBack";
             this.ComboBoxBack.Size = new System.Drawing.Size(63, 24);
             this.ComboBoxBack.TabIndex = 17;
             // 
-            // ContextMenuInfo
-            // 
-            this.ContextMenuInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editInfoToolStripMenuItem});
-            this.ContextMenuInfo.Name = "ContextMenuInfo";
-            this.ContextMenuInfo.Size = new System.Drawing.Size(119, 26);
-            // 
-            // editInfoToolStripMenuItem
-            // 
-            this.editInfoToolStripMenuItem.Name = "editInfoToolStripMenuItem";
-            this.editInfoToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.editInfoToolStripMenuItem.Text = "Edit Info";
-            this.editInfoToolStripMenuItem.Click += new System.EventHandler(this.ButtonEditInfo_Click);
-            // 
             // StudentPhoto
             // 
+            this.StudentPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.StudentPhoto.ContextMenuStrip = this.ContextMenuInfo;
             this.StudentPhoto.ErrorImage = global::project.Properties.Resources.placeholder;
             this.StudentPhoto.Image = global::project.Properties.Resources.placeholder;
             this.StudentPhoto.InitialImage = global::project.Properties.Resources.placeholder;
-            this.StudentPhoto.Location = new System.Drawing.Point(12, 12);
+            this.StudentPhoto.Location = new System.Drawing.Point(12, 42);
             this.StudentPhoto.MaximumSize = new System.Drawing.Size(114, 142);
             this.StudentPhoto.MinimumSize = new System.Drawing.Size(114, 142);
             this.StudentPhoto.Name = "StudentPhoto";
@@ -286,25 +332,13 @@
             this.StudentPhoto.TabStop = false;
             this.StudentPhoto.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
             // 
-            // ImageBoxPlaceholder
-            // 
-            this.ImageBoxPlaceholder.ErrorImage = global::project.Properties.Resources.placeholder;
-            this.ImageBoxPlaceholder.Image = global::project.Properties.Resources.placeholder;
-            this.ImageBoxPlaceholder.InitialImage = global::project.Properties.Resources.placeholder;
-            this.ImageBoxPlaceholder.Location = new System.Drawing.Point(12, 12);
-            this.ImageBoxPlaceholder.Name = "ImageBoxPlaceholder";
-            this.ImageBoxPlaceholder.Size = new System.Drawing.Size(114, 142);
-            this.ImageBoxPlaceholder.TabIndex = 19;
-            this.ImageBoxPlaceholder.TabStop = false;
-            this.toolTip1.SetToolTip(this.ImageBoxPlaceholder, "Student photo unloaded for editing");
-            this.ImageBoxPlaceholder.Visible = false;
-            // 
             // ImageFlag
             // 
+            this.ImageFlag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ImageFlag.BackColor = System.Drawing.Color.Transparent;
             this.ImageFlag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ImageFlag.Image = global::project.Properties.Resources.flag1;
-            this.ImageFlag.Location = new System.Drawing.Point(12, 164);
+            this.ImageFlag.Location = new System.Drawing.Point(12, 194);
             this.ImageFlag.Name = "ImageFlag";
             this.ImageFlag.Size = new System.Drawing.Size(24, 24);
             this.ImageFlag.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -341,12 +375,156 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.ButtonDeleteNote_Click);
             // 
+            // PanelWindowControls
+            // 
+            this.PanelWindowControls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.PanelWindowControls.Controls.Add(this.PanelWindowMinimise);
+            this.PanelWindowControls.Controls.Add(this.PanelWindowClose);
+            this.PanelWindowControls.Controls.Add(this.IconWindowControls);
+            this.PanelWindowControls.Location = new System.Drawing.Point(0, 0);
+            this.PanelWindowControls.Name = "PanelWindowControls";
+            this.PanelWindowControls.Size = new System.Drawing.Size(591, 30);
+            this.PanelWindowControls.TabIndex = 33;
+            this.PanelWindowControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowControls_MouseDown);
+            // 
+            // PanelWindowMinimise
+            // 
+            this.PanelWindowMinimise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelWindowMinimise.Controls.Add(this.LabelMinimiseWindow);
+            this.PanelWindowMinimise.Location = new System.Drawing.Point(501, 0);
+            this.PanelWindowMinimise.Name = "PanelWindowMinimise";
+            this.PanelWindowMinimise.Size = new System.Drawing.Size(45, 30);
+            this.PanelWindowMinimise.TabIndex = 24;
+            this.PanelWindowMinimise.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowMinimise_MouseDown);
+            this.PanelWindowMinimise.MouseLeave += new System.EventHandler(this.PanelWindowMinimise_MouseLeave);
+            this.PanelWindowMinimise.MouseHover += new System.EventHandler(this.PanelWindowMinimise_MouseHover);
+            // 
+            // LabelMinimiseWindow
+            // 
+            this.LabelMinimiseWindow.AutoSize = true;
+            this.LabelMinimiseWindow.Enabled = false;
+            this.LabelMinimiseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.LabelMinimiseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.LabelMinimiseWindow.Location = new System.Drawing.Point(13, 5);
+            this.LabelMinimiseWindow.Name = "LabelMinimiseWindow";
+            this.LabelMinimiseWindow.Size = new System.Drawing.Size(21, 17);
+            this.LabelMinimiseWindow.TabIndex = 24;
+            this.LabelMinimiseWindow.Text = "—";
+            this.LabelMinimiseWindow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowMinimise_MouseDown);
+            this.LabelMinimiseWindow.MouseHover += new System.EventHandler(this.PanelWindowMinimise_MouseHover);
+            // 
+            // PanelWindowClose
+            // 
+            this.PanelWindowClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelWindowClose.Controls.Add(this.LabelCloseWindow);
+            this.PanelWindowClose.Location = new System.Drawing.Point(546, 0);
+            this.PanelWindowClose.Name = "PanelWindowClose";
+            this.PanelWindowClose.Size = new System.Drawing.Size(45, 30);
+            this.PanelWindowClose.TabIndex = 23;
+            this.PanelWindowClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowClose_MouseDown);
+            this.PanelWindowClose.MouseLeave += new System.EventHandler(this.PanelWindowClose_MouseLeave);
+            this.PanelWindowClose.MouseHover += new System.EventHandler(this.PanelWindowClose_MouseHover);
+            // 
+            // LabelCloseWindow
+            // 
+            this.LabelCloseWindow.AutoSize = true;
+            this.LabelCloseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.LabelCloseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.LabelCloseWindow.Location = new System.Drawing.Point(13, 5);
+            this.LabelCloseWindow.Name = "LabelCloseWindow";
+            this.LabelCloseWindow.Size = new System.Drawing.Size(22, 17);
+            this.LabelCloseWindow.TabIndex = 23;
+            this.LabelCloseWindow.Text = "╳";
+            this.LabelCloseWindow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowClose_MouseDown);
+            this.LabelCloseWindow.MouseHover += new System.EventHandler(this.PanelWindowClose_MouseHover);
+            // 
+            // IconWindowControls
+            // 
+            this.IconWindowControls.Image = global::project.Properties.Resources.programIcon;
+            this.IconWindowControls.Location = new System.Drawing.Point(5, 5);
+            this.IconWindowControls.Name = "IconWindowControls";
+            this.IconWindowControls.Size = new System.Drawing.Size(20, 20);
+            this.IconWindowControls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.IconWindowControls.TabIndex = 23;
+            this.IconWindowControls.TabStop = false;
+            // 
+            // borderPanelRight
+            // 
+            this.borderPanelRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.borderPanelRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.borderPanelRight.Location = new System.Drawing.Point(586, 0);
+            this.borderPanelRight.Name = "borderPanelRight";
+            this.borderPanelRight.Size = new System.Drawing.Size(5, 566);
+            this.borderPanelRight.TabIndex = 32;
+            // 
+            // borderPanelLeft
+            // 
+            this.borderPanelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.borderPanelLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.borderPanelLeft.Location = new System.Drawing.Point(0, 0);
+            this.borderPanelLeft.Name = "borderPanelLeft";
+            this.borderPanelLeft.Size = new System.Drawing.Size(5, 566);
+            this.borderPanelLeft.TabIndex = 31;
+            // 
+            // borderPanelBottom
+            // 
+            this.borderPanelBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.borderPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.borderPanelBottom.Location = new System.Drawing.Point(0, 566);
+            this.borderPanelBottom.Name = "borderPanelBottom";
+            this.borderPanelBottom.Size = new System.Drawing.Size(591, 5);
+            this.borderPanelBottom.TabIndex = 30;
+            // 
+            // BorderPanelTopUpper
+            // 
+            this.BorderPanelTopUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BorderPanelTopUpper.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelTopUpper.Location = new System.Drawing.Point(0, 0);
+            this.BorderPanelTopUpper.Name = "BorderPanelTopUpper";
+            this.BorderPanelTopUpper.Size = new System.Drawing.Size(591, 1);
+            this.BorderPanelTopUpper.TabIndex = 42;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Location = new System.Drawing.Point(0, 570);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(591, 1);
+            this.panel1.TabIndex = 43;
+            // 
+            // BorderPanelLeft2
+            // 
+            this.BorderPanelLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BorderPanelLeft2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelLeft2.Location = new System.Drawing.Point(0, 0);
+            this.BorderPanelLeft2.Name = "BorderPanelLeft2";
+            this.BorderPanelLeft2.Size = new System.Drawing.Size(1, 571);
+            this.BorderPanelLeft2.TabIndex = 44;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel2.Location = new System.Drawing.Point(590, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1, 571);
+            this.panel2.TabIndex = 45;
+            // 
             // ProfileEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(591, 541);
+            this.ClientSize = new System.Drawing.Size(591, 571);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.BorderPanelLeft2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.BorderPanelTopUpper);
+            this.Controls.Add(this.PanelWindowControls);
+            this.Controls.Add(this.borderPanelRight);
+            this.Controls.Add(this.borderPanelLeft);
+            this.Controls.Add(this.borderPanelBottom);
             this.Controls.Add(this.StudentPhoto);
             this.Controls.Add(this.ImageBoxPlaceholder);
             this.Controls.Add(this.ImageFlag);
@@ -364,21 +542,25 @@
             this.Controls.Add(this.LabelStudentName);
             this.Controls.Add(this.LabelStruggling);
             this.Controls.Add(this.ComboBoxBack);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(607, 580);
-            this.MinimumSize = new System.Drawing.Size(607, 580);
             this.Name = "ProfileEditView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "[StudentName] - Info";
+            this.Text = "dddd";
             this.Load += new System.EventHandler(this.ProfileEditView_Load);
-            this.ComboBoxBack.ResumeLayout(false);
             this.ContextMenuInfo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).EndInit();
+            this.ComboBoxBack.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).EndInit();
             this.ContextMenuNote.ResumeLayout(false);
+            this.PanelWindowControls.ResumeLayout(false);
+            this.PanelWindowMinimise.ResumeLayout(false);
+            this.PanelWindowMinimise.PerformLayout();
+            this.PanelWindowClose.ResumeLayout(false);
+            this.PanelWindowClose.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -412,5 +594,18 @@
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.Panel PanelWindowControls;
+        private System.Windows.Forms.Panel PanelWindowMinimise;
+        private System.Windows.Forms.Label LabelMinimiseWindow;
+        private System.Windows.Forms.Panel PanelWindowClose;
+        private System.Windows.Forms.Label LabelCloseWindow;
+        private System.Windows.Forms.PictureBox IconWindowControls;
+        private System.Windows.Forms.Panel borderPanelRight;
+        private System.Windows.Forms.Panel borderPanelLeft;
+        private System.Windows.Forms.Panel borderPanelBottom;
+        private System.Windows.Forms.Panel BorderPanelTopUpper;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel BorderPanelLeft2;
+        private System.Windows.Forms.Panel panel2;
     }
 }

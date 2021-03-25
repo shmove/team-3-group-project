@@ -55,19 +55,37 @@
             this.ContextMenuStudent = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.borderPanelRight = new System.Windows.Forms.Panel();
+            this.borderPanelLeft = new System.Windows.Forms.Panel();
+            this.borderPanelBottom = new System.Windows.Forms.Panel();
+            this.PanelWindowControls = new System.Windows.Forms.Panel();
+            this.PanelWindowMinimise = new System.Windows.Forms.Panel();
+            this.LabelMinimiseWindow = new System.Windows.Forms.Label();
+            this.PanelWindowClose = new System.Windows.Forms.Panel();
+            this.LabelCloseWindow = new System.Windows.Forms.Label();
+            this.IconWindowControls = new System.Windows.Forms.PictureBox();
+            this.BorderPanelLeft2 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.BorderPanelTopUpper = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.filtersBack.SuspendLayout();
             this.dropDownBack.SuspendLayout();
             this.panel1.SuspendLayout();
             this.ComboBoxBack.SuspendLayout();
             this.ComboBoxYearGroupBack.SuspendLayout();
             this.ContextMenuStudent.SuspendLayout();
+            this.PanelWindowControls.SuspendLayout();
+            this.PanelWindowMinimise.SuspendLayout();
+            this.PanelWindowClose.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 12);
+            this.label1.Location = new System.Drawing.Point(12, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(308, 32);
             this.label1.TabIndex = 0;
@@ -75,7 +93,8 @@
             // 
             // SearchBar
             // 
-            this.SearchBar.Location = new System.Drawing.Point(12, 58);
+            this.SearchBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SearchBar.Location = new System.Drawing.Point(12, 88);
             this.SearchBar.Name = "SearchBar";
             this.SearchBar.Size = new System.Drawing.Size(776, 20);
             this.SearchBar.TabIndex = 1;
@@ -98,11 +117,12 @@
             // 
             // SearchResults
             // 
+            this.SearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SearchResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.SearchResults.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchResults.FormattingEnabled = true;
             this.SearchResults.ItemHeight = 21;
-            this.SearchResults.Location = new System.Drawing.Point(12, 119);
+            this.SearchResults.Location = new System.Drawing.Point(12, 149);
             this.SearchResults.Name = "SearchResults";
             this.SearchResults.Size = new System.Drawing.Size(776, 277);
             this.SearchResults.TabIndex = 4;
@@ -111,9 +131,10 @@
             // 
             // ViewButton
             // 
+            this.ViewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ViewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ViewButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ViewButton.Location = new System.Drawing.Point(713, 402);
+            this.ViewButton.Location = new System.Drawing.Point(713, 432);
             this.ViewButton.Name = "ViewButton";
             this.ViewButton.Size = new System.Drawing.Size(75, 23);
             this.ViewButton.TabIndex = 5;
@@ -123,11 +144,12 @@
             // 
             // ResetButton
             // 
+            this.ResetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ResetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ResetButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.ResetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetButton.ForeColor = System.Drawing.Color.White;
-            this.ResetButton.Location = new System.Drawing.Point(713, 84);
+            this.ResetButton.Location = new System.Drawing.Point(713, 114);
             this.ResetButton.Name = "ResetButton";
             this.ResetButton.Size = new System.Drawing.Size(75, 25);
             this.ResetButton.TabIndex = 6;
@@ -137,8 +159,9 @@
             // 
             // ButtonAddStudent
             // 
+            this.ButtonAddStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonAddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonAddStudent.Location = new System.Drawing.Point(12, 402);
+            this.ButtonAddStudent.Location = new System.Drawing.Point(12, 432);
             this.ButtonAddStudent.Name = "ButtonAddStudent";
             this.ButtonAddStudent.Size = new System.Drawing.Size(100, 23);
             this.ButtonAddStudent.TabIndex = 7;
@@ -148,11 +171,12 @@
             // 
             // ButtonDeleteStudent
             // 
+            this.ButtonDeleteStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonDeleteStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ButtonDeleteStudent.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.ButtonDeleteStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDeleteStudent.ForeColor = System.Drawing.Color.White;
-            this.ButtonDeleteStudent.Location = new System.Drawing.Point(118, 402);
+            this.ButtonDeleteStudent.Location = new System.Drawing.Point(118, 432);
             this.ButtonDeleteStudent.Name = "ButtonDeleteStudent";
             this.ButtonDeleteStudent.Size = new System.Drawing.Size(100, 23);
             this.ButtonDeleteStudent.TabIndex = 8;
@@ -188,10 +212,11 @@
             // 
             // filtersBack
             // 
+            this.filtersBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.filtersBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.filtersBack.Controls.Add(this.ButtonFilterDropDown);
             this.filtersBack.Controls.Add(this.labelFilters);
-            this.filtersBack.Location = new System.Drawing.Point(12, 86);
+            this.filtersBack.Location = new System.Drawing.Point(12, 116);
             this.filtersBack.Name = "filtersBack";
             this.filtersBack.Size = new System.Drawing.Size(69, 23);
             this.filtersBack.TabIndex = 11;
@@ -199,10 +224,11 @@
             // 
             // dropDownBack
             // 
+            this.dropDownBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dropDownBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.dropDownBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dropDownBack.Controls.Add(this.panel1);
-            this.dropDownBack.Location = new System.Drawing.Point(12, 108);
+            this.dropDownBack.Location = new System.Drawing.Point(12, 138);
             this.dropDownBack.MaximumSize = new System.Drawing.Size(200, 150);
             this.dropDownBack.MinimumSize = new System.Drawing.Size(10, 10);
             this.dropDownBack.Name = "dropDownBack";
@@ -361,28 +387,172 @@
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.ContextMenuStudent.Name = "ContextMenuNote";
-            this.ContextMenuStudent.Size = new System.Drawing.Size(181, 70);
+            this.ContextMenuStudent.Size = new System.Drawing.Size(108, 48);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.editToolStripMenuItem.Text = "View";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.ViewButton_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.ButtonDeleteStudent_Click);
+            // 
+            // borderPanelRight
+            // 
+            this.borderPanelRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.borderPanelRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.borderPanelRight.Location = new System.Drawing.Point(795, 0);
+            this.borderPanelRight.Name = "borderPanelRight";
+            this.borderPanelRight.Size = new System.Drawing.Size(5, 462);
+            this.borderPanelRight.TabIndex = 28;
+            // 
+            // borderPanelLeft
+            // 
+            this.borderPanelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.borderPanelLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.borderPanelLeft.Location = new System.Drawing.Point(0, 0);
+            this.borderPanelLeft.Name = "borderPanelLeft";
+            this.borderPanelLeft.Size = new System.Drawing.Size(5, 462);
+            this.borderPanelLeft.TabIndex = 27;
+            // 
+            // borderPanelBottom
+            // 
+            this.borderPanelBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.borderPanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.borderPanelBottom.Location = new System.Drawing.Point(0, 462);
+            this.borderPanelBottom.Name = "borderPanelBottom";
+            this.borderPanelBottom.Size = new System.Drawing.Size(800, 5);
+            this.borderPanelBottom.TabIndex = 26;
+            // 
+            // PanelWindowControls
+            // 
+            this.PanelWindowControls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.PanelWindowControls.Controls.Add(this.PanelWindowMinimise);
+            this.PanelWindowControls.Controls.Add(this.PanelWindowClose);
+            this.PanelWindowControls.Controls.Add(this.IconWindowControls);
+            this.PanelWindowControls.Location = new System.Drawing.Point(0, 0);
+            this.PanelWindowControls.Name = "PanelWindowControls";
+            this.PanelWindowControls.Size = new System.Drawing.Size(800, 30);
+            this.PanelWindowControls.TabIndex = 29;
+            this.PanelWindowControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowControls_MouseDown);
+            // 
+            // PanelWindowMinimise
+            // 
+            this.PanelWindowMinimise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelWindowMinimise.Controls.Add(this.LabelMinimiseWindow);
+            this.PanelWindowMinimise.Location = new System.Drawing.Point(710, 0);
+            this.PanelWindowMinimise.Name = "PanelWindowMinimise";
+            this.PanelWindowMinimise.Size = new System.Drawing.Size(45, 30);
+            this.PanelWindowMinimise.TabIndex = 24;
+            this.PanelWindowMinimise.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowMinimise_MouseDown);
+            this.PanelWindowMinimise.MouseLeave += new System.EventHandler(this.PanelWindowMinimise_MouseLeave);
+            this.PanelWindowMinimise.MouseHover += new System.EventHandler(this.PanelWindowMinimise_MouseHover);
+            // 
+            // LabelMinimiseWindow
+            // 
+            this.LabelMinimiseWindow.AutoSize = true;
+            this.LabelMinimiseWindow.Enabled = false;
+            this.LabelMinimiseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.LabelMinimiseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.LabelMinimiseWindow.Location = new System.Drawing.Point(13, 5);
+            this.LabelMinimiseWindow.Name = "LabelMinimiseWindow";
+            this.LabelMinimiseWindow.Size = new System.Drawing.Size(21, 17);
+            this.LabelMinimiseWindow.TabIndex = 24;
+            this.LabelMinimiseWindow.Text = "—";
+            this.LabelMinimiseWindow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowMinimise_MouseDown);
+            this.LabelMinimiseWindow.MouseHover += new System.EventHandler(this.PanelWindowMinimise_MouseHover);
+            // 
+            // PanelWindowClose
+            // 
+            this.PanelWindowClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelWindowClose.Controls.Add(this.LabelCloseWindow);
+            this.PanelWindowClose.Location = new System.Drawing.Point(755, 0);
+            this.PanelWindowClose.Name = "PanelWindowClose";
+            this.PanelWindowClose.Size = new System.Drawing.Size(45, 30);
+            this.PanelWindowClose.TabIndex = 23;
+            this.PanelWindowClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowClose_MouseDown);
+            this.PanelWindowClose.MouseLeave += new System.EventHandler(this.PanelWindowClose_MouseLeave);
+            this.PanelWindowClose.MouseHover += new System.EventHandler(this.PanelWindowClose_MouseHover);
+            // 
+            // LabelCloseWindow
+            // 
+            this.LabelCloseWindow.AutoSize = true;
+            this.LabelCloseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.LabelCloseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.LabelCloseWindow.Location = new System.Drawing.Point(13, 5);
+            this.LabelCloseWindow.Name = "LabelCloseWindow";
+            this.LabelCloseWindow.Size = new System.Drawing.Size(22, 17);
+            this.LabelCloseWindow.TabIndex = 23;
+            this.LabelCloseWindow.Text = "╳";
+            this.LabelCloseWindow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowClose_MouseDown);
+            this.LabelCloseWindow.MouseHover += new System.EventHandler(this.PanelWindowClose_MouseHover);
+            // 
+            // IconWindowControls
+            // 
+            this.IconWindowControls.Image = global::project.Properties.Resources.programIcon;
+            this.IconWindowControls.Location = new System.Drawing.Point(5, 5);
+            this.IconWindowControls.Name = "IconWindowControls";
+            this.IconWindowControls.Size = new System.Drawing.Size(20, 20);
+            this.IconWindowControls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.IconWindowControls.TabIndex = 23;
+            this.IconWindowControls.TabStop = false;
+            // 
+            // BorderPanelLeft2
+            // 
+            this.BorderPanelLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BorderPanelLeft2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelLeft2.Location = new System.Drawing.Point(0, 0);
+            this.BorderPanelLeft2.Name = "BorderPanelLeft2";
+            this.BorderPanelLeft2.Size = new System.Drawing.Size(1, 467);
+            this.BorderPanelLeft2.TabIndex = 39;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel2.Location = new System.Drawing.Point(799, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1, 467);
+            this.panel2.TabIndex = 40;
+            // 
+            // BorderPanelTopUpper
+            // 
+            this.BorderPanelTopUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BorderPanelTopUpper.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelTopUpper.Location = new System.Drawing.Point(0, 0);
+            this.BorderPanelTopUpper.Name = "BorderPanelTopUpper";
+            this.BorderPanelTopUpper.Size = new System.Drawing.Size(800, 1);
+            this.BorderPanelTopUpper.TabIndex = 42;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel3.Location = new System.Drawing.Point(0, 466);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(800, 1);
+            this.panel3.TabIndex = 43;
             // 
             // pupilRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 437);
+            this.ClientSize = new System.Drawing.Size(800, 467);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.BorderPanelTopUpper);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.BorderPanelLeft2);
+            this.Controls.Add(this.PanelWindowControls);
+            this.Controls.Add(this.borderPanelRight);
+            this.Controls.Add(this.borderPanelLeft);
+            this.Controls.Add(this.borderPanelBottom);
             this.Controls.Add(this.dropDownBack);
             this.Controls.Add(this.ButtonDeleteStudent);
             this.Controls.Add(this.ButtonAddStudent);
@@ -392,11 +562,9 @@
             this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.filtersBack);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(816, 476);
-            this.MinimumSize = new System.Drawing.Size(816, 476);
             this.Name = "pupilRecords";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Student Records Program";
@@ -409,6 +577,12 @@
             this.ComboBoxBack.ResumeLayout(false);
             this.ComboBoxYearGroupBack.ResumeLayout(false);
             this.ContextMenuStudent.ResumeLayout(false);
+            this.PanelWindowControls.ResumeLayout(false);
+            this.PanelWindowMinimise.ResumeLayout(false);
+            this.PanelWindowMinimise.PerformLayout();
+            this.PanelWindowClose.ResumeLayout(false);
+            this.PanelWindowClose.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,6 +618,19 @@
         private System.Windows.Forms.ContextMenuStrip ContextMenuStudent;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.Panel borderPanelRight;
+        private System.Windows.Forms.Panel borderPanelLeft;
+        private System.Windows.Forms.Panel borderPanelBottom;
+        private System.Windows.Forms.Panel PanelWindowControls;
+        private System.Windows.Forms.Panel PanelWindowMinimise;
+        private System.Windows.Forms.Label LabelMinimiseWindow;
+        private System.Windows.Forms.Panel PanelWindowClose;
+        private System.Windows.Forms.Label LabelCloseWindow;
+        private System.Windows.Forms.PictureBox IconWindowControls;
+        private System.Windows.Forms.Panel BorderPanelLeft2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel BorderPanelTopUpper;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 

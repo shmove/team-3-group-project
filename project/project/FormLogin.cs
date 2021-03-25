@@ -22,6 +22,60 @@ namespace project {
         public OleDbDataAdapter da;
         private DbPupilDataManager Manager;
 
+        // WINDOW CONTROL BAR
+
+        // allows for window dragging
+        // https://stackoverflow.com/a/1592899
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void PanelWindowControls_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void PanelWindowClose_MouseHover(object sender, EventArgs e)
+        {
+            PanelWindowClose.BackColor = Color.FromArgb(255, 210, 211, 213);
+        }
+
+        private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
+        {
+            PanelWindowClose.BackColor = Color.FromArgb(255, 230, 231, 233);
+        }
+
+        private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left) return;
+            this.Close();
+        }
+
+        private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
+        {
+            PanelWindowMinimise.BackColor = Color.FromArgb(255, 210, 211, 213);
+        }
+
+        private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
+        {
+            PanelWindowMinimise.BackColor = Color.FromArgb(255, 230, 231, 233);
+        }
+
+        private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        // FORM CODE
+
         private void frmLogin_Load(object sender, EventArgs e)
         {
             
@@ -53,9 +107,9 @@ namespace project {
             DbUser User = DbUser.GetUserFromDatabase(Connection, txtUsername.Text);
            bool Success = User.Authenticate(Connection, txtpassword.Text);
             if(Success){
-                this.Hide();
                 pupilRecords pupilRecords = new pupilRecords(User);
                 pupilRecords.FormClosed += (s, args) => this.Close(); // on the event of the pupilRecords form closing, this one closes too
+                this.Hide();
                 pupilRecords.Show();
             }else{
                 MessageBox.Show("Invalid username or password, please try again.", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -113,7 +167,6 @@ namespace project {
                 button1.PerformClick();
             }
         }
-
 
     }
 }

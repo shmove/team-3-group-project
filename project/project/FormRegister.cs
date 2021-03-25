@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.OleDb;
+using System.Drawing;
 using System.Windows.Forms;
 using static project.PupilDataManager.SharedResources.Types;
 
@@ -11,6 +12,60 @@ namespace project {
         }
 
         public FormLogin loginForm;
+
+        // WINDOW CONTROL BAR
+
+        // allows for window dragging
+        // https://stackoverflow.com/a/1592899
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void PanelWindowControls_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void PanelWindowClose_MouseHover(object sender, EventArgs e)
+        {
+            PanelWindowClose.BackColor = Color.FromArgb(255, 210, 211, 213);
+        }
+
+        private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
+        {
+            PanelWindowClose.BackColor = Color.FromArgb(255, 230, 231, 233);
+        }
+
+        private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left) return;
+            this.Close();
+        }
+
+        private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
+        {
+            PanelWindowMinimise.BackColor = Color.FromArgb(255, 210, 211, 213);
+        }
+
+        private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
+        {
+            PanelWindowMinimise.BackColor = Color.FromArgb(255, 230, 231, 233);
+        }
+
+        private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        // FORM CODE
 
         private void button1_Click(object sender, EventArgs e) {
             if (txtUsername.Text == "" || txtPassword.Text == "" || txtComPassword.Text == "") {
