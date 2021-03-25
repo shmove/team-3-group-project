@@ -16,7 +16,7 @@ using project.PupilDataManager.DbUtils;
 
 namespace project {
     /// <summary>
-    /// This is version 0.1.11.14 of DbPupilDataManager.                                                                        <br />
+    /// This is version 0.1.12.15 of DbPupilDataManager.                                                                        <br />
     ///                                                                                                                        <br />
     /// This version supports:                                                                                                 <br />
     ///                                                                                                                        <br />
@@ -29,15 +29,11 @@ namespace project {
     ///  -  Has a basic installation process.                                                                                  <br />
     ///  -  Deleting pupils from the database.                                                                                 <br />
     ///  -  Has all of the required properties.                                                                                <br />
-    ///                                                                                                                        <br />
-    /// This version doesn't support:                                                                                          <br />
-    ///                                                                                                                        <br />
-    ///  -  Support for multiple users.                                                                                        <br />
-    /// 
+    ///  -  Multiple users.
     /// </summary>
     public class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.11.14";
-        public static readonly int BUILD = 14;
+        public static readonly string VERSION = "0.1.12.15";
+        public static readonly int BUILD = 15;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
@@ -70,7 +66,7 @@ namespace project {
         public override bool CheckIfInstalled(string Location) {
             string DatabasePath = Location + "\\" + DATABASE_NAME;
             this.ConnectionString = DefaultConnectionStringBuilder.BuildConnectionString(DatabasePath);
-            if (Directory.Exists(Location)) {
+            if (Directory.Exists(Location) && Directory.Exists(BasePupilDataManager.PUPIL_IMAGE_LOCATION)) {
                 try {
                     Catalog v_Catalog = new Catalog();
                     v_Catalog.let_ActiveConnection(CONNECTION_STRING_TEMPLATE + Location + "\\" + DATABASE_NAME);
@@ -89,8 +85,7 @@ namespace project {
         /// <param name="Location"></param>
         public override void Install(string Location) {
             if (!Directory.Exists(Location)) Directory.CreateDirectory(Location);
-            if (!Directory.Exists(Location + RELATIVE_PUPIL_PICTURES_LOCATION)) Directory.CreateDirectory(Location + RELATIVE_PUPIL_PICTURES_LOCATION);
-
+            if (!Directory.Exists(BasePupilDataManager.PUPIL_IMAGE_LOCATION)) Directory.CreateDirectory(BasePupilDataManager.PUPIL_IMAGE_LOCATION);
             Catalog v_Catalog = new Catalog();
             v_Catalog.Create(this.ConnectionString);
 
@@ -389,11 +384,21 @@ namespace project {
             DbPupilDataManager.DeleteListableProperty<Note>(Connection, p_Pupil.PupilUUID, "Note");
             DbPupilDataManager.DeleteListableProperty<TodoEntry>(Connection, p_Pupil.PupilUUID, "TodoEntries");
 
+            OleDbCommand Command2 = new OleDbCommand();
+            Command2.CommandType = CommandType.Text;
+            Command2.Connection = Connection;
+            Command2.CommandText = "DELETE FROM [UserPupilAccess] WHERE [FPupilUUID] = @UUID;";
+            Command2.Parameters.AddWithValue("@UUID", p_Pupil.PupilUUID);
+            Connection.Open();
+            Command2.ExecuteNonQuery();
+            Connection.Close();
+
             OleDbCommand Command = new OleDbCommand();
             Command.CommandType = CommandType.Text;
             Command.Connection = Connection;
             Command.CommandText = "DELETE FROM [Pupil] WHERE [PupilUUID] = @UUID;";
             Command.Parameters.AddWithValue("@UUID", p_Pupil.PupilUUID);
+
             Connection.Open();
             Command.ExecuteNonQuery();
             Connection.Close();
@@ -404,7 +409,7 @@ namespace project {
             return true;
         }
 
-        private static void DeleteListableProperty<T>(OleDbConnection Connection, string PupilUUID, string PropertyName) where T : BaseListable{
+        private static void DeleteListableProperty<T>(OleDbConnection Connection, string PupilUUID, string PropertyName){
             OleDbCommand Command = new OleDbCommand();
             Command.CommandType = CommandType.Text;
             Command.Connection = Connection;

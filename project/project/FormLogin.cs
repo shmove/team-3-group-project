@@ -105,7 +105,7 @@ namespace project {
         private void button1_Click(object sender, EventArgs e) {
             OleDbConnection Connection = new OleDbConnection(Manager.ConnectionString);
             DbUser User = DbUser.GetUserFromDatabase(Connection, txtUsername.Text);
-           bool Success = User.Authenticate(Connection, txtpassword.Text);
+           bool Success = User?.Authenticate(Connection, txtpassword.Text) ?? false;
             if(Success){
                 pupilRecords pupilRecords = new pupilRecords(User);
                 pupilRecords.FormClosed += (s, args) => this.Close(); // on the event of the pupilRecords form closing, this one closes too

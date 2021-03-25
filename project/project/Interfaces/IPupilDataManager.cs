@@ -39,6 +39,7 @@ namespace project.Interfaces {
             return PupilArray;
         }
         public void SavePupilImage(Pupil p_Pupil, Image PupilImage){
+            //return;
             PupilImage.Save(PUPIL_IMAGE_LOCATION + "\\" + p_Pupil.PupilUUID + "." + IMAGE_FORMAT);
         }
         public Image GetPupilImage(Pupil p_Pupil){
