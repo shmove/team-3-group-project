@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace project
 {
+
     class FadeEffect
     {
 
@@ -40,6 +43,7 @@ namespace project
 
         /// <summary>
         /// Fades a form out, then stops.
+        /// Based off of this: https://codingvision.net/c-form-fade-in-fade-out
         /// </summary>
         /// <param name="f">Windows form to be faded out</param>
         /// <param name="ms">Transition time in ms</param>

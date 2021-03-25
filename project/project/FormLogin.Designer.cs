@@ -59,7 +59,7 @@
             this.label6.AutoSize = true;
             this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(86, 421);
+            this.label6.Location = new System.Drawing.Point(94, 421);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 17);
             this.label6.TabIndex = 6;
@@ -71,11 +71,11 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(63, 399);
+            this.label5.Location = new System.Drawing.Point(68, 399);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(153, 17);
+            this.label5.Size = new System.Drawing.Size(156, 17);
             this.label5.TabIndex = 17;
-            this.label5.Text = "Dont Have an Account?";
+            this.label5.Text = "Don\'t Have an Account?";
             // 
             // button2
             // 
@@ -273,6 +273,7 @@
             // LabelCloseWindow
             // 
             this.LabelCloseWindow.AutoSize = true;
+            this.LabelCloseWindow.Enabled = false;
             this.LabelCloseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.LabelCloseWindow.Location = new System.Drawing.Point(13, 5);
             this.LabelCloseWindow.Name = "LabelCloseWindow";
@@ -291,6 +292,7 @@
             this.IconWindowControls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.IconWindowControls.TabIndex = 23;
             this.IconWindowControls.TabStop = false;
+            this.IconWindowControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowControls_MouseDown);
             // 
             // panel1
             // 

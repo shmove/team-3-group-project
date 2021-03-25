@@ -483,6 +483,7 @@
             // LabelCloseWindow
             // 
             this.LabelCloseWindow.AutoSize = true;
+            this.LabelCloseWindow.Enabled = false;
             this.LabelCloseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.LabelCloseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.LabelCloseWindow.Location = new System.Drawing.Point(13, 5);
@@ -502,6 +503,7 @@
             this.IconWindowControls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.IconWindowControls.TabIndex = 23;
             this.IconWindowControls.TabStop = false;
+            this.IconWindowControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowControls_MouseDown);
             // 
             // BorderPanelLeft2
             // 

@@ -305,12 +305,8 @@ namespace project
         {
             ProfileEditView infoForm = new ProfileEditView();
             infoForm.searchForm = this;
-            FadeEffect.FadeOut(this, 100, new Action(() => infoForm.Show()));
-            infoForm.FormClosed += (s, args) =>
-            {
-                reloadPupils();
-                FadeEffect.FadeIn(this, 100);
-            };
+            infoForm.ShowDialog();
+            reloadPupils();
         }
 
         private void ViewButton_Click(object sender, EventArgs e)
