@@ -70,5 +70,13 @@ namespace project {
         private void label2_Click(object sender, EventArgs e) {
 
         }
+
+        private void txtComPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+            }
+        }
     }
 }
