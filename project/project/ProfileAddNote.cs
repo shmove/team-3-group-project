@@ -57,7 +57,7 @@ namespace project
             if (TextBoxNote.Text.Trim() != "")
             {
                 // I'd really like to make newlines possible here, but it doesn't seem like that's gonna happen :(
-                string newNote = TextBoxNote.Text.Replace("\r", " ").Replace("\n", "");
+                string newNote = TextBoxNote.Text.Replace("\r", " ").Replace("\n", "").Trim();
 
                 switch (profileForm.noteContext)
                 {
