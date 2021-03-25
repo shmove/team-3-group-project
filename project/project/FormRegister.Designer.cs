@@ -379,6 +379,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Student Records Program";
             this.Load += new System.EventHandler(this.frmRegister_Load);
+            this.Resize += new System.EventHandler(this.Form_Resize);
             this.PanelWindowControls.ResumeLayout(false);
             this.PanelWindowMinimise.ResumeLayout(false);
             this.PanelWindowMinimise.PerformLayout();

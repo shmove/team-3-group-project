@@ -29,7 +29,11 @@ namespace project
             WindowTimer.Stop();
             FormLogin loginForm = new FormLogin();
             loginForm.FormClosed += (s, args) => this.Close(); // on the event of the login form closing, this one closes too
-            FadeEffect.FadeOut(this, 200, new Action(() => loginForm.Show()));
+            FadeEffect.FadeOut(this, 200, new Action(() => 
+            {
+                this.Hide();
+                loginForm.Show();
+            }));
         }
     }
 }

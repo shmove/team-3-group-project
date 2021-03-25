@@ -277,10 +277,10 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ProfileAddNote";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "[StudentName] - Add/Edit Note";
             this.Load += new System.EventHandler(this.ProfileAddNote_Load);
+            this.Resize += new System.EventHandler(this.Form_Resize);
             this.TextBoxNoteBack.ResumeLayout(false);
             this.TextBoxNoteBack.PerformLayout();
             this.PanelWindowControls.ResumeLayout(false);

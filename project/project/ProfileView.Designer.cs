@@ -551,6 +551,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "dddd";
             this.Load += new System.EventHandler(this.ProfileEditView_Load);
+            this.Resize += new System.EventHandler(this.Form_Resize);
             this.ContextMenuInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).EndInit();
             this.ComboBoxBack.ResumeLayout(false);

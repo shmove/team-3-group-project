@@ -74,7 +74,7 @@ namespace project
         // Action action = new Action(() => _myMessage = "hello");
 
         /// <summary>
-        /// Fades a form out then invokes an action, hiding the original form.
+        /// Fades a form out then invokes an action.
         /// Based off of this: https://stackoverflow.com/a/20799039
         /// </summary>
         /// <param name="f">Windows form to be faded out</param>
@@ -87,7 +87,6 @@ namespace project
             timer.Tick += delegate
 
             {
-                f.Hide();
                 action.Invoke();
                 timer.Stop();
             };

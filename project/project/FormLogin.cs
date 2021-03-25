@@ -71,7 +71,14 @@ namespace project {
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            FadeEffect.FadeOut(this, 100, new Action(() =>
+            this.WindowState = FormWindowState.Minimized
+            ));
+        }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState != FormWindowState.Minimized) FadeEffect.FadeIn(this, 100);
         }
 
         // FORM CODE
@@ -109,7 +116,11 @@ namespace project {
             if(Success){
                 pupilRecords pupilRecords = new pupilRecords(User);
                 pupilRecords.FormClosed += (s, args) => this.Close(); // on the event of the pupilRecords form closing, this one closes too
-                FadeEffect.FadeOut(this, 100, new Action(() => pupilRecords.Show()));
+                FadeEffect.FadeOut(this, 100, new Action(() => 
+                {
+                    this.Hide();
+                    pupilRecords.Show();
+                }));
             }else{
                 MessageBox.Show("Invalid username or password, please try again.", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtpassword.Text = "";
@@ -154,7 +165,11 @@ namespace project {
         private void label6_Click(object sender, EventArgs e) {
             FormRegister registerForm = new FormRegister();
             registerForm.loginForm = this;
-            FadeEffect.FadeOut(this, 100, new Action(() => registerForm.Show()));
+            FadeEffect.FadeOut(this, 100, new Action(() => 
+            {
+                this.Hide();
+                registerForm.Show();
+            }));
             registerForm.FormClosed += (s, args) => FadeEffect.FadeIn(this, 100);
         }
 
