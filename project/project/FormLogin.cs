@@ -51,7 +51,7 @@ namespace project {
         private void button1_Click(object sender, EventArgs e) {
             OleDbConnection Connection = new OleDbConnection(Manager.ConnectionString);
             DbUser User = DbUser.GetUserFromDatabase(Connection, txtUsername.Text);
-           bool Success = User.Authenticate(Connection, txtpassword.Text);
+           bool Success = User?.Authenticate(Connection, txtpassword.Text) ?? false;
             if(Success){
                 this.Hide();
                 pupilRecords pupilRecords = new pupilRecords(User);
