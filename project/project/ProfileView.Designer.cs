@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileEditView));
-            this.StudentPhoto = new System.Windows.Forms.PictureBox();
             this.LabelStudentName = new System.Windows.Forms.Label();
             this.LabelCompany = new System.Windows.Forms.Label();
             this.LabelGroups = new System.Windows.Forms.Label();
@@ -44,35 +43,30 @@
             this.ComboBoxContext = new System.Windows.Forms.ComboBox();
             this.ButtonEditNote = new System.Windows.Forms.Button();
             this.LabelYearGroup = new System.Windows.Forms.Label();
-            this.ImageFlag = new System.Windows.Forms.PictureBox();
             this.LabelStruggling = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.ImageBoxPlaceholder = new System.Windows.Forms.PictureBox();
             this.ComboBoxBack = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).BeginInit();
+            this.ContextMenuInfo = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StudentPhoto = new System.Windows.Forms.PictureBox();
+            this.ImageBoxPlaceholder = new System.Windows.Forms.PictureBox();
+            this.ImageFlag = new System.Windows.Forms.PictureBox();
+            this.ContextMenuNote = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ComboBoxBack.SuspendLayout();
+            this.ContextMenuInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).BeginInit();
+            this.ContextMenuNote.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // StudentPhoto
-            // 
-            this.StudentPhoto.ErrorImage = global::project.Properties.Resources.placeholder;
-            this.StudentPhoto.Image = global::project.Properties.Resources.placeholder;
-            this.StudentPhoto.InitialImage = global::project.Properties.Resources.placeholder;
-            this.StudentPhoto.Location = new System.Drawing.Point(12, 12);
-            this.StudentPhoto.MaximumSize = new System.Drawing.Size(114, 142);
-            this.StudentPhoto.MinimumSize = new System.Drawing.Size(114, 142);
-            this.StudentPhoto.Name = "StudentPhoto";
-            this.StudentPhoto.Size = new System.Drawing.Size(114, 142);
-            this.StudentPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.StudentPhoto.TabIndex = 0;
-            this.StudentPhoto.TabStop = false;
-            this.StudentPhoto.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
             // 
             // LabelStudentName
             // 
             this.LabelStudentName.AutoSize = true;
+            this.LabelStudentName.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelStudentName.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelStudentName.Location = new System.Drawing.Point(131, 12);
             this.LabelStudentName.Name = "LabelStudentName";
@@ -85,6 +79,7 @@
             // LabelCompany
             // 
             this.LabelCompany.AutoSize = true;
+            this.LabelCompany.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelCompany.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelCompany.Location = new System.Drawing.Point(132, 94);
             this.LabelCompany.Name = "LabelCompany";
@@ -96,6 +91,7 @@
             // LabelGroups
             // 
             this.LabelGroups.AutoSize = true;
+            this.LabelGroups.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelGroups.Cursor = System.Windows.Forms.Cursors.Help;
             this.LabelGroups.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelGroups.Location = new System.Drawing.Point(132, 119);
@@ -117,6 +113,7 @@
             this.SearchResults.Size = new System.Drawing.Size(567, 304);
             this.SearchResults.TabIndex = 4;
             this.SearchResults.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDoubleClick);
+            this.SearchResults.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDown);
             // 
             // DateTimePicker
             // 
@@ -188,6 +185,7 @@
             // LabelStudentNo
             // 
             this.LabelStudentNo.AutoSize = true;
+            this.LabelStudentNo.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelStudentNo.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelStudentNo.Location = new System.Drawing.Point(132, 44);
             this.LabelStudentNo.Name = "LabelStudentNo";
@@ -229,6 +227,7 @@
             // LabelYearGroup
             // 
             this.LabelYearGroup.AutoSize = true;
+            this.LabelYearGroup.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelYearGroup.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelYearGroup.Location = new System.Drawing.Point(132, 69);
             this.LabelYearGroup.Name = "LabelYearGroup";
@@ -236,18 +235,6 @@
             this.LabelYearGroup.TabIndex = 14;
             this.LabelYearGroup.Text = "Year Group";
             this.LabelYearGroup.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
-            // 
-            // ImageFlag
-            // 
-            this.ImageFlag.BackColor = System.Drawing.Color.Transparent;
-            this.ImageFlag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ImageFlag.Image = ((System.Drawing.Image)(resources.GetObject("ImageFlag.Image")));
-            this.ImageFlag.Location = new System.Drawing.Point(12, 164);
-            this.ImageFlag.Name = "ImageFlag";
-            this.ImageFlag.Size = new System.Drawing.Size(24, 24);
-            this.ImageFlag.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ImageFlag.TabIndex = 15;
-            this.ImageFlag.TabStop = false;
             // 
             // LabelStruggling
             // 
@@ -259,6 +246,45 @@
             this.LabelStruggling.Size = new System.Drawing.Size(104, 13);
             this.LabelStruggling.TabIndex = 16;
             this.LabelStruggling.Text = "flagged as struggling";
+            // 
+            // ComboBoxBack
+            // 
+            this.ComboBoxBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ComboBoxBack.Controls.Add(this.ComboBoxContext);
+            this.ComboBoxBack.Location = new System.Drawing.Point(246, 164);
+            this.ComboBoxBack.Name = "ComboBoxBack";
+            this.ComboBoxBack.Size = new System.Drawing.Size(63, 24);
+            this.ComboBoxBack.TabIndex = 17;
+            // 
+            // ContextMenuInfo
+            // 
+            this.ContextMenuInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editInfoToolStripMenuItem});
+            this.ContextMenuInfo.Name = "ContextMenuInfo";
+            this.ContextMenuInfo.Size = new System.Drawing.Size(119, 26);
+            // 
+            // editInfoToolStripMenuItem
+            // 
+            this.editInfoToolStripMenuItem.Name = "editInfoToolStripMenuItem";
+            this.editInfoToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.editInfoToolStripMenuItem.Text = "Edit Info";
+            this.editInfoToolStripMenuItem.Click += new System.EventHandler(this.ButtonEditInfo_Click);
+            // 
+            // StudentPhoto
+            // 
+            this.StudentPhoto.ContextMenuStrip = this.ContextMenuInfo;
+            this.StudentPhoto.ErrorImage = global::project.Properties.Resources.placeholder;
+            this.StudentPhoto.Image = global::project.Properties.Resources.placeholder;
+            this.StudentPhoto.InitialImage = global::project.Properties.Resources.placeholder;
+            this.StudentPhoto.Location = new System.Drawing.Point(12, 12);
+            this.StudentPhoto.MaximumSize = new System.Drawing.Size(114, 142);
+            this.StudentPhoto.MinimumSize = new System.Drawing.Size(114, 142);
+            this.StudentPhoto.Name = "StudentPhoto";
+            this.StudentPhoto.Size = new System.Drawing.Size(114, 142);
+            this.StudentPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.StudentPhoto.TabIndex = 0;
+            this.StudentPhoto.TabStop = false;
+            this.StudentPhoto.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentPhoto_MouseDoubleClick);
             // 
             // ImageBoxPlaceholder
             // 
@@ -273,14 +299,47 @@
             this.toolTip1.SetToolTip(this.ImageBoxPlaceholder, "Student photo unloaded for editing");
             this.ImageBoxPlaceholder.Visible = false;
             // 
-            // ComboBoxBack
+            // ImageFlag
             // 
-            this.ComboBoxBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ComboBoxBack.Controls.Add(this.ComboBoxContext);
-            this.ComboBoxBack.Location = new System.Drawing.Point(246, 164);
-            this.ComboBoxBack.Name = "ComboBoxBack";
-            this.ComboBoxBack.Size = new System.Drawing.Size(63, 24);
-            this.ComboBoxBack.TabIndex = 17;
+            this.ImageFlag.BackColor = System.Drawing.Color.Transparent;
+            this.ImageFlag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ImageFlag.Image = global::project.Properties.Resources.flag1;
+            this.ImageFlag.Location = new System.Drawing.Point(12, 164);
+            this.ImageFlag.Name = "ImageFlag";
+            this.ImageFlag.Size = new System.Drawing.Size(24, 24);
+            this.ImageFlag.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ImageFlag.TabIndex = 15;
+            this.ImageFlag.TabStop = false;
+            // 
+            // ContextMenuNote
+            // 
+            this.ContextMenuNote.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.ContextMenuNote.Name = "ContextMenuNote";
+            this.ContextMenuNote.Size = new System.Drawing.Size(108, 70);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.ButtonEditNote_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.ButtonDeleteNote_Click);
             // 
             // ProfileEditView
             // 
@@ -314,10 +373,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "[StudentName] - Info";
             this.Load += new System.EventHandler(this.ProfileEditView_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).EndInit();
             this.ComboBoxBack.ResumeLayout(false);
+            this.ContextMenuInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.StudentPhoto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageFlag)).EndInit();
+            this.ContextMenuNote.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +406,11 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel ComboBoxBack;
         private System.Windows.Forms.PictureBox ImageBoxPlaceholder;
+        private System.Windows.Forms.ContextMenuStrip ContextMenuInfo;
+        private System.Windows.Forms.ToolStripMenuItem editInfoToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip ContextMenuNote;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

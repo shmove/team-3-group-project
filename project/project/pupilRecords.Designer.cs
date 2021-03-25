@@ -52,11 +52,15 @@
             this.ComboBoxYearGroup = new System.Windows.Forms.ComboBox();
             this.CheckBoxStruggling = new System.Windows.Forms.CheckBox();
             this.dropdownTimer = new System.Windows.Forms.Timer(this.components);
+            this.ContextMenuStudent = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filtersBack.SuspendLayout();
             this.dropDownBack.SuspendLayout();
             this.panel1.SuspendLayout();
             this.ComboBoxBack.SuspendLayout();
             this.ComboBoxYearGroupBack.SuspendLayout();
+            this.ContextMenuStudent.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -103,6 +107,7 @@
             this.SearchResults.Size = new System.Drawing.Size(776, 277);
             this.SearchResults.TabIndex = 4;
             this.SearchResults.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDoubleClick);
+            this.SearchResults.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDown);
             // 
             // ViewButton
             // 
@@ -350,6 +355,28 @@
             this.dropdownTimer.Interval = 10;
             this.dropdownTimer.Tick += new System.EventHandler(this.dropdownTimer_Tick);
             // 
+            // ContextMenuStudent
+            // 
+            this.ContextMenuStudent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.ContextMenuStudent.Name = "ContextMenuNote";
+            this.ContextMenuStudent.Size = new System.Drawing.Size(181, 70);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Text = "View";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.ViewButton_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.ButtonDeleteStudent_Click);
+            // 
             // pupilRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -381,6 +408,7 @@
             this.panel1.PerformLayout();
             this.ComboBoxBack.ResumeLayout(false);
             this.ComboBoxYearGroupBack.ResumeLayout(false);
+            this.ContextMenuStudent.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -413,6 +441,9 @@
         private System.Windows.Forms.ComboBox ComboBoxContext;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer dropdownTimer;
+        private System.Windows.Forms.ContextMenuStrip ContextMenuStudent;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
 

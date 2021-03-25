@@ -303,8 +303,29 @@ namespace project
             }    
         }
 
-        // SHORTCUTS (alternate ways of triggering same code)
+        // context menus
+        private void SearchResults_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right) return;
+            var index = SearchResults.IndexFromPoint(e.Location);
+            if (index != ListBox.NoMatches)
+            {
+                SearchResults.SelectedIndex = index;
+                ContextMenuNote.Show(Cursor.Position);
+                ContextMenuNote.Visible = true;
+            }
+            else
+            {
+                ContextMenuNote.Visible = false;
+            }
+        }
 
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(SearchResults.SelectedItem.ToString());
+        }
+
+        // SHORTCUTS (alternate ways of triggering same code)
         private void SearchResults_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ButtonEditNote_Click(sender, e);

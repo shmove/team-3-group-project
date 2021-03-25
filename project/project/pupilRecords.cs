@@ -373,7 +373,7 @@ namespace project
             editForm.ShowDialog();
 
             // then, on close of this form
-            if (activeStudent != new Pupil("", "", "", false, "", false, Pupil.YearGroups.S1, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s"), new List<Note>() { }, new List<TodoEntry>() { }))
+            if (activeStudent.PupilID != "")
             {
                 reloadPupils();
                 // select newly created student in listbox
@@ -427,6 +427,22 @@ namespace project
 
             reloadPupils();
 
+        }
+
+        private void SearchResults_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right) return;
+            var index = SearchResults.IndexFromPoint(e.Location);
+            if (index != ListBox.NoMatches)
+            {
+                SearchResults.SelectedIndex = index;
+                ContextMenuStudent.Show(Cursor.Position);
+                ContextMenuStudent.Visible = true;
+            }
+            else
+            {
+                ContextMenuStudent.Visible = false;
+            }
         }
     }
 }
