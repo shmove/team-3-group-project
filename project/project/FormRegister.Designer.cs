@@ -118,6 +118,7 @@
             this.txtComPassword.PasswordChar = '•';
             this.txtComPassword.Size = new System.Drawing.Size(216, 28);
             this.txtComPassword.TabIndex = 3;
+            this.txtComPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtComPassword_KeyDown);
             // 
             // checkbxShowPas
             // 

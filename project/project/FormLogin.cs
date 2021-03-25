@@ -51,7 +51,7 @@ namespace project {
         private void button1_Click(object sender, EventArgs e) {
             OleDbConnection Connection = new OleDbConnection(Manager.ConnectionString);
             DbUser User = DbUser.GetUserFromDatabase(Connection, txtUsername.Text);
-            bool Success = User.Authenticate(Connection, txtpassword.Text);
+           bool Success = User.Authenticate(Connection, txtpassword.Text);
             if(Success){
                 this.Hide();
                 pupilRecords pupilRecords = new pupilRecords(User);
@@ -105,6 +105,15 @@ namespace project {
             registerForm.ShowDialog();
             this.Show();
         }
+
+        private void txtpassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+            }
+        }
+
 
     }
 }
