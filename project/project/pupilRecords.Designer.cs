@@ -85,6 +85,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(12, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(308, 32);
@@ -94,6 +95,7 @@
             // SearchBar
             // 
             this.SearchBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SearchBar.BackColor = System.Drawing.Color.White;
             this.SearchBar.Location = new System.Drawing.Point(12, 88);
             this.SearchBar.Name = "SearchBar";
             this.SearchBar.Size = new System.Drawing.Size(776, 20);
@@ -120,6 +122,7 @@
             this.SearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SearchResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.SearchResults.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchResults.ForeColor = System.Drawing.Color.Black;
             this.SearchResults.FormattingEnabled = true;
             this.SearchResults.ItemHeight = 21;
             this.SearchResults.Location = new System.Drawing.Point(12, 149);
@@ -134,6 +137,7 @@
             this.ViewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ViewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ViewButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ViewButton.ForeColor = System.Drawing.Color.Black;
             this.ViewButton.Location = new System.Drawing.Point(713, 432);
             this.ViewButton.Name = "ViewButton";
             this.ViewButton.Size = new System.Drawing.Size(75, 23);
@@ -161,6 +165,7 @@
             // 
             this.ButtonAddStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonAddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonAddStudent.ForeColor = System.Drawing.Color.Black;
             this.ButtonAddStudent.Location = new System.Drawing.Point(12, 432);
             this.ButtonAddStudent.Name = "ButtonAddStudent";
             this.ButtonAddStudent.Size = new System.Drawing.Size(100, 23);
@@ -188,6 +193,7 @@
             // 
             this.labelFilters.AutoSize = true;
             this.labelFilters.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFilters.ForeColor = System.Drawing.Color.Black;
             this.labelFilters.Location = new System.Drawing.Point(0, 3);
             this.labelFilters.Name = "labelFilters";
             this.labelFilters.Size = new System.Drawing.Size(41, 15);

@@ -80,6 +80,7 @@
             this.ButtonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonSave.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonSave.ForeColor = System.Drawing.Color.Black;
             this.ButtonSave.Location = new System.Drawing.Point(488, 262);
             this.ButtonSave.Name = "ButtonSave";
             this.ButtonSave.Size = new System.Drawing.Size(58, 30);
@@ -123,6 +124,7 @@
             // 
             this.CheckBoxA2E.AutoSize = true;
             this.CheckBoxA2E.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckBoxA2E.ForeColor = System.Drawing.Color.Black;
             this.CheckBoxA2E.Location = new System.Drawing.Point(158, 124);
             this.CheckBoxA2E.Name = "CheckBoxA2E";
             this.CheckBoxA2E.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -136,6 +138,7 @@
             // 
             this.TextBoxStudentID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxStudentID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxStudentID.ForeColor = System.Drawing.Color.Black;
             this.TextBoxStudentID.Location = new System.Drawing.Point(4, 3);
             this.TextBoxStudentID.Name = "TextBoxStudentID";
             this.TextBoxStudentID.Size = new System.Drawing.Size(218, 13);
@@ -145,6 +148,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(48, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 13);
@@ -155,6 +159,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(41, 48);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 13);
@@ -165,6 +170,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(23, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 13);
@@ -175,6 +181,7 @@
             // 
             this.CheckBoxStruggling.AutoSize = true;
             this.CheckBoxStruggling.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckBoxStruggling.ForeColor = System.Drawing.Color.Black;
             this.CheckBoxStruggling.Location = new System.Drawing.Point(255, 173);
             this.CheckBoxStruggling.Name = "CheckBoxStruggling";
             this.CheckBoxStruggling.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -187,6 +194,7 @@
             // 
             this.TextBoxCompany.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxCompany.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxCompany.ForeColor = System.Drawing.Color.Black;
             this.TextBoxCompany.Location = new System.Drawing.Point(4, 3);
             this.TextBoxCompany.Name = "TextBoxCompany";
             this.TextBoxCompany.Size = new System.Drawing.Size(218, 13);
@@ -197,6 +205,7 @@
             this.ComboBoxYearGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboBoxYearGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxYearGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxYearGroup.ForeColor = System.Drawing.Color.Black;
             this.ComboBoxYearGroup.FormattingEnabled = true;
             this.ComboBoxYearGroup.Items.AddRange(new object[] {
             "S1",
@@ -222,6 +231,7 @@
             this.TextBoxName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TextBoxName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxName.ForeColor = System.Drawing.Color.Black;
             this.TextBoxName.Location = new System.Drawing.Point(4, 3);
             this.TextBoxName.Name = "TextBoxName";
             this.TextBoxName.Size = new System.Drawing.Size(218, 13);
@@ -231,6 +241,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(40, 75);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 13);
@@ -272,6 +283,7 @@
             // 
             this.TextBoxA2EDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxA2EDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxA2EDesc.ForeColor = System.Drawing.Color.Black;
             this.TextBoxA2EDesc.Location = new System.Drawing.Point(4, 3);
             this.TextBoxA2EDesc.Name = "TextBoxA2EDesc";
             this.TextBoxA2EDesc.Size = new System.Drawing.Size(218, 13);
@@ -300,6 +312,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(17, 150);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 13);

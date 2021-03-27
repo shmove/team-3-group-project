@@ -86,6 +86,7 @@
             this.LabelStudentName.AutoSize = true;
             this.LabelStudentName.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelStudentName.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelStudentName.ForeColor = System.Drawing.Color.Black;
             this.LabelStudentName.Location = new System.Drawing.Point(131, 42);
             this.LabelStudentName.Name = "LabelStudentName";
             this.LabelStudentName.Size = new System.Drawing.Size(177, 32);
@@ -114,6 +115,7 @@
             this.LabelCompany.AutoSize = true;
             this.LabelCompany.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelCompany.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCompany.ForeColor = System.Drawing.Color.Black;
             this.LabelCompany.Location = new System.Drawing.Point(132, 124);
             this.LabelCompany.Name = "LabelCompany";
             this.LabelCompany.Size = new System.Drawing.Size(97, 25);
@@ -128,6 +130,7 @@
             this.LabelGroups.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelGroups.Cursor = System.Windows.Forms.Cursors.Help;
             this.LabelGroups.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelGroups.ForeColor = System.Drawing.Color.Black;
             this.LabelGroups.Location = new System.Drawing.Point(132, 149);
             this.LabelGroups.Name = "LabelGroups";
             this.LabelGroups.Size = new System.Drawing.Size(46, 25);
@@ -141,6 +144,7 @@
             this.SearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SearchResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.SearchResults.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchResults.ForeColor = System.Drawing.Color.Black;
             this.SearchResults.FormattingEnabled = true;
             this.SearchResults.ItemHeight = 15;
             this.SearchResults.Location = new System.Drawing.Point(12, 224);
@@ -154,6 +158,7 @@
             // 
             this.DateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DateTimePicker.CalendarFont = new System.Drawing.Font("Nirmala UI", 9F);
+            this.DateTimePicker.CalendarForeColor = System.Drawing.Color.Black;
             this.DateTimePicker.CalendarMonthBackground = System.Drawing.Color.White;
             this.DateTimePicker.CustomFormat = "";
             this.DateTimePicker.Font = new System.Drawing.Font("Nirmala UI", 9.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -185,6 +190,7 @@
             this.ButtonAddNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonAddNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAddNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonAddNote.ForeColor = System.Drawing.Color.Black;
             this.ButtonAddNote.Location = new System.Drawing.Point(282, 534);
             this.ButtonAddNote.Name = "ButtonAddNote";
             this.ButtonAddNote.Size = new System.Drawing.Size(95, 25);
@@ -214,6 +220,7 @@
             this.ButtonDeleteNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonDeleteNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDeleteNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonDeleteNote.ForeColor = System.Drawing.Color.Black;
             this.ButtonDeleteNote.Location = new System.Drawing.Point(484, 534);
             this.ButtonDeleteNote.Name = "ButtonDeleteNote";
             this.ButtonDeleteNote.Size = new System.Drawing.Size(95, 25);
@@ -228,6 +235,7 @@
             this.LabelStudentNo.AutoSize = true;
             this.LabelStudentNo.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelStudentNo.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelStudentNo.ForeColor = System.Drawing.Color.Black;
             this.LabelStudentNo.Location = new System.Drawing.Point(132, 74);
             this.LabelStudentNo.Name = "LabelStudentNo";
             this.LabelStudentNo.Size = new System.Drawing.Size(119, 25);
@@ -258,6 +266,7 @@
             this.ButtonEditNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonEditNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonEditNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonEditNote.ForeColor = System.Drawing.Color.Black;
             this.ButtonEditNote.Location = new System.Drawing.Point(383, 534);
             this.ButtonEditNote.Name = "ButtonEditNote";
             this.ButtonEditNote.Size = new System.Drawing.Size(95, 25);
@@ -272,6 +281,7 @@
             this.LabelYearGroup.AutoSize = true;
             this.LabelYearGroup.ContextMenuStrip = this.ContextMenuInfo;
             this.LabelYearGroup.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelYearGroup.ForeColor = System.Drawing.Color.Black;
             this.LabelYearGroup.Location = new System.Drawing.Point(132, 99);
             this.LabelYearGroup.Name = "LabelYearGroup";
             this.LabelYearGroup.Size = new System.Drawing.Size(113, 25);
