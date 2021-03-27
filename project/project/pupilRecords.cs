@@ -288,6 +288,7 @@ namespace project
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
 
             ignoreReloads = true;

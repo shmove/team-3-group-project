@@ -127,6 +127,7 @@ namespace project {
 
         private void frmRegister_Load(object sender, EventArgs e) {
             label2.Text = "Username";
+            VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
         }
 

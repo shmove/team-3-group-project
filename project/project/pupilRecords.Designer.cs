@@ -222,6 +222,7 @@
             this.filtersBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.filtersBack.Controls.Add(this.ButtonFilterDropDown);
             this.filtersBack.Controls.Add(this.labelFilters);
+            this.filtersBack.ForeColor = System.Drawing.Color.Black;
             this.filtersBack.Location = new System.Drawing.Point(12, 116);
             this.filtersBack.Name = "filtersBack";
             this.filtersBack.Size = new System.Drawing.Size(69, 23);
@@ -254,6 +255,7 @@
             this.panel1.Controls.Add(this.ComboBoxYearGroupBack);
             this.panel1.Controls.Add(this.CheckBoxStruggling);
             this.panel1.Controls.Add(this.CheckBoxA2E);
+            this.panel1.ForeColor = System.Drawing.Color.Black;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.MaximumSize = new System.Drawing.Size(192, 142);
             this.panel1.Name = "panel1";
@@ -514,7 +516,7 @@
             // BorderPanelLeft2
             // 
             this.BorderPanelLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelLeft2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelLeft2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelLeft2.Location = new System.Drawing.Point(0, 0);
             this.BorderPanelLeft2.Name = "BorderPanelLeft2";
             this.BorderPanelLeft2.Size = new System.Drawing.Size(1, 467);
@@ -523,7 +525,7 @@
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.panel2.Location = new System.Drawing.Point(799, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1, 467);
@@ -532,7 +534,7 @@
             // BorderPanelTopUpper
             // 
             this.BorderPanelTopUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelTopUpper.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelTopUpper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelTopUpper.Location = new System.Drawing.Point(0, 0);
             this.BorderPanelTopUpper.Name = "BorderPanelTopUpper";
             this.BorderPanelTopUpper.Size = new System.Drawing.Size(800, 1);
@@ -541,7 +543,7 @@
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.panel3.Location = new System.Drawing.Point(0, 466);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(800, 1);

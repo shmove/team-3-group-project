@@ -20,6 +20,7 @@ namespace project
 
         private void FormLogo_Load(object sender, EventArgs e)
         {
+            VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 300);
         }
 

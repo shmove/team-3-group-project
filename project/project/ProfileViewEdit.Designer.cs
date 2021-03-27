@@ -345,7 +345,7 @@
             // BorderPanelTopUpper
             // 
             this.BorderPanelTopUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelTopUpper.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelTopUpper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelTopUpper.Location = new System.Drawing.Point(0, 0);
             this.BorderPanelTopUpper.Name = "BorderPanelTopUpper";
             this.BorderPanelTopUpper.Size = new System.Drawing.Size(558, 1);
@@ -445,7 +445,7 @@
             // BorderPanelBottom2
             // 
             this.BorderPanelBottom2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelBottom2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelBottom2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelBottom2.Location = new System.Drawing.Point(0, 4);
             this.BorderPanelBottom2.Name = "BorderPanelBottom2";
             this.BorderPanelBottom2.Size = new System.Drawing.Size(558, 1);
@@ -454,7 +454,7 @@
             // BorderPanelLeft2
             // 
             this.BorderPanelLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelLeft2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelLeft2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelLeft2.Location = new System.Drawing.Point(0, 0);
             this.BorderPanelLeft2.Name = "BorderPanelLeft2";
             this.BorderPanelLeft2.Size = new System.Drawing.Size(1, 305);
@@ -463,7 +463,7 @@
             // BorderPanelRight2
             // 
             this.BorderPanelRight2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BorderPanelRight2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelRight2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelRight2.Location = new System.Drawing.Point(557, 0);
             this.BorderPanelRight2.Name = "BorderPanelRight2";
             this.BorderPanelRight2.Size = new System.Drawing.Size(1, 305);

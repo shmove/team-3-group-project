@@ -92,6 +92,7 @@ namespace project
         private void ProfileEditView_Load(object sender, EventArgs e)
         {
 
+            VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
 
             Mgr = searchForm.Mgr;

@@ -87,6 +87,7 @@ namespace project {
         {
             
             Manager = new DbPupilDataManager(); //Sets up the database in the case of a first time load. Though, it does seem pretty strange to be calling the pupil manager to create the user table; I might change that in the future.
+            VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
 
             return;

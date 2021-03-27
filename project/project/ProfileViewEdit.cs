@@ -156,6 +156,7 @@ namespace project
         {
 
             ComboBoxYearGroup.SelectedIndex = 0;
+            VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
 
             if (pupilForm != null)

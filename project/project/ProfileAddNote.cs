@@ -89,6 +89,7 @@ namespace project
         private void ProfileAddNote_Load(object sender, EventArgs e)
         {
 
+            VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
 
             Mgr = profileForm.searchForm.Mgr; // loads DBPupilDataManager

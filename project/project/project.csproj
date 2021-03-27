@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\StringValueAttribute.cs" />
+    <Compile Include="VisualThemes.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
