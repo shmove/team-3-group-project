@@ -493,7 +493,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "[StudentName] - Edit";
             this.Load += new System.EventHandler(this.ProfileViewEdit_Load);
-            this.Resize += new System.EventHandler(this.Form_Resize);
+            //this.Resize += new System.EventHandler(this.Form_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.StudentImage)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

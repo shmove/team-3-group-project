@@ -79,15 +79,17 @@ namespace project
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
         {
-            FadeEffect.FadeOut(this, 100, new Action(() =>
-            this.WindowState = FormWindowState.Minimized
-            ));
+            //FadeEffect.FadeOut(this, 100, new Action(() =>
+            this.WindowState = FormWindowState.Minimized;
+            //));
         }
 
+        /* ignore for now, buggy :(
         private void Form_Resize(object sender, EventArgs e)
         {
             if (this.WindowState != FormWindowState.Minimized) FadeEffect.FadeIn(this, 100);
         }
+        */
 
         // FORM CODE
 
