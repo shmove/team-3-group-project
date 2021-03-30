@@ -32,62 +32,53 @@ namespace project
 
         // WINDOW CONTROL BAR
 
-        // allows for window dragging
-        // https://stackoverflow.com/a/1592899
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
         private void PanelWindowControls_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
+            TitleBarControl.DragWindow(e, this);
         }
 
         private void PanelWindowClose_MouseHover(object sender, EventArgs e)
         {
-            PanelWindowClose.BackColor = Color.FromArgb(255, 210, 211, 213);
+            TitleBarControl.HoverButton(PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
         {
-            PanelWindowClose.BackColor = Color.FromArgb(255, 230, 231, 233);
+            TitleBarControl.LeaveButton(PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button != MouseButtons.Left) return;
-            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
+            TitleBarControl.MouseDownButton(e, new Action(() =>
+            {
+                FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
+            }));
         }
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
         {
-            PanelWindowMinimise.BackColor = Color.FromArgb(255, 210, 211, 213);
+            TitleBarControl.HoverButton(PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
         {
-            PanelWindowMinimise.BackColor = Color.FromArgb(255, 230, 231, 233);
+            TitleBarControl.LeaveButton(PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
         {
-            FadeEffect.FadeOut(this, 100, new Action(() =>
-            this.WindowState = FormWindowState.Minimized
-            ));
+            TitleBarControl.MouseDownButton(e, new Action(() =>
+            {
+                FadeEffect.FadeOut(this, 100, new Action(() => this.WindowState = FormWindowState.Minimized));
+            }));
+
         }
 
         private void Form_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState != FormWindowState.Minimized) FadeEffect.FadeIn(this, 100);
+            TitleBarControl.Unminimise(this);
         }
+
 
         // FORM CODE
 
@@ -157,7 +148,6 @@ namespace project
 
             ComboBoxYearGroup.SelectedIndex = 0;
             VisualThemes.ToDarkTheme(this);
-            FadeEffect.FadeIn(this, 100);
 
             if (pupilForm != null)
             {
@@ -231,6 +221,8 @@ namespace project
                 toggleA2EDisplay(false);
 
             };
+
+            FadeEffect.FadeIn(this, 100);
 
         }
 
@@ -309,5 +301,21 @@ namespace project
             toggleA2EDisplay(CheckBoxA2E.Checked);
         }
 
+        // CUSTOM DRAW METHODS
+
+        private void ComboBoxYearGroup_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
+                e = new DrawItemEventArgs(e.Graphics,
+                                          e.Font,
+                                          e.Bounds,
+                                          e.Index,
+                                          e.State ^ DrawItemState.Selected,
+                                          e.ForeColor,
+                                          VisualThemes.GetThemeColor(8, 1)); //Choose the color
+
+            e.DrawBackground(); // draw back
+            e.Graphics.DrawString(ComboBoxYearGroup.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, 1)), e.Bounds, StringFormat.GenericDefault); // draw text
+        }
     }
 }

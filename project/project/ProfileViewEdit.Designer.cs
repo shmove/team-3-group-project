@@ -62,6 +62,7 @@
             this.BorderPanelBottom2 = new System.Windows.Forms.Panel();
             this.BorderPanelLeft2 = new System.Windows.Forms.Panel();
             this.BorderPanelRight2 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.StudentImage)).BeginInit();
             this.panel1.SuspendLayout();
             this.TextBoxBack4.SuspendLayout();
@@ -73,6 +74,7 @@
             this.PanelWindowClose.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).BeginInit();
             this.borderPanelBottom.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonSave
@@ -108,10 +110,10 @@
             // 
             this.ButtonChangeImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonChangeImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ButtonChangeImage.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.ButtonChangeImage.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonChangeImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonChangeImage.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonChangeImage.ForeColor = System.Drawing.Color.White;
+            this.ButtonChangeImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonChangeImage.Location = new System.Drawing.Point(12, 262);
             this.ButtonChangeImage.Name = "ButtonChangeImage";
             this.ButtonChangeImage.Size = new System.Drawing.Size(171, 30);
@@ -138,10 +140,11 @@
             // 
             this.TextBoxStudentID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxStudentID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxStudentID.Font = new System.Drawing.Font("Nirmala UI", 9F);
             this.TextBoxStudentID.ForeColor = System.Drawing.Color.Black;
-            this.TextBoxStudentID.Location = new System.Drawing.Point(4, 3);
+            this.TextBoxStudentID.Location = new System.Drawing.Point(4, 2);
             this.TextBoxStudentID.Name = "TextBoxStudentID";
-            this.TextBoxStudentID.Size = new System.Drawing.Size(218, 13);
+            this.TextBoxStudentID.Size = new System.Drawing.Size(218, 16);
             this.TextBoxStudentID.TabIndex = 2;
             // 
             // label2
@@ -194,17 +197,20 @@
             // 
             this.TextBoxCompany.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxCompany.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxCompany.Font = new System.Drawing.Font("Nirmala UI", 9F);
             this.TextBoxCompany.ForeColor = System.Drawing.Color.Black;
-            this.TextBoxCompany.Location = new System.Drawing.Point(4, 3);
+            this.TextBoxCompany.Location = new System.Drawing.Point(4, 2);
             this.TextBoxCompany.Name = "TextBoxCompany";
-            this.TextBoxCompany.Size = new System.Drawing.Size(218, 13);
+            this.TextBoxCompany.Size = new System.Drawing.Size(218, 16);
             this.TextBoxCompany.TabIndex = 4;
             // 
             // ComboBoxYearGroup
             // 
             this.ComboBoxYearGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ComboBoxYearGroup.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.ComboBoxYearGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxYearGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxYearGroup.Font = new System.Drawing.Font("Nirmala UI", 9F);
             this.ComboBoxYearGroup.ForeColor = System.Drawing.Color.Black;
             this.ComboBoxYearGroup.FormattingEnabled = true;
             this.ComboBoxYearGroup.Items.AddRange(new object[] {
@@ -220,21 +226,23 @@
             "Uni2",
             "Uni3",
             "Uni4"});
-            this.ComboBoxYearGroup.Location = new System.Drawing.Point(110, 71);
+            this.ComboBoxYearGroup.Location = new System.Drawing.Point(-1, -2);
             this.ComboBoxYearGroup.Name = "ComboBoxYearGroup";
             this.ComboBoxYearGroup.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ComboBoxYearGroup.Size = new System.Drawing.Size(226, 21);
+            this.ComboBoxYearGroup.Size = new System.Drawing.Size(227, 24);
             this.ComboBoxYearGroup.TabIndex = 3;
+            this.ComboBoxYearGroup.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBoxYearGroup_DrawItem);
             // 
             // TextBoxName
             // 
             this.TextBoxName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TextBoxName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxName.Font = new System.Drawing.Font("Nirmala UI", 9F);
             this.TextBoxName.ForeColor = System.Drawing.Color.Black;
-            this.TextBoxName.Location = new System.Drawing.Point(4, 3);
+            this.TextBoxName.Location = new System.Drawing.Point(4, 2);
             this.TextBoxName.Name = "TextBoxName";
-            this.TextBoxName.Size = new System.Drawing.Size(218, 13);
+            this.TextBoxName.Size = new System.Drawing.Size(218, 16);
             this.TextBoxName.TabIndex = 1;
             // 
             // label4
@@ -258,13 +266,13 @@
             this.panel1.Controls.Add(this.TextBoxBack2);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.ComboBoxYearGroup);
             this.panel1.Controls.Add(this.CheckBoxStruggling);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.CheckBoxA2E);
             this.panel1.Controls.Add(this.TextBoxBack1);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(190, 42);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(356, 214);
@@ -283,10 +291,11 @@
             // 
             this.TextBoxA2EDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxA2EDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxA2EDesc.Font = new System.Drawing.Font("Nirmala UI", 9F);
             this.TextBoxA2EDesc.ForeColor = System.Drawing.Color.Black;
-            this.TextBoxA2EDesc.Location = new System.Drawing.Point(4, 3);
+            this.TextBoxA2EDesc.Location = new System.Drawing.Point(4, 2);
             this.TextBoxA2EDesc.Name = "TextBoxA2EDesc";
-            this.TextBoxA2EDesc.Size = new System.Drawing.Size(218, 13);
+            this.TextBoxA2EDesc.Size = new System.Drawing.Size(218, 16);
             this.TextBoxA2EDesc.TabIndex = 29;
             this.TextBoxA2EDesc.Visible = false;
             // 
@@ -366,6 +375,7 @@
             // LabelMinimiseWindow
             // 
             this.LabelMinimiseWindow.AutoSize = true;
+            this.LabelMinimiseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelMinimiseWindow.Enabled = false;
             this.LabelMinimiseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.LabelMinimiseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -392,6 +402,7 @@
             // LabelCloseWindow
             // 
             this.LabelCloseWindow.AutoSize = true;
+            this.LabelCloseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelCloseWindow.Enabled = false;
             this.LabelCloseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.LabelCloseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -405,6 +416,7 @@
             // 
             // IconWindowControls
             // 
+            this.IconWindowControls.BackColor = System.Drawing.Color.Transparent;
             this.IconWindowControls.Image = global::project.Properties.Resources.programIcon;
             this.IconWindowControls.Location = new System.Drawing.Point(5, 5);
             this.IconWindowControls.Name = "IconWindowControls";
@@ -469,6 +481,16 @@
             this.BorderPanelRight2.Size = new System.Drawing.Size(1, 305);
             this.BorderPanelRight2.TabIndex = 39;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.ComboBoxYearGroup);
+            this.panel2.Location = new System.Drawing.Point(110, 71);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(226, 22);
+            this.panel2.TabIndex = 34;
+            // 
             // ProfileViewEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -512,6 +534,7 @@
             this.PanelWindowClose.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).EndInit();
             this.borderPanelBottom.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -550,5 +573,6 @@
         private System.Windows.Forms.Panel BorderPanelBottom2;
         private System.Windows.Forms.Panel BorderPanelLeft2;
         private System.Windows.Forms.Panel BorderPanelTopUpper;
+        private System.Windows.Forms.Panel panel2;
     }
 }

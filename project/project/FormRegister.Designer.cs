@@ -265,6 +265,7 @@
             // LabelMinimiseWindow
             // 
             this.LabelMinimiseWindow.AutoSize = true;
+            this.LabelMinimiseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelMinimiseWindow.Enabled = false;
             this.LabelMinimiseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.LabelMinimiseWindow.Location = new System.Drawing.Point(13, 5);
@@ -289,6 +290,7 @@
             // LabelCloseWindow
             // 
             this.LabelCloseWindow.AutoSize = true;
+            this.LabelCloseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelCloseWindow.Enabled = false;
             this.LabelCloseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.LabelCloseWindow.Location = new System.Drawing.Point(13, 5);
@@ -301,6 +303,7 @@
             // 
             // IconWindowControls
             // 
+            this.IconWindowControls.BackColor = System.Drawing.Color.Transparent;
             this.IconWindowControls.Image = global::project.Properties.Resources.programIcon;
             this.IconWindowControls.Location = new System.Drawing.Point(5, 5);
             this.IconWindowControls.Name = "IconWindowControls";

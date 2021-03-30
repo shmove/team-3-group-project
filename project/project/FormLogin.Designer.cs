@@ -70,7 +70,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(165)))), ((int)(((byte)(169)))));
             this.label5.Location = new System.Drawing.Point(68, 399);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(156, 17);
@@ -82,6 +82,7 @@
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.BackColor = System.Drawing.Color.White;
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.Black;
             this.button2.Location = new System.Drawing.Point(36, 340);
@@ -97,10 +98,9 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.button1.Location = new System.Drawing.Point(36, 289);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(216, 35);
@@ -250,6 +250,7 @@
             // LabelMinimiseWindow
             // 
             this.LabelMinimiseWindow.AutoSize = true;
+            this.LabelMinimiseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelMinimiseWindow.Enabled = false;
             this.LabelMinimiseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.LabelMinimiseWindow.Location = new System.Drawing.Point(13, 5);
@@ -275,6 +276,7 @@
             // LabelCloseWindow
             // 
             this.LabelCloseWindow.AutoSize = true;
+            this.LabelCloseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelCloseWindow.Enabled = false;
             this.LabelCloseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.LabelCloseWindow.Location = new System.Drawing.Point(13, 5);
@@ -287,6 +289,7 @@
             // 
             // IconWindowControls
             // 
+            this.IconWindowControls.BackColor = System.Drawing.Color.Transparent;
             this.IconWindowControls.Image = global::project.Properties.Resources.programIcon;
             this.IconWindowControls.Location = new System.Drawing.Point(5, 5);
             this.IconWindowControls.Name = "IconWindowControls";

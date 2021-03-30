@@ -43,8 +43,17 @@
             this.filtersBack = new System.Windows.Forms.Panel();
             this.dropDownBack = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ComboBoxBack = new System.Windows.Forms.Panel();
             this.ComboBoxContext = new System.Windows.Forms.ComboBox();
@@ -68,9 +77,15 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.BorderPanelTopUpper = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.SearchBarBack = new System.Windows.Forms.Panel();
+            this.SearchResultsBorderTop = new System.Windows.Forms.Panel();
+            this.SearchResultsBorderLeft = new System.Windows.Forms.Panel();
+            this.SearchResultsBorderBottom = new System.Windows.Forms.Panel();
+            this.SearchResultsBorderRight = new System.Windows.Forms.Panel();
             this.filtersBack.SuspendLayout();
             this.dropDownBack.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.ComboBoxBack.SuspendLayout();
             this.ComboBoxYearGroupBack.SuspendLayout();
             this.ContextMenuStudent.SuspendLayout();
@@ -78,6 +93,7 @@
             this.PanelWindowMinimise.SuspendLayout();
             this.PanelWindowClose.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).BeginInit();
+            this.SearchBarBack.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -95,10 +111,12 @@
             // SearchBar
             // 
             this.SearchBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SearchBar.BackColor = System.Drawing.Color.White;
-            this.SearchBar.Location = new System.Drawing.Point(12, 88);
+            this.SearchBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.SearchBar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SearchBar.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchBar.Location = new System.Drawing.Point(5, 4);
             this.SearchBar.Name = "SearchBar";
-            this.SearchBar.Size = new System.Drawing.Size(776, 20);
+            this.SearchBar.Size = new System.Drawing.Size(766, 18);
             this.SearchBar.TabIndex = 1;
             this.SearchBar.TextChanged += new System.EventHandler(this.QuickDisplayUpdateEvent);
             // 
@@ -108,7 +126,7 @@
             this.CheckBoxA2E.AutoSize = true;
             this.CheckBoxA2E.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheckBoxA2E.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CheckBoxA2E.Location = new System.Drawing.Point(6, -130);
+            this.CheckBoxA2E.Location = new System.Drawing.Point(6, 10);
             this.CheckBoxA2E.Name = "CheckBoxA2E";
             this.CheckBoxA2E.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.CheckBoxA2E.Size = new System.Drawing.Size(174, 17);
@@ -121,24 +139,28 @@
             // 
             this.SearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SearchResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.SearchResults.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SearchResults.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.SearchResults.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchResults.ForeColor = System.Drawing.Color.Black;
             this.SearchResults.FormattingEnabled = true;
             this.SearchResults.ItemHeight = 21;
             this.SearchResults.Location = new System.Drawing.Point(12, 149);
             this.SearchResults.Name = "SearchResults";
-            this.SearchResults.Size = new System.Drawing.Size(776, 277);
+            this.SearchResults.Size = new System.Drawing.Size(776, 273);
             this.SearchResults.TabIndex = 4;
+            this.SearchResults.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.SearchResults_DrawItem);
             this.SearchResults.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDoubleClick);
             this.SearchResults.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDown);
             // 
             // ViewButton
             // 
             this.ViewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ViewButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ViewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ViewButton.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ViewButton.ForeColor = System.Drawing.Color.Black;
-            this.ViewButton.Location = new System.Drawing.Point(713, 432);
+            this.ViewButton.Location = new System.Drawing.Point(713, 428);
             this.ViewButton.Name = "ViewButton";
             this.ViewButton.Size = new System.Drawing.Size(75, 23);
             this.ViewButton.TabIndex = 5;
@@ -150,12 +172,12 @@
             // 
             this.ResetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ResetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ResetButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.ResetButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ResetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ResetButton.ForeColor = System.Drawing.Color.White;
-            this.ResetButton.Location = new System.Drawing.Point(713, 114);
+            this.ResetButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ResetButton.Location = new System.Drawing.Point(713, 115);
             this.ResetButton.Name = "ResetButton";
-            this.ResetButton.Size = new System.Drawing.Size(75, 25);
+            this.ResetButton.Size = new System.Drawing.Size(75, 24);
             this.ResetButton.TabIndex = 6;
             this.ResetButton.Text = "Reset";
             this.ResetButton.UseVisualStyleBackColor = false;
@@ -164,9 +186,10 @@
             // ButtonAddStudent
             // 
             this.ButtonAddStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonAddStudent.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ButtonAddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAddStudent.ForeColor = System.Drawing.Color.Black;
-            this.ButtonAddStudent.Location = new System.Drawing.Point(12, 432);
+            this.ButtonAddStudent.Location = new System.Drawing.Point(12, 428);
             this.ButtonAddStudent.Name = "ButtonAddStudent";
             this.ButtonAddStudent.Size = new System.Drawing.Size(100, 23);
             this.ButtonAddStudent.TabIndex = 7;
@@ -178,10 +201,10 @@
             // 
             this.ButtonDeleteStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonDeleteStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ButtonDeleteStudent.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.ButtonDeleteStudent.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonDeleteStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonDeleteStudent.ForeColor = System.Drawing.Color.White;
-            this.ButtonDeleteStudent.Location = new System.Drawing.Point(118, 432);
+            this.ButtonDeleteStudent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ButtonDeleteStudent.Location = new System.Drawing.Point(118, 428);
             this.ButtonDeleteStudent.Name = "ButtonDeleteStudent";
             this.ButtonDeleteStudent.Size = new System.Drawing.Size(100, 23);
             this.ButtonDeleteStudent.TabIndex = 8;
@@ -239,7 +262,7 @@
             this.dropDownBack.MaximumSize = new System.Drawing.Size(200, 150);
             this.dropDownBack.MinimumSize = new System.Drawing.Size(10, 10);
             this.dropDownBack.Name = "dropDownBack";
-            this.dropDownBack.Size = new System.Drawing.Size(200, 10);
+            this.dropDownBack.Size = new System.Drawing.Size(200, 150);
             this.dropDownBack.TabIndex = 12;
             // 
             // panel1
@@ -247,9 +270,17 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(244)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.panel1.Controls.Add(this.panel9);
+            this.panel1.Controls.Add(this.panel8);
+            this.panel1.Controls.Add(this.panel10);
+            this.panel1.Controls.Add(this.panel7);
+            this.panel1.Controls.Add(this.panel11);
+            this.panel1.Controls.Add(this.panel6);
+            this.panel1.Controls.Add(this.panel12);
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.DateTimePicker);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.ComboBoxBack);
             this.panel1.Controls.Add(this.ComboBoxYearGroupBack);
@@ -259,42 +290,124 @@
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.MaximumSize = new System.Drawing.Size(192, 142);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(192, 2);
+            this.panel1.Size = new System.Drawing.Size(192, 142);
             this.panel1.TabIndex = 13;
             // 
-            // label3
+            // panel9
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(8, -48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 13);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "last edited:";
+            this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel9.Location = new System.Drawing.Point(72, 106);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1, 21);
+            this.panel9.TabIndex = 48;
+            // 
+            // panel8
+            // 
+            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel8.Location = new System.Drawing.Point(179, 57);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1, 21);
+            this.panel8.TabIndex = 44;
+            // 
+            // panel10
+            // 
+            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel10.Location = new System.Drawing.Point(10, 126);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(63, 1);
+            this.panel10.TabIndex = 46;
+            // 
+            // panel7
+            // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel7.Location = new System.Drawing.Point(75, 77);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(105, 1);
+            this.panel7.TabIndex = 43;
+            // 
+            // panel11
+            // 
+            this.panel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel11.Location = new System.Drawing.Point(10, 106);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1, 20);
+            this.panel11.TabIndex = 47;
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel6.Location = new System.Drawing.Point(75, 57);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1, 20);
+            this.panel6.TabIndex = 43;
+            // 
+            // panel12
+            // 
+            this.panel12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel12.Location = new System.Drawing.Point(10, 106);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(63, 1);
+            this.panel12.TabIndex = 45;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel5.Location = new System.Drawing.Point(76, 57);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(104, 1);
+            this.panel5.TabIndex = 42;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.Controls.Add(this.DateTimePicker);
+            this.panel4.Location = new System.Drawing.Point(81, 107);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(100, 19);
+            this.panel4.TabIndex = 21;
             // 
             // DateTimePicker
             // 
             this.DateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.DateTimePicker.CalendarFont = new System.Drawing.Font("Nirmala UI", 9F);
-            this.DateTimePicker.CalendarMonthBackground = System.Drawing.Color.White;
+            this.DateTimePicker.CalendarForeColor = System.Drawing.Color.Black;
+            this.DateTimePicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.DateTimePicker.CustomFormat = "";
             this.DateTimePicker.Font = new System.Drawing.Font("Nirmala UI", 9.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateTimePicker.Location = new System.Drawing.Point(77, -33);
+            this.DateTimePicker.Location = new System.Drawing.Point(-1, -1);
             this.DateTimePicker.Name = "DateTimePicker";
             this.DateTimePicker.Size = new System.Drawing.Size(103, 24);
             this.DateTimePicker.TabIndex = 18;
             this.DateTimePicker.Value = new System.DateTime(2021, 1, 1, 0, 0, 0, 0);
             this.DateTimePicker.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(115)))), ((int)(((byte)(117)))));
+            this.label3.Location = new System.Drawing.Point(8, 92);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "last edited:";
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, -80);
+            this.label2.Location = new System.Drawing.Point(8, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 19;
@@ -303,19 +416,21 @@
             // ComboBoxBack
             // 
             this.ComboBoxBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ComboBoxBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ComboBoxBack.Controls.Add(this.ComboBoxContext);
-            this.ComboBoxBack.Location = new System.Drawing.Point(10, -32);
+            this.ComboBoxBack.Location = new System.Drawing.Point(9, 107);
             this.ComboBoxBack.Name = "ComboBoxBack";
-            this.ComboBoxBack.Size = new System.Drawing.Size(63, 24);
+            this.ComboBoxBack.Size = new System.Drawing.Size(63, 19);
             this.ComboBoxBack.TabIndex = 19;
             // 
             // ComboBoxContext
             // 
-            this.ComboBoxContext.BackColor = System.Drawing.Color.White;
+            this.ComboBoxContext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ComboBoxContext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ComboBoxContext.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.ComboBoxContext.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxContext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxContext.Font = new System.Drawing.Font("Nirmala UI", 9F);
+            this.ComboBoxContext.ForeColor = System.Drawing.Color.Black;
             this.ComboBoxContext.FormattingEnabled = true;
             this.ComboBoxContext.ItemHeight = 15;
             this.ComboBoxContext.Items.AddRange(new object[] {
@@ -325,18 +440,18 @@
             "after"});
             this.ComboBoxContext.Location = new System.Drawing.Point(-1, -1);
             this.ComboBoxContext.Name = "ComboBoxContext";
-            this.ComboBoxContext.Size = new System.Drawing.Size(62, 23);
+            this.ComboBoxContext.Size = new System.Drawing.Size(64, 21);
             this.ComboBoxContext.TabIndex = 13;
+            this.ComboBoxContext.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBoxContext_DrawItem);
             this.ComboBoxContext.SelectedIndexChanged += new System.EventHandler(this.ComboBoxContext_SelectedIndexChanged);
             // 
             // ComboBoxYearGroupBack
             // 
             this.ComboBoxYearGroupBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ComboBoxYearGroupBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ComboBoxYearGroupBack.Controls.Add(this.ComboBoxYearGroup);
-            this.ComboBoxYearGroupBack.Location = new System.Drawing.Point(77, -84);
+            this.ComboBoxYearGroupBack.Location = new System.Drawing.Point(77, 58);
             this.ComboBoxYearGroupBack.Name = "ComboBoxYearGroupBack";
-            this.ComboBoxYearGroupBack.Size = new System.Drawing.Size(103, 24);
+            this.ComboBoxYearGroupBack.Size = new System.Drawing.Size(103, 19);
             this.ComboBoxYearGroupBack.TabIndex = 18;
             // 
             // ComboBoxYearGroup
@@ -344,10 +459,12 @@
             this.ComboBoxYearGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ComboBoxYearGroup.BackColor = System.Drawing.Color.White;
+            this.ComboBoxYearGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ComboBoxYearGroup.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.ComboBoxYearGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxYearGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxYearGroup.Font = new System.Drawing.Font("Nirmala UI", 9F);
+            this.ComboBoxYearGroup.ForeColor = System.Drawing.Color.Black;
             this.ComboBoxYearGroup.FormattingEnabled = true;
             this.ComboBoxYearGroup.ItemHeight = 15;
             this.ComboBoxYearGroup.Items.AddRange(new object[] {
@@ -366,8 +483,9 @@
             "Uni4"});
             this.ComboBoxYearGroup.Location = new System.Drawing.Point(-1, -1);
             this.ComboBoxYearGroup.Name = "ComboBoxYearGroup";
-            this.ComboBoxYearGroup.Size = new System.Drawing.Size(103, 23);
+            this.ComboBoxYearGroup.Size = new System.Drawing.Size(105, 21);
             this.ComboBoxYearGroup.TabIndex = 13;
+            this.ComboBoxYearGroup.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBoxYearGroup_DrawItem);
             this.ComboBoxYearGroup.SelectedIndexChanged += new System.EventHandler(this.QuickDisplayUpdateEvent);
             // 
             // CheckBoxStruggling
@@ -375,7 +493,7 @@
             this.CheckBoxStruggling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CheckBoxStruggling.AutoSize = true;
             this.CheckBoxStruggling.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckBoxStruggling.Location = new System.Drawing.Point(6, -107);
+            this.CheckBoxStruggling.Location = new System.Drawing.Point(6, 33);
             this.CheckBoxStruggling.Name = "CheckBoxStruggling";
             this.CheckBoxStruggling.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.CheckBoxStruggling.Size = new System.Drawing.Size(174, 17);
@@ -465,6 +583,7 @@
             // LabelMinimiseWindow
             // 
             this.LabelMinimiseWindow.AutoSize = true;
+            this.LabelMinimiseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelMinimiseWindow.Enabled = false;
             this.LabelMinimiseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.LabelMinimiseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -491,6 +610,7 @@
             // LabelCloseWindow
             // 
             this.LabelCloseWindow.AutoSize = true;
+            this.LabelCloseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelCloseWindow.Enabled = false;
             this.LabelCloseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.LabelCloseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -504,6 +624,7 @@
             // 
             // IconWindowControls
             // 
+            this.IconWindowControls.BackColor = System.Drawing.Color.Transparent;
             this.IconWindowControls.Image = global::project.Properties.Resources.programIcon;
             this.IconWindowControls.Location = new System.Drawing.Point(5, 5);
             this.IconWindowControls.Name = "IconWindowControls";
@@ -549,12 +670,63 @@
             this.panel3.Size = new System.Drawing.Size(800, 1);
             this.panel3.TabIndex = 43;
             // 
+            // SearchBarBack
+            // 
+            this.SearchBarBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.SearchBarBack.Controls.Add(this.SearchBar);
+            this.SearchBarBack.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.SearchBarBack.Location = new System.Drawing.Point(12, 83);
+            this.SearchBarBack.Name = "SearchBarBack";
+            this.SearchBarBack.Size = new System.Drawing.Size(776, 25);
+            this.SearchBarBack.TabIndex = 44;
+            // 
+            // SearchResultsBorderTop
+            // 
+            this.SearchResultsBorderTop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SearchResultsBorderTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.SearchResultsBorderTop.Location = new System.Drawing.Point(12, 149);
+            this.SearchResultsBorderTop.Name = "SearchResultsBorderTop";
+            this.SearchResultsBorderTop.Size = new System.Drawing.Size(776, 1);
+            this.SearchResultsBorderTop.TabIndex = 41;
+            // 
+            // SearchResultsBorderLeft
+            // 
+            this.SearchResultsBorderLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SearchResultsBorderLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.SearchResultsBorderLeft.Location = new System.Drawing.Point(12, 149);
+            this.SearchResultsBorderLeft.Name = "SearchResultsBorderLeft";
+            this.SearchResultsBorderLeft.Size = new System.Drawing.Size(1, 273);
+            this.SearchResultsBorderLeft.TabIndex = 42;
+            // 
+            // SearchResultsBorderBottom
+            // 
+            this.SearchResultsBorderBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SearchResultsBorderBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.SearchResultsBorderBottom.Location = new System.Drawing.Point(12, 421);
+            this.SearchResultsBorderBottom.Name = "SearchResultsBorderBottom";
+            this.SearchResultsBorderBottom.Size = new System.Drawing.Size(776, 1);
+            this.SearchResultsBorderBottom.TabIndex = 42;
+            // 
+            // SearchResultsBorderRight
+            // 
+            this.SearchResultsBorderRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SearchResultsBorderRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.SearchResultsBorderRight.Location = new System.Drawing.Point(787, 149);
+            this.SearchResultsBorderRight.Name = "SearchResultsBorderRight";
+            this.SearchResultsBorderRight.Size = new System.Drawing.Size(1, 273);
+            this.SearchResultsBorderRight.TabIndex = 43;
+            // 
             // pupilRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 467);
+            this.Controls.Add(this.dropDownBack);
+            this.Controls.Add(this.SearchResultsBorderRight);
+            this.Controls.Add(this.SearchResultsBorderBottom);
+            this.Controls.Add(this.SearchResultsBorderLeft);
+            this.Controls.Add(this.SearchResultsBorderTop);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.BorderPanelTopUpper);
             this.Controls.Add(this.panel2);
@@ -563,15 +735,14 @@
             this.Controls.Add(this.borderPanelRight);
             this.Controls.Add(this.borderPanelLeft);
             this.Controls.Add(this.borderPanelBottom);
-            this.Controls.Add(this.dropDownBack);
             this.Controls.Add(this.ButtonDeleteStudent);
             this.Controls.Add(this.ButtonAddStudent);
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.ViewButton);
             this.Controls.Add(this.SearchResults);
-            this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.filtersBack);
+            this.Controls.Add(this.SearchBarBack);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -585,6 +756,7 @@
             this.dropDownBack.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ComboBoxBack.ResumeLayout(false);
             this.ComboBoxYearGroupBack.ResumeLayout(false);
             this.ContextMenuStudent.ResumeLayout(false);
@@ -594,6 +766,8 @@
             this.PanelWindowClose.ResumeLayout(false);
             this.PanelWindowClose.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).EndInit();
+            this.SearchBarBack.ResumeLayout(false);
+            this.SearchBarBack.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -642,6 +816,20 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel BorderPanelTopUpper;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel SearchBarBack;
+        private System.Windows.Forms.Panel SearchResultsBorderTop;
+        private System.Windows.Forms.Panel SearchResultsBorderLeft;
+        private System.Windows.Forms.Panel SearchResultsBorderBottom;
+        private System.Windows.Forms.Panel SearchResultsBorderRight;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel12;
     }
 }
 
