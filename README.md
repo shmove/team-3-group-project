@@ -1,6 +1,9 @@
 # Group Project (Team 3)
 This is a project made to the specifications of Matthew Barr for a college work placement.
 
+## Installation
+Run the latest installer from the [releases section](https://github.com/shmove/team-3-group-project/releases), and launch from the newly generated desktop icon.
+
 ## Members
 This project is actively being worked on by:
 - Matthew Liddle
