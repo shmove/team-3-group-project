@@ -49,7 +49,9 @@
             this.ComboBoxBack = new System.Windows.Forms.Panel();
             this.ComboBoxContext = new System.Windows.Forms.ComboBox();
             this.ComboBoxYearGroupBack = new System.Windows.Forms.Panel();
-            this.ComboBoxYearGroup = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.TextBoxYearGroup = new System.Windows.Forms.TextBox();
             this.CheckBoxStruggling = new System.Windows.Forms.CheckBox();
             this.dropdownTimerFilter = new System.Windows.Forms.Timer(this.components);
             this.ContextMenuStudent = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -346,42 +348,42 @@
             // 
             this.ComboBoxYearGroupBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxYearGroupBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ComboBoxYearGroupBack.Controls.Add(this.ComboBoxYearGroup);
-            this.ComboBoxYearGroupBack.Location = new System.Drawing.Point(77, 56);
+            this.ComboBoxYearGroupBack.Controls.Add(this.button2);
+            this.ComboBoxYearGroupBack.Controls.Add(this.button1);
+            this.ComboBoxYearGroupBack.Controls.Add(this.TextBoxYearGroup);
+            this.ComboBoxYearGroupBack.Location = new System.Drawing.Point(77, 58);
             this.ComboBoxYearGroupBack.Name = "ComboBoxYearGroupBack";
-            this.ComboBoxYearGroupBack.Size = new System.Drawing.Size(103, 24);
+            this.ComboBoxYearGroupBack.Size = new System.Drawing.Size(104, 20);
             this.ComboBoxYearGroupBack.TabIndex = 18;
             // 
-            // ComboBoxYearGroup
+            // button2
             // 
-            this.ComboBoxYearGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ComboBoxYearGroup.BackColor = System.Drawing.Color.White;
-            this.ComboBoxYearGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxYearGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboBoxYearGroup.Font = new System.Drawing.Font("Nirmala UI", 9F);
-            this.ComboBoxYearGroup.FormattingEnabled = true;
-            this.ComboBoxYearGroup.ItemHeight = 15;
-            this.ComboBoxYearGroup.Items.AddRange(new object[] {
-            " ",
-            "S1",
-            "S2",
-            "S3",
-            "S4",
-            "S5",
-            "S6",
-            "College1",
-            "College2",
-            "Uni1",
-            "Uni2",
-            "Uni3",
-            "Uni4"});
-            this.ComboBoxYearGroup.Location = new System.Drawing.Point(-1, -1);
-            this.ComboBoxYearGroup.Name = "ComboBoxYearGroup";
-            this.ComboBoxYearGroup.Size = new System.Drawing.Size(103, 23);
-            this.ComboBoxYearGroup.TabIndex = 13;
-            this.ComboBoxYearGroup.SelectedIndexChanged += new System.EventHandler(this.QuickDisplayUpdateEvent);
+            this.button2.Location = new System.Drawing.Point(82, -1);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(21, 20);
+            this.button2.TabIndex = 2;
+            this.button2.Text = ">";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(-1, -1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(21, 20);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "<";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // TextBoxYearGroup
+            // 
+            this.TextBoxYearGroup.Location = new System.Drawing.Point(19, -1);
+            this.TextBoxYearGroup.Name = "TextBoxYearGroup";
+            this.TextBoxYearGroup.Size = new System.Drawing.Size(64, 20);
+            this.TextBoxYearGroup.TabIndex = 0;
+            this.TextBoxYearGroup.TextChanged += new System.EventHandler(this.QuickDisplayUpdateEvent);
+            this.TextBoxYearGroup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InitYearGroupSearch);
             // 
             // CheckBoxStruggling
             // 
@@ -760,6 +762,7 @@
             this.panel1.PerformLayout();
             this.ComboBoxBack.ResumeLayout(false);
             this.ComboBoxYearGroupBack.ResumeLayout(false);
+            this.ComboBoxYearGroupBack.PerformLayout();
             this.ContextMenuStudent.ResumeLayout(false);
             this.PanelWindowControls.ResumeLayout(false);
             this.PanelWindowMinimise.ResumeLayout(false);
@@ -797,8 +800,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox CheckBoxStruggling;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel ComboBoxYearGroupBack;
-        private System.Windows.Forms.ComboBox ComboBoxYearGroup;
         private System.Windows.Forms.DateTimePicker DateTimePicker;
         private System.Windows.Forms.Panel ComboBoxBack;
         private System.Windows.Forms.ComboBox ComboBoxContext;
@@ -832,6 +833,10 @@
         private System.Windows.Forms.Label sortDisplayAccessTime;
         private System.Windows.Forms.Label sortDisplayYearGroup;
         private System.Windows.Forms.Timer dropdownTimerSort;
+        private System.Windows.Forms.Panel ComboBoxYearGroupBack;
+        private System.Windows.Forms.TextBox TextBoxYearGroup;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

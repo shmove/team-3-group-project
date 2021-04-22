@@ -135,7 +135,7 @@ namespace project
             LabelStudentName.Text = activeStudent.Name;
             LabelStudentNo.Text = activeStudent.PupilID;
             LabelCompany.Text = activeStudent.Company;
-            LabelYearGroup.Text = activeStudent.YearGroup.ToString();
+            LabelYearGroup.Text = Pupil.GetYearGroupString(activeStudent.YearGroup);
 
             if (activeStudent.A2E)
             {
