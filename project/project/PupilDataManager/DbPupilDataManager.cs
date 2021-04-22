@@ -32,13 +32,13 @@ namespace project {
     ///  -  Multiple users.
     /// </summary>
     public class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.12.15";
-        public static readonly int BUILD = 15;
+        public static readonly string VERSION = "0.1.13.16";
+        public static readonly int BUILD = 16;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
         private static readonly string CONNECTION_STRING_TEMPLATE = "Provider = Microsoft.Jet.OLEDB.4.0; Data Source = ";
-        private static readonly string[] PUPIL_TABLE_COLUMN_NAMES = new string[]{"PupilUUID", "PupilID", "Name", "Company", "A2E", "YearGroup", "A2EDescription", "LastAccess", "Struggling"};
+        private static readonly string[] PUPIL_TABLE_COLUMN_NAMES = new string[]{"PupilUUID", "PupilID", "Forename", "Surname", "Company", "A2E", "YearGroup", "A2EDescription", "LastAccess", "Struggling"};
         public string ConnectionString;
         public DbUser User;
         /// <summary>
@@ -94,7 +94,8 @@ namespace project {
             v_TableManager.CreateTable("Pupil", new ValueTuple<string, ADOX.DataTypeEnum, int>[]{
                 ("PupilUUID", ADOX.DataTypeEnum.adVarWChar, 36),
                 ("PupilID", ADOX.DataTypeEnum.adVarWChar, 16),
-                ("Name", ADOX.DataTypeEnum.adVarWChar, 127),
+                ("Forename", ADOX.DataTypeEnum.adVarWChar, 127),
+                ("Surname", ADOX.DataTypeEnum.adVarWChar, 127),
                 ("Company", ADOX.DataTypeEnum.adVarWChar, 160),
                 ("A2E", ADOX.DataTypeEnum.adBoolean, -1),
                 ("YearGroup", ADOX.DataTypeEnum.adInteger, -1),
@@ -279,8 +280,8 @@ namespace project {
             return ValueList;
         }
         
-        private static readonly string[] UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST = new string[]{"PupilUUID", "Notes", "TodoList"};
-        private static readonly string[] INSERT_PUPIL_DATA_PROPERTY_BLACKLIST = new string[]{"Notes", "TodoList"};
+        private static readonly string[] UPDATE_PUPIL_DATA_PROPERTY_BLACKLIST = new string[]{"Name", "PupilUUID", "Notes", "TodoList"};
+        private static readonly string[] INSERT_PUPIL_DATA_PROPERTY_BLACKLIST = new string[]{"Name", "Notes", "TodoList"};
         /// <summary>
         ///     Writes pupil data to the database: this can be used to update existing records or create new ones.
         /// <br />

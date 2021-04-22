@@ -35,7 +35,7 @@ namespace project.Interfaces {
             if ((Count >> 8) > 0) throw new Exception("Really?");
             Pupil[] PupilArray = new Pupil[Count];
             Random v_Random = new Random();
-            for (int i = 0; i < Count; i++) PupilArray[i] = new Pupil(System.IO.Path.GetRandomFileName(), (v_Random.Next(0x00989680, 0x05f5e0ff) >> 0).ToString(), (v_Random.Next(0, 4) >> 1) > 1 ? "Tesco" : "Sainsbury's", v_Random.Next(0, 2) < 1, "Thing", true, Pupil.YearGroups.S6, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s"), new List<Note>(){}, new List<TodoEntry>(){});
+            for (int i = 0; i < Count; i++) PupilArray[i] = new Pupil(System.IO.Path.GetRandomFileName(), System.IO.Path.GetRandomFileName(), (v_Random.Next(0x00989680, 0x05f5e0ff) >> 0).ToString(), (v_Random.Next(0, 4) >> 1) > 1 ? "Tesco" : "Sainsbury's", v_Random.Next(0, 2) < 1, "Thing", true, (int)v_Random.Next(2015, 2025), DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s"), new List<Note>(){}, new List<TodoEntry>(){});
             return PupilArray;
         }
         public void SavePupilImage(Pupil p_Pupil, Image PupilImage){

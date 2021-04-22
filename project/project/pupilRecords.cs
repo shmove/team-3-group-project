@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Dynamic;
 using System.Globalization;
 using System.Linq;
 using System.Media;
@@ -110,7 +111,7 @@ namespace project
                 // edit: it's a lot worse
                 // Spent a few hours looking into objects in c# and can't figure out a better way to initialise a property ONLY if a condition is met,
                 // so spiralling If statement is the only solution I could come up with. soz xoxo
-                if (CheckBoxA2E.Checked)
+                /*if (CheckBoxA2E.Checked)
                 {
                     if (CheckBoxStruggling.Checked)
                     {
@@ -155,7 +156,18 @@ namespace project
                             Pupils = Mgr.GetPupilsByProperties(new { });
                         }
                     }
-                }
+                }*/
+
+                //Yeah, I should've designed this differently... sorry for all the pain.
+                bool? A2E = null;
+                int? YearGroup = null;
+                bool? Struggling = null;
+                if(CheckBoxA2E.Checked) A2E = true;
+                if(TextBoxYearGroup.Text != "") YearGroup = Pupil.GetYearGroupInt(TextBoxYearGroup.Text);
+                if(CheckBoxStruggling.Checked) Struggling = true;
+                dynamic SearchFilter = new { A2E = A2E, YearGroup = YearGroup, Struggling = Struggling };
+
+                Pupils = Mgr.GetPupilsByProperties(SearchFilter);
 
                 // wipes listbox
                 SearchResults.Items.Clear();
@@ -292,7 +304,8 @@ namespace project
 
             ignoreReloads = true;
             // initialise drop down
-            ComboBoxYearGroup.SelectedIndex = 0;
+            //ComboBoxYearGroup.SelectedIndex = 0;
+            TextBoxYearGroup.Text = "";
             filterDropDownToggle = false;
             dropDownBack.Size = new Size(200, 10);
             dropDownBack.Visible = false;
@@ -413,7 +426,7 @@ namespace project
             SearchBar.Text = "";
             CheckBoxA2E.Checked = false;
             CheckBoxStruggling.Checked = false;
-            ComboBoxYearGroup.SelectedIndex = 0;
+            TextBoxYearGroup.Text = "";
             DateTimePicker.Format = DateTimePickerFormat.Custom;
             DateTimePicker.CustomFormat = " ";
             ComboBoxContext.SelectedIndex = 0;
@@ -426,7 +439,7 @@ namespace project
         private void ButtonAddStudent_Click(object sender, EventArgs e)
         {
 
-            activeStudent = new Pupil("", "", "", false, "", false, Pupil.YearGroups.S1, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s"), new List<Note>() { }, new List<TodoEntry>() { });
+            activeStudent = new Pupil("", "", "", "", false, "", false, 2019, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s"), new List<Note>() { }, new List<TodoEntry>() { });
 
             ProfileViewEdit editForm = new ProfileViewEdit();
             editForm.recordsForm = this;
@@ -504,6 +517,22 @@ namespace project
             {
                 ContextMenuStudent.Visible = false;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            TextBoxYearGroup.Text = Pupil.GetYearGroupString((Pupil.GetYearGroupInt(TextBoxYearGroup.Text) ?? DateTime.Now.Year) - 1);
+        }
+
+        private void TextBoxYearGroup_TextChanged(object sender, EventArgs e) {
+            
+        }
+
+        private void InitYearGroupSearch(object sender, MouseEventArgs e) {
+            TextBoxYearGroup.Text = Pupil.GetYearGroupString(DateTime.Now.Year);
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            TextBoxYearGroup.Text = Pupil.GetYearGroupString((Pupil.GetYearGroupInt(TextBoxYearGroup.Text) ?? DateTime.Now.Year) + 1);
         }
     }
 }

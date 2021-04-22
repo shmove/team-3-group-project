@@ -22,16 +22,22 @@ namespace project.PupilDataManager.SharedResources {
                 }
             }
             public string PupilID {get; set;}
-            public string Name {get; set;}
+            public string Forename {get; set;}
+            public string Surname {get; set;}
+            public string Name {
+                get{
+                    return this.Forename + " " + this.Surname;
+                }
+            }
             public string Company {get; set;}
             public bool A2E {get; set;}
             public List<Note> Notes {get; set;}
             public List<TodoEntry> TodoList {get; set;}
-            public YearGroups YearGroup {get; set;}
+            public int YearGroup {get; set;}
             public string A2EDescription {get; set;}
             public string LastAccess {get; set;}
             public bool Struggling {get; set;}
-            public enum YearGroups{
+            /*public enum YearGroups{
                 [StringValue("S1")]
                 S1 = 1,
                 [StringValue("S2")]
@@ -56,21 +62,23 @@ namespace project.PupilDataManager.SharedResources {
                 Uni3 = 11,
                 [StringValue("Uni4")]
                 Uni4 = 12
-            }
+            }*/
             
             public Pupil() {}
             [Obsolete("Old constructor. Please switch to the new constructor that supports the new properties.")]
             public Pupil(string p_Name, string p_PupilID, string p_Company, bool p_A2E, List<Note> p_Notes) {
                 PupilUUID = System.Guid.NewGuid().ToString();
-                Name = p_Name;
+                Forename = p_Name;
+                Surname = p_Name;
                 A2E = p_A2E;
                 Company = p_Company;
                 Notes = p_Notes;
                 PupilID = p_PupilID;
             }
-            public Pupil(string p_Name, string p_PupilID, string p_Company, bool p_A2E, string p_A2EDescription, bool p_Struggling, Pupil.YearGroups p_YearGroup, string p_LastAccess, List<Note> p_Notes = null, List<TodoEntry> p_TodoEntries = null) {
+            public Pupil(string p_Forename, string p_Surname, string p_PupilID, string p_Company, bool p_A2E, string p_A2EDescription, bool p_Struggling, int p_YearGroup, string p_LastAccess, List<Note> p_Notes = null, List<TodoEntry> p_TodoEntries = null) {
                 PupilUUID = System.Guid.NewGuid().ToString();
-                Name = p_Name;
+                Forename = p_Forename;
+                Surname = p_Surname;
                 A2E = p_A2E;
                 Company = p_Company;
                 Notes = p_Notes ?? new List<Note>();
@@ -82,6 +90,17 @@ namespace project.PupilDataManager.SharedResources {
                 Struggling = p_Struggling;
             }
             public Pupil(object Object) {}
+            public static string GetYearGroupString(int Year){
+                int Last2Digits = (Year + 1) % 100;
+                return Year.ToString() + "-" + Last2Digits.ToString("00");
+            }
+            public static int? GetYearGroupInt(string Year){
+                try{
+                    return Int32.Parse(Year.Split('-')[0]);
+                }catch{
+                    return null;
+                }
+            }
         }
         public interface IListable{
             string Date {get; set;}
