@@ -51,7 +51,7 @@
             this.ComboBoxYearGroupBack = new System.Windows.Forms.Panel();
             this.ComboBoxYearGroup = new System.Windows.Forms.ComboBox();
             this.CheckBoxStruggling = new System.Windows.Forms.CheckBox();
-            this.dropdownTimer = new System.Windows.Forms.Timer(this.components);
+            this.dropdownTimerFilter = new System.Windows.Forms.Timer(this.components);
             this.ContextMenuStudent = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +68,18 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.BorderPanelTopUpper = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.buttonSortDropDown = new System.Windows.Forms.Button();
+            this.labelSortType = new System.Windows.Forms.Label();
+            this.sortDropDownBack = new System.Windows.Forms.Panel();
+            this.sortDropDownBody = new System.Windows.Forms.Panel();
+            this.sortDisplayAccessTime = new System.Windows.Forms.Label();
+            this.sortDisplayYearGroup = new System.Windows.Forms.Label();
+            this.sortDisplayAlpha = new System.Windows.Forms.Label();
+            this.sortAccessTime = new System.Windows.Forms.Button();
+            this.sortYear = new System.Windows.Forms.Button();
+            this.sortAlpha = new System.Windows.Forms.Button();
+            this.dropdownTimerSort = new System.Windows.Forms.Timer(this.components);
             this.filtersBack.SuspendLayout();
             this.dropDownBack.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -78,6 +90,9 @@
             this.PanelWindowMinimise.SuspendLayout();
             this.PanelWindowClose.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.sortDropDownBack.SuspendLayout();
+            this.sortDropDownBody.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -108,7 +123,7 @@
             this.CheckBoxA2E.AutoSize = true;
             this.CheckBoxA2E.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheckBoxA2E.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CheckBoxA2E.Location = new System.Drawing.Point(6, -130);
+            this.CheckBoxA2E.Location = new System.Drawing.Point(6, 10);
             this.CheckBoxA2E.Name = "CheckBoxA2E";
             this.CheckBoxA2E.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.CheckBoxA2E.Size = new System.Drawing.Size(174, 17);
@@ -234,11 +249,11 @@
             this.dropDownBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.dropDownBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dropDownBack.Controls.Add(this.panel1);
-            this.dropDownBack.Location = new System.Drawing.Point(12, 138);
+            this.dropDownBack.Location = new System.Drawing.Point(31, 190);
             this.dropDownBack.MaximumSize = new System.Drawing.Size(200, 150);
             this.dropDownBack.MinimumSize = new System.Drawing.Size(10, 10);
             this.dropDownBack.Name = "dropDownBack";
-            this.dropDownBack.Size = new System.Drawing.Size(200, 10);
+            this.dropDownBack.Size = new System.Drawing.Size(200, 150);
             this.dropDownBack.TabIndex = 12;
             // 
             // panel1
@@ -257,7 +272,7 @@
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.MaximumSize = new System.Drawing.Size(192, 142);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(192, 2);
+            this.panel1.Size = new System.Drawing.Size(192, 142);
             this.panel1.TabIndex = 13;
             // 
             // label3
@@ -266,7 +281,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(8, -48);
+            this.label3.Location = new System.Drawing.Point(8, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 13);
             this.label3.TabIndex = 20;
@@ -280,7 +295,7 @@
             this.DateTimePicker.CustomFormat = "";
             this.DateTimePicker.Font = new System.Drawing.Font("Nirmala UI", 9.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateTimePicker.Location = new System.Drawing.Point(77, -33);
+            this.DateTimePicker.Location = new System.Drawing.Point(77, 107);
             this.DateTimePicker.Name = "DateTimePicker";
             this.DateTimePicker.Size = new System.Drawing.Size(103, 24);
             this.DateTimePicker.TabIndex = 18;
@@ -292,7 +307,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, -80);
+            this.label2.Location = new System.Drawing.Point(8, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 19;
@@ -303,7 +318,7 @@
             this.ComboBoxBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ComboBoxBack.Controls.Add(this.ComboBoxContext);
-            this.ComboBoxBack.Location = new System.Drawing.Point(10, -32);
+            this.ComboBoxBack.Location = new System.Drawing.Point(10, 108);
             this.ComboBoxBack.Name = "ComboBoxBack";
             this.ComboBoxBack.Size = new System.Drawing.Size(63, 24);
             this.ComboBoxBack.TabIndex = 19;
@@ -332,7 +347,7 @@
             this.ComboBoxYearGroupBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxYearGroupBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ComboBoxYearGroupBack.Controls.Add(this.ComboBoxYearGroup);
-            this.ComboBoxYearGroupBack.Location = new System.Drawing.Point(77, -84);
+            this.ComboBoxYearGroupBack.Location = new System.Drawing.Point(77, 56);
             this.ComboBoxYearGroupBack.Name = "ComboBoxYearGroupBack";
             this.ComboBoxYearGroupBack.Size = new System.Drawing.Size(103, 24);
             this.ComboBoxYearGroupBack.TabIndex = 18;
@@ -373,7 +388,7 @@
             this.CheckBoxStruggling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CheckBoxStruggling.AutoSize = true;
             this.CheckBoxStruggling.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckBoxStruggling.Location = new System.Drawing.Point(6, -107);
+            this.CheckBoxStruggling.Location = new System.Drawing.Point(6, 33);
             this.CheckBoxStruggling.Name = "CheckBoxStruggling";
             this.CheckBoxStruggling.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.CheckBoxStruggling.Size = new System.Drawing.Size(174, 17);
@@ -382,10 +397,10 @@
             this.CheckBoxStruggling.UseVisualStyleBackColor = true;
             this.CheckBoxStruggling.CheckedChanged += new System.EventHandler(this.QuickDisplayUpdateEvent);
             // 
-            // dropdownTimer
+            // dropdownTimerFilter
             // 
-            this.dropdownTimer.Interval = 10;
-            this.dropdownTimer.Tick += new System.EventHandler(this.dropdownTimer_Tick);
+            this.dropdownTimerFilter.Interval = 10;
+            this.dropdownTimerFilter.Tick += new System.EventHandler(this.dropdownTimerFilter_Tick);
             // 
             // ContextMenuStudent
             // 
@@ -547,12 +562,172 @@
             this.panel3.Size = new System.Drawing.Size(800, 1);
             this.panel3.TabIndex = 43;
             // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.buttonSortDropDown);
+            this.panel4.Controls.Add(this.labelSortType);
+            this.panel4.Location = new System.Drawing.Point(87, 116);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(105, 23);
+            this.panel4.TabIndex = 12;
+            // 
+            // buttonSortDropDown
+            // 
+            this.buttonSortDropDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSortDropDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.buttonSortDropDown.FlatAppearance.BorderSize = 0;
+            this.buttonSortDropDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSortDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSortDropDown.ForeColor = System.Drawing.Color.White;
+            this.buttonSortDropDown.Location = new System.Drawing.Point(80, -1);
+            this.buttonSortDropDown.Name = "buttonSortDropDown";
+            this.buttonSortDropDown.Size = new System.Drawing.Size(23, 23);
+            this.buttonSortDropDown.TabIndex = 10;
+            this.buttonSortDropDown.Text = "▼";
+            this.buttonSortDropDown.UseVisualStyleBackColor = false;
+            this.buttonSortDropDown.Click += new System.EventHandler(this.buttonSortDropDown_Click);
+            // 
+            // labelSortType
+            // 
+            this.labelSortType.AutoSize = true;
+            this.labelSortType.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSortType.ForeColor = System.Drawing.Color.Black;
+            this.labelSortType.Location = new System.Drawing.Point(0, 3);
+            this.labelSortType.Name = "labelSortType";
+            this.labelSortType.Size = new System.Drawing.Size(60, 15);
+            this.labelSortType.TabIndex = 9;
+            this.labelSortType.Text = "Sort Type";
+            // 
+            // sortDropDownBack
+            // 
+            this.sortDropDownBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.sortDropDownBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.sortDropDownBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.sortDropDownBack.Controls.Add(this.sortDropDownBody);
+            this.sortDropDownBack.Location = new System.Drawing.Point(237, 190);
+            this.sortDropDownBack.MaximumSize = new System.Drawing.Size(111, 100);
+            this.sortDropDownBack.MinimumSize = new System.Drawing.Size(10, 10);
+            this.sortDropDownBack.Name = "sortDropDownBack";
+            this.sortDropDownBack.Size = new System.Drawing.Size(111, 100);
+            this.sortDropDownBack.TabIndex = 14;
+            // 
+            // sortDropDownBody
+            // 
+            this.sortDropDownBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortDropDownBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.sortDropDownBody.Controls.Add(this.sortDisplayAccessTime);
+            this.sortDropDownBody.Controls.Add(this.sortDisplayYearGroup);
+            this.sortDropDownBody.Controls.Add(this.sortDisplayAlpha);
+            this.sortDropDownBody.Controls.Add(this.sortAccessTime);
+            this.sortDropDownBody.Controls.Add(this.sortYear);
+            this.sortDropDownBody.Controls.Add(this.sortAlpha);
+            this.sortDropDownBody.Location = new System.Drawing.Point(3, 3);
+            this.sortDropDownBody.MaximumSize = new System.Drawing.Size(192, 142);
+            this.sortDropDownBody.Name = "sortDropDownBody";
+            this.sortDropDownBody.Size = new System.Drawing.Size(103, 92);
+            this.sortDropDownBody.TabIndex = 13;
+            // 
+            // sortDisplayAccessTime
+            // 
+            this.sortDisplayAccessTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortDisplayAccessTime.AutoSize = true;
+            this.sortDisplayAccessTime.BackColor = System.Drawing.Color.Transparent;
+            this.sortDisplayAccessTime.Enabled = false;
+            this.sortDisplayAccessTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(115)))), ((int)(((byte)(117)))));
+            this.sortDisplayAccessTime.Location = new System.Drawing.Point(82, 69);
+            this.sortDisplayAccessTime.Name = "sortDisplayAccessTime";
+            this.sortDisplayAccessTime.Size = new System.Drawing.Size(19, 13);
+            this.sortDisplayAccessTime.TabIndex = 45;
+            this.sortDisplayAccessTime.Text = "ᐱᐯ";
+            // 
+            // sortDisplayYearGroup
+            // 
+            this.sortDisplayYearGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortDisplayYearGroup.AutoSize = true;
+            this.sortDisplayYearGroup.BackColor = System.Drawing.Color.Transparent;
+            this.sortDisplayYearGroup.Enabled = false;
+            this.sortDisplayYearGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(115)))), ((int)(((byte)(117)))));
+            this.sortDisplayYearGroup.Location = new System.Drawing.Point(82, 40);
+            this.sortDisplayYearGroup.Name = "sortDisplayYearGroup";
+            this.sortDisplayYearGroup.Size = new System.Drawing.Size(19, 13);
+            this.sortDisplayYearGroup.TabIndex = 47;
+            this.sortDisplayYearGroup.Text = "ᐱᐯ";
+            // 
+            // sortDisplayAlpha
+            // 
+            this.sortDisplayAlpha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortDisplayAlpha.AutoSize = true;
+            this.sortDisplayAlpha.BackColor = System.Drawing.Color.Transparent;
+            this.sortDisplayAlpha.Enabled = false;
+            this.sortDisplayAlpha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(115)))), ((int)(((byte)(117)))));
+            this.sortDisplayAlpha.Location = new System.Drawing.Point(82, 11);
+            this.sortDisplayAlpha.Name = "sortDisplayAlpha";
+            this.sortDisplayAlpha.Size = new System.Drawing.Size(13, 13);
+            this.sortDisplayAlpha.TabIndex = 44;
+            this.sortDisplayAlpha.Text = "ᐯ";
+            // 
+            // sortAccessTime
+            // 
+            this.sortAccessTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortAccessTime.FlatAppearance.BorderSize = 0;
+            this.sortAccessTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sortAccessTime.ForeColor = System.Drawing.Color.Black;
+            this.sortAccessTime.Location = new System.Drawing.Point(3, 64);
+            this.sortAccessTime.Name = "sortAccessTime";
+            this.sortAccessTime.Size = new System.Drawing.Size(97, 23);
+            this.sortAccessTime.TabIndex = 46;
+            this.sortAccessTime.Text = "Last Access";
+            this.sortAccessTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.sortAccessTime.UseVisualStyleBackColor = true;
+            this.sortAccessTime.Click += new System.EventHandler(this.sortButton_Click);
+            // 
+            // sortYear
+            // 
+            this.sortYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortYear.FlatAppearance.BorderSize = 0;
+            this.sortYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sortYear.ForeColor = System.Drawing.Color.Black;
+            this.sortYear.Location = new System.Drawing.Point(3, 35);
+            this.sortYear.Name = "sortYear";
+            this.sortYear.Size = new System.Drawing.Size(97, 23);
+            this.sortYear.TabIndex = 45;
+            this.sortYear.Text = "Year Group";
+            this.sortYear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.sortYear.UseVisualStyleBackColor = true;
+            this.sortYear.Click += new System.EventHandler(this.sortButton_Click);
+            // 
+            // sortAlpha
+            // 
+            this.sortAlpha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortAlpha.FlatAppearance.BorderSize = 0;
+            this.sortAlpha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sortAlpha.ForeColor = System.Drawing.Color.Black;
+            this.sortAlpha.Location = new System.Drawing.Point(3, 6);
+            this.sortAlpha.Name = "sortAlpha";
+            this.sortAlpha.Size = new System.Drawing.Size(97, 23);
+            this.sortAlpha.TabIndex = 44;
+            this.sortAlpha.Text = "Alphabetical";
+            this.sortAlpha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.sortAlpha.UseVisualStyleBackColor = true;
+            this.sortAlpha.Click += new System.EventHandler(this.sortButton_Click);
+            // 
+            // dropdownTimerSort
+            // 
+            this.dropdownTimerSort.Interval = 3;
+            this.dropdownTimerSort.Tick += new System.EventHandler(this.dropdownTimerSort_Tick);
+            // 
             // pupilRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 467);
+            this.Controls.Add(this.sortDropDownBack);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.BorderPanelTopUpper);
             this.Controls.Add(this.panel2);
@@ -592,6 +767,11 @@
             this.PanelWindowClose.ResumeLayout(false);
             this.PanelWindowClose.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.sortDropDownBack.ResumeLayout(false);
+            this.sortDropDownBody.ResumeLayout(false);
+            this.sortDropDownBody.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -623,7 +803,7 @@
         private System.Windows.Forms.Panel ComboBoxBack;
         private System.Windows.Forms.ComboBox ComboBoxContext;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Timer dropdownTimer;
+        private System.Windows.Forms.Timer dropdownTimerFilter;
         private System.Windows.Forms.ContextMenuStrip ContextMenuStudent;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
@@ -640,6 +820,18 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel BorderPanelTopUpper;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button buttonSortDropDown;
+        private System.Windows.Forms.Label labelSortType;
+        private System.Windows.Forms.Panel sortDropDownBack;
+        private System.Windows.Forms.Panel sortDropDownBody;
+        private System.Windows.Forms.Button sortAlpha;
+        private System.Windows.Forms.Button sortAccessTime;
+        private System.Windows.Forms.Button sortYear;
+        private System.Windows.Forms.Label sortDisplayAlpha;
+        private System.Windows.Forms.Label sortDisplayAccessTime;
+        private System.Windows.Forms.Label sortDisplayYearGroup;
+        private System.Windows.Forms.Timer dropdownTimerSort;
     }
 }
 
