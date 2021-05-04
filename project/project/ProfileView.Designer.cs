@@ -68,6 +68,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.BorderPanelLeft2 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ButtonExport = new System.Windows.Forms.Button();
             this.ContextMenuInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).BeginInit();
             this.ComboBoxBack.SuspendLayout();
@@ -523,12 +524,29 @@
             this.panel2.Size = new System.Drawing.Size(1, 571);
             this.panel2.TabIndex = 45;
             // 
+            // ButtonExport
+            // 
+            this.ButtonExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ButtonExport.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.ButtonExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonExport.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
+            this.ButtonExport.ForeColor = System.Drawing.Color.White;
+            this.ButtonExport.Location = new System.Drawing.Point(113, 534);
+            this.ButtonExport.Name = "ButtonExport";
+            this.ButtonExport.Size = new System.Drawing.Size(95, 25);
+            this.ButtonExport.TabIndex = 46;
+            this.ButtonExport.Text = "Export Data";
+            this.ButtonExport.UseVisualStyleBackColor = false;
+            this.ButtonExport.Click += new System.EventHandler(this.ButtonExport_Click);
+            // 
             // ProfileEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(591, 571);
+            this.Controls.Add(this.ButtonExport);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.BorderPanelLeft2);
             this.Controls.Add(this.panel1);
@@ -561,7 +579,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "dddd";
             this.Load += new System.EventHandler(this.ProfileEditView_Load);
-            // this.Resize += new System.EventHandler(this.Form_Resize);
             this.ContextMenuInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).EndInit();
             this.ComboBoxBack.ResumeLayout(false);
@@ -620,5 +637,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel BorderPanelLeft2;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button ButtonExport;
     }
 }

@@ -340,6 +340,37 @@ namespace project
             loadStudentInfo();
         }
 
+        private void ButtonExport_Click(object sender, EventArgs e)
+        {
+            Stream fileStream;
+            string fileContent = $"Full Name: \"{activeStudent.Name}\"\n\nPupil ID: \'{activeStudent.PupilID}\'\n\nYear Group: {activeStudent.YearGroup}-{activeStudent.YearGroup + 1}\n\nCompany: \"{activeStudent.Company}\"\n\nAble to Enable: {activeStudent.A2E}\n\nA2E Description: \"{activeStudent.A2EDescription}\"\n\nStruggling: {activeStudent.Struggling}\n\nNotes:\n";
+            foreach (Note i_Note in activeStudent.Notes)
+            {
+                fileContent += $"    - {i_Note.Text} [{i_Note.Date}]\n";
+            }
+            if (activeStudent.Notes.Count == 0) fileContent += "    - No notes were found.\n";
+            fileContent += $"\nLast Accessed: {activeStudent.LastAccess}";
+
+            SaveFileDialog saveTextFileDialog = new SaveFileDialog();
+            saveTextFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveTextFileDialog.Filter = "Text document (*.docx, *.rtf)|*.docx;*.rtf|Text file (*.txt)|*.txt";
+            saveTextFileDialog.FilterIndex = 0;
+            saveTextFileDialog.DefaultExt = "docx";
+            saveTextFileDialog.FileName = activeStudent.Name;
+            saveTextFileDialog.RestoreDirectory = true;
+
+            if (saveTextFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if ((fileStream = saveTextFileDialog.OpenFile()) != null)
+                {
+                    fileStream.Close();
+                    StreamWriter sw = new StreamWriter(saveTextFileDialog.FileName);
+                    sw.WriteLine(fileContent);
+                    sw.Close();
+                }
+            }
+        }
+
         private void ButtonDeleteNote_Click(object sender, EventArgs e)
         {
             if (SearchResults.GetItemText(SearchResults.SelectedItem) != "No notes were found." && SearchResults.SelectedIndex != -1)
