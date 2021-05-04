@@ -16,7 +16,7 @@ using project.PupilDataManager.DbUtils;
 
 namespace project {
     /// <summary>
-    /// This is version 0.1.12.15 of DbPupilDataManager.                                                                        <br />
+    /// This is version 0.2.0.17 of DbPupilDataManager.                                                                        <br />
     ///                                                                                                                        <br />
     /// This version supports:                                                                                                 <br />
     ///                                                                                                                        <br />
@@ -29,11 +29,12 @@ namespace project {
     ///  -  Has a basic installation process.                                                                                  <br />
     ///  -  Deleting pupils from the database.                                                                                 <br />
     ///  -  Has all of the required properties.                                                                                <br />
+    ///  -  Performs automatic database integrity checks on startup.                                                           <br />
     ///  -  Multiple users.
     /// </summary>
     public class DbPupilDataManager : BasePupilDataManager {
-        public static readonly string VERSION = "0.1.13.16";
-        public static readonly int BUILD = 16;
+        public static readonly string VERSION = "0.2.0.17";
+        public static readonly int BUILD = 17;
         private static readonly string DEFAULT_DATABASE_LOCATION = Environment.GetEnvironmentVariable("LocalAppData") + "\\PupilRecordsProgram\\Databases";
         private static readonly string RELATIVE_PUPIL_PICTURES_LOCATION = "\\Pictures";
         private static readonly string DATABASE_NAME = "PleaseDontDeleteThis";
@@ -67,13 +68,17 @@ namespace project {
             string DatabasePath = Location + "\\" + DATABASE_NAME;
             this.ConnectionString = DefaultConnectionStringBuilder.BuildConnectionString(DatabasePath);
             if (Directory.Exists(Location) && Directory.Exists(BasePupilDataManager.PUPIL_IMAGE_LOCATION)) {
+                Catalog v_Catalog = new Catalog();
                 try {
-                    Catalog v_Catalog = new Catalog();
                     v_Catalog.let_ActiveConnection(CONNECTION_STRING_TEMPLATE + Location + "\\" + DATABASE_NAME);
-                    //TODO: Check database integrity.
-                    v_Catalog = null;
+                    
+                    Pupil TestPupil = this.GetTestCases(1)[0];
+                    this.WritePupilData(TestPupil);
+                    this.DeletePupilData(TestPupil);
                 } catch (Exception) {
                     return false;
+                } finally{
+                    v_Catalog.ActiveConnection.Close();
                 }
                 return true;
             }
@@ -87,6 +92,7 @@ namespace project {
             if (!Directory.Exists(Location)) Directory.CreateDirectory(Location);
             if (!Directory.Exists(BasePupilDataManager.PUPIL_IMAGE_LOCATION)) Directory.CreateDirectory(BasePupilDataManager.PUPIL_IMAGE_LOCATION);
             Catalog v_Catalog = new Catalog();
+            System.IO.File.Delete(DEFAULT_DATABASE_LOCATION + "\\" + DATABASE_NAME);
             v_Catalog.Create(this.ConnectionString);
 
             TableManager v_TableManager = new TableManager(v_Catalog);
@@ -138,8 +144,11 @@ namespace project {
             OleDbConnection Connection = new OleDbConnection(CONNECTION_STRING_TEMPLATE + Location + "\\" + DATABASE_NAME);
             OleDbCommand InsertCommand = CommandBuilder.BuildInsertCommand<dynamic>(Connection, null, "Metadata", null, new string[]{"Version", "Build", "DateCreated"}, new dynamic[]{VERSION, BUILD, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s")});
             Connection.Open();
-            InsertCommand.ExecuteNonQuery();
-            Connection.Close();
+            try{
+                InsertCommand.ExecuteNonQuery();
+            } finally{
+                Connection.Close();
+            }
         }
         
         
@@ -170,11 +179,13 @@ namespace project {
             if(Index == -1) return PropertyValues;
 
             Connection.Open();
-            OleDbDataReader DataReader = SelectCommand.ExecuteReader();
+            try{
+                OleDbDataReader DataReader = SelectCommand.ExecuteReader();
+                while(DataReader.Read()) if(!PropertyValues.Contains((T)DataReader[Index])) PropertyValues.Add((T)DataReader[Index]);
+            } finally{
+                Connection.Close();
+            }
 
-            while(DataReader.Read()) if(!PropertyValues.Contains((T)DataReader[Index])) PropertyValues.Add((T)DataReader[Index]);
-
-            Connection.Close();
             return PropertyValues;
         }
 
@@ -244,20 +255,23 @@ namespace project {
             }
 
             Connection.Open();
-            OleDbDataReader DataReader = SelectCommand.ExecuteReader();
             List<Pupil> Pupils = new List<Pupil>();
-            while(DataReader.Read()){
-                //(string, object)[] PropertyAndValue = new (string, object)[DataReader.FieldCount];
-                Pupil CurrentPupil = new Pupil();
-                for(int i = 0; i < DataReader.FieldCount; i++){
-                    CurrentPupil.GetType().GetProperty(PUPIL_TABLE_COLUMN_NAMES[i]).SetValue(CurrentPupil, DataReader[i], null);
-                }
-                CurrentPupil.Notes = DbPupilDataManager.GetListableProperty<Note>(Connection, CurrentPupil.PupilUUID, "Note");
-                CurrentPupil.TodoList = DbPupilDataManager.GetListableProperty<TodoEntry>(Connection, CurrentPupil.PupilUUID, "TodoEntries");
+            try{
+                OleDbDataReader DataReader = SelectCommand.ExecuteReader();
+                while(DataReader.Read()){
+                    //(string, object)[] PropertyAndValue = new (string, object)[DataReader.FieldCount];
+                    Pupil CurrentPupil = new Pupil();
+                    for(int i = 0; i < DataReader.FieldCount; i++){
+                        CurrentPupil.GetType().GetProperty(PUPIL_TABLE_COLUMN_NAMES[i]).SetValue(CurrentPupil, DataReader[i], null);
+                    }
+                    CurrentPupil.Notes = DbPupilDataManager.GetListableProperty<Note>(Connection, CurrentPupil.PupilUUID, "Note");
+                    CurrentPupil.TodoList = DbPupilDataManager.GetListableProperty<TodoEntry>(Connection, CurrentPupil.PupilUUID, "TodoEntries");
                 
-                Pupils.Add(CurrentPupil);
+                    Pupils.Add(CurrentPupil);
+                }
+            } finally{
+                Connection.Close();
             }
-            Connection.Close();
             return this.FilterForUser(Pupils);
         }
         private static List<T> GetListableProperty<T>(OleDbConnection Connection, string PupilUUID, string PropertyName) where T : BaseListable, new(){
@@ -313,9 +327,11 @@ namespace project {
                 }
             
                 Connection.Open();
-                Command.ExecuteNonQuery();
-                Connection.Close();
-
+                try{
+                    Command.ExecuteNonQuery();
+                } finally{
+                    Connection.Close();
+                }
             }
             DbPupilDataManager.UpdateListableProperty<Note>(Connection, p_Pupil.PupilUUID, "Note", p_Pupil.Notes);
             DbPupilDataManager.UpdateListableProperty<TodoEntry>(Connection, p_Pupil.PupilUUID, "TodoEntries", p_Pupil.TodoList);
@@ -330,12 +346,12 @@ namespace project {
             List<string> StoredUUIDs = new List<string>();
 
             Connection.Open();
-
-            OleDbDataReader DataReader = SelectCommand.ExecuteReader();
-
-            while(DataReader.Read()) StoredUUIDs.Add((string)DataReader[0]);
-
-            Connection.Close();
+            try{
+                OleDbDataReader DataReader = SelectCommand.ExecuteReader();
+                while(DataReader.Read()) StoredUUIDs.Add((string)DataReader[0]);
+            } finally{
+                Connection.Close();
+            }
 
             List<string> CurrentUUIDs = new List<string>();
             Dictionary<string, T> UUIDLookup = new Dictionary<string,T>();
@@ -363,8 +379,11 @@ namespace project {
                     Command.Parameters.AddWithValue("@UUID", UUID);
                 }
                 Connection.Open();
-                Command.ExecuteNonQuery();
-                Connection.Close();
+                try{
+                    Command.ExecuteNonQuery();
+                } finally{
+                    Connection.Close();
+                }
             }
         }
         /// <summary>
@@ -391,8 +410,11 @@ namespace project {
             Command2.CommandText = "DELETE FROM [UserPupilAccess] WHERE [FPupilUUID] = @UUID;";
             Command2.Parameters.AddWithValue("@UUID", p_Pupil.PupilUUID);
             Connection.Open();
-            Command2.ExecuteNonQuery();
-            Connection.Close();
+            try{
+                Command2.ExecuteNonQuery();
+            } finally{
+                Connection.Close();
+            }
 
             OleDbCommand Command = new OleDbCommand();
             Command.CommandType = CommandType.Text;
@@ -402,7 +424,11 @@ namespace project {
 
             Connection.Open();
             Command.ExecuteNonQuery();
-            Connection.Close();
+            try{
+                Command.ExecuteNonQuery();
+            } finally{
+                Connection.Close();
+            }
         }
         public bool SetUser(DbUser User){
             if(!User.IsAuthenticated) return false;
@@ -417,8 +443,11 @@ namespace project {
             Command.CommandText = "DELETE FROM [" + PropertyName + "] WHERE [PupilUUID" + PropertyName + "] = @UUID;";
             Command.Parameters.AddWithValue("@UUID", PupilUUID);
             Connection.Open();
-            Command.ExecuteNonQuery();
-            Connection.Close();
+            try{
+                Command.ExecuteNonQuery();
+            } finally{
+                Connection.Close();
+            }
         }
 
         private List<Pupil> FilterForUser(List<Pupil> Pupils){
