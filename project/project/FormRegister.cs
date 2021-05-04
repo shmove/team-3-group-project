@@ -12,6 +12,7 @@ namespace project {
         }
 
         public FormLogin loginForm;
+        public ProgramConfig Config;
 
         // WINDOW CONTROL BAR
 
@@ -22,12 +23,12 @@ namespace project {
 
         private void PanelWindowClose_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowClose);
+            TitleBarControl.HoverButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowClose);
+            TitleBarControl.LeaveButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
@@ -40,12 +41,12 @@ namespace project {
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowMinimise);
+            TitleBarControl.HoverButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowMinimise);
+            TitleBarControl.LeaveButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
@@ -117,7 +118,7 @@ namespace project {
 
         private void frmRegister_Load(object sender, EventArgs e) {
             label2.Text = "Username";
-            VisualThemes.ToDarkTheme(this);
+            if (Config.VisualTheme == 1) VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
         }
 

@@ -24,6 +24,7 @@ namespace project
             InitializeComponent();
         }
 
+        public ProgramConfig Config;
         public Pupil activeStudent; // for accessing when creating a new student
         private bool filterDropDownToggle; // state of filter dropdown menu
         private bool ignoreReloads;
@@ -35,14 +36,45 @@ namespace project
             TitleBarControl.DragWindow(e, this);
         }
 
+        private void PanelSettingsButton_MouseHover(object sender, EventArgs e)
+        {
+            TitleBarControl.HoverButton(Config, PanelSettingsButton);
+        }
+
+        private void PanelSettingsButton_MouseLeave(object sender, EventArgs e)
+        {
+            TitleBarControl.LeaveButton(Config, PanelSettingsButton);
+        }
+
+        private void PanelSettingsButton_Click(object sender, EventArgs e)
+        {
+            FadeEffect.FadeOut(this, 100);
+            FormSettings settingsForm = new FormSettings();
+            settingsForm.Config = Config;
+            settingsForm.ShowDialog();
+            // after settings closes
+            switch (Config.VisualTheme)
+            {
+                case 0:
+                    VisualThemes.ToLightTheme(this);
+                    break;
+                case 1:
+                    VisualThemes.ToDarkTheme(this);
+                    break;
+                default:
+                    throw new Exception("Tried to switch to an invalid theme ID");
+            };
+            FadeEffect.FadeIn(this, 100);
+        }
+
         private void PanelWindowClose_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowClose);
+            TitleBarControl.HoverButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowClose);
+            TitleBarControl.LeaveButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
@@ -55,12 +87,12 @@ namespace project
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowMinimise);
+            TitleBarControl.HoverButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowMinimise);
+            TitleBarControl.LeaveButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
@@ -279,7 +311,7 @@ namespace project
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            VisualThemes.ToDarkTheme(this);
+            if (Config.VisualTheme == 1) VisualThemes.ToDarkTheme(this);
 
             ignoreReloads = true;
             // initialise drop down
@@ -305,6 +337,7 @@ namespace project
         {
             ProfileEditView infoForm = new ProfileEditView();
             infoForm.searchForm = this;
+            infoForm.Config = Config;
             infoForm.ShowDialog();
             reloadPupils();
         }
@@ -423,6 +456,7 @@ namespace project
 
             ProfileViewEdit editForm = new ProfileViewEdit();
             editForm.recordsForm = this;
+            editForm.Config = Config;
 
             editForm.ShowDialog();
 
@@ -513,12 +547,12 @@ namespace project
                                           e.Index,
                                           e.State ^ DrawItemState.Selected,
                                           e.ForeColor,
-                                          VisualThemes.GetThemeColor(8, 1)); //Choose the color
+                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
 
             // Draw the background of the ListBox control for each item.
             e.DrawBackground();
             // Draw the current item text
-            Brush txtColorBrush = new SolidBrush(VisualThemes.GetThemeColor(0, 1));
+            Brush txtColorBrush = new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme));
             e.Graphics.DrawString(SearchResults.Items[e.Index].ToString(), e.Font, txtColorBrush, e.Bounds, StringFormat.GenericDefault);
             // If the ListBox has focus, draw a focus rectangle around the selected item.
             e.DrawFocusRectangle();
@@ -535,10 +569,10 @@ namespace project
                                           e.Index,
                                           e.State ^ DrawItemState.Selected,
                                           e.ForeColor,
-                                          VisualThemes.GetThemeColor(8, 1)); //Choose the color
+                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
 
             e.DrawBackground(); // draw back
-            e.Graphics.DrawString(ComboBoxContext.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, 1)), e.Bounds, StringFormat.GenericDefault); // draw text
+            e.Graphics.DrawString(ComboBoxContext.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme)), e.Bounds, StringFormat.GenericDefault); // draw text
         }
 
         private void ComboBoxYearGroup_DrawItem(object sender, DrawItemEventArgs e)
@@ -550,10 +584,11 @@ namespace project
                                           e.Index,
                                           e.State ^ DrawItemState.Selected,
                                           e.ForeColor,
-                                          VisualThemes.GetThemeColor(8, 1)); //Choose the color
+                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
 
             e.DrawBackground(); // draw back
-            e.Graphics.DrawString(ComboBoxYearGroup.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, 1)), e.Bounds, StringFormat.GenericDefault); // draw text
+            e.Graphics.DrawString(ComboBoxYearGroup.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme)), e.Bounds, StringFormat.GenericDefault); // draw text
         }
+
     }
 }

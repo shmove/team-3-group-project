@@ -68,6 +68,8 @@
             this.borderPanelLeft = new System.Windows.Forms.Panel();
             this.borderPanelBottom = new System.Windows.Forms.Panel();
             this.PanelWindowControls = new System.Windows.Forms.Panel();
+            this.PanelSettingsButton = new System.Windows.Forms.Panel();
+            this.IconSettings = new System.Windows.Forms.PictureBox();
             this.PanelWindowMinimise = new System.Windows.Forms.Panel();
             this.LabelMinimiseWindow = new System.Windows.Forms.Label();
             this.PanelWindowClose = new System.Windows.Forms.Panel();
@@ -82,6 +84,10 @@
             this.SearchResultsBorderLeft = new System.Windows.Forms.Panel();
             this.SearchResultsBorderBottom = new System.Windows.Forms.Panel();
             this.SearchResultsBorderRight = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
             this.filtersBack.SuspendLayout();
             this.dropDownBack.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -90,6 +96,8 @@
             this.ComboBoxYearGroupBack.SuspendLayout();
             this.ContextMenuStudent.SuspendLayout();
             this.PanelWindowControls.SuspendLayout();
+            this.PanelSettingsButton.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IconSettings)).BeginInit();
             this.PanelWindowMinimise.SuspendLayout();
             this.PanelWindowClose.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).BeginInit();
@@ -271,9 +279,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.panel1.Controls.Add(this.panel13);
             this.panel1.Controls.Add(this.panel9);
+            this.panel1.Controls.Add(this.panel14);
             this.panel1.Controls.Add(this.panel8);
+            this.panel1.Controls.Add(this.panel15);
             this.panel1.Controls.Add(this.panel10);
+            this.panel1.Controls.Add(this.panel16);
             this.panel1.Controls.Add(this.panel7);
             this.panel1.Controls.Add(this.panel11);
             this.panel1.Controls.Add(this.panel6);
@@ -559,6 +571,7 @@
             // PanelWindowControls
             // 
             this.PanelWindowControls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.PanelWindowControls.Controls.Add(this.PanelSettingsButton);
             this.PanelWindowControls.Controls.Add(this.PanelWindowMinimise);
             this.PanelWindowControls.Controls.Add(this.PanelWindowClose);
             this.PanelWindowControls.Controls.Add(this.IconWindowControls);
@@ -567,6 +580,32 @@
             this.PanelWindowControls.Size = new System.Drawing.Size(800, 30);
             this.PanelWindowControls.TabIndex = 29;
             this.PanelWindowControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowControls_MouseDown);
+            // 
+            // PanelSettingsButton
+            // 
+            this.PanelSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelSettingsButton.Controls.Add(this.IconSettings);
+            this.PanelSettingsButton.Location = new System.Drawing.Point(30, 0);
+            this.PanelSettingsButton.Name = "PanelSettingsButton";
+            this.PanelSettingsButton.Size = new System.Drawing.Size(45, 30);
+            this.PanelSettingsButton.TabIndex = 25;
+            this.PanelSettingsButton.Click += new System.EventHandler(this.PanelSettingsButton_Click);
+            this.PanelSettingsButton.MouseLeave += new System.EventHandler(this.PanelSettingsButton_MouseLeave);
+            this.PanelSettingsButton.MouseHover += new System.EventHandler(this.PanelSettingsButton_MouseHover);
+            // 
+            // IconSettings
+            // 
+            this.IconSettings.BackColor = System.Drawing.Color.Transparent;
+            this.IconSettings.Enabled = false;
+            this.IconSettings.Image = global::project.Properties.Resources.gear;
+            this.IconSettings.Location = new System.Drawing.Point(12, 5);
+            this.IconSettings.Name = "IconSettings";
+            this.IconSettings.Size = new System.Drawing.Size(20, 20);
+            this.IconSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.IconSettings.TabIndex = 26;
+            this.IconSettings.TabStop = false;
+            this.IconSettings.Click += new System.EventHandler(this.PanelSettingsButton_Click);
+            this.IconSettings.MouseHover += new System.EventHandler(this.PanelSettingsButton_MouseHover);
             // 
             // PanelWindowMinimise
             // 
@@ -716,6 +755,42 @@
             this.SearchResultsBorderRight.Size = new System.Drawing.Size(1, 273);
             this.SearchResultsBorderRight.TabIndex = 43;
             // 
+            // panel13
+            // 
+            this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel13.Location = new System.Drawing.Point(180, 107);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(1, 19);
+            this.panel13.TabIndex = 52;
+            // 
+            // panel14
+            // 
+            this.panel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel14.Location = new System.Drawing.Point(81, 126);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(100, 1);
+            this.panel14.TabIndex = 50;
+            // 
+            // panel15
+            // 
+            this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel15.Location = new System.Drawing.Point(80, 107);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(1, 20);
+            this.panel15.TabIndex = 51;
+            // 
+            // panel16
+            // 
+            this.panel16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel16.Location = new System.Drawing.Point(80, 106);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(101, 1);
+            this.panel16.TabIndex = 49;
+            // 
             // pupilRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -761,6 +836,8 @@
             this.ComboBoxYearGroupBack.ResumeLayout(false);
             this.ContextMenuStudent.ResumeLayout(false);
             this.PanelWindowControls.ResumeLayout(false);
+            this.PanelSettingsButton.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.IconSettings)).EndInit();
             this.PanelWindowMinimise.ResumeLayout(false);
             this.PanelWindowMinimise.PerformLayout();
             this.PanelWindowClose.ResumeLayout(false);
@@ -830,6 +907,12 @@
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.PictureBox IconSettings;
+        private System.Windows.Forms.Panel PanelSettingsButton;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Panel panel16;
     }
 }
 

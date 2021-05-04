@@ -23,6 +23,7 @@ namespace project
         public pupilRecords recordsForm;
         public bool imgChanged = false;
         public Pupil activeStudent;
+        public ProgramConfig Config;
         private DbPupilDataManager Mgr;
 
         public ProfileViewEdit()
@@ -39,12 +40,12 @@ namespace project
 
         private void PanelWindowClose_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowClose);
+            TitleBarControl.HoverButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowClose);
+            TitleBarControl.LeaveButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
@@ -57,12 +58,12 @@ namespace project
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowMinimise);
+            TitleBarControl.HoverButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowMinimise);
+            TitleBarControl.LeaveButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
@@ -147,7 +148,7 @@ namespace project
         {
 
             ComboBoxYearGroup.SelectedIndex = 0;
-            VisualThemes.ToDarkTheme(this);
+            if (Config.VisualTheme == 1) VisualThemes.ToDarkTheme(this);
 
             if (pupilForm != null)
             {
@@ -312,10 +313,10 @@ namespace project
                                           e.Index,
                                           e.State ^ DrawItemState.Selected,
                                           e.ForeColor,
-                                          VisualThemes.GetThemeColor(8, 1)); //Choose the color
+                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
 
             e.DrawBackground(); // draw back
-            e.Graphics.DrawString(ComboBoxYearGroup.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, 1)), e.Bounds, StringFormat.GenericDefault); // draw text
+            e.Graphics.DrawString(ComboBoxYearGroup.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme)), e.Bounds, StringFormat.GenericDefault); // draw text
         }
     }
 }

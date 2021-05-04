@@ -38,18 +38,18 @@ namespace project
         /// Visually changes a button when hovered over.
         /// </summary>
         /// <param name="b">The button to be highlighted.</param>
-        public static void HoverButton(Control b)
+        public static void HoverButton(ProgramConfig Config, Control b)
         {
-            b.BackColor = VisualThemes.GetThemeColor(5, 1);
+            b.BackColor = VisualThemes.GetThemeColor(5, Config.VisualTheme);
         }
 
         /// <summary>
         /// Visually changes a button when mouse stops hovering over it.
         /// </summary>
         /// <param name="b">The button to stop highlighting.</param>
-        public static void LeaveButton(Control b)
+        public static void LeaveButton(ProgramConfig Config, Control b)
         {
-            b.BackColor = VisualThemes.GetThemeColor(4, 1);
+            b.BackColor = VisualThemes.GetThemeColor(4, Config.VisualTheme);
         }
 
         /// <summary>

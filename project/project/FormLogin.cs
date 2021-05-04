@@ -20,6 +20,7 @@ namespace project {
         public OleDbConnection con;
         public OleDbCommand cmd;
         public OleDbDataAdapter da;
+        public ProgramConfig Config;
         private DbPupilDataManager Manager;
 
         // WINDOW CONTROL BAR
@@ -31,12 +32,12 @@ namespace project {
 
         private void PanelWindowClose_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowClose);
+            TitleBarControl.HoverButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowClose);
+            TitleBarControl.LeaveButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
@@ -49,12 +50,12 @@ namespace project {
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowMinimise);
+            TitleBarControl.HoverButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowMinimise);
+            TitleBarControl.LeaveButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
@@ -77,7 +78,7 @@ namespace project {
         {
             
             Manager = new DbPupilDataManager(); //Sets up the database in the case of a first time load. Though, it does seem pretty strange to be calling the pupil manager to create the user table; I might change that in the future.
-            VisualThemes.ToDarkTheme(this);
+            if (Config.VisualTheme == 1) VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
 
             return;
@@ -106,6 +107,7 @@ namespace project {
            bool Success = User?.Authenticate(Connection, txtpassword.Text) ?? false;
             if(Success){
                 pupilRecords pupilRecords = new pupilRecords(User);
+                pupilRecords.Config = Config;
                 pupilRecords.FormClosed += (s, args) => this.Close(); // on the event of the pupilRecords form closing, this one closes too
                 FadeEffect.FadeOut(this, 100, new Action(() => 
                 {
@@ -156,6 +158,7 @@ namespace project {
         private void label6_Click(object sender, EventArgs e) {
             FormRegister registerForm = new FormRegister();
             registerForm.loginForm = this;
+            registerForm.Config = Config;
             FadeEffect.FadeOut(this, 100, new Action(() => 
             {
                 this.Hide();

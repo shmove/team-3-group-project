@@ -16,6 +16,7 @@ namespace project
     {
 
         public ProfileEditView profileForm;
+        public ProgramConfig Config;
         private String initialNote; // for editing notes
         private String initialDate;
         private DbPupilDataManager Mgr;
@@ -34,12 +35,12 @@ namespace project
 
         private void PanelWindowClose_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowClose);
+            TitleBarControl.HoverButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowClose);
+            TitleBarControl.LeaveButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
@@ -52,12 +53,12 @@ namespace project
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowMinimise);
+            TitleBarControl.HoverButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowMinimise);
+            TitleBarControl.LeaveButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
@@ -80,7 +81,7 @@ namespace project
         private void ProfileAddNote_Load(object sender, EventArgs e)
         {
 
-            VisualThemes.ToDarkTheme(this);
+            if (Config.VisualTheme == 1) VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
 
             Mgr = profileForm.searchForm.Mgr; // loads DBPupilDataManager

@@ -20,6 +20,7 @@ namespace project
         public string activeUUID; // stores pupil UUID for easier referencing of pupil
         public Pupil activeStudent; // stores student data that is currently being accessed
         public String noteContext; // for access of the note editing context (ie add/edit)
+        public ProgramConfig Config;
         private DbPupilDataManager Mgr; // instance of pupildatamanager
 
         public ProfileEditView()
@@ -36,12 +37,12 @@ namespace project
 
         private void PanelWindowClose_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowClose);
+            TitleBarControl.HoverButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowClose);
+            TitleBarControl.LeaveButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
@@ -54,12 +55,12 @@ namespace project
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
         {
-            TitleBarControl.HoverButton(PanelWindowMinimise);
+            TitleBarControl.HoverButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
         {
-            TitleBarControl.LeaveButton(PanelWindowMinimise);
+            TitleBarControl.LeaveButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
@@ -83,7 +84,7 @@ namespace project
         private void ProfileEditView_Load(object sender, EventArgs e)
         {
 
-            VisualThemes.ToDarkTheme(this);
+            if (Config.VisualTheme == 1) VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
 
             Mgr = searchForm.Mgr;
@@ -281,6 +282,7 @@ namespace project
             ProfileAddNote addNote = new ProfileAddNote();
             noteContext = "add"; // lets the next form know that we are adding and not editing a note
             addNote.profileForm = this;
+            addNote.Config = Config;
             addNote.ShowDialog();
 
             // then, on close of this form
@@ -295,6 +297,7 @@ namespace project
                 ProfileAddNote addNote = new ProfileAddNote();
                 noteContext = "edit"; // lets the next form know that we are editing and not adding a note
                 addNote.profileForm = this;
+                addNote.Config = Config;
                 addNote.ShowDialog();
 
                 // then, on close of this form
@@ -313,6 +316,7 @@ namespace project
         {
             ProfileViewEdit editForm = new ProfileViewEdit();
             editForm.pupilForm = this;
+            editForm.Config = Config;
 
             // unloads image to prevent read/write errors
             var openedFile = StudentPhoto.Image;
@@ -405,12 +409,12 @@ namespace project
                                           e.Index,
                                           e.State ^ DrawItemState.Selected,
                                           e.ForeColor,
-                                          VisualThemes.GetThemeColor(8, 1)); //Choose the color
+                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
 
             // Draw the background of the ListBox control for each item.
             e.DrawBackground();
             // Draw the current item text
-            Brush txtColorBrush = new SolidBrush(VisualThemes.GetThemeColor(0, 1));
+            Brush txtColorBrush = new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme));
             e.Graphics.DrawString(SearchResults.Items[e.Index].ToString(), e.Font, txtColorBrush, e.Bounds, StringFormat.GenericDefault);
             // If the ListBox has focus, draw a focus rectangle around the selected item.
             e.DrawFocusRectangle();
@@ -428,10 +432,10 @@ namespace project
                                           e.Index,
                                           e.State ^ DrawItemState.Selected,
                                           e.ForeColor,
-                                          VisualThemes.GetThemeColor(8, 1)); //Choose the color
+                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
 
             e.DrawBackground(); // draw back
-            e.Graphics.DrawString(ComboBoxContext.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, 1)), e.Bounds, StringFormat.GenericDefault); // draw text
+            e.Graphics.DrawString(ComboBoxContext.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme)), e.Bounds, StringFormat.GenericDefault); // draw text
         }
 
     }
