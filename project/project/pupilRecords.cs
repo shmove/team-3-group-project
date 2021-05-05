@@ -63,11 +63,17 @@ namespace project
 
         private void PanelSettingsButton_Click(object sender, EventArgs e)
         {
-            FadeEffect.FadeOut(this, 100);
+            FadeEffect.FadeOut(this, 100, new Action(() =>
+            {
+                Hide();
+            }));
+
             FormSettings settingsForm = new FormSettings();
             settingsForm.Config = Config;
             settingsForm.ShowDialog();
+
             // after settings closes
+            Show();
             switch (Config.VisualTheme)
             {
                 case 0:
@@ -723,7 +729,15 @@ namespace project
         private void button2_Click(object sender, EventArgs e) {
             TextBoxYearGroup.Text = Pupil.GetYearGroupString((Pupil.GetYearGroupInt(TextBoxYearGroup.Text) ?? DateTime.Now.Year) + 1);
         }
-        
+
+        private void SearchResults_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ViewButton.PerformClick();
+            }
+        }
+
         // CUSTOM DRAW METHODS
 
         // https://stackoverflow.com/a/3663856

@@ -43,6 +43,10 @@
             this.filtersBack = new System.Windows.Forms.Panel();
             this.dropDownBack = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
             this.TextBoxYearGroup = new System.Windows.Forms.TextBox();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -98,10 +102,6 @@
             this.sortYear = new System.Windows.Forms.Button();
             this.sortAlpha = new System.Windows.Forms.Button();
             this.dropdownTimerSort = new System.Windows.Forms.Timer(this.components);
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.panel16 = new System.Windows.Forms.Panel();
-            this.panel17 = new System.Windows.Forms.Panel();
-            this.panel18 = new System.Windows.Forms.Panel();
             this.filtersBack.SuspendLayout();
             this.dropDownBack.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -173,8 +173,9 @@
             this.SearchResults.Location = new System.Drawing.Point(12, 149);
             this.SearchResults.Name = "SearchResults";
             this.SearchResults.Size = new System.Drawing.Size(776, 273);
-            this.SearchResults.TabIndex = 4;
+            this.SearchResults.TabIndex = 13;
             this.SearchResults.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.SearchResults_DrawItem);
+            this.SearchResults.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchResults_KeyDown);
             this.SearchResults.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDoubleClick);
             this.SearchResults.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDown);
             // 
@@ -188,7 +189,7 @@
             this.ViewButton.Location = new System.Drawing.Point(713, 428);
             this.ViewButton.Name = "ViewButton";
             this.ViewButton.Size = new System.Drawing.Size(75, 23);
-            this.ViewButton.TabIndex = 5;
+            this.ViewButton.TabIndex = 16;
             this.ViewButton.Text = "View";
             this.ViewButton.UseVisualStyleBackColor = true;
             this.ViewButton.Click += new System.EventHandler(this.ViewButton_Click);
@@ -203,7 +204,7 @@
             this.ResetButton.Location = new System.Drawing.Point(713, 115);
             this.ResetButton.Name = "ResetButton";
             this.ResetButton.Size = new System.Drawing.Size(75, 24);
-            this.ResetButton.TabIndex = 6;
+            this.ResetButton.TabIndex = 12;
             this.ResetButton.Text = "Reset";
             this.ResetButton.UseVisualStyleBackColor = false;
             this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
@@ -217,7 +218,7 @@
             this.ButtonAddStudent.Location = new System.Drawing.Point(12, 428);
             this.ButtonAddStudent.Name = "ButtonAddStudent";
             this.ButtonAddStudent.Size = new System.Drawing.Size(100, 23);
-            this.ButtonAddStudent.TabIndex = 7;
+            this.ButtonAddStudent.TabIndex = 14;
             this.ButtonAddStudent.Text = "Add Student";
             this.ButtonAddStudent.UseVisualStyleBackColor = true;
             this.ButtonAddStudent.Click += new System.EventHandler(this.ButtonAddStudent_Click);
@@ -232,7 +233,7 @@
             this.ButtonDeleteStudent.Location = new System.Drawing.Point(118, 428);
             this.ButtonDeleteStudent.Name = "ButtonDeleteStudent";
             this.ButtonDeleteStudent.Size = new System.Drawing.Size(100, 23);
-            this.ButtonDeleteStudent.TabIndex = 8;
+            this.ButtonDeleteStudent.TabIndex = 15;
             this.ButtonDeleteStudent.Text = "Delete Student";
             this.ButtonDeleteStudent.UseVisualStyleBackColor = false;
             this.ButtonDeleteStudent.Click += new System.EventHandler(this.ButtonDeleteStudent_Click);
@@ -259,7 +260,7 @@
             this.ButtonFilterDropDown.Location = new System.Drawing.Point(44, -1);
             this.ButtonFilterDropDown.Name = "ButtonFilterDropDown";
             this.ButtonFilterDropDown.Size = new System.Drawing.Size(23, 23);
-            this.ButtonFilterDropDown.TabIndex = 10;
+            this.ButtonFilterDropDown.TabIndex = 2;
             this.ButtonFilterDropDown.Text = "▼";
             this.ButtonFilterDropDown.UseVisualStyleBackColor = false;
             this.ButtonFilterDropDown.Click += new System.EventHandler(this.ButtonFilterDropDown_Click);
@@ -324,6 +325,42 @@
             this.panel1.Size = new System.Drawing.Size(192, 142);
             this.panel1.TabIndex = 13;
             // 
+            // panel18
+            // 
+            this.panel18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel18.Location = new System.Drawing.Point(180, 56);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(1, 22);
+            this.panel18.TabIndex = 50;
+            // 
+            // panel17
+            // 
+            this.panel17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel17.Location = new System.Drawing.Point(83, 77);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(98, 1);
+            this.panel17.TabIndex = 48;
+            // 
+            // panel16
+            // 
+            this.panel16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel16.Location = new System.Drawing.Point(83, 56);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(1, 22);
+            this.panel16.TabIndex = 49;
+            // 
+            // panel15
+            // 
+            this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel15.Location = new System.Drawing.Point(83, 56);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(98, 1);
+            this.panel15.TabIndex = 47;
+            // 
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.Color.White;
@@ -343,6 +380,7 @@
             this.TextBoxYearGroup.Name = "TextBoxYearGroup";
             this.TextBoxYearGroup.Size = new System.Drawing.Size(64, 15);
             this.TextBoxYearGroup.TabIndex = 0;
+            this.TextBoxYearGroup.TabStop = false;
             this.TextBoxYearGroup.TextChanged += new System.EventHandler(this.QuickDisplayUpdateEvent);
             this.TextBoxYearGroup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InitYearGroupSearch);
             // 
@@ -391,7 +429,7 @@
             this.button2.Location = new System.Drawing.Point(160, 57);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(21, 20);
-            this.button2.TabIndex = 2;
+            this.button2.TabIndex = 6;
             this.button2.Text = ">";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -416,7 +454,7 @@
             this.DateTimePicker.Location = new System.Drawing.Point(-1, -1);
             this.DateTimePicker.Name = "DateTimePicker";
             this.DateTimePicker.Size = new System.Drawing.Size(103, 24);
-            this.DateTimePicker.TabIndex = 18;
+            this.DateTimePicker.TabIndex = 8;
             this.DateTimePicker.Value = new System.DateTime(2021, 1, 1, 0, 0, 0, 0);
             this.DateTimePicker.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
@@ -429,7 +467,7 @@
             this.button1.Location = new System.Drawing.Point(83, 57);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(21, 20);
-            this.button1.TabIndex = 1;
+            this.button1.TabIndex = 5;
             this.button1.Text = "<";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -521,7 +559,7 @@
             this.ComboBoxContext.Location = new System.Drawing.Point(-1, -1);
             this.ComboBoxContext.Name = "ComboBoxContext";
             this.ComboBoxContext.Size = new System.Drawing.Size(64, 21);
-            this.ComboBoxContext.TabIndex = 13;
+            this.ComboBoxContext.TabIndex = 7;
             this.ComboBoxContext.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBoxContext_DrawItem);
             this.ComboBoxContext.SelectedIndexChanged += new System.EventHandler(this.ComboBoxContext_SelectedIndexChanged);
             // 
@@ -562,7 +600,7 @@
             this.buttonSortDropDown.Location = new System.Drawing.Point(80, -1);
             this.buttonSortDropDown.Name = "buttonSortDropDown";
             this.buttonSortDropDown.Size = new System.Drawing.Size(23, 23);
-            this.buttonSortDropDown.TabIndex = 10;
+            this.buttonSortDropDown.TabIndex = 3;
             this.buttonSortDropDown.Text = "▼";
             this.buttonSortDropDown.UseVisualStyleBackColor = false;
             this.buttonSortDropDown.Click += new System.EventHandler(this.buttonSortDropDown_Click);
@@ -899,7 +937,7 @@
             this.sortAccessTime.Location = new System.Drawing.Point(3, 64);
             this.sortAccessTime.Name = "sortAccessTime";
             this.sortAccessTime.Size = new System.Drawing.Size(97, 23);
-            this.sortAccessTime.TabIndex = 46;
+            this.sortAccessTime.TabIndex = 11;
             this.sortAccessTime.Text = "Last Access";
             this.sortAccessTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.sortAccessTime.UseVisualStyleBackColor = true;
@@ -914,7 +952,7 @@
             this.sortYear.Location = new System.Drawing.Point(3, 35);
             this.sortYear.Name = "sortYear";
             this.sortYear.Size = new System.Drawing.Size(97, 23);
-            this.sortYear.TabIndex = 45;
+            this.sortYear.TabIndex = 10;
             this.sortYear.Text = "Year Group";
             this.sortYear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.sortYear.UseVisualStyleBackColor = true;
@@ -929,7 +967,7 @@
             this.sortAlpha.Location = new System.Drawing.Point(3, 6);
             this.sortAlpha.Name = "sortAlpha";
             this.sortAlpha.Size = new System.Drawing.Size(97, 23);
-            this.sortAlpha.TabIndex = 44;
+            this.sortAlpha.TabIndex = 9;
             this.sortAlpha.Text = "Alphabetical";
             this.sortAlpha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.sortAlpha.UseVisualStyleBackColor = true;
@@ -939,42 +977,6 @@
             // 
             this.dropdownTimerSort.Interval = 3;
             this.dropdownTimerSort.Tick += new System.EventHandler(this.dropdownTimerSort_Tick);
-            // 
-            // panel15
-            // 
-            this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            this.panel15.Location = new System.Drawing.Point(83, 56);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(98, 1);
-            this.panel15.TabIndex = 47;
-            // 
-            // panel16
-            // 
-            this.panel16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            this.panel16.Location = new System.Drawing.Point(83, 56);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(1, 22);
-            this.panel16.TabIndex = 49;
-            // 
-            // panel17
-            // 
-            this.panel17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            this.panel17.Location = new System.Drawing.Point(83, 77);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(98, 1);
-            this.panel17.TabIndex = 48;
-            // 
-            // panel18
-            // 
-            this.panel18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
-            this.panel18.Location = new System.Drawing.Point(180, 56);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(1, 22);
-            this.panel18.TabIndex = 50;
             // 
             // pupilRecords
             // 

@@ -427,6 +427,14 @@ namespace project
             ButtonEditInfo_Click(sender, e);
         }
 
+        private void SearchResults_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ButtonEditNote.PerformClick();
+            }
+        }
+
         // CUSTOM DRAW METHODS
 
         // https://stackoverflow.com/a/3663856

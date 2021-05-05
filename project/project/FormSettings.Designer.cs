@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.BorderPanelTopUpper = new System.Windows.Forms.Panel();
             this.BorderPanelLeft2 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -172,7 +173,7 @@
             this.ButtonCancel.Location = new System.Drawing.Point(12, 137);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(86, 23);
-            this.ButtonCancel.TabIndex = 54;
+            this.ButtonCancel.TabIndex = 3;
             this.ButtonCancel.Text = "Cancel";
             this.ButtonCancel.UseVisualStyleBackColor = false;
             this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
@@ -186,7 +187,7 @@
             this.ButtonSave.Location = new System.Drawing.Point(196, 137);
             this.ButtonSave.Name = "ButtonSave";
             this.ButtonSave.Size = new System.Drawing.Size(86, 23);
-            this.ButtonSave.TabIndex = 53;
+            this.ButtonSave.TabIndex = 4;
             this.ButtonSave.Text = "Save";
             this.ButtonSave.UseVisualStyleBackColor = true;
             this.ButtonSave.Click += new System.EventHandler(this.ButtonSave_Click);
@@ -232,7 +233,7 @@
             this.CheckBoxSplash.Name = "CheckBoxSplash";
             this.CheckBoxSplash.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.CheckBoxSplash.Size = new System.Drawing.Size(231, 17);
-            this.CheckBoxSplash.TabIndex = 65;
+            this.CheckBoxSplash.TabIndex = 1;
             this.CheckBoxSplash.Text = "                                     Skip splash screen";
             this.CheckBoxSplash.UseVisualStyleBackColor = true;
             // 
@@ -252,7 +253,7 @@
             this.ComboBoxTheme.Location = new System.Drawing.Point(157, 86);
             this.ComboBoxTheme.Name = "ComboBoxTheme";
             this.ComboBoxTheme.Size = new System.Drawing.Size(105, 21);
-            this.ComboBoxTheme.TabIndex = 66;
+            this.ComboBoxTheme.TabIndex = 2;
             this.ComboBoxTheme.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBoxTheme_DrawItem);
             // 
             // LabelTheme
@@ -321,6 +322,7 @@
             this.Controls.Add(this.PanelWindowControls);
             this.Controls.Add(this.borderPanelLeft);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormSettings";

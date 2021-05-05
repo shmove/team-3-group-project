@@ -88,7 +88,7 @@
             this.ButtonSave.Location = new System.Drawing.Point(488, 262);
             this.ButtonSave.Name = "ButtonSave";
             this.ButtonSave.Size = new System.Drawing.Size(58, 30);
-            this.ButtonSave.TabIndex = 8;
+            this.ButtonSave.TabIndex = 11;
             this.ButtonSave.Text = "Save";
             this.ButtonSave.UseVisualStyleBackColor = true;
             this.ButtonSave.Click += new System.EventHandler(this.ButtonSave_Click);
@@ -119,7 +119,7 @@
             this.ButtonChangeImage.Location = new System.Drawing.Point(12, 262);
             this.ButtonChangeImage.Name = "ButtonChangeImage";
             this.ButtonChangeImage.Size = new System.Drawing.Size(171, 30);
-            this.ButtonChangeImage.TabIndex = 7;
+            this.ButtonChangeImage.TabIndex = 10;
             this.ButtonChangeImage.Text = "Change Image";
             this.ButtonChangeImage.UseVisualStyleBackColor = false;
             this.ButtonChangeImage.Click += new System.EventHandler(this.ButtonChangeImage_Click);
@@ -133,7 +133,7 @@
             this.CheckBoxA2E.Name = "CheckBoxA2E";
             this.CheckBoxA2E.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.CheckBoxA2E.Size = new System.Drawing.Size(178, 17);
-            this.CheckBoxA2E.TabIndex = 5;
+            this.CheckBoxA2E.TabIndex = 7;
             this.CheckBoxA2E.Text = "Registered for Able to Enable";
             this.CheckBoxA2E.UseVisualStyleBackColor = true;
             this.CheckBoxA2E.CheckedChanged += new System.EventHandler(this.CheckBoxA2E_CheckedChanged);
@@ -147,7 +147,7 @@
             this.TextBoxStudentID.Location = new System.Drawing.Point(4, 2);
             this.TextBoxStudentID.Name = "TextBoxStudentID";
             this.TextBoxStudentID.Size = new System.Drawing.Size(218, 16);
-            this.TextBoxStudentID.TabIndex = 2;
+            this.TextBoxStudentID.TabIndex = 3;
             // 
             // label2
             // 
@@ -191,7 +191,7 @@
             this.CheckBoxStruggling.Name = "CheckBoxStruggling";
             this.CheckBoxStruggling.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.CheckBoxStruggling.Size = new System.Drawing.Size(81, 17);
-            this.CheckBoxStruggling.TabIndex = 6;
+            this.CheckBoxStruggling.TabIndex = 9;
             this.CheckBoxStruggling.Text = "Struggling";
             this.CheckBoxStruggling.UseVisualStyleBackColor = true;
             // 
@@ -204,7 +204,7 @@
             this.TextBoxCompany.Location = new System.Drawing.Point(4, 2);
             this.TextBoxCompany.Name = "TextBoxCompany";
             this.TextBoxCompany.Size = new System.Drawing.Size(218, 16);
-            this.TextBoxCompany.TabIndex = 4;
+            this.TextBoxCompany.TabIndex = 6;
             // 
             // TextBoxForename
             // 
@@ -269,7 +269,7 @@
             this.TextBoxSurname.Location = new System.Drawing.Point(4, 3);
             this.TextBoxSurname.Name = "TextBoxSurname";
             this.TextBoxSurname.Size = new System.Drawing.Size(105, 13);
-            this.TextBoxSurname.TabIndex = 1;
+            this.TextBoxSurname.TabIndex = 2;
             // 
             // panel3
             // 
@@ -291,7 +291,7 @@
             this.button2.Location = new System.Drawing.Point(205, 0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(21, 20);
-            this.button2.TabIndex = 4;
+            this.button2.TabIndex = 5;
             this.button2.Text = ">";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -305,7 +305,7 @@
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(21, 20);
-            this.button1.TabIndex = 3;
+            this.button1.TabIndex = 4;
             this.button1.Text = "<";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -319,6 +319,7 @@
             this.TextBoxYearGroup.Name = "TextBoxYearGroup";
             this.TextBoxYearGroup.Size = new System.Drawing.Size(178, 13);
             this.TextBoxYearGroup.TabIndex = 2;
+            this.TextBoxYearGroup.TabStop = false;
             this.TextBoxYearGroup.TextChanged += new System.EventHandler(this.TextBoxYearGroup_TextChanged);
             this.TextBoxYearGroup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InitYearGroupField);
             // 
@@ -340,7 +341,7 @@
             this.TextBoxA2EDesc.Location = new System.Drawing.Point(4, 2);
             this.TextBoxA2EDesc.Name = "TextBoxA2EDesc";
             this.TextBoxA2EDesc.Size = new System.Drawing.Size(218, 16);
-            this.TextBoxA2EDesc.TabIndex = 29;
+            this.TextBoxA2EDesc.TabIndex = 8;
             this.TextBoxA2EDesc.Visible = false;
             // 
             // TextBoxBack3

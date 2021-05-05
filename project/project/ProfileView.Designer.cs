@@ -161,6 +161,7 @@
             this.SearchResults.Size = new System.Drawing.Size(567, 300);
             this.SearchResults.TabIndex = 4;
             this.SearchResults.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.SearchResults_DrawItem);
+            this.SearchResults.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchResults_KeyDown);
             this.SearchResults.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDoubleClick);
             this.SearchResults.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDown);
             // 
@@ -175,7 +176,7 @@
             this.DateTimePicker.Location = new System.Drawing.Point(-1, -2);
             this.DateTimePicker.Name = "DateTimePicker";
             this.DateTimePicker.Size = new System.Drawing.Size(195, 24);
-            this.DateTimePicker.TabIndex = 7;
+            this.DateTimePicker.TabIndex = 2;
             this.DateTimePicker.Value = new System.DateTime(2021, 1, 1, 0, 0, 0, 0);
             this.DateTimePicker.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
@@ -190,7 +191,7 @@
             this.ButtonEditInfo.Location = new System.Drawing.Point(12, 534);
             this.ButtonEditInfo.Name = "ButtonEditInfo";
             this.ButtonEditInfo.Size = new System.Drawing.Size(95, 25);
-            this.ButtonEditInfo.TabIndex = 8;
+            this.ButtonEditInfo.TabIndex = 5;
             this.ButtonEditInfo.Text = "Edit Info";
             this.ButtonEditInfo.UseVisualStyleBackColor = false;
             this.ButtonEditInfo.Click += new System.EventHandler(this.ButtonEditInfo_Click);
@@ -204,7 +205,7 @@
             this.ButtonAddNote.Location = new System.Drawing.Point(282, 534);
             this.ButtonAddNote.Name = "ButtonAddNote";
             this.ButtonAddNote.Size = new System.Drawing.Size(95, 25);
-            this.ButtonAddNote.TabIndex = 9;
+            this.ButtonAddNote.TabIndex = 7;
             this.ButtonAddNote.Text = "Add Note";
             this.ButtonAddNote.UseVisualStyleBackColor = true;
             this.ButtonAddNote.Click += new System.EventHandler(this.ButtonAddNote_Click);
@@ -220,7 +221,7 @@
             this.ButtonReset.Location = new System.Drawing.Point(516, 193);
             this.ButtonReset.Name = "ButtonReset";
             this.ButtonReset.Size = new System.Drawing.Size(63, 25);
-            this.ButtonReset.TabIndex = 10;
+            this.ButtonReset.TabIndex = 3;
             this.ButtonReset.Text = "Reset";
             this.ButtonReset.UseVisualStyleBackColor = false;
             this.ButtonReset.Click += new System.EventHandler(this.ButtonReset_Click);
@@ -234,7 +235,7 @@
             this.ButtonDeleteNote.Location = new System.Drawing.Point(484, 534);
             this.ButtonDeleteNote.Name = "ButtonDeleteNote";
             this.ButtonDeleteNote.Size = new System.Drawing.Size(95, 25);
-            this.ButtonDeleteNote.TabIndex = 11;
+            this.ButtonDeleteNote.TabIndex = 9;
             this.ButtonDeleteNote.Text = "Delete Note";
             this.ButtonDeleteNote.UseVisualStyleBackColor = true;
             this.ButtonDeleteNote.Click += new System.EventHandler(this.ButtonDeleteNote_Click);
@@ -269,7 +270,7 @@
             this.ComboBoxContext.Location = new System.Drawing.Point(-1, -1);
             this.ComboBoxContext.Name = "ComboBoxContext";
             this.ComboBoxContext.Size = new System.Drawing.Size(63, 21);
-            this.ComboBoxContext.TabIndex = 13;
+            this.ComboBoxContext.TabIndex = 1;
             this.ComboBoxContext.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBoxContext_DrawItem);
             this.ComboBoxContext.SelectedIndexChanged += new System.EventHandler(this.ComboBoxContext_SelectedIndexChanged);
             // 
@@ -282,7 +283,7 @@
             this.ButtonEditNote.Location = new System.Drawing.Point(383, 534);
             this.ButtonEditNote.Name = "ButtonEditNote";
             this.ButtonEditNote.Size = new System.Drawing.Size(95, 25);
-            this.ButtonEditNote.TabIndex = 9;
+            this.ButtonEditNote.TabIndex = 8;
             this.ButtonEditNote.Text = "Edit Note";
             this.ButtonEditNote.UseVisualStyleBackColor = true;
             this.ButtonEditNote.Click += new System.EventHandler(this.ButtonEditNote_Click);
@@ -595,7 +596,7 @@
             this.ButtonExport.Location = new System.Drawing.Point(113, 534);
             this.ButtonExport.Name = "ButtonExport";
             this.ButtonExport.Size = new System.Drawing.Size(95, 25);
-            this.ButtonExport.TabIndex = 46;
+            this.ButtonExport.TabIndex = 6;
             this.ButtonExport.Text = "Export Data";
             this.ButtonExport.UseVisualStyleBackColor = false;
             this.ButtonExport.Click += new System.EventHandler(this.ButtonExport_Click);
