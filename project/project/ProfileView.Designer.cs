@@ -588,7 +588,7 @@
             // 
             this.ButtonExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ButtonExport.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.ButtonExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonExport.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
             this.ButtonExport.ForeColor = System.Drawing.Color.White;
