@@ -20,6 +20,7 @@ namespace project
         public string activeUUID; // stores pupil UUID for easier referencing of pupil
         public Pupil activeStudent; // stores student data that is currently being accessed
         public String noteContext; // for access of the note editing context (ie add/edit)
+        public ProgramConfig Config;
         private DbPupilDataManager Mgr; // instance of pupildatamanager
 
         public ProfileEditView()
@@ -29,64 +30,54 @@ namespace project
 
         // WINDOW CONTROL BAR
 
-        // allows for window dragging
-        // https://stackoverflow.com/a/1592899
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
         private void PanelWindowControls_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
+            TitleBarControl.DragWindow(e, this);
         }
 
         private void PanelWindowClose_MouseHover(object sender, EventArgs e)
         {
-            PanelWindowClose.BackColor = Color.FromArgb(255, 210, 211, 213);
+            TitleBarControl.HoverButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
         {
-            PanelWindowClose.BackColor = Color.FromArgb(255, 230, 231, 233);
+            TitleBarControl.LeaveButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button != MouseButtons.Left) return;
-            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
+            TitleBarControl.MouseDownButton(e, new Action(() =>
+            {
+                FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
+            }));
         }
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
         {
-            PanelWindowMinimise.BackColor = Color.FromArgb(255, 210, 211, 213);
+            TitleBarControl.HoverButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
         {
-            PanelWindowMinimise.BackColor = Color.FromArgb(255, 230, 231, 233);
+            TitleBarControl.LeaveButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
         {
-            //FadeEffect.FadeOut(this, 100, new Action(() =>
-            this.WindowState = FormWindowState.Minimized;
-            //));
+            TitleBarControl.MouseDownButton(e, new Action(() =>
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }));
         }
 
         /* ignore for now, buggy :(
         private void Form_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState != FormWindowState.Minimized) FadeEffect.FadeIn(this, 100);
+            TitleBarControl.Unminimise(this);
         }
         */
+
 
         // FORM CODE
 
@@ -94,6 +85,7 @@ namespace project
         private void ProfileEditView_Load(object sender, EventArgs e)
         {
 
+            if (Config.VisualTheme == 1) VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
 
             Mgr = searchForm.Mgr;
@@ -291,6 +283,7 @@ namespace project
             ProfileAddNote addNote = new ProfileAddNote();
             noteContext = "add"; // lets the next form know that we are adding and not editing a note
             addNote.profileForm = this;
+            addNote.Config = Config;
             addNote.ShowDialog();
 
             // then, on close of this form
@@ -305,6 +298,7 @@ namespace project
                 ProfileAddNote addNote = new ProfileAddNote();
                 noteContext = "edit"; // lets the next form know that we are editing and not adding a note
                 addNote.profileForm = this;
+                addNote.Config = Config;
                 addNote.ShowDialog();
 
                 // then, on close of this form
@@ -323,6 +317,7 @@ namespace project
         {
             ProfileViewEdit editForm = new ProfileViewEdit();
             editForm.pupilForm = this;
+            editForm.Config = Config;
 
             // unloads image to prevent read/write errors
             var openedFile = StudentPhoto.Image;
@@ -430,6 +425,49 @@ namespace project
         private void StudentPhoto_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ButtonEditInfo_Click(sender, e);
+        }
+
+        // CUSTOM DRAW METHODS
+
+        // https://stackoverflow.com/a/3663856
+        private void SearchResults_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+            //if the item state is selected them change the back color 
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                e = new DrawItemEventArgs(e.Graphics,
+                                          e.Font,
+                                          e.Bounds,
+                                          e.Index,
+                                          e.State ^ DrawItemState.Selected,
+                                          e.ForeColor,
+                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
+
+            // Draw the background of the ListBox control for each item.
+            e.DrawBackground();
+            // Draw the current item text
+            Brush txtColorBrush = new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme));
+            e.Graphics.DrawString(SearchResults.Items[e.Index].ToString(), e.Font, txtColorBrush, e.Bounds, StringFormat.GenericDefault);
+            // If the ListBox has focus, draw a focus rectangle around the selected item.
+            e.DrawFocusRectangle();
+
+            txtColorBrush.Dispose();
+        }
+
+        private void ComboBoxContext_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+            if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
+                e = new DrawItemEventArgs(e.Graphics,
+                                          e.Font,
+                                          e.Bounds,
+                                          e.Index,
+                                          e.State ^ DrawItemState.Selected,
+                                          e.ForeColor,
+                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
+
+            e.DrawBackground(); // draw back
+            e.Graphics.DrawString(ComboBoxContext.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme)), e.Bounds, StringFormat.GenericDefault); // draw text
         }
 
     }

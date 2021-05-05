@@ -57,6 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\StringValueAttribute.cs" />
+    <Compile Include="FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TitleBarControl.cs" />
+    <Compile Include="VisualThemes.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
@@ -115,6 +123,9 @@
     <Compile Include="Utilities.cs" />
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSplash.resx">
       <DependentUpon>FormSplash.cs</DependentUpon>
@@ -177,6 +188,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\programIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gear.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -25,6 +25,8 @@ namespace project
             InitializeComponent();
         }
 
+        public ProgramConfig Config;
+        
         private class SortMethod
         {
             public bool Reverse { get; set; }
@@ -44,62 +46,84 @@ namespace project
 
         // WINDOW CONTROL BAR
 
-        // allows for window dragging
-        // https://stackoverflow.com/a/1592899
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
         private void PanelWindowControls_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            TitleBarControl.DragWindow(e, this);
+        }
+
+        private void PanelSettingsButton_MouseHover(object sender, EventArgs e)
+        {
+            TitleBarControl.HoverButton(Config, PanelSettingsButton);
+        }
+
+        private void PanelSettingsButton_MouseLeave(object sender, EventArgs e)
+        {
+            TitleBarControl.LeaveButton(Config, PanelSettingsButton);
+        }
+
+        private void PanelSettingsButton_Click(object sender, EventArgs e)
+        {
+            FadeEffect.FadeOut(this, 100);
+            FormSettings settingsForm = new FormSettings();
+            settingsForm.Config = Config;
+            settingsForm.ShowDialog();
+            // after settings closes
+            switch (Config.VisualTheme)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
+                case 0:
+                    VisualThemes.ToLightTheme(this);
+                    break;
+                case 1:
+                    VisualThemes.ToDarkTheme(this);
+                    break;
+                default:
+                    throw new Exception("Tried to switch to an invalid theme ID");
+            };
+            FadeEffect.FadeIn(this, 100);
         }
 
         private void PanelWindowClose_MouseHover(object sender, EventArgs e)
         {
-            PanelWindowClose.BackColor = Color.FromArgb(255, 210, 211, 213);
+            TitleBarControl.HoverButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
         {
-            PanelWindowClose.BackColor = Color.FromArgb(255, 230, 231, 233);
+            TitleBarControl.LeaveButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button != MouseButtons.Left) return;
-            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
+            TitleBarControl.MouseDownButton(e, new Action(() =>
+            {
+                FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
+            }));
         }
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
         {
-            PanelWindowMinimise.BackColor = Color.FromArgb(255, 210, 211, 213);
+            TitleBarControl.HoverButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
         {
-            PanelWindowMinimise.BackColor = Color.FromArgb(255, 230, 231, 233);
+            TitleBarControl.LeaveButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
         {
-            FadeEffect.FadeOut(this, 100, new Action(() =>
-            this.WindowState = FormWindowState.Minimized
-            ));
+            TitleBarControl.MouseDownButton(e, new Action(() =>
+            {
+                FadeEffect.FadeOut(this, 100, new Action(() => this.WindowState = FormWindowState.Minimized));
+            }));
+
         }
 
         private void Form_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState != FormWindowState.Minimized) FadeEffect.FadeIn(this, 100);
+            TitleBarControl.Unminimise(this);
         }
+
 
         // FORM CODE
 
@@ -332,20 +356,20 @@ namespace project
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            FadeEffect.FadeIn(this, 100);
+            if (Config.VisualTheme == 1) VisualThemes.ToDarkTheme(this);
 
             ignoreReloads = true;
             // initialise filter drop down
             TextBoxYearGroup.Text = "";
             filterDropDownToggle = false;
             dropDownBack.Size = new Size(200, 10);
-            dropDownBack.Location = new Point(12, 138); // resets back to default position, incase it has been moved in editing
+            dropDownBack.Location = new Point(12, 100); // resets back to default position, incase it has been moved in editing
             dropDownBack.Visible = false;
             // initialise sort drop down
             updateSortDisplay();
             sortDropDownToggle = false;
             sortDropDownBack.Size = new Size(111, 10);
-            sortDropDownBack.Location = new Point(87, 138);
+            sortDropDownBack.Location = new Point(87, 100);
             sortDropDownBack.Visible = false;
             // Wipes DateTimePicker display
             DateTimePicker.Format = DateTimePickerFormat.Custom;
@@ -355,6 +379,8 @@ namespace project
 
             reloadPupils();
 
+            FadeEffect.FadeIn(this, 100);
+
         }
 
         // run whenever the form opens the data for the active student
@@ -363,6 +389,7 @@ namespace project
         {
             ProfileEditView infoForm = new ProfileEditView();
             infoForm.searchForm = this;
+            infoForm.Config = Config;
             infoForm.ShowDialog();
             reloadPupils();
         }
@@ -601,6 +628,7 @@ namespace project
 
             ProfileViewEdit editForm = new ProfileViewEdit();
             editForm.recordsForm = this;
+            editForm.Config = Config;
 
             editForm.ShowDialog();
 
@@ -676,7 +704,7 @@ namespace project
                 ContextMenuStudent.Visible = false;
             }
         }
-
+        
         private void button1_Click(object sender, EventArgs e) {
             TextBoxYearGroup.Text = Pupil.GetYearGroupString((Pupil.GetYearGroupInt(TextBoxYearGroup.Text) ?? DateTime.Now.Year) - 1);
         }
@@ -691,6 +719,48 @@ namespace project
 
         private void button2_Click(object sender, EventArgs e) {
             TextBoxYearGroup.Text = Pupil.GetYearGroupString((Pupil.GetYearGroupInt(TextBoxYearGroup.Text) ?? DateTime.Now.Year) + 1);
+        }
+        
+        // CUSTOM DRAW METHODS
+
+        // https://stackoverflow.com/a/3663856
+        private void SearchResults_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+            //if the item state is selected them change the back color 
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                e = new DrawItemEventArgs(e.Graphics,
+                                          e.Font,
+                                          e.Bounds,
+                                          e.Index,
+                                          e.State ^ DrawItemState.Selected,
+                                          e.ForeColor,
+                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
+
+            // Draw the background of the ListBox control for each item.
+            e.DrawBackground();
+            // Draw the current item text
+            Brush txtColorBrush = new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme));
+            e.Graphics.DrawString(SearchResults.Items[e.Index].ToString(), e.Font, txtColorBrush, e.Bounds, StringFormat.GenericDefault);
+            // If the ListBox has focus, draw a focus rectangle around the selected item.
+            e.DrawFocusRectangle();
+
+            txtColorBrush.Dispose();
+        }
+
+        private void ComboBoxContext_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
+                e = new DrawItemEventArgs(e.Graphics,
+                                          e.Font,
+                                          e.Bounds,
+                                          e.Index,
+                                          e.State ^ DrawItemState.Selected,
+                                          e.ForeColor,
+                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
+
+            e.DrawBackground(); // draw back
+            e.Graphics.DrawString(ComboBoxContext.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme)), e.Bounds, StringFormat.GenericDefault); // draw text
         }
 
     }

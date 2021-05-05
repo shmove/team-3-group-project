@@ -68,6 +68,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.BorderPanelLeft2 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.SearchResultsBorderTop = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.SearchResultsBorderLeft = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.ButtonExport = new System.Windows.Forms.Button();
             this.ContextMenuInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBoxPlaceholder)).BeginInit();
@@ -79,6 +84,7 @@
             this.PanelWindowMinimise.SuspendLayout();
             this.PanelWindowClose.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // LabelStudentName
@@ -144,14 +150,17 @@
             // 
             this.SearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SearchResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.SearchResults.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SearchResults.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.SearchResults.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchResults.ForeColor = System.Drawing.Color.Black;
             this.SearchResults.FormattingEnabled = true;
             this.SearchResults.ItemHeight = 15;
-            this.SearchResults.Location = new System.Drawing.Point(12, 224);
+            this.SearchResults.Location = new System.Drawing.Point(12, 225);
             this.SearchResults.Name = "SearchResults";
-            this.SearchResults.Size = new System.Drawing.Size(567, 304);
+            this.SearchResults.Size = new System.Drawing.Size(567, 300);
             this.SearchResults.TabIndex = 4;
+            this.SearchResults.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.SearchResults_DrawItem);
             this.SearchResults.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDoubleClick);
             this.SearchResults.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SearchResults_MouseDown);
             // 
@@ -163,7 +172,7 @@
             this.DateTimePicker.CalendarMonthBackground = System.Drawing.Color.White;
             this.DateTimePicker.CustomFormat = "";
             this.DateTimePicker.Font = new System.Drawing.Font("Nirmala UI", 9.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateTimePicker.Location = new System.Drawing.Point(315, 194);
+            this.DateTimePicker.Location = new System.Drawing.Point(-1, -2);
             this.DateTimePicker.Name = "DateTimePicker";
             this.DateTimePicker.Size = new System.Drawing.Size(195, 24);
             this.DateTimePicker.TabIndex = 7;
@@ -174,10 +183,10 @@
             // 
             this.ButtonEditInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonEditInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ButtonEditInfo.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.ButtonEditInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonEditInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonEditInfo.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
-            this.ButtonEditInfo.ForeColor = System.Drawing.Color.White;
+            this.ButtonEditInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonEditInfo.Location = new System.Drawing.Point(12, 534);
             this.ButtonEditInfo.Name = "ButtonEditInfo";
             this.ButtonEditInfo.Size = new System.Drawing.Size(95, 25);
@@ -204,13 +213,13 @@
             // 
             this.ButtonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ButtonReset.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.ButtonReset.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonReset.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonReset.ForeColor = System.Drawing.Color.White;
-            this.ButtonReset.Location = new System.Drawing.Point(516, 194);
+            this.ButtonReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ButtonReset.Location = new System.Drawing.Point(516, 193);
             this.ButtonReset.Name = "ButtonReset";
-            this.ButtonReset.Size = new System.Drawing.Size(63, 24);
+            this.ButtonReset.Size = new System.Drawing.Size(63, 25);
             this.ButtonReset.TabIndex = 10;
             this.ButtonReset.Text = "Reset";
             this.ButtonReset.UseVisualStyleBackColor = false;
@@ -246,7 +255,8 @@
             // 
             // ComboBoxContext
             // 
-            this.ComboBoxContext.BackColor = System.Drawing.Color.White;
+            this.ComboBoxContext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ComboBoxContext.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.ComboBoxContext.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxContext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxContext.Font = new System.Drawing.Font("Nirmala UI", 9F);
@@ -258,8 +268,9 @@
             "after"});
             this.ComboBoxContext.Location = new System.Drawing.Point(-1, -1);
             this.ComboBoxContext.Name = "ComboBoxContext";
-            this.ComboBoxContext.Size = new System.Drawing.Size(63, 23);
+            this.ComboBoxContext.Size = new System.Drawing.Size(63, 21);
             this.ComboBoxContext.TabIndex = 13;
+            this.ComboBoxContext.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBoxContext_DrawItem);
             this.ComboBoxContext.SelectedIndexChanged += new System.EventHandler(this.ComboBoxContext_SelectedIndexChanged);
             // 
             // ButtonEditNote
@@ -295,7 +306,7 @@
             this.LabelStruggling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LabelStruggling.AutoSize = true;
             this.LabelStruggling.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelStruggling.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.LabelStruggling.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(115)))), ((int)(((byte)(117)))));
             this.LabelStruggling.Location = new System.Drawing.Point(35, 200);
             this.LabelStruggling.Name = "LabelStruggling";
             this.LabelStruggling.Size = new System.Drawing.Size(104, 13);
@@ -321,9 +332,9 @@
             this.ComboBoxBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ComboBoxBack.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ComboBoxBack.Controls.Add(this.ComboBoxContext);
-            this.ComboBoxBack.Location = new System.Drawing.Point(246, 194);
+            this.ComboBoxBack.Location = new System.Drawing.Point(248, 195);
             this.ComboBoxBack.Name = "ComboBoxBack";
-            this.ComboBoxBack.Size = new System.Drawing.Size(63, 24);
+            this.ComboBoxBack.Size = new System.Drawing.Size(63, 21);
             this.ComboBoxBack.TabIndex = 17;
             // 
             // StudentPhoto
@@ -413,6 +424,7 @@
             // LabelMinimiseWindow
             // 
             this.LabelMinimiseWindow.AutoSize = true;
+            this.LabelMinimiseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelMinimiseWindow.Enabled = false;
             this.LabelMinimiseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.LabelMinimiseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -439,6 +451,7 @@
             // LabelCloseWindow
             // 
             this.LabelCloseWindow.AutoSize = true;
+            this.LabelCloseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelCloseWindow.Enabled = false;
             this.LabelCloseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.LabelCloseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -452,6 +465,7 @@
             // 
             // IconWindowControls
             // 
+            this.IconWindowControls.BackColor = System.Drawing.Color.Transparent;
             this.IconWindowControls.Image = global::project.Properties.Resources.programIcon;
             this.IconWindowControls.Location = new System.Drawing.Point(5, 5);
             this.IconWindowControls.Name = "IconWindowControls";
@@ -491,7 +505,7 @@
             // BorderPanelTopUpper
             // 
             this.BorderPanelTopUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelTopUpper.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelTopUpper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelTopUpper.Location = new System.Drawing.Point(0, 0);
             this.BorderPanelTopUpper.Name = "BorderPanelTopUpper";
             this.BorderPanelTopUpper.Size = new System.Drawing.Size(591, 1);
@@ -500,7 +514,7 @@
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.panel1.Location = new System.Drawing.Point(0, 570);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(591, 1);
@@ -509,7 +523,7 @@
             // BorderPanelLeft2
             // 
             this.BorderPanelLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelLeft2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelLeft2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelLeft2.Location = new System.Drawing.Point(0, 0);
             this.BorderPanelLeft2.Name = "BorderPanelLeft2";
             this.BorderPanelLeft2.Size = new System.Drawing.Size(1, 571);
@@ -518,17 +532,63 @@
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.panel2.Location = new System.Drawing.Point(590, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1, 571);
             this.panel2.TabIndex = 45;
             // 
+            // SearchResultsBorderTop
+            // 
+            this.SearchResultsBorderTop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SearchResultsBorderTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.SearchResultsBorderTop.Location = new System.Drawing.Point(12, 224);
+            this.SearchResultsBorderTop.Name = "SearchResultsBorderTop";
+            this.SearchResultsBorderTop.Size = new System.Drawing.Size(567, 1);
+            this.SearchResultsBorderTop.TabIndex = 46;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel3.Location = new System.Drawing.Point(12, 525);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(567, 1);
+            this.panel3.TabIndex = 47;
+            // 
+            // SearchResultsBorderLeft
+            // 
+            this.SearchResultsBorderLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SearchResultsBorderLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.SearchResultsBorderLeft.Location = new System.Drawing.Point(12, 225);
+            this.SearchResultsBorderLeft.Name = "SearchResultsBorderLeft";
+            this.SearchResultsBorderLeft.Size = new System.Drawing.Size(1, 300);
+            this.SearchResultsBorderLeft.TabIndex = 48;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel4.Location = new System.Drawing.Point(578, 225);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1, 300);
+            this.panel4.TabIndex = 49;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.DateTimePicker);
+            this.panel5.Location = new System.Drawing.Point(317, 195);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(193, 21);
+            this.panel5.TabIndex = 50;
+            // 
             // ButtonExport
             // 
             this.ButtonExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ButtonExport.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.ButtonExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonExport.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
             this.ButtonExport.ForeColor = System.Drawing.Color.White;
@@ -546,6 +606,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(591, 571);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.SearchResultsBorderLeft);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.SearchResultsBorderTop);
             this.Controls.Add(this.ButtonExport);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.BorderPanelLeft2);
@@ -565,7 +630,6 @@
             this.Controls.Add(this.ButtonReset);
             this.Controls.Add(this.ButtonAddNote);
             this.Controls.Add(this.ButtonEditInfo);
-            this.Controls.Add(this.DateTimePicker);
             this.Controls.Add(this.SearchResults);
             this.Controls.Add(this.LabelGroups);
             this.Controls.Add(this.LabelCompany);
@@ -591,6 +655,7 @@
             this.PanelWindowClose.ResumeLayout(false);
             this.PanelWindowClose.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -637,6 +702,11 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel BorderPanelLeft2;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel SearchResultsBorderTop;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel SearchResultsBorderLeft;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button ButtonExport;
     }
 }

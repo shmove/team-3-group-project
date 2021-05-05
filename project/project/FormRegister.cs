@@ -12,64 +12,55 @@ namespace project {
         }
 
         public FormLogin loginForm;
+        public ProgramConfig Config;
 
         // WINDOW CONTROL BAR
 
-        // allows for window dragging
-        // https://stackoverflow.com/a/1592899
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
         private void PanelWindowControls_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
+            TitleBarControl.DragWindow(e, this);
         }
 
         private void PanelWindowClose_MouseHover(object sender, EventArgs e)
         {
-            PanelWindowClose.BackColor = Color.FromArgb(255, 210, 211, 213);
+            TitleBarControl.HoverButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseLeave(object sender, EventArgs e)
         {
-            PanelWindowClose.BackColor = Color.FromArgb(255, 230, 231, 233);
+            TitleBarControl.LeaveButton(Config, PanelWindowClose);
         }
 
         private void PanelWindowClose_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button != MouseButtons.Left) return;
-            FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
+            TitleBarControl.MouseDownButton(e, new Action(() =>
+            {
+                FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
+            }));
         }
 
         private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
         {
-            PanelWindowMinimise.BackColor = Color.FromArgb(255, 210, 211, 213);
+            TitleBarControl.HoverButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
         {
-            PanelWindowMinimise.BackColor = Color.FromArgb(255, 230, 231, 233);
+            TitleBarControl.LeaveButton(Config, PanelWindowMinimise);
         }
 
         private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
         {
-            FadeEffect.FadeOut(this, 100, new Action(() =>
-            this.WindowState = FormWindowState.Minimized
-            ));
+            TitleBarControl.MouseDownButton(e, new Action(() =>
+            {
+                FadeEffect.FadeOut(this, 100, new Action(() => this.WindowState = FormWindowState.Minimized));
+            }));
+
         }
 
         private void Form_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState != FormWindowState.Minimized) FadeEffect.FadeIn(this, 100);
+            TitleBarControl.Unminimise(this);
         }
 
         // FORM CODE
@@ -127,6 +118,7 @@ namespace project {
 
         private void frmRegister_Load(object sender, EventArgs e) {
             label2.Text = "Username";
+            if (Config.VisualTheme == 1) VisualThemes.ToDarkTheme(this);
             FadeEffect.FadeIn(this, 100);
         }
 

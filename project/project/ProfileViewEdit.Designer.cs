@@ -42,8 +42,12 @@
             this.TextBoxForename = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.TextBoxSurname = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.TextBoxYearGroup = new System.Windows.Forms.TextBox();
             this.TextBoxBack4 = new System.Windows.Forms.Panel();
             this.TextBoxA2EDesc = new System.Windows.Forms.TextBox();
             this.TextBoxBack3 = new System.Windows.Forms.Panel();
@@ -63,13 +67,10 @@
             this.BorderPanelBottom2 = new System.Windows.Forms.Panel();
             this.BorderPanelLeft2 = new System.Windows.Forms.Panel();
             this.BorderPanelRight2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.TextBoxYearGroup = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.StudentImage)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.TextBoxBack4.SuspendLayout();
             this.TextBoxBack3.SuspendLayout();
             this.TextBoxBack2.SuspendLayout();
@@ -79,7 +80,6 @@
             this.PanelWindowClose.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).BeginInit();
             this.borderPanelBottom.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonSave
@@ -115,10 +115,10 @@
             // 
             this.ButtonChangeImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonChangeImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ButtonChangeImage.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.ButtonChangeImage.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonChangeImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonChangeImage.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonChangeImage.ForeColor = System.Drawing.Color.White;
+            this.ButtonChangeImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonChangeImage.Location = new System.Drawing.Point(12, 262);
             this.ButtonChangeImage.Name = "ButtonChangeImage";
             this.ButtonChangeImage.Size = new System.Drawing.Size(171, 30);
@@ -145,10 +145,11 @@
             // 
             this.TextBoxStudentID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxStudentID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxStudentID.Font = new System.Drawing.Font("Nirmala UI", 9F);
             this.TextBoxStudentID.ForeColor = System.Drawing.Color.Black;
-            this.TextBoxStudentID.Location = new System.Drawing.Point(4, 3);
+            this.TextBoxStudentID.Location = new System.Drawing.Point(4, 2);
             this.TextBoxStudentID.Name = "TextBoxStudentID";
-            this.TextBoxStudentID.Size = new System.Drawing.Size(218, 13);
+            this.TextBoxStudentID.Size = new System.Drawing.Size(218, 16);
             this.TextBoxStudentID.TabIndex = 2;
             // 
             // label2
@@ -201,10 +202,11 @@
             // 
             this.TextBoxCompany.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxCompany.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxCompany.Font = new System.Drawing.Font("Nirmala UI", 9F);
             this.TextBoxCompany.ForeColor = System.Drawing.Color.Black;
-            this.TextBoxCompany.Location = new System.Drawing.Point(4, 3);
+            this.TextBoxCompany.Location = new System.Drawing.Point(4, 2);
             this.TextBoxCompany.Name = "TextBoxCompany";
-            this.TextBoxCompany.Size = new System.Drawing.Size(218, 13);
+            this.TextBoxCompany.Size = new System.Drawing.Size(218, 16);
             this.TextBoxCompany.TabIndex = 4;
             // 
             // TextBoxForename
@@ -234,8 +236,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.TextBoxBack4);
             this.panel1.Controls.Add(this.TextBoxBack3);
             this.panel1.Controls.Add(this.TextBoxBack2);
@@ -252,14 +254,14 @@
             this.panel1.Size = new System.Drawing.Size(356, 214);
             this.panel1.TabIndex = 29;
             // 
-            // panel2
+            // panel4
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.panel2.Controls.Add(this.TextBoxSurname);
-            this.panel2.Location = new System.Drawing.Point(224, 19);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(112, 20);
-            this.panel2.TabIndex = 31;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.panel4.Controls.Add(this.TextBoxSurname);
+            this.panel4.Location = new System.Drawing.Point(224, 19);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(112, 20);
+            this.panel4.TabIndex = 31;
             // 
             // TextBoxSurname
             // 
@@ -271,6 +273,57 @@
             this.TextBoxSurname.Name = "TextBoxSurname";
             this.TextBoxSurname.Size = new System.Drawing.Size(105, 13);
             this.TextBoxSurname.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.TextBoxYearGroup);
+            this.panel3.Location = new System.Drawing.Point(110, 71);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(226, 20);
+            this.panel3.TabIndex = 32;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.button2.Location = new System.Drawing.Point(205, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(21, 20);
+            this.button2.TabIndex = 4;
+            this.button2.Text = ">";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(21, 20);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "<";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // TextBoxYearGroup
+            // 
+            this.TextBoxYearGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxYearGroup.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxYearGroup.ForeColor = System.Drawing.Color.Black;
+            this.TextBoxYearGroup.Location = new System.Drawing.Point(24, 3);
+            this.TextBoxYearGroup.Name = "TextBoxYearGroup";
+            this.TextBoxYearGroup.Size = new System.Drawing.Size(178, 13);
+            this.TextBoxYearGroup.TabIndex = 2;
+            this.TextBoxYearGroup.TextChanged += new System.EventHandler(this.TextBoxYearGroup_TextChanged);
+            this.TextBoxYearGroup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InitYearGroupField);
             // 
             // TextBoxBack4
             // 
@@ -285,10 +338,11 @@
             // 
             this.TextBoxA2EDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxA2EDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxA2EDesc.Font = new System.Drawing.Font("Nirmala UI", 9F);
             this.TextBoxA2EDesc.ForeColor = System.Drawing.Color.Black;
-            this.TextBoxA2EDesc.Location = new System.Drawing.Point(4, 3);
+            this.TextBoxA2EDesc.Location = new System.Drawing.Point(4, 2);
             this.TextBoxA2EDesc.Name = "TextBoxA2EDesc";
-            this.TextBoxA2EDesc.Size = new System.Drawing.Size(218, 13);
+            this.TextBoxA2EDesc.Size = new System.Drawing.Size(218, 16);
             this.TextBoxA2EDesc.TabIndex = 29;
             this.TextBoxA2EDesc.Visible = false;
             // 
@@ -347,7 +401,7 @@
             // BorderPanelTopUpper
             // 
             this.BorderPanelTopUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelTopUpper.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelTopUpper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelTopUpper.Location = new System.Drawing.Point(0, 0);
             this.BorderPanelTopUpper.Name = "BorderPanelTopUpper";
             this.BorderPanelTopUpper.Size = new System.Drawing.Size(558, 1);
@@ -368,6 +422,7 @@
             // LabelMinimiseWindow
             // 
             this.LabelMinimiseWindow.AutoSize = true;
+            this.LabelMinimiseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelMinimiseWindow.Enabled = false;
             this.LabelMinimiseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.LabelMinimiseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -394,6 +449,7 @@
             // LabelCloseWindow
             // 
             this.LabelCloseWindow.AutoSize = true;
+            this.LabelCloseWindow.BackColor = System.Drawing.Color.Transparent;
             this.LabelCloseWindow.Enabled = false;
             this.LabelCloseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.LabelCloseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -407,6 +463,7 @@
             // 
             // IconWindowControls
             // 
+            this.IconWindowControls.BackColor = System.Drawing.Color.Transparent;
             this.IconWindowControls.Image = global::project.Properties.Resources.programIcon;
             this.IconWindowControls.Location = new System.Drawing.Point(5, 5);
             this.IconWindowControls.Name = "IconWindowControls";
@@ -447,7 +504,7 @@
             // BorderPanelBottom2
             // 
             this.BorderPanelBottom2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelBottom2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelBottom2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelBottom2.Location = new System.Drawing.Point(0, 4);
             this.BorderPanelBottom2.Name = "BorderPanelBottom2";
             this.BorderPanelBottom2.Size = new System.Drawing.Size(558, 1);
@@ -456,7 +513,7 @@
             // BorderPanelLeft2
             // 
             this.BorderPanelLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BorderPanelLeft2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelLeft2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelLeft2.Location = new System.Drawing.Point(0, 0);
             this.BorderPanelLeft2.Name = "BorderPanelLeft2";
             this.BorderPanelLeft2.Size = new System.Drawing.Size(1, 305);
@@ -465,54 +522,11 @@
             // BorderPanelRight2
             // 
             this.BorderPanelRight2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BorderPanelRight2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BorderPanelRight2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
             this.BorderPanelRight2.Location = new System.Drawing.Point(557, 0);
             this.BorderPanelRight2.Name = "BorderPanelRight2";
             this.BorderPanelRight2.Size = new System.Drawing.Size(1, 305);
             this.BorderPanelRight2.TabIndex = 39;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.TextBoxYearGroup);
-            this.panel3.Location = new System.Drawing.Point(110, 71);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(226, 20);
-            this.panel3.TabIndex = 32;
-            // 
-            // TextBoxYearGroup
-            // 
-            this.TextBoxYearGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.TextBoxYearGroup.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxYearGroup.ForeColor = System.Drawing.Color.Black;
-            this.TextBoxYearGroup.Location = new System.Drawing.Point(24, 3);
-            this.TextBoxYearGroup.Name = "TextBoxYearGroup";
-            this.TextBoxYearGroup.Size = new System.Drawing.Size(178, 13);
-            this.TextBoxYearGroup.TabIndex = 2;
-            this.TextBoxYearGroup.TextChanged += new System.EventHandler(this.TextBoxYearGroup_TextChanged);
-            this.TextBoxYearGroup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InitYearGroupField);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(21, 20);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "<";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(205, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(21, 20);
-            this.button2.TabIndex = 4;
-            this.button2.Text = ">";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ProfileViewEdit
             // 
@@ -541,8 +555,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.StudentImage)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.TextBoxBack4.ResumeLayout(false);
             this.TextBoxBack4.PerformLayout();
             this.TextBoxBack3.ResumeLayout(false);
@@ -558,8 +574,6 @@
             this.PanelWindowClose.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).EndInit();
             this.borderPanelBottom.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -597,11 +611,11 @@
         private System.Windows.Forms.Panel BorderPanelBottom2;
         private System.Windows.Forms.Panel BorderPanelLeft2;
         private System.Windows.Forms.Panel BorderPanelTopUpper;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox TextBoxSurname;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox TextBoxYearGroup;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel4;
     }
 }
