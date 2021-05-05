@@ -98,6 +98,10 @@
             this.sortYear = new System.Windows.Forms.Button();
             this.sortAlpha = new System.Windows.Forms.Button();
             this.dropdownTimerSort = new System.Windows.Forms.Timer(this.components);
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.panel18 = new System.Windows.Forms.Panel();
             this.filtersBack.SuspendLayout();
             this.dropDownBack.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -292,6 +296,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(237)))), ((int)(((byte)(239)))));
+            this.panel1.Controls.Add(this.panel18);
+            this.panel1.Controls.Add(this.panel17);
+            this.panel1.Controls.Add(this.panel16);
+            this.panel1.Controls.Add(this.panel15);
             this.panel1.Controls.Add(this.panel14);
             this.panel1.Controls.Add(this.panel13);
             this.panel1.Controls.Add(this.panel8);
@@ -330,6 +338,7 @@
             this.TextBoxYearGroup.BackColor = System.Drawing.Color.White;
             this.TextBoxYearGroup.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxYearGroup.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
+            this.TextBoxYearGroup.ForeColor = System.Drawing.Color.Black;
             this.TextBoxYearGroup.Location = new System.Drawing.Point(3, 3);
             this.TextBoxYearGroup.Name = "TextBoxYearGroup";
             this.TextBoxYearGroup.Size = new System.Drawing.Size(64, 15);
@@ -496,7 +505,7 @@
             // ComboBoxContext
             // 
             this.ComboBoxContext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ComboBoxContext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ComboBoxContext.BackColor = System.Drawing.Color.White;
             this.ComboBoxContext.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.ComboBoxContext.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxContext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -931,6 +940,42 @@
             this.dropdownTimerSort.Interval = 3;
             this.dropdownTimerSort.Tick += new System.EventHandler(this.dropdownTimerSort_Tick);
             // 
+            // panel15
+            // 
+            this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel15.Location = new System.Drawing.Point(83, 56);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(98, 1);
+            this.panel15.TabIndex = 47;
+            // 
+            // panel16
+            // 
+            this.panel16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel16.Location = new System.Drawing.Point(83, 56);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(1, 22);
+            this.panel16.TabIndex = 49;
+            // 
+            // panel17
+            // 
+            this.panel17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel17.Location = new System.Drawing.Point(83, 77);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(98, 1);
+            this.panel17.TabIndex = 48;
+            // 
+            // panel18
+            // 
+            this.panel18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(179)))), ((int)(((byte)(179)))));
+            this.panel18.Location = new System.Drawing.Point(180, 56);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(1, 22);
+            this.panel18.TabIndex = 50;
+            // 
             // pupilRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1071,6 +1116,10 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Panel panel15;
     }
 }
 

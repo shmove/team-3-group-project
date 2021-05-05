@@ -249,7 +249,7 @@
             this.ComboBoxTheme.Items.AddRange(new object[] {
             "Light",
             "Dark"});
-            this.ComboBoxTheme.Location = new System.Drawing.Point(158, 86);
+            this.ComboBoxTheme.Location = new System.Drawing.Point(157, 86);
             this.ComboBoxTheme.Name = "ComboBoxTheme";
             this.ComboBoxTheme.Size = new System.Drawing.Size(105, 21);
             this.ComboBoxTheme.TabIndex = 66;
