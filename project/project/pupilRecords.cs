@@ -363,13 +363,13 @@ namespace project
             TextBoxYearGroup.Text = "";
             filterDropDownToggle = false;
             dropDownBack.Size = new Size(200, 10);
-            dropDownBack.Location = new Point(12, 138); // resets back to default position, incase it has been moved in editing
+            dropDownBack.Location = new Point(12, 100); // resets back to default position, incase it has been moved in editing
             dropDownBack.Visible = false;
             // initialise sort drop down
             updateSortDisplay();
             sortDropDownToggle = false;
             sortDropDownBack.Size = new Size(111, 10);
-            sortDropDownBack.Location = new Point(87, 138);
+            sortDropDownBack.Location = new Point(87, 100);
             sortDropDownBack.Visible = false;
             // Wipes DateTimePicker display
             DateTimePicker.Format = DateTimePickerFormat.Custom;
@@ -761,21 +761,6 @@ namespace project
 
             e.DrawBackground(); // draw back
             e.Graphics.DrawString(ComboBoxContext.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme)), e.Bounds, StringFormat.GenericDefault); // draw text
-        }
-
-        private void ComboBoxYearGroup_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
-                e = new DrawItemEventArgs(e.Graphics,
-                                          e.Font,
-                                          e.Bounds,
-                                          e.Index,
-                                          e.State ^ DrawItemState.Selected,
-                                          e.ForeColor,
-                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
-
-            e.DrawBackground(); // draw back
-            e.Graphics.DrawString(ComboBoxYearGroup.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme)), e.Bounds, StringFormat.GenericDefault); // draw text
         }
 
     }

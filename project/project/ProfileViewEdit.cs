@@ -324,21 +324,5 @@ namespace project
             TextBoxYearGroup.Text = Pupil.GetYearGroupString(DateTime.Now.Year);
         }
 
-        // CUSTOM DRAW METHODS
-
-        private void ComboBoxYearGroup_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
-                e = new DrawItemEventArgs(e.Graphics,
-                                          e.Font,
-                                          e.Bounds,
-                                          e.Index,
-                                          e.State ^ DrawItemState.Selected,
-                                          e.ForeColor,
-                                          VisualThemes.GetThemeColor(8, Config.VisualTheme)); //Choose the color
-
-            e.DrawBackground(); // draw back
-            e.Graphics.DrawString(ComboBoxYearGroup.Items[e.Index].ToString(), e.Font, new SolidBrush(VisualThemes.GetThemeColor(0, Config.VisualTheme)), e.Bounds, StringFormat.GenericDefault); // draw text
-        }
     }
 }
