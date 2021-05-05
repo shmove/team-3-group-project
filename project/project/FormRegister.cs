@@ -66,11 +66,14 @@ namespace project {
         // FORM CODE
 
         private void button1_Click(object sender, EventArgs e) {
+            OleDbConnection Connection = new OleDbConnection(new DbPupilDataManager().ConnectionString);
+            bool UsernameAlreadyExists = DbUser.DoesUsernameAlreadyExist(Connection, txtUsername.Text);
             if (txtUsername.Text == "" || txtPassword.Text == "" || txtComPassword.Text == "") {
                 MessageBox.Show("Username and/or password fields are empty.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            } else if (txtPassword.Text == txtComPassword.Text) {
-                OleDbConnection Connection = new OleDbConnection(new DbPupilDataManager().ConnectionString); //I hate every bit of this... I'll refactor it soon
+            } else if(UsernameAlreadyExists){
+                MessageBox.Show("This username already exists.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else if (txtPassword.Text == txtComPassword.Text) {
                 DbUser User = new DbUser(txtUsername.Text);
                 User.SaveUser(Connection, txtPassword.Text);
                 /*loginForm.con.Open();
@@ -83,7 +86,7 @@ namespace project {
                 txtPassword.Text = "";
                 txtComPassword.Text = "";
 
-                MessageBox.Show("Your account has been successfully created.", "Registration success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Your account has been successfully created.", "Registration succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Close();
 

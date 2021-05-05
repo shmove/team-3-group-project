@@ -159,6 +159,24 @@ namespace project.PupilDataManager.SharedResources {
                 this.UserUUID = UserUUID ?? System.Guid.NewGuid().ToString();
                 this.Username = Username;
             }
+            public static bool DoesUsernameAlreadyExist(OleDbConnection Connection, string Username){
+                OleDbCommand SelectCommand = new OleDbCommand();
+                SelectCommand.CommandType = CommandType.Text;
+                SelectCommand.Connection = Connection;
+                string CommandText = "SELECT COUNT(*) FROM [User] WHERE [Username] = @Username";
+                SelectCommand.Parameters.AddWithValue("@Username", Username);
+                SelectCommand.CommandText = CommandText;
+                Connection.Open();
+                bool Result;
+                try{
+                    OleDbDataReader DataReader = SelectCommand.ExecuteReader();
+                    DataReader.Read();
+                    Result = (int)DataReader[0] > 0;
+                } finally{
+                    Connection.Close();
+                }
+                return Result;
+            }
             public static DbUser GetUserFromDatabase(OleDbConnection Connection, string Username){
                 //Yeah, yeah, the username isn't the primary key...
                 OleDbCommand SelectCommand = new OleDbCommand();
