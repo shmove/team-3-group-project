@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Dynamic;
 using System.Globalization;
 using System.Linq;
 using System.Media;
@@ -25,8 +26,22 @@ namespace project
         }
 
         public ProgramConfig Config;
+        
+        private class SortMethod
+        {
+            public bool Reverse { get; set; }
+            public string Type { get; set; }
+            public SortMethod(bool p_Reverse, string p_Type)
+            {
+                Reverse = p_Reverse;
+                Type = p_Type;
+            }
+        };
+
         public Pupil activeStudent; // for accessing when creating a new student
         private bool filterDropDownToggle; // state of filter dropdown menu
+        private bool sortDropDownToggle; // state of sort dropdown menu
+        private SortMethod sortType = new SortMethod(false, "Alphabetical"); // holds sort state
         private bool ignoreReloads;
 
         // WINDOW CONTROL BAR
@@ -133,7 +148,7 @@ namespace project
                 // edit: it's a lot worse
                 // Spent a few hours looking into objects in c# and can't figure out a better way to initialise a property ONLY if a condition is met,
                 // so spiralling If statement is the only solution I could come up with. soz xoxo
-                if (CheckBoxA2E.Checked)
+                /*if (CheckBoxA2E.Checked)
                 {
                     if (CheckBoxStruggling.Checked)
                     {
@@ -178,7 +193,18 @@ namespace project
                             Pupils = Mgr.GetPupilsByProperties(new { });
                         }
                     }
-                }
+                }*/
+
+                //Yeah, I should've designed this differently... sorry for all the pain.
+                bool? A2E = null;
+                int? YearGroup = null;
+                bool? Struggling = null;
+                if(CheckBoxA2E.Checked) A2E = true;
+                if(TextBoxYearGroup.Text != "") YearGroup = Pupil.GetYearGroupInt(TextBoxYearGroup.Text);
+                if(CheckBoxStruggling.Checked) Struggling = true;
+                dynamic SearchFilter = new { A2E = A2E, YearGroup = YearGroup, Struggling = Struggling };
+
+                Pupils = Mgr.GetPupilsByProperties(SearchFilter);
 
                 // wipes listbox
                 SearchResults.Items.Clear();
@@ -212,9 +238,28 @@ namespace project
                     }
                 }
 
-                // sorts pupils in alphabetical order
-                // https://stackoverflow.com/a/3309230
-                List<Pupil> unDatedPupils = unsortedPupils.OrderBy(o => o.Name).ToList();
+                // sorts pupils
+                List<Pupil> unDatedPupils;
+                switch (sortType.Type)
+                {
+                    case "Alphabetical":
+                        // https://stackoverflow.com/a/3309230
+                        unDatedPupils = unsortedPupils.OrderBy(o => o.Name).ToList();
+                        break;
+                    case "YearGroup":
+                        unDatedPupils = unsortedPupils.OrderBy(o => o.YearGroup).ToList();
+                        unDatedPupils.Reverse(); // reverses to put most recent year groups first
+                        break;
+                    case "LastAccess":
+                        unDatedPupils = unsortedPupils.OrderBy(o => DateTime.Parse(o.LastAccess)).ToList();
+                        unDatedPupils.Reverse(); // reverses, so that most recently accessed are first by default
+                        break;
+                    default:
+                        unDatedPupils = unsortedPupils.ToList();
+                        throw new Exception("Tried to sort pupils by invalid type");
+                }
+
+                if (sortType.Reverse) unDatedPupils.Reverse();
 
                 // now, for date checking
                 if (DateTimePicker.Format != DateTimePickerFormat.Custom)
@@ -314,11 +359,18 @@ namespace project
             if (Config.VisualTheme == 1) VisualThemes.ToDarkTheme(this);
 
             ignoreReloads = true;
-            // initialise drop down
-            ComboBoxYearGroup.SelectedIndex = 0;
+            // initialise filter drop down
+            TextBoxYearGroup.Text = "";
             filterDropDownToggle = false;
             dropDownBack.Size = new Size(200, 10);
+            dropDownBack.Location = new Point(12, 138); // resets back to default position, incase it has been moved in editing
             dropDownBack.Visible = false;
+            // initialise sort drop down
+            updateSortDisplay();
+            sortDropDownToggle = false;
+            sortDropDownBack.Size = new Size(111, 10);
+            sortDropDownBack.Location = new Point(87, 138);
+            sortDropDownBack.Visible = false;
             // Wipes DateTimePicker display
             DateTimePicker.Format = DateTimePickerFormat.Custom;
             DateTimePicker.CustomFormat = " ";
@@ -358,31 +410,54 @@ namespace project
         }
 
         // functions that control the opening and closing of drop down panels
-        private void toggleDropDown()
+        private void toggleFilterDropDown()
         {
             filterDropDownToggle = !filterDropDownToggle;
+            if (sortDropDownToggle) toggleSortDropDown();
 
             if (filterDropDownToggle)
             {
                 ButtonFilterDropDown.Text = "▲";
+                dropDownBack.Height = 10;
                 dropDownBack.Visible = true;
             }
             else
             {
                 ButtonFilterDropDown.Text = "▼";
+                dropDownBack.Height = dropDownBack.MaximumSize.Height;
             }
 
-            dropdownTimer.Start();
+            dropdownTimerFilter.Start();
         }
 
-        private void dropdownTimer_Tick(object sender, EventArgs e)
+        private void toggleSortDropDown()
+        {
+            sortDropDownToggle = !sortDropDownToggle;
+            if (filterDropDownToggle) toggleFilterDropDown();
+
+            if (sortDropDownToggle)
+            {
+                buttonSortDropDown.Text = "▲";
+                sortDropDownBack.Height = 10;
+                sortDropDownBack.Visible = true;
+            }
+            else
+            {
+                buttonSortDropDown.Text = "▼";
+                sortDropDownBack.Height = sortDropDownBack.MaximumSize.Height;
+            }
+
+            dropdownTimerSort.Start();
+        }
+
+        private void dropdownTimerFilter_Tick(object sender, EventArgs e)
         {
             if (filterDropDownToggle)
             {
                 dropDownBack.Height += 30;
                 if (dropDownBack.Height == dropDownBack.MaximumSize.Height)
                 {
-                    dropdownTimer.Stop();
+                    dropdownTimerFilter.Stop();
                 }
             }
             else
@@ -390,15 +465,109 @@ namespace project
                 dropDownBack.Height -= 30;
                 if (dropDownBack.Height == 10)
                 {
-                    dropdownTimer.Stop();
+                    dropdownTimerFilter.Stop();
                     dropDownBack.Visible = false;
+                }
+            }
+        }
+
+        private void dropdownTimerSort_Tick(object sender, EventArgs e)
+        {
+            if (sortDropDownToggle)
+            {
+                sortDropDownBack.Height += 10;
+                if (sortDropDownBack.Height == sortDropDownBack.MaximumSize.Height)
+                {
+                    dropdownTimerSort.Stop();
+                }
+            }
+            else
+            {
+                sortDropDownBack.Height -= 10;
+                if (sortDropDownBack.Height == 10)
+                {
+                    dropdownTimerSort.Stop();
+                    sortDropDownBack.Visible = false;
                 }
             }
         }
 
         private void ButtonFilterDropDown_Click(object sender, EventArgs e)
         {
-            toggleDropDown();
+            toggleFilterDropDown();
+        }
+
+        private void buttonSortDropDown_Click(object sender, EventArgs e)
+        {
+            toggleSortDropDown();
+        }
+
+        // functions to handle updating sort display
+        private void updateSortDisplay()
+        {
+            switch (sortType.Type)
+            {
+                case "Alphabetical":
+                    labelSortType.Text = "Alphabetical";
+                    sortDisplayAlpha.Visible = true;
+                    sortDisplayYearGroup.Visible = sortDisplayAccessTime.Visible = false;
+                    if (sortType.Reverse) sortDisplayAlpha.Text = "ᐱ";
+                    else sortDisplayAlpha.Text = "ᐯ";
+                    break;
+                case "YearGroup":
+                    labelSortType.Text = "Year Group";
+                    sortDisplayYearGroup.Visible = true;
+                    sortDisplayAccessTime.Visible = sortDisplayAlpha.Visible = false;
+                    if (sortType.Reverse) sortDisplayYearGroup.Text = "ᐱ";
+                    else sortDisplayYearGroup.Text = "ᐯ";
+                    break;
+                case "LastAccess":
+                    labelSortType.Text = "Last Access";
+                    sortDisplayAccessTime.Visible = true;
+                    sortDisplayAlpha.Visible = sortDisplayYearGroup.Visible = false;
+                    if (sortType.Reverse) sortDisplayAccessTime.Text = "ᐱ";
+                    else sortDisplayAccessTime.Text = "ᐯ";
+                    break;
+                default:
+                    throw new Exception("Tried to update sort display with invalid type");
+            }
+            reloadPupils();
+        }
+
+        private void sortButton_Click(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            switch (control.Name)
+            {
+                case "sortAlpha":
+                    if (sortType.Type == "Alphabetical") sortType.Reverse = !sortType.Reverse;
+                    else
+                    {
+                        sortType.Type = "Alphabetical";
+                        sortType.Reverse = false;
+                    }
+                    break;
+                case "sortYear":
+                    if (sortType.Type == "YearGroup") sortType.Reverse = !sortType.Reverse;
+                    else
+                    {
+                        sortType.Type = "YearGroup";
+                        sortType.Reverse = false;
+                    }
+                    break;
+                case "sortAccessTime":
+                    if (sortType.Type == "LastAccess") sortType.Reverse = !sortType.Reverse;
+                    else
+                    {
+                        sortType.Type = "LastAccess";
+                        sortType.Reverse = false;
+                    }
+                    break;
+                default:
+                    throw new Exception("sortButton_Click function was called wrongly");
+            }
+
+            updateSortDisplay();
         }
 
         // User search feature
@@ -439,11 +608,14 @@ namespace project
             SearchBar.Text = "";
             CheckBoxA2E.Checked = false;
             CheckBoxStruggling.Checked = false;
-            ComboBoxYearGroup.SelectedIndex = 0;
+            TextBoxYearGroup.Text = "";
             DateTimePicker.Format = DateTimePickerFormat.Custom;
             DateTimePicker.CustomFormat = " ";
             ComboBoxContext.SelectedIndex = 0;
             ignoreReloads = false;
+            sortType.Type = "Alphabetical";
+            sortType.Reverse = false;
+            updateSortDisplay();
             reloadPupils();
             SystemSounds.Beep.Play();
 
@@ -452,7 +624,7 @@ namespace project
         private void ButtonAddStudent_Click(object sender, EventArgs e)
         {
 
-            activeStudent = new Pupil("", "", "", false, "", false, Pupil.YearGroups.S1, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s"), new List<Note>() { }, new List<TodoEntry>() { });
+            activeStudent = new Pupil("", "", "", "", false, "", false, 2019, DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s"), new List<Note>() { }, new List<TodoEntry>() { });
 
             ProfileViewEdit editForm = new ProfileViewEdit();
             editForm.recordsForm = this;
@@ -532,7 +704,23 @@ namespace project
                 ContextMenuStudent.Visible = false;
             }
         }
+        
+        private void button1_Click(object sender, EventArgs e) {
+            TextBoxYearGroup.Text = Pupil.GetYearGroupString((Pupil.GetYearGroupInt(TextBoxYearGroup.Text) ?? DateTime.Now.Year) - 1);
+        }
 
+        private void TextBoxYearGroup_TextChanged(object sender, EventArgs e) {
+            
+        }
+
+        private void InitYearGroupSearch(object sender, MouseEventArgs e) {
+            TextBoxYearGroup.Text = Pupil.GetYearGroupString(DateTime.Now.Year);
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            TextBoxYearGroup.Text = Pupil.GetYearGroupString((Pupil.GetYearGroupInt(TextBoxYearGroup.Text) ?? DateTime.Now.Year) + 1);
+        }
+        
         // CUSTOM DRAW METHODS
 
         // https://stackoverflow.com/a/3663856

@@ -65,6 +65,7 @@ namespace project
             FadeEffect.FadeOut(this, 200, new Action(() => 
             {
                 this.Hide();
+                new DbPupilDataManager();
                 loginForm.Show();
             }));
         }

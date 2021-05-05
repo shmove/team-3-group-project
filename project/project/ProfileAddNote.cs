@@ -65,15 +65,18 @@ namespace project
         {
             TitleBarControl.MouseDownButton(e, new Action(() =>
             {
-                FadeEffect.FadeOut(this, 100, new Action(() => this.WindowState = FormWindowState.Minimized));
+                //FadeEffect.FadeOut(this, 100, new Action(() =>
+                this.WindowState = FormWindowState.Minimized;
+                //));
             }));
-
         }
 
+        /* ignore for now, buggy :(
         private void Form_Resize(object sender, EventArgs e)
         {
             TitleBarControl.Unminimise(this);
         }
+        */
 
 
         // FORM CODE

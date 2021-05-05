@@ -70,15 +70,18 @@ namespace project
         {
             TitleBarControl.MouseDownButton(e, new Action(() =>
             {
-                FadeEffect.FadeOut(this, 100, new Action(() => this.WindowState = FormWindowState.Minimized));
+                //FadeEffect.FadeOut(this, 100, new Action(() =>
+                this.WindowState = FormWindowState.Minimized;
+                //));
             }));
-
         }
 
+        /* ignore for now, buggy :(
         private void Form_Resize(object sender, EventArgs e)
         {
             TitleBarControl.Unminimise(this);
         }
+        */
 
 
         // FORM CODE
@@ -147,7 +150,7 @@ namespace project
         private void ProfileViewEdit_Load(object sender, EventArgs e)
         {
 
-            ComboBoxYearGroup.SelectedIndex = 0;
+            //ComboBoxYearGroup.SelectedIndex = 0;
             if (Config.VisualTheme == 1) VisualThemes.ToDarkTheme(this);
 
             if (pupilForm != null)
@@ -161,14 +164,16 @@ namespace project
                 // Loads current student data into display
                 this.Text = activeStudent.Name + " (" + activeStudent.PupilID + ") - Edit";
 
-                TextBoxName.Text = activeStudent.Name;
+                TextBoxForename.Text = activeStudent.Forename;
+                TextBoxSurname.Text = activeStudent.Surname;
                 TextBoxStudentID.Text = activeStudent.PupilID;
                 TextBoxCompany.Text = activeStudent.Company;
                 CheckBoxA2E.Checked = activeStudent.A2E;
                 TextBoxA2EDesc.Text = activeStudent.A2EDescription;
                 toggleA2EDisplay(activeStudent.A2E);
                 CheckBoxStruggling.Checked = activeStudent.Struggling;
-                switch (activeStudent.YearGroup.ToString())
+                TextBoxYearGroup.Text = Pupil.GetYearGroupString(activeStudent.YearGroup);
+                /*switch (activeStudent.YearGroup.ToString())
                 {
                     case "S1":
                         ComboBoxYearGroup.SelectedIndex = 0;
@@ -206,7 +211,7 @@ namespace project
                     case "Uni4":
                         ComboBoxYearGroup.SelectedIndex = 11;
                         break;
-                };
+                };*/
 
                 reloadImage("");
             }
@@ -253,7 +258,7 @@ namespace project
         private void ButtonSave_Click(object sender, EventArgs e)
         {
 
-            if (TextBoxStudentID.Text == "" | TextBoxName.Text == "")
+            if (TextBoxStudentID.Text == "" | TextBoxForename.Text == "")
             {
                 SystemSounds.Hand.Play();
                 MessageBox.Show("Please ensure both student name and ID are provided. These are required fields.", "Insufficient info", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -261,14 +266,15 @@ namespace project
             else
             {
 
-                activeStudent.Name = TextBoxName.Text;
-                activeStudent.PupilID = TextBoxStudentID.Text;
-                activeStudent.Company = TextBoxCompany.Text;
+                activeStudent.Forename = TextBoxForename.Text.Trim();
+                activeStudent.Surname = TextBoxSurname.Text.Trim();
+                activeStudent.PupilID = TextBoxStudentID.Text.Trim();
+                activeStudent.Company = TextBoxCompany.Text.Trim();
                 activeStudent.A2E = CheckBoxA2E.Checked;
-                if (activeStudent.A2E) activeStudent.A2EDescription = TextBoxA2EDesc.Text; // peepoWave
+                if (activeStudent.A2E) activeStudent.A2EDescription = TextBoxA2EDesc.Text.Trim(); // peepoWave
                 else activeStudent.A2EDescription = "";
-                Pupil.YearGroups[] yearGroups = {Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4};
-                activeStudent.YearGroup = yearGroups[ComboBoxYearGroup.SelectedIndex];
+                //Pupil.YearGroups[] yearGroups = {Pupil.YearGroups.S1, Pupil.YearGroups.S2, Pupil.YearGroups.S3, Pupil.YearGroups.S4, Pupil.YearGroups.S5, Pupil.YearGroups.S6, Pupil.YearGroups.College1, Pupil.YearGroups.College2, Pupil.YearGroups.Uni1, Pupil.YearGroups.Uni2, Pupil.YearGroups.Uni3, Pupil.YearGroups.Uni4};
+                activeStudent.YearGroup = Pupil.GetYearGroupInt(TextBoxYearGroup.Text) ?? 2020;//yearGroups[ComboBoxYearGroup.SelectedIndex];
                 activeStudent.LastAccess = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.s");
                 activeStudent.Struggling = CheckBoxStruggling.Checked;
 
@@ -300,6 +306,22 @@ namespace project
         private void CheckBoxA2E_CheckedChanged(object sender, EventArgs e)
         {
             toggleA2EDisplay(CheckBoxA2E.Checked);
+        }
+        
+        private void button1_Click(object sender, EventArgs e) {
+            TextBoxYearGroup.Text = Pupil.GetYearGroupString((Pupil.GetYearGroupInt(TextBoxYearGroup.Text) ?? DateTime.Now.Year) - 1);
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            TextBoxYearGroup.Text = Pupil.GetYearGroupString((Pupil.GetYearGroupInt(TextBoxYearGroup.Text) ?? DateTime.Now.Year) + 1);
+        }
+
+        private void TextBoxYearGroup_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void InitYearGroupField(object sender, MouseEventArgs e) {
+            TextBoxYearGroup.Text = Pupil.GetYearGroupString(DateTime.Now.Year);
         }
 
         // CUSTOM DRAW METHODS
