@@ -41,11 +41,12 @@ namespace project
             if (Config.SplashSkip)
             {
                 WindowTimer.Stop();
-                this.Opacity = 0;
                 FormLogin loginForm = new FormLogin();
                 loginForm.Config = Config;
                 loginForm.FormClosed += (s, args) => this.Close(); // on the event of the login form closing, this one closes too
-                this.Hide();
+                this.Opacity = 0.0f;
+                this.ShowInTaskbar = false;
+                new DbPupilDataManager();
                 loginForm.Show();
             }
             else

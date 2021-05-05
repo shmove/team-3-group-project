@@ -51,33 +51,6 @@ namespace project
             }));
         }
 
-        private void PanelWindowMinimise_MouseHover(object sender, EventArgs e)
-        {
-            TitleBarControl.HoverButton(Config, PanelWindowMinimise);
-        }
-
-        private void PanelWindowMinimise_MouseLeave(object sender, EventArgs e)
-        {
-            TitleBarControl.LeaveButton(Config, PanelWindowMinimise);
-        }
-
-        private void PanelWindowMinimise_MouseDown(object sender, MouseEventArgs e)
-        {
-            TitleBarControl.MouseDownButton(e, new Action(() =>
-            {
-                //FadeEffect.FadeOut(this, 100, new Action(() =>
-                this.WindowState = FormWindowState.Minimized;
-                //));
-            }));
-        }
-
-        /* ignore for now, buggy :(
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            TitleBarControl.Unminimise(this);
-        }
-        */
-
 
         // FORM CODE
 

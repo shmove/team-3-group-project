@@ -591,7 +591,7 @@
             this.ButtonExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonExport.Font = new System.Drawing.Font("Nirmala UI", 8.25F);
-            this.ButtonExport.ForeColor = System.Drawing.Color.White;
+            this.ButtonExport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ButtonExport.Location = new System.Drawing.Point(113, 534);
             this.ButtonExport.Name = "ButtonExport";
             this.ButtonExport.Size = new System.Drawing.Size(95, 25);

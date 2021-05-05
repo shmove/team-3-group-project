@@ -96,7 +96,10 @@ namespace project
         {
             TitleBarControl.MouseDownButton(e, new Action(() =>
             {
-                FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
+                if (MessageBox.Show("Are you sure you want to close Student Records Program?", "Close program", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    FadeEffect.FadeOut(this, 100, new Action(() => this.Close()));
+                }
             }));
         }
 
@@ -390,8 +393,8 @@ namespace project
             ProfileEditView infoForm = new ProfileEditView();
             infoForm.searchForm = this;
             infoForm.Config = Config;
-            infoForm.ShowDialog();
-            reloadPupils();
+            infoForm.FormClosed += (s, args) => reloadPupils(); // when the student is closed (probably after being updated), reload pupils
+            infoForm.Show();
         }
 
         private void ViewButton_Click(object sender, EventArgs e)

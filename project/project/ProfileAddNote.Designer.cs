@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileAddNote));
+            this.ShowInTaskbar = false;
+
             this.TextBoxNote = new System.Windows.Forms.TextBox();
             this.ButtonAddNote = new System.Windows.Forms.Button();
             this.ButtonCancel = new System.Windows.Forms.Button();
             this.TextBoxNoteBack = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.PanelWindowControls = new System.Windows.Forms.Panel();
-            this.PanelWindowMinimise = new System.Windows.Forms.Panel();
-            this.LabelMinimiseWindow = new System.Windows.Forms.Label();
             this.PanelWindowClose = new System.Windows.Forms.Panel();
             this.LabelCloseWindow = new System.Windows.Forms.Label();
             this.IconWindowControls = new System.Windows.Forms.PictureBox();
@@ -49,7 +49,6 @@
             this.BorderPanelTopUpper = new System.Windows.Forms.Panel();
             this.TextBoxNoteBack.SuspendLayout();
             this.PanelWindowControls.SuspendLayout();
-            this.PanelWindowMinimise.SuspendLayout();
             this.PanelWindowClose.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).BeginInit();
             this.SuspendLayout();
@@ -121,7 +120,6 @@
             // PanelWindowControls
             // 
             this.PanelWindowControls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.PanelWindowControls.Controls.Add(this.PanelWindowMinimise);
             this.PanelWindowControls.Controls.Add(this.PanelWindowClose);
             this.PanelWindowControls.Controls.Add(this.IconWindowControls);
             this.PanelWindowControls.Location = new System.Drawing.Point(0, 0);
@@ -129,33 +127,6 @@
             this.PanelWindowControls.Size = new System.Drawing.Size(538, 30);
             this.PanelWindowControls.TabIndex = 34;
             this.PanelWindowControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowControls_MouseDown);
-            // 
-            // PanelWindowMinimise
-            // 
-            this.PanelWindowMinimise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PanelWindowMinimise.Controls.Add(this.LabelMinimiseWindow);
-            this.PanelWindowMinimise.Location = new System.Drawing.Point(448, 0);
-            this.PanelWindowMinimise.Name = "PanelWindowMinimise";
-            this.PanelWindowMinimise.Size = new System.Drawing.Size(45, 30);
-            this.PanelWindowMinimise.TabIndex = 24;
-            this.PanelWindowMinimise.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowMinimise_MouseDown);
-            this.PanelWindowMinimise.MouseLeave += new System.EventHandler(this.PanelWindowMinimise_MouseLeave);
-            this.PanelWindowMinimise.MouseHover += new System.EventHandler(this.PanelWindowMinimise_MouseHover);
-            // 
-            // LabelMinimiseWindow
-            // 
-            this.LabelMinimiseWindow.AutoSize = true;
-            this.LabelMinimiseWindow.BackColor = System.Drawing.Color.Transparent;
-            this.LabelMinimiseWindow.Enabled = false;
-            this.LabelMinimiseWindow.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.LabelMinimiseWindow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.LabelMinimiseWindow.Location = new System.Drawing.Point(13, 5);
-            this.LabelMinimiseWindow.Name = "LabelMinimiseWindow";
-            this.LabelMinimiseWindow.Size = new System.Drawing.Size(21, 17);
-            this.LabelMinimiseWindow.TabIndex = 24;
-            this.LabelMinimiseWindow.Text = "—";
-            this.LabelMinimiseWindow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelWindowMinimise_MouseDown);
-            this.LabelMinimiseWindow.MouseHover += new System.EventHandler(this.PanelWindowMinimise_MouseHover);
             // 
             // PanelWindowClose
             // 
@@ -284,12 +255,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "[StudentName] - Add/Edit Note";
             this.Load += new System.EventHandler(this.ProfileAddNote_Load);
-            //this.Resize += new System.EventHandler(this.Form_Resize);
             this.TextBoxNoteBack.ResumeLayout(false);
             this.TextBoxNoteBack.PerformLayout();
             this.PanelWindowControls.ResumeLayout(false);
-            this.PanelWindowMinimise.ResumeLayout(false);
-            this.PanelWindowMinimise.PerformLayout();
             this.PanelWindowClose.ResumeLayout(false);
             this.PanelWindowClose.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconWindowControls)).EndInit();
@@ -306,8 +274,6 @@
         private System.Windows.Forms.Panel TextBoxNoteBack;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel PanelWindowControls;
-        private System.Windows.Forms.Panel PanelWindowMinimise;
-        private System.Windows.Forms.Label LabelMinimiseWindow;
         private System.Windows.Forms.Panel PanelWindowClose;
         private System.Windows.Forms.Label LabelCloseWindow;
         private System.Windows.Forms.PictureBox IconWindowControls;
