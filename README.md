@@ -5,8 +5,8 @@ This is a project made to the specifications of Matthew Barr for a college work 
 Run the latest installer from the [releases section](https://github.com/shmove/team-3-group-project/releases), and launch from the newly generated desktop icon.
 
 ## Contributor Credits
-- @shmove
-- Luka Senic (@Permille)
+- [@shmove](https://github.com/shmove)
+- Luka Senic ([@Permille](https://github.com/Permille))
 - Destiny Uduebholo
 - Katie Hendry
 
